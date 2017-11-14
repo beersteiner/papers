@@ -1,0 +1,17 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Author Identification}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Statoi/C-CORE Iceberg Classifier Challenge}{1}{subsection.1.2}
+\contentsline {section}{\numberline {2}Datamining}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Data Preprossing}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Mining, Interpretation, and Action}{3}{subsection.2.2}
+\contentsline {section}{\numberline {3}Author Idenfication: Full Problem Description}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}Data Analysis}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Methods}{4}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Results}{4}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Summary and Future Work}{4}{subsection.3.4}
+\contentsline {section}{\numberline {4}Iceberg: Full Problem Description}{4}{section.4}
+\contentsline {subsection}{\numberline {4.1}Citations and Subsubsection}{4}{subsection.4.1}
+\contentsline {section}{Acknowledgments}{4}{section*.2}
+\contentsline {section}{References}{4}{section*.3}
+\contentsfinish 

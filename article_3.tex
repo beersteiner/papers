@@ -1,0 +1,325 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Stylish Article
+% LaTeX Template
+% Version 2.1 (1/10/15)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Mathias Legrand (legrand.mathias@gmail.com) 
+% With extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[fleqn,10pt]{SelfArx} % Document font size and equations flushed left
+
+\usepackage[english]{babel} % Specify a different language here - english by default
+\usepackage{lipsum} % Required to insert dummy text. To be removed otherwise
+\setlength{\columnsep}{0.55cm} % Distance between the two columns of text
+\setlength{\fboxrule}{0.75pt} % Width of the border around the abstract
+\definecolor{color1}{RGB}{0,0,90} % Color of the article title and sections
+\definecolor{color2}{RGB}{0,20,20} % Color of the boxes behind the abstract and headings
+\usepackage{hyperref} % Required for hyperlinks
+\hypersetup{hidelinks,colorlinks,breaklinks=true,urlcolor=color2,citecolor=color1,linkcolor=color1,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\def\Plus{\texttt{+}}	
+\def\Minus{\texttt{-}} 
+\usepackage{amsfonts}
+\usepackage{alltt}
+\usepackage{url}
+\usepackage{relsize}
+
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE INFORMATION
+%----------------------------------------------------------------------------------------
+
+\JournalInfo{Computer Science\\School of Informatics, Computing, and Engineering\\Indiana University, Bloomington, IN, USA} % Journal information
+\Archive{Datamining B565 Fall 2017}  % Additional notes (e.g. copyright, DOI, review/research article)
+
+\PaperTitle{Kaggle Competitions:\\ \ Spooky Author Identification\\ \ Statoil/C-CORE Iceberg Classifier Challenge} % Article title
+
+\Authors{John Stein\textsuperscript{1}*} % Authors
+\affiliation{\textsuperscript{1}\textit{Computer Science, School of Informatics, Computing, and Engineering, Indiana University, Bloomington, IN, USA}} % Author affiliation
+\affiliation{*\textbf{Corresponding author}: jodstein@iu.edu} % Corresponding author
+
+\Keywords{Keyword1 --- Keyword2 --- Keyword3} % Keywords - if you don't want any simply remove all the text between the curly brackets
+\newcommand{\keywordname}{Keywords} % Defines the keywords heading name
+\usepackage{abstract}
+
+%----------------------------------------------------------------------------------------
+%	Executive Summary
+%----------------------------------------------------------------------------------------
+
+\Abstract{\textbf{Executive Summary} Briefly explain the kaggle competition and datamining as a solution.  Briefly explain each problem, the solution, and results. }
+
+
+\begin{document}
+
+\renewcommand{\abstractname}{}  
+\renewcommand{\absnamepos}{} 
+
+\flushbottom % Makes all text pages the same height
+\maketitle % Print the title and abstract box
+\tableofcontents % Print the contents section
+\thispagestyle{empty} % Removes page numbering from the first page
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}
+
+\begin{itemize}[noitemsep] %use noitem to make more compact
+\item Briefly, but more completely than in the Executive Summary, explain the kaggle competition -- how to get to it, \textit{etc.}.
+\item   Discuss datamining abstractly and how it fits as a solution to the kaggle competition.
+\item Briefly, but more completely than in the Executive Summary, explain the two problems in two different subsections. \cite{example}
+\end{itemize}
+\subsection{Author Identification}
+What is the problem to be solved?  What is the data? How is goodness quantified?  This should not be too technical, but we can say, for example, given three authors $A = \{a_1, a_2, a_3\}$ and selections of their individiually corresponding works $S_{a_1}, S_{a_2}, S_{a_3}$,  we are constructing a probability  mass function $f$ over $A$ that is applied to a text $t$ written by one of the authors, but unlabled:
+\begin{equation}
+f(A|t,S) = \{p_{a_1}, p_{a_2}, p_{a_3}\}
+\end{equation}
+
+A text is simply a passage from one of the author's works:
+\begin{quote}
+Once upon a midnight dreary, while I pondered, weak and weary, Over many a quaint and curious volume of forgotten lore—While I nodded, nearly napping, suddenly there came a tapping, As of some one gently rapping, rapping at my chamber door.“’Tis some visitor,” I muttered, “tapping at my chamber door— Only this and nothing more.”
+\end{quote}
+from Edgar Allen Poe's, \textit{The Raven}.  You must find out whether it's only prose -- and how much of the original structure is maintained.  Likely you will not take in text directly -- so this must be described.
+\subsection{Statoi/C-CORE Iceberg Classifier Challenge}
+
+  Use footnotes sparingly, but you must use at least two in this document\footnote{A footnote provides some ancillary information that's somewhat misplaced in the text, \textit{i.e.}, the reader can skip it without missing any critical information.  On the other hand, a dedicated reader appreciates the extra information.  A footnote might clarify information in an informal way.  Although possible, putting mathematics in a footnote is a bit odd.}.
+
+
+\section{Datamining}
+
+\begin{itemize}[noitemsep]
+
+\item What is datamining?  Datamining seeks to inform decision making by answering questions about, exploring or discovering relationships in, or providing annotation of data.
+
+\item What does it yield?  Datamining yields information that is not possible or practical to directly observe, based on data that is practical to observe.  This information may be predicted trends in human behavior, perceived relationships or clusters within high-dimension data, or a prediction of future events.  In all cases, the yielded information is deemed valuable to someone who is then enabled to make decisions based on that information.
+
+\item What are the general steps?  
+
+\begin{itemize}
+	
+	\item The first (and most difficult) step in datamining is developing the problem statement: What decision or action is the datamining effort required to inform or enable, and what must the datamining effort yield in order to satisfy that requirement?
+	
+	\item The second step is data acquisition.  Acquisition of data is non-trivial.  It can be difficult, expensive, and in some cases even prohibited or restricted by law.  Therefore, the miner must be intentional about pursuing the acquisition of data that is both needed (from the problem statement) and available, whether by manual observation, survey, or automated sensing/recording.
+	
+	\item The third (and most time consuming) step in data-mining is data pre-processing.  The data must be analyzed, including identifying unknown, missing, or outlier records, examining attributes and their domains, and visualizing the data for first-order behaviors, trends, and distributions.  The data must then be integrated and/or cleaned, including dealing with unknown, missing, or bad data, enriching the data from other sources, and/or transforming the data to work better in the algorithm.
+	
+	\item The fourth step is to actually mine the data (i.e. answer questions, explore or discover relationships, or annotate).  The methodology, assumptions, models, and parameters of how the mining is performed can depend on the objective, the data itself, and the miner themselves.
+	
+	\item The fifth and final step in datamining is to interpret the output of the mining step and either validate that it meets the stated objective/requirement of the problem statement, or determine that changes to the pre-processing or mining steps are warranted and start again with a modified approach.
+
+\end{itemize}
+
+\item What is clustering \textit{vs.} classification?  Classification refers to the task of predicting the label of some unobserved target attribute given a set of observed attributes for some record.  The label is generally a single member of a finite list of possible labels.  Clustering refers to the task of identifying or discovering relationships among data.  In other words, are there properties or measures for which subsets of data can be interpreted as similar or dissimilar in a meaningful way?  Clustering aims to discover these `clumps' or similar data as well as the properties or measurements from which the similarity can be determined.  It is useful to think of Classification as a supervised learning task because it is notionally possible to produce a training set with labeled records, and Clustering as an unsupervised learning task because the number and meaning of the discovered clusters is not known apriori (if they were, they could be labeled and it would be called Classification).
+
+\item What is a loss function? A loss function is a function which attempts to assign a real value to some undesirable property of an intermediate outcome during the mining step.  This value (known as cost or loss) may represent error, variance, or bias of a model, clustering, or classifier.  The actual value of loss is usually not meaningful.  Instead, the goal is generally to minimize the loss over some parameter or variable during an optimization step.
+
+\end{itemize}
+
+
+\subsection{Data Preprossing}
+
+\begin{itemize}[noitemsep]
+
+\item What are the steps, and what challenges does each present?  The first step in data preprocessing is data analysis.  Data analysis can include examining histograms, bar/pair-plots, frequency tables, etc.  The goal is to get familiar with the data attributes and their domains, frequency of values, trends and distributions, and first-order behaviors.  From the analysis, the two primary remaining tasks are selection and modification.  Selection (i.e. sampling and attribute selection) refers to deciding which subset or records and/or which subset of attributes for each record to use for the mining task.  Modification (i.e. aggregation, dimensionality reduction, discretization, and transformation) refers to changing existing, creating new, or transforming, attributes and their values.
+
+\begin{itemize}
+	
+	\item Sampling refers to choosing a subset of the total data from which to develop the analysis technique - often because working on the entire dataset would result in more resource investment than it would improve the performance of the technique.  The challenge with sampling is that, especially for high-dimensionality data, the data data can quickly become sparse, resulting in a greater potential for over-fitting due to the small data size and high dimensionality (degrees of freedom).
+	
+	\item Attribute Selection refers to selecting which attributes to include in the analysis and which to exclude, based on some preliminary analysis.  Manual attribute selection (or de-selection) is challenging because humans can only perceive date in two, three, or perhaps four dimensions.  One can only reasonably expect to act on the most obvious of attribute properties without impacting the analysis in unexpected ways.
+	
+	\item Aggregation refers to manually grouping several attributes or attribute values together, preferably while preserving some higher-level relationship among those being grouped.  Aggregation can be relatively straightforward in some cases, but in other cases it can be very difficult to group attributes or values in a way that recognizes the essential common property of its members.
+	
+	\item Dimensionality Reduction refers to the creation of fewer new attributes which are combinations of the many old attributes.  Two common methods include Principal Component Analysis (PCA) and Neural Networks.  The primary challenge with dimensionality reduction is that the meaning of the original attributes are all but lost as the data are mapped to the new, reduced feature space.
+	
+	\item Discretization refers to the assignment of values from a continous-valued attributes into one of finite-many bins.
+	
+	\item Transformation refers to the mapping of old attribute values to new attribute values - generally reversible.
+\end{itemize}
+Finally, data with unknown, erroneous, or missing values must be handled.  Some of these handling techniques may be implemented in the mining algorithm(s) themselves, but some may be performed prior to the mining step.  Unknown/missing data handling is more challenging for some algorithms (i.e. regression) than it is for others (i.e. decision trees).  Some algorithms need each record to have good data, or they will simply not work.  Other algorithms can be made to handle unknown/missing data in a reliable way and achieve good performance.  Still other algorithms can operate on records having missing data with no extra effort.  The primary challenge, especially for high-dimensionality data, is that the impact of the handling technique can be different for every attribute, and must be understood and chosen carefully.
+
+\item What is the general load (time, space, \$) for preprocessing?  Computationally, preprocessing may consume $O(n)$ or $O(n log m)$ time where $n$ is the number of records to process and $m$ may be search steps if matching, inclusion, or sorting operations are required.  Preprocessing may consume anywhere from constant space to $O(n)$ space, if the records are processed one at a time and stored back into their original location, or copies are made.  Practically speaking, preprocessing can consume upwards of 80\% of the labor hours, and therefore ~80\% of the funding, of the overall datamining effort.  That is because it is the most human-intensive step of the process.  Automation of the preprocessing step, although possible, is of limited benefit if the datamining problems vary significantly in size, scope, data representation, purpose, etc.  The ability to predict the preprocessing impacts of data across problem spaces is indeed an analytics problem unto itself.
+
+\end{itemize}
+
+\subsection{Mining, Interpretation, and Action}
+
+\begin{itemize}[noitemsep]
+\item Briefly discuss the top 10 algorithms.
+\item Does datamining tell us what to do?
+\item What are some new types of problems in datamining?
+\end{itemize}
+
+%------------------------------------------------
+%
+%  Author Identication
+%   
+%------------------------------------------------
+\section{Author Idenfication: Full Problem Description}
+\begin{itemize}[noitemsep]
+\item Define problem
+\item Formally describe problem--inputs, outputs, training and testing method
+\end{itemize}
+
+%\begin{figure*}[ht]\centering % Using \begin{figure*} makes the figure take up the entire width of the page
+%\includegraphics[width=\linewidth]{view}
+%\caption{You can span in the width of the page if you need to.}
+%\label{fig:view}
+%\end{figure*}
+
+\lipsum[4] % Dummy text
+
+\begin{equation}
+\cos^3 \theta =\frac{1}{4}\cos\theta+\frac{3}{4}\cos 3\theta
+\label{eq:refname2}
+\end{equation}
+
+\lipsum[5] % Dummy text
+
+
+\subsection{Data Analysis}
+\begin{itemize}[noitemsep]
+\item Describe the data in full detail--from its raw form to the transformation
+\item Provide summary statistics and relationships
+\end{itemize}
+
+\lipsum[6] % Dummy text
+
+\subsection{Methods}
+\begin{itemize}[noitemsep]
+\item Discuss the algorithm you've chosen, \textit{e.g.}, why you chose it
+\item Provide some background material on your method that shows you are well-acquianted with it
+\item Challenges to your method
+\item What software and hardware did you use, packages, \textit{etc.}
+\item Final structure of data after preprocessing
+\item Present training and testing as some combination of text and visualizations
+\end{itemize}
+%\begin{figure}[ht]\centering
+%\includegraphics[width=\linewidth]{results}
+%\caption{Any illustration should first says what it is.  Then describe the axes.  What is important in the graph.  There should be a title too.}
+%\label{fig:results}
+%\end{figure}
+Algorithm\,\ref{alg:1} shows an extended $k$-means.
+
+\begin{algorithm}
+\caption{This is a caption for the algorithm.  $k$-means* over $\Delta$}
+\label{alg:1}
+\begin{algorithmic}[1]
+\STATE{\ {\bf INPUT} data $\Delta$, blocks k, distance $\textbf{d}:\Delta^2 \rightarrow \Re_{\geq 0}$}
+\STATE{\ {\bf OUTPUT} centroids $C_1,\ldots,C_l$}
+\STATE \%\% assume that a centroid is a pair $(v,X)$
+\STATE \%\% $v\in \Re^m$ and (a possibly empty) $ X\subseteq \Delta$
+\STATE \%\% heap $ H \subseteq \Delta$
+\STATE{\ randomly construct k centroids $\mathbf{\mathsf{C}}^0 = \{C_1^0, C_2^0,\ldots,C_k^0\}$}
+\STATE{\ $i \leftarrow 0$ }
+\STATE \%\% $\Delta_{HE}$ represents HE data, $\Delta = \Delta_{HE} +  \Delta_{LE}$
+\STATE{\ $\Delta_{HE} \leftarrow \Delta$}
+\REPEAT
+\FOR {$\mathbf{x} \in \Delta_{HE}$}
+\FOR { $C_j^i \in \mathbf{\mathsf{C^i}}$}
+\STATE \%\% assign data to centroid/heap that is nearest
+\STATE \%\% $\sigma \Rightarrow d$
+\STATE $C_j^i.H.insert(\mathbf{x},d)$, where min$\{ \textbf{d}(\mathbf{x}, C_j^i.v)\}$
+\ENDFOR
+\ENDFOR
+\STATE{\ $\Delta^\prime \leftarrow \emptyset$}
+\FOR {$C_j^i \in \mathbf{\mathsf{C^i}}$}
+\STATE \%\% recalculate centroid as average of over $C.H$
+\STATE $C_j^{i+1}.v \leftarrow  \sum\nolimits_{\mathbf{x} \in C_j^i.X} (\mathbf{x}/|C_j^i.X|) $
+\STATE{\ $\Delta^\prime \leftarrow C_j^i.H.flush(\sigma)$}
+\STATE{\ $ \mathbf{\mathsf{C^{i+1}}} \xleftarrow{\cup} \{ C_j^{i+1}\} $}
+\ENDFOR
+\STATE{\ $i \leftarrow i+1$ }
+\STATE{\ $\Delta_{HE} \leftarrow \Delta^\prime$}
+\UNTIL{threshold on $\mathbf{\mathsf{C^{i-1}}}$}
+\end{algorithmic}
+\end{algorithm}
+
+
+%Reference to Figure \ref{fig:results}.
+
+%------------------------------------------------
+
+\subsection{Results}
+\begin{itemize}[noitemsep]
+\item Dispassionately describe your results both quantified and qualified
+\item Do you deem this successful
+\item What do the results suggest
+\item What were challenges
+\end{itemize}
+Remember, we're interested in the journey, so simply because an approach failed doesn't mean failure if you discuss the failure!
+\subsection{Summary and Future Work}
+\begin{itemize}[noitemsep]
+\item Briefly summarize project and outcome
+\item What would you do differently in the future?
+\end{itemize}
+
+\lipsum[10] % Dummy text
+\section{Iceberg: Full Problem Description}
+
+
+\lipsum[11] % Dummy text
+We used $10$-fold...
+\begin{table}[hbt]
+\caption{Training and Test Results}
+\centering
+\begin{tabular}{llr}
+\toprule
+\multicolumn{2}{c}{Name} \\
+\cmidrule(r){1-2}
+ \textsf{Data} & \textsf{Description} & \textsf{$Sum$} \\
+\midrule
+1 & ``Hello...'' & $7.5$ \\
+2 & ``Goodbye...'' & $2$ \\
+\bottomrule
+\end{tabular}
+\label{tab:label}
+\end{table}
+
+
+\subsection{Citations and Subsubsection}
+%This level should be used sparingly, but can provide a sense to the reader of the outline and, therefore, relationship of information.  You'll need to have at least 10 citations.  Here is an example.  This work was began by Micky Mouse\cite{vbku10}.  Here's a way to provide bullet points:
+
+\begin{description}
+\item[Word] Definition
+\item[Concept] Explanation
+\item[Idea] Text
+\end{description}
+
+%------------------------------------------------
+\phantomsection
+\section*{Acknowledgments} % The \section*{} command stops section numbering
+Put people, Grants, \textit{etc.} that helped contribute to the success and completion of the work.  Be generous.
+\addcontentsline{toc}{section}{Acknowledgments} % Adds this section to the table of contents
+
+
+
+%----------------------------------------------------------------------------------------
+%	REFERENCE LIST
+%----------------------------------------------------------------------------------------
+\phantomsection
+\bibliographystyle{unsrt}
+\bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
