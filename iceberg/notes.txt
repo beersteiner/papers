@@ -14,4 +14,8 @@ Example JSON queries in SQL:
     # gets 0th index of band_1 from image 'dfd5f913'
     select img->"$.band_1[0]" from train where img->"$.id"="dfd5f913" 
 
-Using packages: RMySQL, rjson
+Using packages: RMySQL, rjson, ggplot2
+
+Analysis:
+    plotting stats: https://www.kaggle.com/muonneutrino/exploration-transforming-images-in-python
+    
