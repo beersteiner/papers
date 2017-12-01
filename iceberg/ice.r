@@ -1,129 +1,111 @@
 library('RMySQL')
 library('rjson')
-
-
-## FUNCTION DEFINITIONS
-
-## This is a function so it can be invoked easily from interactive R session
-connectdb <- function() {
-    ## Connect to database
-    db <- dbConnect(MySQL(), user='john', password='', host='127.0.0.1')
-    dbSendQuery(db, 'USE iceberg')
-    return(db)
-}
-
-## Same here
-disconnectdb <- function(db) {
-    ## Clean up
-    ##dbClearResult(dbListResults(mydb)[[1]])
-    dbDisconnect(db)
-}
-
-
-## Wrapper function for paste for compactness
-p <- function(...) {
-    return(paste(..., sep=''))
-}
-
-## This will get a json key value given the table, key name, and condition
-getJAtr <- function(tbl, key, cond) {
-    qry <- p('SELECT img->"$.',key,'" FROM ', tbl, ' WHERE ', cond)
-    suppressWarnings(res <- dbGetQuery(mydb, qry)[,1])
-    for(i in 1:length(res)) res[i] <- fromJSON(res[i])
-    return(res)
-}
-
-## This will return one of the json images in matrix form
-getJImg <- function(tbl, bnd, idn) {
-    qry <- p('SELECT img->"$.band_', bnd, '" FROM ', tbl, ' WHERE idn=', idn)
-    suppressWarnings(tmp <- dbGetQuery(mydb, qry))
-    res <- matrix(fromJSON(as.character(tmp)), ncol=75, byrow=TRUE)
-    return(res)
-}
-
-## This will get the features from idn that are used in the LR
-getFeat <- function(tbl, idn) {
-    res <-  data.frame(is_iceberg = NA)
-    res$b1max <- max(getJImg(tbl, 1, idn))
-    res$b2max <- max(getJImg(tbl, 2, idn))
-    if(tbl=='train') {
-        res$is_iceberg <- as.numeric(getJAtr(tbl, 'is_iceberg', p('idn=', idn)))
-    } else {
-        res$is_iceberg <- NA
-    }
-    return(res)
-}
-
-
+source('reuse.r')
 
 
 
 
 
 ## GLOBAL VARIABLES
+mydb <- connectdb()
 
-
+## Features ranked visually (by histograms)
+features <- c('is_iceberg',
+              'band.1.max',
+              'band.2.max',
+              'band.1.tar.mean',
+              'band.2.tar.mean',
+              'tb.mean.dif.dif',
+              'tar.mean.dif',
+              'band.1.tb.mean.dif',
+              'band.2.tb.mean.dif',
+              'band.1.tar.ghs.mean',
+              'band.2.tar.ghs.mean',
+              'band.1.tar.gvs.mean',
+              'band.2.tar.gvs.mean',
+              'tar.mean.dif')
 
 
 ## MAIN
 
-mydb <- connectdb()
-
-
 ## Get initial list of records to work with
-records <- sample(dbGetQuery(mydb, 'SELECT idn FROM train')[,1])
+records <- dbGetQuery(mydb, 'SELECT idn FROM train')[,1]#[1:100]
 rlen <- length(records)
 
 
-## ## V-Fold Cross Validation
-## V <- 10
-## fsize <- floor(rlen / V)
-## Error = data.frame(train=NA, train.base=NA, test=NA, test.base=NA)
-## ## Loop through each fold
-## for(v in 1:V) {
-##     message(p('Training on fold ', v))
-##     r.first <- ((v - 1) * fsize) + 1 ## calc. starting index for test
-##     if(v == V) { ## calc. stopping index for test
-##         r.last <- rlen ## if last fold
-##     } else {
-##         r.last <- v * fsize ## if not last fold
-##     }
-##     records.train <- records[-c(r.first:r.last)] ## training set
-##     records.test <- records[r.first:r.last]      ## testing set
-##     ## Build training features
-##     X <- data.frame(); for(r in records.train) X <- rbind(X, getFeat('train', r))
-##     ## Fit to a Logistic Regression Model
-##     model <- glm(formula = is_iceberg ~ .,
-##                  data = X,
-##                  family = binomial(logit) )
-##     ## Estimate probabilities & error for training data
-##     pr.train <- predict(model, X, type='response');
-##     Error[v,'train'] <- sum(xor(X$is_iceberg, pr.train>0.5)) / length(pr.train)
-##     Error[v,'train.base'] <- (function(x) min(x, 1-x)) (sum(X$is_iceberg) / nrow(X))
-##     ## Estimate probabilities for test data
-##     X <- data.frame(); for(r in records.test) X <- rbind(X, getFeat('train', r))
-##     pr.test <- predict(model, X, type='response')
-##     Error[v,'test'] <- sum(xor(X$is_iceberg, pr.test>0.5)) / length(pr.test)
-##     Error[v,'test.base'] <- (function(x) min(x, 1-x)) (sum(X$is_iceberg) / nrow(X))
-##     print(Error[v,])
-## }
-## print(colMeans(Error))
+## V-Fold Cross Validation
+if(TRUE) {
+    V <- 10
+    fsize <- floor(rlen / V)
+    LogLoss = data.frame(train=NA, test=NA)
+    ## Loop through each fold
+    for(v in 1:V) {
+        message(p('Training on fold ', v))
+        r.first <- ((v - 1) * fsize) + 1 ## calc. starting index for test
+        if(v == V) { ## calc. stopping index for test
+            r.last <- rlen ## if last fold
+        } else {
+            r.last <- v * fsize ## if not last fold
+        }
+        records.train <- records[-c(r.first:r.last)] ## training set
+        records.test <- records[r.first:r.last]      ## testing set
+        ## Build training features
+        Xr <- data.frame()
+        pb <- txtProgressBar(style=3); prog=0
+        for(r in records.train) {
+            Xr <- rbind(Xr, getFeat('train', r)[,features])
+            prog=prog+1
+            setTxtProgressBar(pb, prog/length(records.train))
+        }
+        ## Fit to a Logistic Regression Model
+        model <- glm(formula = is_iceberg ~ .,
+                     data = Xr,
+                     family = binomial(logit) )
+        ## Estimate probabilities & error for training data
+        pr.train <- predict(model, Xr, type='response');
+        LogLoss[v,'train'] <- logloss(Xr$is_iceberg, pr.train)
+        ## Error[v,'train'] <- sum(xor(Xr$is_iceberg, pr.train>0.5)) / length(pr.train)
+        ## Error[v,'train.base'] <- (function(x) min(x, 1-x)) (sum(Xr$is_iceberg) / nrow(Xr))
+        ## Estimate probabilities for test data
+        Xs <- data.frame(); for(r in records.test) Xs <- rbind(Xs, getFeat('train', r)[,features])
+        pr.test <- predict(model, Xs, type='response')
+        LogLoss[v,'test'] <- logloss(Xs$is_iceberg, pr.test)
+        ## Error[v,'test'] <- sum(xor(Xs$is_iceberg, pr.test>0.5)) / length(pr.test)
+        ## Error[v,'test.base'] <- (function(x) min(x, 1-x)) (sum(Xs$is_iceberg) / nrow(Xs))
+        print(LogLoss[v,])
+    }
+    print(colMeans(LogLoss))
+}
 
 
 ## Train Model on entire training set
-X <- data.frame(); for(r in records) X <- rbind(X, getFeat('train', r))
-model <- glm(formula = is_iceberg ~ ., data = X, family = binomial(logit))
+message('\nTraining Final Model')
+Xrt <- data.frame()
+pb <- txtProgressBar(style=3)
+for(r in records) {
+    setTxtProgressBar(pb, r/rlen)
+    Xrt <- rbind(Xrt, getFeat('train', r)[,features])
+}
+model <- glm(formula = is_iceberg ~ ., data = Xrt, family = binomial(logit))
 
 ## Classify Unseen Data
+message('\nClassifying Unseen Test Data')
 out <- data.frame()
-for(r in dbGetQuery(mydb, 'SELECT idn FROM test')[,1]) {
-    feat <- getFeat('test', r)
+records2 <- dbGetQuery(mydb, 'SELECT idn FROM test')[,1]#[1:200]
+r2len <- length(records2)
+pb <- txtProgressBar(style=3)
+for(r in records2) {
+    setTxtProgressBar(pb, r/r2len)
+    feat <- getFeat('test', r)[,features]
     id <- getJAtr('test', 'id', p('idn=', r))
     pr <- predict(model, feat, type='response')
     out <- rbind(out, data.frame(id=id, is_iceberg=pr))
 }
 
+## Write predictions to file
 write.csv(out, file='out.csv', row.names=FALSE)
+
+message('\nComplete!')
 
 
 disconnectdb(mydb)
