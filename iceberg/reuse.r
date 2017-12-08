@@ -1,3 +1,7 @@
+library('RMySQL')
+library('rjson')
+library('grid')
+
 ## FUNCTION DEFINITIONS
 
 ## This is a function so it can be invoked easily from interactive R session
@@ -94,6 +98,24 @@ findCenter <- function(img) {
     return(res)
 }
 
+## Returns pixel mask representing pixels for which the smoothed
+##  image is greater than some threshold
+stripBackground <- function(img) {
+    tmp <- kern(img, k.smooth)
+    threshold <- 0.7
+    return(((tmp - min(tmp)) / (max(tmp) - min(tmp))) > threshold)
+}
+
+## Plot color image given 3 input matrices
+colorize <- function(img1, img2, img3) {
+    r <- (img1 - min(img1)) * (255 / (max(img1)-min(img1)))
+    g <- (img2 - min(img2)) * (255 / (max(img2)-min(img2)))
+    b <- (img3 - min(img3)) * (255 / (max(img3)-min(img3)))
+    col <- rgb(r/255, g/255, b/255)
+    dim(col) <- dim(r)
+    return(col)
+    ##grid.raster(col, interpolate=FALSE)
+}
 
 ## This will get the features from idn that are used in the LR
 getFeat <- function(tbl, idn) {
@@ -106,7 +128,8 @@ getFeat <- function(tbl, idn) {
     
     ## Now calculate imagefeatures
     res <-  data.frame(is_iceberg = NA)
-    res$band.1.max.position <- b1.max.position
+    res$band.1.max.position.r <- b1.max.position[[1]][1]
+    res$band.1.max.position.c <- b1.max.position[[1]][2]
     res$band.1.mean <- mean(b1)
     res$band.2.mean <- mean(b2)
     res$band.1.var <- var(as.vector(b1))
@@ -121,18 +144,14 @@ getFeat <- function(tbl, idn) {
     res$band.2.tar.gvs.mean <- mean(kern(b2.tar, k.gradv)^2)
     res$band.1.tb.mean.dif <- res$band.1.tar.mean - mean(b1[brdmask])
     res$band.2.tb.mean.dif <- res$band.2.tar.mean - mean(b2[brdmask])
+    res$tar.cor <- cor(b1[stripBackground(b1)], b2[stripBackground(b1)])
     res$tar.mean.dif <- res$band.1.tar.mean - res$band.2.tar.mean
     res$tar.ghs.dif <- res$band.1.tar.ghs.mean - res$band.2.tar.ghs.mean
     res$tar.gvs.dif <- res$band.1.tar.gvs.mean - res$band.2.tar.gvs.mean
     res$tb.mean.dif.dif <- res$band.1.tb.mean.dif - res$band.2.tb.mean.dif
     ## Other Features
     res$inc_angle <- getJinc_angle(tbl,idn)
-    ## tmp <- getJAtr('train','inc_angle', p('idn=',r))
-    ## if(!(tmp %in% c('na'))) {
-    ##     res$inc_angle <- as.numeric(tmp)
-    ## } else { res$inc_angle <- NA }
-    ## res$inc_angle <-
-    ##         (function(x) if(!(x %in% c('na'))) return(as.numeric(x)) else return(NA))(getJAtr('train','inc_angle', p('idn=',r)))
+    ## only extract label if this is training data
     if(tbl=='train') {
         res$is_iceberg <- as.numeric(getJAtr(tbl, 'is_iceberg', p('idn=', idn)))
     } else {
@@ -149,6 +168,37 @@ logloss <- function(act, pred) {
     eps <- 1e-15
     pred <- pmin(pmax(pred, eps), 1-eps)
     -(sum(act * log(pred) + (1 - act) * log(1 - pred))) / length(act)
+}
+
+
+## V-Fold Cross Validation(X, features, V)
+VFXV <- function(X, f, t, V) {
+    fsize <- floor(rlen / V)
+    LogLoss = data.frame(train=NA, test=NA)
+    ## Loop through each fold
+    for(v in 1:V) {
+        r.first <- ((v - 1) * fsize) + 1 ## calc. starting index for test
+        if(v == V) { ## calc. stopping index for test
+            r.last <- rlen ## if last fold
+        } else {
+            r.last <- v * fsize ## if not last fold
+        }
+        records.train <- records[-c(r.first:r.last)] ## training set
+        records.test <- records[r.first:r.last]      ## testing set
+        ## Build training features
+        Xr <- X[records.train, c(f,t)]
+        model <- glm(formula = is_iceberg ~ .,
+                     data = Xr,
+                     family = binomial(logit) )
+        ## Estimate probabilities & error for training data
+        pr.train <- suppressWarnings(predict(model, Xr, type='response'))
+        LogLoss[v,'train'] <- logloss(Xr$is_iceberg, pr.train)
+        ## Estimate probabilities for test data
+        Xs <- X[records.test, c(f, t)]
+        pr.test <- suppressWarnings(predict(model, Xs, type='response'))
+        LogLoss[v,'test'] <- logloss(Xs$is_iceberg, pr.test)
+    }
+    return(as.data.frame(t(colMeans(LogLoss))))
 }
 
 

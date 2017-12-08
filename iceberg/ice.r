@@ -9,22 +9,6 @@ source('reuse.r')
 ## GLOBAL VARIABLES
 mydb <- connectdb()
 
-## Features ranked visually (by histograms)
-features <- c('is_iceberg',
-              'band.1.max',
-              'band.2.max',
-              'band.1.tar.mean',
-              'band.2.tar.mean',
-              'tb.mean.dif.dif',
-              'tar.mean.dif',
-              'band.1.tb.mean.dif',
-              'band.2.tb.mean.dif',
-              'band.1.tar.ghs.mean',
-              'band.2.tar.ghs.mean',
-              'band.1.tar.gvs.mean',
-              'band.2.tar.gvs.mean',
-              'tar.mean.dif')
-
 
 ## MAIN
 
@@ -38,65 +22,87 @@ message('\nCalculating Features for Trainign Set')
 X <- data.frame()
 pb <- txtProgressBar(style=3)
 for(r in records) {
-    X <- rbind(X, getFeat('train', r)[,features])
+    X <- rbind(X, getFeat('train', r))
     setTxtProgressBar(pb, r/rlen)
 }
 close(pb)
 
+## Define target and features
+target <- c('is_iceberg')
+feat <- colnames(X)[!(colnames(X) %in% c(target, 'inc_angle'))]
 
-## V-Fold Cross Validation
-if(TRUE) {
-    V <- 10
-    fsize <- floor(rlen / V)
-    LogLoss = data.frame(train=NA, test=NA)
-    ## Loop through each fold
-    for(v in 1:V) {
-        message(p('\nTraining on fold ', v))
-        r.first <- ((v - 1) * fsize) + 1 ## calc. starting index for test
-        if(v == V) { ## calc. stopping index for test
-            r.last <- rlen ## if last fold
-        } else {
-            r.last <- v * fsize ## if not last fold
-        }
-        records.train <- records[-c(r.first:r.last)] ## training set
-        records.test <- records[r.first:r.last]      ## testing set
-        ## Build training features
-        Xr <- X[records.train,]
-        model <- glm(formula = is_iceberg ~ .,
-                     data = Xr,
-                     family = binomial(logit) )
-        ## Estimate probabilities & error for training data
-        pr.train <- predict(model, Xr, type='response');
-        LogLoss[v,'train'] <- logloss(Xr$is_iceberg, pr.train)
-        ## Estimate probabilities for test data
-        Xs <- X[records.test,]
-        pr.test <- predict(model, Xs, type='response')
-        LogLoss[v,'test'] <- logloss(Xs$is_iceberg, pr.test)
-        ##print(LogLoss[v,])
+
+## Simple feature selection algorithm
+message('\nPerforming Feature Selection')
+
+Feat.Selection <- data.frame(feat.order=character(), logloss.train=numeric(), logloss.test=numeric())
+feat.cand <- feat                                      # initial list of candidate features
+
+while(TRUE) {
+    if(length(feat.cand) == 0) break                   # if no more features, break
+    LL <- data.frame(train=numeric(), test=numeric())
+    for(f in feat.cand) {                              # try all candidate features
+        ## record log loss on test partition
+        LL <- rbind(LL, VFXV(X, c(f, as.character(Feat.Selection$feat.order)), target, 10))  
     }
-    message('\nLog Loss per fold:')
-    print(LogLoss)
-    message('\nAverage Log Loss')
-    print(colMeans(LogLoss))
+    best <- which(LL[,2] == min(LL[,2]));              # which feature produced best results on test data
+    ## Update feature selection results
+    Feat.Selection <- rbind(Feat.Selection,
+                         data.frame(feat.order=feat.cand[best],
+                                    logloss.train=LL$train[best],
+                                    logloss.test=LL$test[best])
+                         )
+    feat.cand <- feat.cand[-c(best)]                   # remove feature from candidate list
 }
+
+message('\nFeature Selection Results:')
+print(Feat.Selection)
+
+png('feat_sel.png')
+op <- par(mar=c(12,4,4,2)+0.1) # default margins
+plot(Feat.Selection[,2],type='b',col='blue',main='Feature Selection',
+     lty=1, pch=18, axes=FALSE, ann=FALSE,
+     ylim=c(min(Feat.Selection$logloss.train),max(Feat.Selection$logloss.test)))
+axis(1, at=1:nrow(Feat.Selection), labels=Feat.Selection$feat.order, las=2, cex.axis=1)
+axis(2, cex.axis=1)
+title(main='Feature Selection', ylab='Log Loss')
+title(xlab='Features Added', cex.lab=1, line=10)
+lines(Feat.Selection$feat.order, Feat.Selection$logloss.test, type='b', col='red', lty=2, pch=19)
+legend('top', legend=c('Training', 'Test'), col=c('blue','red'), lty=1:2)
+par(op)
+dev.off()
+
+
+#legend('top', legend=c('Training', 'Test'), col=c('blue','red'), lty=1:2)
+
+## Select those features that decrease the Log Loss of test data
+for(i in 2:nrow(Feat.Selection)) {
+    if(Feat.Selection$logloss.test[i] > Feat.Selection$logloss.test[i-1]) {
+        feat.selected <- as.character(Feat.Selection$feat.order[1:(i-1)])
+        break
+    }
+}
+
+message('\nFeatures Selected:')
+print(feat.selected)
 
 
 ## Train Model on entire training set
 message('\nTraining Final Model')
-model <- glm(formula = is_iceberg ~ ., data = X, family = binomial(logit))
+model <- glm(formula = is_iceberg ~ ., data = X[,c(feat.selected, target)], family = binomial(logit))
 
 
 ## Classify Unseen Data
 message('\nClassifying Unseen Test Data')
 out <- data.frame()
-records2 <- dbGetQuery(mydb, 'SELECT idn FROM test')[,1]#[1:200]
+records2 <- dbGetQuery(mydb, 'SELECT idn FROM test')[,1]#[1:100]
 r2len <- length(records2)
 pb <- txtProgressBar(style=3)
 for(r in records2) {
     setTxtProgressBar(pb, r/r2len)
-    feat <- getFeat('test', r)[,features]
+    f <- getFeat('test', r)[,feat.selected, drop=FALSE]
     id <- getJAtr('test', 'id', p('idn=', r))
-    pr <- predict(model, feat, type='response')
+    pr <- suppressWarnings(predict(model, f, type='response'))
     out <- rbind(out, data.frame(id=id, is_iceberg=pr))
 }
 

@@ -19,3 +19,27 @@ Using packages: RMySQL, rjson, ggplot2, glm function,
 Analysis:
     plotting stats: https://www.kaggle.com/muonneutrino/exploration-transforming-images-in-python
     
+    grid.raster(rgb(bh,bv,br)) where bh,bv,br are components of image from 0 to 1 intensity
+    
+    info about Sentinel-1 imagery: https://sentinel.esa.int/web/sentinel/user-guides/sentinel-1-sar/product-overview/polarimetry
+    
+    SAR Speckle Filtering: http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=917910
+    
+    More on Speckle Filtering: https://earth.esa.int/documents/653194/656796/Speckle_Filtering.pdf
+    
+    
+    
+
+
+Visualization in library('lattic'):
+    May switch to this instead of image():
+        levelplot(b1,
+            panel=function(...) {
+                panel.levelplot(...)
+                panel.points(imgstats$band.1.max.position[[1]][1],
+                             imgstats$band.1.max.position[[1]][2],
+                             pch=1,cex=5,col='red')
+            }
+    Also can use wireframe() or contourplot() in same way
+    )
+    
