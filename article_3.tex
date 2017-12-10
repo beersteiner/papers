@@ -41,6 +41,9 @@
 \usepackage{alltt}
 \usepackage{url}
 \usepackage{relsize}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+
 
 
 %----------------------------------------------------------------------------------------
@@ -86,7 +89,7 @@
 \begin{itemize}[noitemsep] %use noitem to make more compact
 \item Briefly, but more completely than in the Executive Summary, explain the kaggle competition -- how to get to it, \textit{etc.}.
 \item   Discuss datamining abstractly and how it fits as a solution to the kaggle competition.
-\item Briefly, but more completely than in the Executive Summary, explain the two problems in two different subsections. \cite{example}
+\item Briefly, but more completely than in the Executive Summary, explain the two problems in two different subsections.
 \end{itemize}
 \subsection{Author Identification}
 What is the problem to be solved?  What is the data? How is goodness quantified?  This should not be too technical, but we can say, for example, given three authors $A = \{a_1, a_2, a_3\}$ and selections of their individiually corresponding works $S_{a_1}, S_{a_2}, S_{a_3}$,  we are constructing a probability  mass function $f$ over $A$ that is applied to a text $t$ written by one of the authors, but unlabled:
@@ -168,6 +171,25 @@ Finally, data with unknown, erroneous, or missing values must be handled.  Some 
 \item Does datamining tell us what to do?
 \item What are some new types of problems in datamining?
 \end{itemize}
+
+\paragraph{Top Ten Algorithms in Datamining}
+Below is a brief overview of the top 10 algorithms in Datamining. \cite{Wu:2007:TAD:1327434.1327436}
+
+\begin{itemize}
+	\item{\textbf{C4.5:}} C4.5 is an algorithm that can be used for decisions trees or rulesets. For trees, tt essentially builds a decision tree by recursively splitting the data on attributes until the data is fully explained by the tree.  It then prunes the tree by calculating a binomial error estimate at each of the leaves, and comparing that with the error that would be introduced by collapsing to the parent node, and repeating until complete.  For rulesets, it similarly generates rules representing every complete path through the notional unpruned tree (i.e. the rules generated fully explain the data).  Then, C4.5 discards conditions in the generated rules to minimize the binomial error estimate using hill-climing techniques.  Finally, in both cases, a default rule is created in case data do not satisfy any of the remaining rules.
+	\item{\textbf{K-Means:}} K-Means naively assigns K centroids to the space shared by the data, and then assigns each data point to the centroid that is closest (according to some distance function).  Next, the algorithm computes new locations for the existing centroids based on that data points that are assigned to them.  Then the data points are reassigned, if they are now closer to a different centroid.  The process continues until convergence, which is guaranteed, and the centroids are taken to be the resulting clusters.
+	\item{\textbf{Support Vector Machines:}} SVMs attempt to find some hyperplan that fully seperates the data into their proper classes, so that the hyperplane can be used to estimate classes for future data.  It chooses the hyperplane with the maximum distance from the nearest data.  Many times the data is not linearly separable.  Two primary approaches have been adopted in such cases: (a) the introduction of a slack variable can be used to assign a penalty to any hyperplane that incorrectly classifies some of the training data, and the task becomes to minimize that penalty, and (b) the data can be kernelized, or mapped onto a new space, which is linearly separable using traditional SVM. 
+	\item{\textbf{Apriori:}} The Apriori algorithm was developed to efficiently find frequent sets.  It relies on the truth that if an item is not frequent in some set, then any superset containing that item is also not frequent in that set.  Starting with singletons, candidate frequent subsets are generated from frequent subsets of lower cardinality, and then eliminated, thereby eliminating the need to check for frequency on subsets that could not be frequent.
+	\item{\textbf{Expectation Maximization:}} EM is a more general case of K-Means.  For any probabilistic model, the parameters for that model are initialized to some starting value, and then the model is then used to cluster the training data.  In many cases, the clustering is performed via soft-assignment, meaning each data point is assigned a probability of belonging to each cluster.  Based on the new clustering, parameters for the model are recalculated to best fit the data assigned to each.  Then the data are reassigned, and the process repeats until convergence (to some threshold) is achieved.
+	\item{\textbf{Page Rank:}} Page Rank is intended to find relative importance of hub nodes in a complex network, commonly applied to web pages on the Internet.  Essentially each page is assigned a rank value that is the sum of all contributions of pages that link to it.  Each incoming contribution is the contributing page's rank value divided by the number of outgoing links it has.  In this way, the highest page ranks are achieved when a page has many links to it that come from pages with high rank and few outgoing links.
+	\item{\textbf{Adaboost:}} Adaboost is a type of ensemble learning algorithm that uses voting to create strong learners from multiple weak learners.  Essentially, the algorithm picks a single (best) learner by which to classify training (labled) data.  It then assigns a weight to each training sample, lower for those that were correctly classified and higher for those that were not.  It then selects a new (best) feature and similarly redistributes the weight to misclassified examples.  After the last weak learner is used, each learner is then weighted according to the weighted error they would have using the final weights on the misclassified examples in each learner.  The final weighted weak learners represents the new stronger ensemble learner.
+	\item{\textbf{K Nearest Neighbors:}} KNN is a relatively simple algorithm that finds the K nearest neighbors to each data points and either clusters that data point according to whichever cluster was most frequent in the neighbors, or clusters that data point according to a weighted (by distance) vote from the nearest neighbors.
+	\item{\textbf{Naive Bayes:}} Naive Bayes classifiers essentially assume that all the features belonging to a dataset are independent of each other, given the class.  Essentially, joint probability distributions are created (rather efficiently using the chain rule, due to the independence assumption) to provide a purely probabilistic estimate of class, based on the training data.
+	\item{\textbf{Classification and Regression Trees (CART):}} CART is an umbrella term encompassing several variations on building trees for use with categorical or real-valued data.  In general, they work by building binary classification trees using intelligent selection criteria for choosing attributes to split on (such as information gain or the Gini impurity), and then perform pruning of the resulting tree (or stopping criteria) by minimizing a loss which contains a complexity penalty element and a misclassification (or error, in the real-valued case) element.
+\end{itemize}
+
+
+
 
 %------------------------------------------------
 %
@@ -276,25 +298,225 @@ Remember, we're interested in the journey, so simply because an approach failed 
 \lipsum[10] % Dummy text
 \section{Iceberg: Full Problem Description}
 
+Statoil, an energy company with oil and natural gas operations based largely in the Norwegian Continental Shelf region, has an operational need to track the presence of icebergs that may present a threat to the safety and efficiency of those operations. \cite{statoil} The company has therefore posed the following iceberg classification problem to the data science community.  Statoil partners with C-CORE (a Canadian R\&D corporation) to obtain access to Synthetic Aperture Radar (SAR) imagery data from the Sentinel-1 satellite constellation, and the challenge is to classify the object in each image as an iceberg or non-iceberg (presumably a ship, which is not likely to pose a threat to operations). A labeled training set (1604 records) and an unlabeled test set (8424 records) is provided, and the task is to classify each image as containing an iceberg (\texttt{is\_iceberg}=1) or not (\texttt{is\_iceberg}=0). \cite{kaggle}
 
-\lipsum[11] % Dummy text
-We used $10$-fold...
-\begin{table}[hbt]
-\caption{Training and Test Results}
-\centering
-\begin{tabular}{llr}
-\toprule
-\multicolumn{2}{c}{Name} \\
-\cmidrule(r){1-2}
- \textsf{Data} & \textsf{Description} & \textsf{$Sum$} \\
-\midrule
-1 & ``Hello...'' & $7.5$ \\
-2 & ``Goodbye...'' & $2$ \\
-\bottomrule
-\end{tabular}
-\label{tab:label}
+\subsection{Data Analysis}
+Each record contains three components (besides an identifier):
+
+\begin{itemize}
+	\item \texttt{band\_1} - 75$\times$75 pixel image representing horizontally-polarized backscatter intensity from the horizontally-polarized C-band radar transmission
+	\item \texttt{band\_2} - 75$\times$75 pixel image representing vertically-polarized backscatter intensity from the horizontally-polarized C-band radar transmission
+	\item \texttt{inc\_angle} - angle of incidence (between the transmission path and Earth-normal at the target object)
+\end{itemize}
+
+\paragraph{Initial Analysis} Some simple statistical analysis on the image data reveals that maximum and mean values in both bands are meaningful contributors to the classification task, as shown in Figure \ref{max-mean-separable}.
+
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}{0.24\textwidth}
+		\includegraphics[scale=0.2]{iceberg/analysis/band_1_max.png}
+	\end{minipage}%
+	\begin{minipage}{0.24\textwidth}
+		\includegraphics[scale=0.2]{iceberg/analysis/band_2_max.png}
+	\end{minipage}
+	\begin{minipage}{0.24\textwidth}
+		\includegraphics[scale=0.2]{iceberg/analysis/band_1_mean.png}
+	\end{minipage}%
+	\begin{minipage}{0.24\textwidth}
+		\includegraphics[scale=0.2]{iceberg/analysis/band_2_mean.png}
+	\end{minipage}
+	\caption{Band 1 and 2 Max and Mean}\label{max-mean-separable}
+\end{figure}
+
+\paragraph{Further Analysis} The overlap areas in the histograms represent those records that will cause difficulty for a classification model. Additional features are required for good performance.  The following functionality was developed to enable visual analysis as well as experimentation with new useful features:
+
+\begin{itemize}
+	\item Simple convolution matrix filtering was implemented to achieve some rudimentary image processing.  Specifically, 3$\times$3 kernels were used for smoothing, sharpening, edge detection, and gradient. \cite{polarimetric} These filters were used to automatically produce images during visual analysis to aid in new feature development.  Examples are shown in Figure \ref{filtering}.
+	
+	\item A simple center-finding function was implemented to calculate the sum of a sliding window over the image, and the position which yields the largest sum is taken to be centered on the object of interest (OoI).  Several of the features are calculated solely from a fixed-size mini-matrix centered on that position.  That mini-matrix is herein referred to as the `target'.  The intent was yield feature values that are more influenced by target pixels than by non-target pixels.
+\end{itemize}
+
+\begin{figure}\centering
+	\includegraphics[width=.9\linewidth]{iceberg/analysis/525ab75c.png}
+	\caption{Image Filtering}\label{filtering}
+\end{figure}
+
+\paragraph{Hypotheses} From visual analysis and research in the domain area \cite{wesche} \cite{Ship-Iceberg_CNN} \cite{howell}, several hypotheses were developed which drove new feature experimentation.
+
+\begin{itemize}
+	\item Ships are relatively sharp and angular, whereas icebergs are smooth and irregular, so differences in surface backscatter intensities (mean, max, variance) may yield class information.
+	\item Volume backscatter properties of ice and metal \cite{howell} are different, so comparisons between band 1 and band 2 may yield some class information.  
+	\item Icebergs (being made of frozen water) may have some observable characteristics that are similar to the surrounding water, whereas ships may not.  Therefore, comparison of the OoI to the background seawater may yield class information.
+	\item The fast majority of iceberg volume is below the ocean's surface, and the angle of the ice as it protrudes from the water's surface is likely to be off-normal, whereas that of ships is likely to be near-normal.  Therefore, gradient and edge-detection approaches near the object-to-ocean transition area may yield class information.
+	\item Incident angle is likely to have an effect on both the intensity and polarity of the return signal. \cite{makynen}
+\end{itemize}
+
+\subsection{Methods}
+
+\paragraph{Model Selection} Two primary classification methodologies were considered for this classification task: Convolution Neural Networks (CNN) and Logistic Regression (LgR).  CNN methods have been shown to exhibit good performance on image recognition tasks. \cite{NIPS2012_4824} \cite{behnke}  Two challenges with Neural Networks are that (a) they can be arbitrarily complex and so may require large data sets to achieve high accuracy and low variance, and (b) the hidden nature of the internal neurons pose challenges to applying useful domain knowledge to the classification problem.  They work particularly well in applications where they learn telling features of a visible object within the hidden layers.  In the context of this task, the size, shape, and orientation of the OoI is inconsistent and difficult to normalize, which would be highly desirable for a CNN approach. \cite{lecun} LgR can be thought of as a special case of a Neural Network which has a single neuron that uses a logit function as its output.  The Since the single neuron is at the outer layer, its inputs and outputs are known.  This makes it straightforward to apply some domain knowledge to the raw data in order to provide inputs (features) that are thought to contain class information.  Additionally, the low complexity of the model makes it ideal for smaller training sets, such as the one provided by Kaggle. \cite{mccullagh} \cite{lim} LrG was chosen for this classification task.  The Logistic Regression Algorithm is shown in Algorithm \ref{alg:1}.  
+
+\paragraph{Logistic Regression} Essentially, LgR uses an initial guess of feature weights to transform the data feature vector into a value between 0 and 1, representing the probabilities that each record belongs to class 1.  A likelihood function and its derivative (with respect to the weights) are calculated, representing the curve of the likelihood that the weights are optimal over the domain of W.  The derivative use used to influence the magnitude and direction for which the weight vector should be adjusted.  The user-defined value $\alpha$ is also used to influence the step size of these adjustments.  This processes is repeated until the gradient is sufficiently small, representing the peak (or valley) of the likelihood function, indicating an optimal weight vector has been reached.
+
+\begin{algorithm}
+	\caption{Logistic Regression}
+	\label{alg:2}
+	\begin{algorithmic}[1]
+		\STATE{\ {\bf INPUT:} data $X_{n \times (d-1)}$, class labels $C_{n \times 1}$ }
+		\STATE{\ {\bf OUTPUT:} weights $W_{1 \times d}$ }
+		\STATE \%\% Define gradient descent parameters
+		\STATE{\ $\epsilon \leftarrow$ user threshold }
+		\STATE{\ $\alpha \leftarrow$ user step size }
+		\STATE \%\% Add ones column for offset
+		\STATE{\ $X \leftarrow \left[ X_{n \times (d-1)} \vec{1}_{n \times 1} \right] $ }
+		\STATE \%\% Initialize weights
+		\STATE{\ $W \leftarrow \vec{0}_{d \times 1}$ } 
+		\WHILE { $\left| \nabla_W L(W) \right| > \epsilon$ }
+		\STATE \%\% Class probability as function of weights
+		\STATE{\ $y_i(W) \leftarrow \frac{1}{1 + e^{-x_iW}} \forall x_i \in X$ }
+		\STATE \%\% Likelihood as function of weights
+		\STATE{\ $L(W) \leftarrow -\sum_{i=1}^{n} c_i log(y_i) + (1-c_i) log(1-y_i)$ }
+		\STATE \%\% Gradient of likelihood wrt weight vectors
+		\STATE{\ $\nabla_W L(W) \leftarrow \sum_{i=1}^n x_i (y_i - c_i)$ }
+		\STATE \%\% Update weights
+		\STATE{\ $W \leftarrow W + \alpha \nabla_W L(W)$ }
+		\ENDWHILE
+		\RETURN $W$
+	\end{algorithmic}
+\end{algorithm}
+
+\paragraph{Features} The chosen modeling approach enabled experimentation of new potential features, which became the next focus.  Table \ref{more-features} summarizes, in some detail, a few of the more interesting features that were explored based on the previously mentioned visual analysis and domain research.  Additional features are briefly described below.
+
+\begin{table*}[ht]
+	\caption{Additional Features}\label{more-features}
+	\begin{tabular}{l p{.45\linewidth} l}
+		\toprule
+		Feature & Description & Histogram \\
+		\hline \vspace{10pt} \\
+		\rotatebox[origin=r]{90}{\texttt{tar.sum.gs.sum.mean}} &
+			The target mini-matrix for each band is added together.  The result is filtered by vertical gradient and horizontal gradient kernel in parallel. Those two results are then squared and added together, and the mean of the result is taken to be the new feature.  The intent of this feature is to let both bands contribute to squared gradient result.  Two theories are at work here: (a) The edges of ships are vertical and so one might expect a sharper ship-to-water transition, resulting in a higher gradient, and (b) since icebergs are more similar in texture and composition to water than are ships, that may also contibute to a sharper contrast between ship and water, again resulting in a higher gradient. &
+			\begin{minipage}[t]{0.35\linewidth}
+				\adjustimage{width=1\linewidth,valign=t}{iceberg/analysis/tar_sum_gs_sum_mean.png}
+			\end{minipage}\\%
+		\rotatebox[origin=r]{90}{\texttt{tb.mean.dif.dif}} & 
+			Visual analysis revealed most images to be rather centered on the OoI.  A fixed-size border mask (think picture frame) was created to provide the subset of pixels presumed to reside in the background.  For each band, the background mean was subtracted from the target mean.  The restult for band 2 was then subtracted from the result for band 1, and the final result was taken to be the feature.  The intent was essentially to see if the difference in target-to-background contrast between bands may contribute to classification.  Put another way, the depolarizing properties of ice may be similar to that of the surrounding water, creating a consistently lower contrast image in band 2 as compared with band 1 for icerbergs. &
+			\begin{minipage}[t]{0.35\linewidth}%\centering
+				\adjustimage{width=1\linewidth,valign=t}{iceberg/analysis/tb_mean_dif_dif.png}
+			\end{minipage}\\%
+		\rotatebox[origin=r]{90}{\texttt{tar.cor}} & 
+			The band 1 and band 2 images are first smoothed to reduce extreme values caused by noise or speckle and zero-adjusted.  Next, all of the pixel values that are greater than 0.7 of the maximum value are kept, the others discarded.  These pixels are then used as a mask to extract all of the pixels in the raw image which are presumed to belong to the OoI.  Finally, a correlation is calculated between these pixels between band 1 and band 2, and the resulting value is taken to be the feature.  The intent is to capture how well band 2 correlates to band 1 over the OoI.  The theory is that depolarization effect would affect correlation and be different for icebergs than for ships. &
+			\begin{minipage}[t]{0.35\linewidth}%\centering
+				\adjustimage{width=1\linewidth,valign=t}{iceberg/analysis/tar_cor.png}
+			\end{minipage}%
+	\end{tabular}
+\end{table*}
+
+\begin{itemize}
+	\item{\textbf{\texttt{band.1/2.tar.var}}} Variation of image pixels in the target for each band.  The seed for this idea originated from Bentes \cite{Ship-Iceberg_CNN} who recognized variance among other signal characteristics as harmful in a Neural Network approach and therefore something to be reduced.  The intent is to see whether there is class information found within the variance of the return signal from the target.
+	\item{\textbf{\texttt{band.1/2.tb.mean.dif}}} The difference of means of the target and border regions of the image pixels for each band.  The intent is to see if there is class information derivable from return signal intensity from the target as compared with the background.
+	\item{\textbf{\texttt{band.1/2.tar.gvs.mean}}} The target in each band was filtered using a vertical gradient filter and then squared, and the mean of the result was taken for each band.  The intent is to see if there is class information in the object-to-ocean interface area that would be captured by the gradient filter.
+	\item{\textbf{\texttt{band.1/2.tar.ghs.mean}}} The target in each band was put through a horizontal gradient filter and then squared, and the mean of the result was taken for each band.
+	\item{\textbf{\texttt{band.1/2.tar.mean}}} A mean was taken of the target pixels for each band.
+	\item{\textbf{\texttt{tar.gvs.dif}}} The target in each band was filtered using a vertical gradient filter, squared, and meaned.  The result from band 2 was subtracted from that of band 1.
+	\item{\textbf{\texttt{tar.ghs.dif}}} The target in each band was filtered using a horizontal gradient filter, squared, and meaned.  The results from band 2 was subtracted from that of band 1.
+\end{itemize}
+
+\paragraph{Challenges} Some challenges and drawbacks to the chosen modelling approach include the following.
+
+\begin{itemize}
+	\item{Structure Simplicity:} LgR is capable of creating arbitarily complex models based on the number input features.  However, as a statistical tool, it lacks some of the structural features of other models such as decision trees and neural nets.  Because of this, the LgR model alone is not capable of branching on specific features.
+	\item{Feature Selection:} During experimentation with new and existing feature, simple histogram analysis revealed many of the candidate features as containing some class information (i.e. good separability of classes over the feature).  However, pairs of features are highly correlated and others were not (See figure \ref{correlation}).  It is difficult to choose which features to include manually.
+\end{itemize}
+
+\begin{figure}
+	\includegraphics[width=.9\linewidth]{iceberg/analysis/corr_matrix.png}
+	\caption{Feature Correlation}\label{correlation}
+\end{figure}
+
+\paragraph{Implementation} Given the manual nature of the feature development and experimentation approach chosen, it was important to automate updates to the analysis, training, and validation approach to the greatest extent possible.  Automation of these aspect enables rapid identification and incorporation of improvements to the feature set.  To this end, all database interaction, image processing, and feature calculation was centralized to a single code source.  An analysis script was run after each change to the feature set to quickly visualize some characteristics of new features.  In addition to automation, V-fold cross validation was utilized as the primary means of model performance prediction.  It should be noted that test data used in cross-validation was present during all data analysis tasks, which may introduce bias as a result in the model selection process. \cite{cawley}  Finally, a simple greedy algorithm was chosen to select which features to use during the training process.  Essentially, starting from an empty feature set, the feature which (when added to the set) results in the lowest Log Loss on the test data during V-fold cross validation is added.  A subset of the (now ordered) feature list which results in the lowest total Log Loss on the test data is then selected for use.  The author notes this algorithm is not guaranteed to find the optimal set of features on which to train.  In fact it was observed that some of the later Kaggle submissions (which represented a superset of features as compared with past submissions) achieved worse performance!  This is because the optimal subset of features was never encountered during the greedy selection process.
+
+\begin{algorithm}
+	\caption{Feature Selection}
+	\label{alg:3}
+	\begin{algorithmic}[1]
+		\STATE{\ \textbf{Def:} $ vFoldXVal(\Delta \left[ features \right] ) \rightarrow LogLoss_{test}$ }
+		\STATE{\ {\bf INPUT:} feature list $F$, labeled data $\Delta$ }
+		\STATE{\ {\bf OUTPUT:} selected feature list $F_S$ }
+		\STATE{\ $F_S \leftarrow \emptyset$ }
+		\STATE{\ $F_S.last \leftarrow $ NA }
+		\STATE{\ $F_S.lossmin \leftarrow \infty$ }
+		\WHILE{\ $F \neq \emptyset$ }
+		\STATE{\ $f_{best} \leftarrow$ NA }
+		\STATE{\ $f_{best}.loss \leftarrow \infty$}
+		\FOR{\ $f$ in $F$}
+		\STATE{\ $loss \leftarrow vFoldXVal(\Delta\left[\{F_S\} \cup \{f\} \right])$ }
+		\IF{\ $loss < f_{best}.loss$ }
+		\STATE{\ $f_{best} \leftarrow f$ }
+		\STATE{\ $f_{best}.loss \leftarrow loss$ }
+		\IF{\ $loss < F_S.lossmin$ }
+		\STATE{\ $F_S.last \leftarrow f$ }
+		\STATE{\ $F_S.lossmin \leftarrow loss$ }
+		\ENDIF
+		\ENDIF
+		\ENDFOR
+		\STATE{\ $F_S \leftarrow \{F_S\} \cup \{f_{best}\}$ }
+		\STATE{\ $F \leftarrow F \setminus \{f_{best}\}$ }
+		\ENDWHILE
+		\STATE{\ $F_S \leftarrow F_S\left[1:F_S.last\right]$ }
+		\RETURN $F_S$
+	\end{algorithmic}
+\end{algorithm}
+
+\subsection{Results}
+
+\paragraph{Processing Performance}
+Feature calculation, model training and feature selection, and classification were performed on a personal laptop, the specifications of which are found in Table \ref{machine-specs}.  Processing times are shown in Table \ref{proc-time}.
+
+\begin{table}[H]
+	\centering
+	\caption{Machine Specifications}\label{machine-specs}
+	\begin{tabular}{r l}
+		\toprule
+		\textbf{Processor:} 		& Intel Core i5-5200 @ 2.2 GHz x 4 \\
+		\textbf{Memory:}			& 8 GiB \\
+		\textbf{Operating System:}	& Ubuntu 16.04 LTS \\
+		\textbf{Applications:}		& R and MySQL \\
+		\textbf{R Packages:}		& RMySQL, rjson, grid, ggplot2, \\
+									& corrplot
+	\end{tabular}
 \end{table}
 
+\begin{table}[H]
+	\centering
+	\caption{Processing Time}\label{proc-time}
+	\begin{tabular}{r l}
+		\toprule
+		\textbf{Feature Calculation:} 		& 02:22 \\
+		\textbf{Feature Selection:}			& 01:26 \\
+		\textbf{Model Training:}			& 00:00  \\
+		\textbf{Test Data Classification:}	& 13:04 \\
+		\textbf{Total:}						& 16:52
+	\end{tabular}
+\end{table}
+
+
+
+\paragraph{Feature Selection Performance}
+One may assume that the feature selection ordering may well correlate well with those chosen by visual examination of the histograms, but that is not the case.  Since some of the features inform on some of the others, once a feature is selected and incorporated into the model, the addition of a feature that is highly correlated to one already in the set would result in little performance improvement.  The performance of the LgR model as a function of features added is shown in Figure \ref{feat_selection}.  Overall, the performance on test data tracks relatively well to performance on training data, suggesting that overfitting is not occuring to a great extent for the first dozen or so features.
+
+\begin{figure}
+	\includegraphics[width=.9\linewidth]{iceberg/feat_sel.png}
+	\caption{Performance During Feature Selection}\label{feat_selection}
+\end{figure}
+
+\paragraph{Predictive Performance}
+The best performance achieved as of the writing of this paper is \textbf{0.3682}, per Kaggle's scoring script which uses Log Loss (consitent with the evaluation methods herein).
+
+\subsection{Summary and Future Work}
+\paragraph{Summary}
+The performance of the classifier resulting from this effort was not exemplary.  The methodoloy chosen for feature experimentation and calculation was manual and labor intensive, and frankly the problem is not within the author's domain of experience.  The author hypothesizes that the high level of mutual information shared by many of the custom features ultimately limited learning performance of the model.  This hypothesis is supported by both Figure \ref{correlation} and Figure \ref{feat_selection}.  The author considers the project a success, despite the mediocre results achieved.  The lessons learned about how to plan and structure a Datamining project as well as some of the practical aspects of implementing algorithms dealing with real data will serve the author well.
+
+\paragraph{Future Work}
+Some potential future improvements to this approach would be to adopt an entropy-based feature selection algorithm rather than the simple greedy algorithm described herein - that would enables the selection of features according to the information they contain about class, derived from their probability density functions.  Further, one could revisit the Neural Network approach which would allow for nonlinearity and higher complexity.  Neural Networks could incorporate both customer features (as described herein) as well as image-oriented features such as the image processing filters discussed herein or alternative features such as Histogram of Oriented Gradients.
 
 \subsection{Citations and Subsubsection}
 %This level should be used sparingly, but can provide a sense to the reader of the outline and, therefore, relationship of information.  You'll need to have at least 10 citations.  Here is an example.  This work was began by Micky Mouse\cite{vbku10}.  Here's a way to provide bullet points:

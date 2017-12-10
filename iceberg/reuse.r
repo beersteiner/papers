@@ -30,9 +30,9 @@ getJAtr <- function(tbl, key, cond) {
     ##   errors and press on
     res <- tryCatch(suppressWarnings(dbGetQuery(mydb, qry)[,1]),
                     error = function(e) {
-                        warning(call.=FALSE,
-                                expr=p('mydb reestablished at getJAtr(',
-                                       tbl,',',key,',',cond,')'))
+                        ## warning(call.=FALSE,
+                        ##         expr=p('mydb reestablished at getJAtr(',
+                        ##                tbl,',',key,',',cond,')'))
                         disconnectdb(mydb)
                         assign('mydb', connectdb(), .GlobalEnv)
                         return(suppressWarnings(dbGetQuery(mydb, qry)[,1]))
@@ -106,14 +106,20 @@ stripBackground <- function(img) {
     return(((tmp - min(tmp)) / (max(tmp) - min(tmp))) > threshold)
 }
 
+## Convert any numeric matrix to a raster object that can be plotted
+raster <- function(img) {
+    res <- (img - min(img)) * (1 / (max(img) - min(img)))
+    return(as.raster(res))
+}
+
 ## Plot color image given 3 input matrices
 colorize <- function(img1, img2, img3) {
-    r <- (img1 - min(img1)) * (255 / (max(img1)-min(img1)))
-    g <- (img2 - min(img2)) * (255 / (max(img2)-min(img2)))
-    b <- (img3 - min(img3)) * (255 / (max(img3)-min(img3)))
-    col <- rgb(r/255, g/255, b/255)
-    dim(col) <- dim(r)
-    return(col)
+    r <- (img1 - min(img1)) * (1 / (max(img1)-min(img1)))
+    g <- (img2 - min(img2)) * (1 / (max(img2)-min(img2)))
+    b <- (img3 - min(img3)) * (1 / (max(img3)-min(img3)))
+    col <- rgb(r, g, b)
+    #dim(col) <- dim(r)
+    return(as.raster(matrix(col, ncol=ncol(img1))))
     ##grid.raster(col, interpolate=FALSE)
 }
 
@@ -133,7 +139,11 @@ getFeat <- function(tbl, idn) {
     res$band.1.mean <- mean(b1)
     res$band.2.mean <- mean(b2)
     res$band.1.var <- var(as.vector(b1))
+    res$band.1.tar.var <- var(as.vector(b1.tar))
+    res$band.1.tb.var.r <- res$band.1.tar.var / var(b1[brdmask])
     res$band.2.var <- var(as.vector(b2))
+    res$band.2.tar.var <- var(as.vector(b2.tar))    
+    res$band.2.tb.var.r <- res$band.2.tar.var / var(b2[brdmask])
     res$band.1.max <- max(b1)
     res$band.2.max <- max(b2)
     res$band.1.tar.mean <- mean(b1.tar)
@@ -144,6 +154,9 @@ getFeat <- function(tbl, idn) {
     res$band.2.tar.gvs.mean <- mean(kern(b2.tar, k.gradv)^2)
     res$band.1.tb.mean.dif <- res$band.1.tar.mean - mean(b1[brdmask])
     res$band.2.tb.mean.dif <- res$band.2.tar.mean - mean(b2[brdmask])
+    res$tar.sum.gs.sum.mean <- mean(kern(b1.tar+b2.tar, k.gradh)^2
+                                + kern(b1.tar+b2.tar, k.gradv)^2)
+    res$tb.var.r.sum <- res$band.1.tb.var.r + res$band.2.tb.var.r
     res$tar.cor <- cor(b1[stripBackground(b1)], b2[stripBackground(b1)])
     res$tar.mean.dif <- res$band.1.tar.mean - res$band.2.tar.mean
     res$tar.ghs.dif <- res$band.1.tar.ghs.mean - res$band.2.tar.ghs.mean

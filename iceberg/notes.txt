@@ -42,4 +42,14 @@ Visualization in library('lattic'):
             }
     Also can use wireframe() or contourplot() in same way
     )
+
+
+BEST RUN INFO:
+
+Feature Calculation Runtime: 137.072
+Feature Selection Runtime: 48.607
+Model Training Runtime: 0.078000000000003
+Test Data Prediction Runtime: 763.731
+Total Runtime: 949.488
+
     
