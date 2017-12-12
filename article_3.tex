@@ -353,7 +353,7 @@ Each record contains three components (besides an identifier):
 
 \subsection{Methods}
 
-\paragraph{Model Selection} Two primary classification methodologies were considered for this classification task: Convolution Neural Networks (CNN) and Logistic Regression (LgR).  CNN methods have been shown to exhibit good performance on image recognition tasks. \cite{NIPS2012_4824} \cite{behnke}  Two challenges with Neural Networks are that (a) they can be arbitrarily complex and so may require large data sets to achieve high accuracy and low variance, and (b) the hidden nature of the internal neurons pose challenges to applying useful domain knowledge to the classification problem.  They work particularly well in applications where they learn telling features of a visible object within the hidden layers.  In the context of this task, the size, shape, and orientation of the OoI is inconsistent and difficult to normalize, which would be highly desirable for a CNN approach. \cite{lecun} LgR can be thought of as a special case of a Neural Network which has a single neuron that uses a logit function as its output.  The Since the single neuron is at the outer layer, its inputs and outputs are known.  This makes it straightforward to apply some domain knowledge to the raw data in order to provide inputs (features) that are thought to contain class information.  Additionally, the low complexity of the model makes it ideal for smaller training sets, such as the one provided by Kaggle. \cite{mccullagh} \cite{lim} LrG was chosen for this classification task.  The Logistic Regression Algorithm is shown in Algorithm \ref{alg:1}.  
+\paragraph{Model Selection} Two primary classification methodologies were considered for this classification task: Convolution Neural Networks (CNN) and Logistic Regression (LgR).  CNN methods have been shown to exhibit good performance on image recognition tasks. \cite{NIPS2012_4824} \cite{behnke}  Two challenges with Neural Networks are that (a) they can be arbitrarily complex and so may require large data sets to achieve high accuracy and low variance, and (b) the hidden nature of the internal neurons pose challenges to applying useful domain knowledge to the classification problem.  They work particularly well in applications where they learn telling features of a visible object within the hidden layers.  In the context of this task, the size, shape, and orientation of the OoI is inconsistent and difficult to normalize, which would be highly desirable for a CNN approach. \cite{lecun} LgR can be thought of as a special case of a Neural Network which has a single neuron that uses a logit function as its output.  The Since the single neuron is at the outer layer, its inputs and outputs are known.  This makes it straightforward to apply some domain knowledge to the raw data in order to provide inputs (features) that are thought to contain class information.  Additionally, the low complexity of the model makes it ideal for smaller training sets, such as the one provided by Kaggle. \cite{mccullagh} \cite{lim} LrG was chosen for this classification task.  The Logistic Regression Algorithm is shown in Algorithm \ref{alg:1}.  For this project, the authors used R's built-in \texttt{glm} function.
 
 \paragraph{Logistic Regression} Essentially, LgR uses an initial guess of feature weights to transform the data feature vector into a value between 0 and 1, representing the probabilities that each record belongs to class 1.  A likelihood function and its derivative (with respect to the weights) are calculated, representing the curve of the likelihood that the weights are optimal over the domain of W.  The derivative use used to influence the magnitude and direction for which the weight vector should be adjusted.  The user-defined value $\alpha$ is also used to influence the step size of these adjustments.  This processes is repeated until the gradient is sufficiently small, representing the peak (or valley) of the likelihood function, indicating an optimal weight vector has been reached.
 
@@ -487,7 +487,7 @@ Feature calculation, model training and feature selection, and classification we
 
 \begin{table}[H]
 	\centering
-	\caption{Processing Time}\label{proc-time}
+	\caption{Processing Time (mm:ss)}\label{proc-time}
 	\begin{tabular}{r l}
 		\toprule
 		\textbf{Feature Calculation:} 		& 02:22 \\
@@ -509,7 +509,15 @@ One may assume that the feature selection ordering may well correlate well with 
 \end{figure}
 
 \paragraph{Predictive Performance}
-The best performance achieved as of the writing of this paper is \textbf{0.3682}, per Kaggle's scoring script which uses Log Loss (consitent with the evaluation methods herein).
+The best performance achieved as of the writing of this paper is \textbf{0.3711}, which is about the 18th percentile as of the submission of this paper. \footnote{Kaggle's scoring script uses Log Loss, which is consistent with the evaluation methods used herein}.  The Receiver Operator Characteristics (ROC) plot is shown in Figure \ref{roc}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{iceberg/ROC_Results.png}
+	\caption{Logistic Regression ROC Results}\label{roc}
+	\small
+	Sensitivity represents icebergs correctly classified as icebergs, and specificity represents non-icebergs incorrectly classified as icebergs.
+\end{figure}
 
 \subsection{Summary and Future Work}
 \paragraph{Summary}

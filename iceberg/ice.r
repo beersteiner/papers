@@ -36,7 +36,6 @@ feat <- colnames(X)[!(colnames(X) %in% c(target, 'inc_angle'))]
 
 ## Simple feature selection algorithm
 write('\nPerforming Feature Selection', stdout())
-
 Feat.Selection <- data.frame(feat.order=character(),
                              logloss.train=numeric(),
                              logloss.test=numeric()
@@ -52,7 +51,7 @@ while(TRUE) {
         ## record log loss on test partition
         LL <- rbind(LL, VFXV(X,
                              c(f, as.character(Feat.Selection$feat.order)),
-                             target, 10))  
+                             target, 10, FALSE))  
     }
     best <- which(LL[,2] == min(LL[,2]));    # which feature produced best results on test data
     ## Update feature selection results
@@ -101,6 +100,8 @@ feat.selected <- as.character(
 write('\nFeatures Selected:', stdout())
 print(feat.selected)
 
+## Generate the ROC plot for the whole training set
+garbage <- VFXV(X, feat.selected, target, 10, TRUE)
 
 
 ## Train Model on entire training set
@@ -112,7 +113,7 @@ t.train <- proc.time()[3]
 ## Classify Unseen Data
 write('\nClassifying Unseen Test Data', stdout())
 out <- data.frame()
-records2 <- dbGetQuery(mydb, 'SELECT idn FROM test')[,1]#[1:100]
+records2 <- dbGetQuery(mydb, 'SELECT idn FROM test')[,1][1:500]
 r2len <- length(records2)
 pb <- txtProgressBar(style=3, file=stderr())
 for(r in records2) {

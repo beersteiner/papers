@@ -1,6 +1,7 @@
-library('RMySQL')
-library('rjson')
-library('grid')
+suppressMessages(library('RMySQL'))
+suppressMessages(library('rjson'))
+suppressMessages(library('grid'))
+suppressMessages(library('pROC'))
 
 ## FUNCTION DEFINITIONS
 
@@ -123,14 +124,41 @@ colorize <- function(img1, img2, img3) {
     ##grid.raster(col, interpolate=FALSE)
 }
 
+## Normalize band 1 to incidence angle
+aNorm1 <- function(img, ang) {
+    if(ang %in% c(NA)) ang <- 40
+    intcpt <- -3.156
+    coef <- -0.46
+    at40 <- intcpt + coef * 40 # -3.156 intercept, -0.46 inc_angle
+    est <- intcpt + coef * ang
+    img <- img - (est - at40)
+    return(img)
+}
+
+## Normalize band 2 to incidence angle
+aNorm2 <- function(img, ang) {
+    if(ang %in% c(NA)) ang <- 40
+    intcpt <- -3.156
+    coef <- -0.46
+    at40 <- intcpt + coef * 40 # -3.156 intercept, -0.46 inc_angle
+    est <- intcpt + coef * ang
+    img <- img - (est - at40)
+    return(img)
+}
+
 ## This will get the features from idn that are used in the LR
 getFeat <- function(tbl, idn) {
     ## Get image and other items needed to calculate features
-    b1 <- getJImg(tbl, 1, idn)
+    inc_angle <- getJinc_angle(tbl,idn)
+    #b1 <- getJImg(tbl, 1, idn)
+    b1 <- aNorm1(getJImg(tbl, 1, idn), inc_angle)
     b1.max.position <- findCenter(b1)
     b1.tar <- zoom(b1, b1.max.position, 3)
-    b2 <- getJImg(tbl, 2, idn)
+    #b2 <- getJImg(tbl, 2, idn)
+    b2 <- aNorm2(getJImg(tbl, 2, idn), inc_angle)
     b2.tar <- zoom(b2, b1.max.position, 3)
+    
+    
     
     ## Now calculate imagefeatures
     res <-  data.frame(is_iceberg = NA)
@@ -138,6 +166,8 @@ getFeat <- function(tbl, idn) {
     res$band.1.max.position.c <- b1.max.position[[1]][2]
     res$band.1.mean <- mean(b1)
     res$band.2.mean <- mean(b2)
+    res$band.1.bg.mean <- mean(b1[brdmask])
+    res$band.2.bg.mean <- mean(b2[brdmask])    
     res$band.1.var <- var(as.vector(b1))
     res$band.1.tar.var <- var(as.vector(b1.tar))
     res$band.1.tb.var.r <- res$band.1.tar.var / var(b1[brdmask])
@@ -162,8 +192,7 @@ getFeat <- function(tbl, idn) {
     res$tar.ghs.dif <- res$band.1.tar.ghs.mean - res$band.2.tar.ghs.mean
     res$tar.gvs.dif <- res$band.1.tar.gvs.mean - res$band.2.tar.gvs.mean
     res$tb.mean.dif.dif <- res$band.1.tb.mean.dif - res$band.2.tb.mean.dif
-    ## Other Features
-    res$inc_angle <- getJinc_angle(tbl,idn)
+    res$inc_angle <- inc_angle
     ## only extract label if this is training data
     if(tbl=='train') {
         res$is_iceberg <- as.numeric(getJAtr(tbl, 'is_iceberg', p('idn=', idn)))
@@ -185,7 +214,8 @@ logloss <- function(act, pred) {
 
 
 ## V-Fold Cross Validation(X, features, V)
-VFXV <- function(X, f, t, V) {
+VFXV <- function(X, f, t, V, plotroc) {
+    test.perf=data.frame(actual=numeric(), pred=numeric())
     fsize <- floor(rlen / V)
     LogLoss = data.frame(train=NA, test=NA)
     ## Loop through each fold
@@ -210,6 +240,15 @@ VFXV <- function(X, f, t, V) {
         Xs <- X[records.test, c(f, t)]
         pr.test <- suppressWarnings(predict(model, Xs, type='response'))
         LogLoss[v,'test'] <- logloss(Xs$is_iceberg, pr.test)
+        test.perf <- rbind(test.perf, data.frame(actual=Xs[,t], pred=pr.test))
+    }
+    ## Plot a Receiver Operator Characteristics graph if requested
+    if (plotroc == TRUE) {
+        png('ROC_Results.png')
+        roc.res <- roc(test.perf$actual, test.perf$pred, plot=FALSE, auc=TRUE)
+        plot(roc.res, mar=c(5,4,4,2))
+        title(main=p('Receiver Operator Curve, AUC = ', roc.res$auc))
+        dev.off()
     }
     return(as.data.frame(t(colMeans(LogLoss))))
 }

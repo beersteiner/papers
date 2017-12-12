@@ -52,4 +52,10 @@ Model Training Runtime: 0.078000000000003
 Test Data Prediction Runtime: 763.731
 Total Runtime: 949.488
 
+
+
+
+'pROC' gives area under curve (AUC)
+'ROSE' gives receiver operating characteristic (ROC)
+
     
