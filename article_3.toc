@@ -15,17 +15,17 @@
 \contentsline {subsection}{\numberline {4.1}Data Analysis}{6}{subsection.4.1}
 \contentsline {paragraph}{Initial Analysis}{6}{paragraph*.2}
 \contentsline {paragraph}{Further Analysis}{6}{paragraph*.4}
-\contentsline {paragraph}{Hypotheses}{6}{paragraph*.8}
+\contentsline {paragraph}{Hypotheses}{7}{paragraph*.8}
 \contentsline {subsection}{\numberline {4.2}Methods}{7}{subsection.4.2}
 \contentsline {paragraph}{Model Selection}{7}{paragraph*.9}
-\contentsline {paragraph}{Logistic Regression}{7}{paragraph*.10}
+\contentsline {paragraph}{Logistic Regression}{8}{paragraph*.10}
 \contentsline {paragraph}{TBD}{8}{paragraph*.11}
 \contentsline {paragraph}{Features}{8}{paragraph*.12}
 \contentsline {paragraph}{Challenges}{8}{paragraph*.14}
 \contentsline {paragraph}{}{8}{paragraph*.15}
 \contentsline {paragraph}{}{8}{paragraph*.17}
 \contentsline {paragraph}{Implementation}{8}{paragraph*.18}
-\contentsline {paragraph}{}{8}{paragraph*.19}
+\contentsline {paragraph}{}{9}{paragraph*.19}
 \contentsline {paragraph}{}{9}{paragraph*.20}
 \contentsline {subsection}{\numberline {4.3}Results}{9}{subsection.4.3}
 \contentsline {paragraph}{Processing Performance}{9}{paragraph*.21}
