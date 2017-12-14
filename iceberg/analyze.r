@@ -50,17 +50,17 @@ if(file.exists('imgstats.Rda')) {
     save(imgstats, file='imgstats.Rda')
 }
 
-## Plot background intensity vs inc_angle
-## png('b1_bg_intensity-ing_angle.png')
-## plot(imgstats$inc_angle, imgstats$band.1.bg.mean)
-## abline(lm(imgstats$band.1.bg.mean~imgstats$inc_angle), col='red')
-## title(main='Band 2 Intensity Dependence on Incidence Angle')
-## dev.off()
-## png('b2_bg_intensity-ing_angle.png')
-## plot(imgstats$inc_angle, imgstats$band.2.bg.mean)
-## abline(lm(imgstats$band.2.bg.mean~imgstats$inc_angle), col='red')
-## title(main='Band 2 Intensity Dependence on Incidence Angle')
-## dev.off()
+##Plot background intensity vs inc_angle
+png('b1_bg_intensity-ing_angle.png')
+plot(imgstats$inc_angle, imgstats$band.1.bg.mean)
+abline(lm(imgstats$band.1.bg.mean~imgstats$inc_angle), col='red')
+title(main='Band 2 Intensity Dependence on Incidence Angle')
+dev.off()
+png('b2_bg_intensity-ing_angle.png')
+plot(imgstats$inc_angle, imgstats$band.2.bg.mean)
+abline(lm(imgstats$band.2.bg.mean~imgstats$inc_angle), col='red')
+title(main='Band 2 Intensity Dependence on Incidence Angle')
+dev.off()
 
 ## Plot correlation matrix
 png('corr_matrix.png')

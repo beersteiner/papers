@@ -55,11 +55,14 @@
 
 \PaperTitle{Kaggle Competitions:\\ \ Spooky Author Identification\\ \ Statoil/C-CORE Iceberg Classifier Challenge} % Article title
 
-\Authors{John Stein\textsuperscript{1}*} % Authors
+\Authors{Ashay Sawant\textsuperscript{1}*, Samanvitha Pradhan\textsuperscript{2}*, John Stein\textsuperscript{3}*} % Authors
+\affiliation{\textsuperscript{1}\textit{Data Science, School of Informatics, Computing, and Engineering, Indiana University, Bloomington, IN, USA}} % Author affiliation
+\affiliation{*\textbf{Corresponding author}: ahsawant@iu.edu} % Corresponding author
+\affiliation{*\textbf{Corresponding author}: sspradha@iu.edu} % Corresponding author
 \affiliation{\textsuperscript{1}\textit{Computer Science, School of Informatics, Computing, and Engineering, Indiana University, Bloomington, IN, USA}} % Author affiliation
 \affiliation{*\textbf{Corresponding author}: jodstein@iu.edu} % Corresponding author
 
-\Keywords{Keyword1 --- Keyword2 --- Keyword3} % Keywords - if you don't want any simply remove all the text between the curly brackets
+\Keywords{NLP --- Natural Language Processing --- SAR --- Image Recognition} % Keywords - if you don't want any simply remove all the text between the curly brackets
 \newcommand{\keywordname}{Keywords} % Defines the keywords heading name
 \usepackage{abstract}
 
@@ -67,7 +70,8 @@
 %	Executive Summary
 %----------------------------------------------------------------------------------------
 
-\Abstract{\textbf{Executive Summary} Briefly explain the kaggle competition and datamining as a solution.  Briefly explain each problem, the solution, and results. }
+\Abstract{\textbf{Executive Summary} TBD (Need to complete this)
+	Briefly explain the kaggle competition and datamining as a solution.  Briefly explain each problem, the solution, and results. }
 
 
 \begin{document}
@@ -85,7 +89,7 @@
 %----------------------------------------------------------------------------------------
 
 \section{Introduction}
-
+TBD (Need to complete this)
 \begin{itemize}[noitemsep] %use noitem to make more compact
 \item Briefly, but more completely than in the Executive Summary, explain the kaggle competition -- how to get to it, \textit{etc.}.
 \item   Discuss datamining abstractly and how it fits as a solution to the kaggle competition.
@@ -166,12 +170,6 @@ Finally, data with unknown, erroneous, or missing values must be handled.  Some 
 
 \subsection{Mining, Interpretation, and Action}
 
-\begin{itemize}[noitemsep]
-\item Briefly discuss the top 10 algorithms.
-\item Does datamining tell us what to do?
-\item What are some new types of problems in datamining?
-\end{itemize}
-
 \paragraph{Top Ten Algorithms in Datamining}
 Below is a brief overview of the top 10 algorithms in Datamining. \cite{Wu:2007:TAD:1327434.1327436}
 
@@ -186,6 +184,11 @@ Below is a brief overview of the top 10 algorithms in Datamining. \cite{Wu:2007:
 	\item{\textbf{K Nearest Neighbors:}} KNN is a relatively simple algorithm that finds the K nearest neighbors to each data points and either clusters that data point according to whichever cluster was most frequent in the neighbors, or clusters that data point according to a weighted (by distance) vote from the nearest neighbors.
 	\item{\textbf{Naive Bayes:}} Naive Bayes classifiers essentially assume that all the features belonging to a dataset are independent of each other, given the class.  Essentially, joint probability distributions are created (rather efficiently using the chain rule, due to the independence assumption) to provide a purely probabilistic estimate of class, based on the training data.
 	\item{\textbf{Classification and Regression Trees (CART):}} CART is an umbrella term encompassing several variations on building trees for use with categorical or real-valued data.  In general, they work by building binary classification trees using intelligent selection criteria for choosing attributes to split on (such as information gain or the Gini impurity), and then perform pruning of the resulting tree (or stopping criteria) by minimizing a loss which contains a complexity penalty element and a misclassification (or error, in the real-valued case) element.
+\end{itemize}
+
+\begin{itemize}[noitemsep]
+	\item Does datamining tell us what to do? TBD
+	\item What are some new types of problems in datamining? TBD
 \end{itemize}
 
 
@@ -331,10 +334,34 @@ Each record contains three components (besides an identifier):
 \paragraph{Further Analysis} The overlap areas in the histograms represent those records that will cause difficulty for a classification model. Additional features are required for good performance.  The following functionality was developed to enable visual analysis as well as experimentation with new useful features:
 
 \begin{itemize}
-	\item Simple convolution matrix filtering was implemented to achieve some rudimentary image processing.  Specifically, 3$\times$3 kernels were used for smoothing, sharpening, edge detection, and gradient. \cite{polarimetric} These filters were used to automatically produce images during visual analysis to aid in new feature development.  Examples are shown in Figure \ref{filtering}.
+	\item Incidence angle has a perceived impact on backscatter intensity; see Figure \ref{inc_angle1}.  In this approach, simple linear regression was used to fit a line to background intensity as a function of incidence angle.  The intercepts for this line were used to normalize all the images to the mean incidence angle.  Those images whose incidence angle were not defined (NA) were not altered (i.e. assumed to have mean incidence angle).  The adjusted data is shown in Figure \ref{inc_angle2}.
+	
+	\item Simple convolution matrix filtering was implemented to achieve some rudimentary image processing.  Specifically, 3$\times$3 kernels were used for smoothing, sharpening, edge detection, and gradient. \cite{polarimetric} These filters were used to automatically produce images during visual analysis to aid in new feature development.  Examples are shown in Figure \ref{filtering}.  Notably, the plots for band 2 indicate potential higher-mode dependency, but that was not explored further.
 	
 	\item A simple center-finding function was implemented to calculate the sum of a sliding window over the image, and the position which yields the largest sum is taken to be centered on the object of interest (OoI).  Several of the features are calculated solely from a fixed-size mini-matrix centered on that position.  That mini-matrix is herein referred to as the `target'.  The intent was yield feature values that are more influenced by target pixels than by non-target pixels.
+	
+	\item TBD (Ashay, please talk about your HOG features here)
 \end{itemize}
+
+\begin{figure}\centering
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.9\linewidth]{iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png}
+	\end{minipage}%
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.9\linewidth]{iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png}
+	\end{minipage}
+	\caption{Intensity Dependence on Incidence Angle}\label{inc_angle1}
+\end{figure}
+
+\begin{figure}\centering
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.9\linewidth]{iceberg/analysis/b1_bg_intensity-ing_angle.png}
+	\end{minipage}%
+	\begin{minipage}{0.45\linewidth}
+		\includegraphics[width=.9\linewidth]{iceberg/analysis/b2_bg_intensity-ing_angle.png}
+	\end{minipage}
+	\caption{Normalized Intensity}\label{inc_angle2}
+\end{figure}
 
 \begin{figure}\centering
 	\includegraphics[width=.9\linewidth]{iceberg/analysis/525ab75c.png}
@@ -349,11 +376,14 @@ Each record contains three components (besides an identifier):
 	\item Icebergs (being made of frozen water) may have some observable characteristics that are similar to the surrounding water, whereas ships may not.  Therefore, comparison of the OoI to the background seawater may yield class information.
 	\item The fast majority of iceberg volume is below the ocean's surface, and the angle of the ice as it protrudes from the water's surface is likely to be off-normal, whereas that of ships is likely to be near-normal.  Therefore, gradient and edge-detection approaches near the object-to-ocean transition area may yield class information.
 	\item Incident angle is likely to have an effect on both the intensity and polarity of the return signal. \cite{makynen}
+	\item TBD (Ashay, please talk about your hypotheses related to HOG features and how you predict they will enable classification)
 \end{itemize}
 
 \subsection{Methods}
 
-\paragraph{Model Selection} Two primary classification methodologies were considered for this classification task: Convolution Neural Networks (CNN) and Logistic Regression (LgR).  CNN methods have been shown to exhibit good performance on image recognition tasks. \cite{NIPS2012_4824} \cite{behnke}  Two challenges with Neural Networks are that (a) they can be arbitrarily complex and so may require large data sets to achieve high accuracy and low variance, and (b) the hidden nature of the internal neurons pose challenges to applying useful domain knowledge to the classification problem.  They work particularly well in applications where they learn telling features of a visible object within the hidden layers.  In the context of this task, the size, shape, and orientation of the OoI is inconsistent and difficult to normalize, which would be highly desirable for a CNN approach. \cite{lecun} LgR can be thought of as a special case of a Neural Network which has a single neuron that uses a logit function as its output.  The Since the single neuron is at the outer layer, its inputs and outputs are known.  This makes it straightforward to apply some domain knowledge to the raw data in order to provide inputs (features) that are thought to contain class information.  Additionally, the low complexity of the model makes it ideal for smaller training sets, such as the one provided by Kaggle. \cite{mccullagh} \cite{lim} LrG was chosen for this classification task.  The Logistic Regression Algorithm is shown in Algorithm \ref{alg:1}.  For this project, the authors used R's built-in \texttt{glm} function.
+\paragraph{Model Selection} Several classification methodologies were considered for this classification task: Convolution Neural Networks (CNN), Logistic Regression (LgR), TBD (Ashay), TBD (Ashay).  CNN methods have been shown to exhibit good performance on image recognition tasks. \cite{NIPS2012_4824} \cite{behnke}  Two challenges with Neural Networks are that (a) the more naive examples tend towards high-complexity and so require large data sets to achieve high accuracy and low variance, and (b) the hidden nature of the internal neurons pose challenges to applying useful domain knowledge to the classification problem.  They work particularly well in applications where they learn telling features of a visible object within the hidden layers.  In the context of this task, the size, shape, and orientation of the OoI is not believed to be as consistent and would be difficult to normalize, which would be highly desirable for a CNN approach.  CNNs, therefore, were not implemented. \cite{lecun}
+
+LgR can be thought of as a special case of a Neural Network which has a single neuron that uses a logit function as its output.  The Since the single neuron is at the outer layer, its inputs and outputs are known.  This makes it straightforward to apply some domain knowledge to the raw data in order to provide inputs (features) that are thought to contain class information.  Additionally, the low complexity of the model makes it ideal for smaller training sets, such as the one provided by Kaggle. \cite{mccullagh} \cite{lim} The Logistic Regression Algorithm is shown in Algorithm \ref{alg:1}.  For this project, the authors used R's built-in \texttt{glm} function.
 
 \paragraph{Logistic Regression} Essentially, LgR uses an initial guess of feature weights to transform the data feature vector into a value between 0 and 1, representing the probabilities that each record belongs to class 1.  A likelihood function and its derivative (with respect to the weights) are calculated, representing the curve of the likelihood that the weights are optimal over the domain of W.  The derivative use used to influence the magnitude and direction for which the weight vector should be adjusted.  The user-defined value $\alpha$ is also used to influence the step size of these adjustments.  This processes is repeated until the gradient is sufficiently small, representing the peak (or valley) of the likelihood function, indicating an optimal weight vector has been reached.
 
@@ -384,10 +414,13 @@ Each record contains three components (besides an identifier):
 	\end{algorithmic}
 \end{algorithm}
 
-\paragraph{Features} The chosen modeling approach enabled experimentation of new potential features, which became the next focus.  Table \ref{more-features} summarizes, in some detail, a few of the more interesting features that were explored based on the previously mentioned visual analysis and domain research.  Additional features are briefly described below.
+\paragraph{TBD}
+TBD (Ashay, briefly describe your modeling approach for each algorithm)
+
+\paragraph{Features} The LgR modeling approach enabled experimentation of new potential features, which became the next focus.  Table \ref{more-features} summarizes, in some detail, a few of the more interesting features that were explored for LgR based on the previously mentioned visual analysis and domain research.  Additional features are briefly described below.
 
 \begin{table*}[ht]
-	\caption{Additional Features}\label{more-features}
+	\caption{Additional Features for LgR}\label{more-features}
 	\begin{tabular}{l p{.45\linewidth} l}
 		\toprule
 		Feature & Description & Histogram \\
@@ -420,8 +453,9 @@ Each record contains three components (besides an identifier):
 	\item{\textbf{\texttt{tar.ghs.dif}}} The target in each band was filtered using a horizontal gradient filter, squared, and meaned.  The results from band 2 was subtracted from that of band 1.
 \end{itemize}
 
-\paragraph{Challenges} Some challenges and drawbacks to the chosen modelling approach include the following.
+\paragraph{Challenges} Some challenges and drawbacks to the chosen modeling approaches include the following.
 
+\paragraph{}Logistic Regression:
 \begin{itemize}
 	\item{Structure Simplicity:} LgR is capable of creating arbitarily complex models based on the number input features.  However, as a statistical tool, it lacks some of the structural features of other models such as decision trees and neural nets.  Because of this, the LgR model alone is not capable of branching on specific features.
 	\item{Feature Selection:} During experimentation with new and existing feature, simple histogram analysis revealed many of the candidate features as containing some class information (i.e. good separability of classes over the feature).  However, pairs of features are highly correlated and others were not (See figure \ref{correlation}).  It is difficult to choose which features to include manually.
@@ -429,13 +463,16 @@ Each record contains three components (besides an identifier):
 
 \begin{figure}
 	\includegraphics[width=.9\linewidth]{iceberg/analysis/corr_matrix.png}
-	\caption{Feature Correlation}\label{correlation}
+	\caption{LgR Feature Correlation}\label{correlation}
 \end{figure}
 
-\paragraph{Implementation} Given the manual nature of the feature development and experimentation approach chosen, it was important to automate updates to the analysis, training, and validation approach to the greatest extent possible.  Automation of these aspect enables rapid identification and incorporation of improvements to the feature set.  To this end, all database interaction, image processing, and feature calculation was centralized to a single code source.  An analysis script was run after each change to the feature set to quickly visualize some characteristics of new features.  In addition to automation, V-fold cross validation was utilized as the primary means of model performance prediction.  It should be noted that test data used in cross-validation was present during all data analysis tasks, which may introduce bias as a result in the model selection process. \cite{cawley}  Finally, a simple greedy algorithm was chosen to select which features to use during the training process.  Essentially, starting from an empty feature set, the feature which (when added to the set) results in the lowest Log Loss on the test data during V-fold cross validation is added.  A subset of the (now ordered) feature list which results in the lowest total Log Loss on the test data is then selected for use.  The author notes this algorithm is not guaranteed to find the optimal set of features on which to train.  In fact it was observed that some of the later Kaggle submissions (which represented a superset of features as compared with past submissions) achieved worse performance!  This is because the optimal subset of features was never encountered during the greedy selection process.
+\paragraph{}TBD (Ashay, describe challenges with your approaches)
+
+\paragraph{Implementation} 
+\paragraph{}Lgr - Given the manual nature of the feature development and experimentation approach chosen, it was important to automate updates to the analysis, training, and validation approach to the greatest extent possible.  Automation of these aspect enables rapid identification and incorporation of improvements to the feature set.  To this end, all database interaction, image processing, and feature calculation was centralized to a single code source.  An analysis script was run after each change to the feature set to quickly visualize some characteristics of new features.  In addition to automation, V-fold cross validation was utilized as the primary means of model performance prediction.  It should be noted that test data used in cross-validation was present during all data analysis tasks, which may introduce bias as a result in the model selection process. \cite{cawley}  Finally, a simple greedy algorithm was chosen to select which features to use during the training process.  Essentially, starting from an empty feature set, the feature which (when added to the set) results in the lowest Log Loss on the test data during V-fold cross validation is added.  A subset of the (now ordered) feature list which results in the lowest total Log Loss on the test data is then selected for use.  The author notes this algorithm is not guaranteed to find the optimal set of features on which to train.  In fact it was observed that some of the later Kaggle submissions (which represented a superset of features as compared with past submissions) achieved worse performance!  This is because the optimal subset of features was never encountered during the greedy selection process.
 
 \begin{algorithm}
-	\caption{Feature Selection}
+	\caption{LgR Feature Selection}
 	\label{alg:3}
 	\begin{algorithmic}[1]
 		\STATE{\ \textbf{Def:} $ vFoldXVal(\Delta \left[ features \right] ) \rightarrow LogLoss_{test}$ }
@@ -466,6 +503,8 @@ Each record contains three components (besides an identifier):
 	\end{algorithmic}
 \end{algorithm}
 
+\paragraph{}TBD (Ashay, describe your implementations for each algorithm)
+
 \subsection{Results}
 
 \paragraph{Processing Performance}
@@ -473,7 +512,7 @@ Feature calculation, model training and feature selection, and classification we
 
 \begin{table}[H]
 	\centering
-	\caption{Machine Specifications}\label{machine-specs}
+	\caption{Machine Specifications for LgR}\label{machine-specs}
 	\begin{tabular}{r l}
 		\toprule
 		\textbf{Processor:} 		& Intel Core i5-5200 @ 2.2 GHz x 4 \\
@@ -487,7 +526,7 @@ Feature calculation, model training and feature selection, and classification we
 
 \begin{table}[H]
 	\centering
-	\caption{Processing Time (mm:ss)}\label{proc-time}
+	\caption{Processing Time (mm:ss) for LgR}\label{proc-time}
 	\begin{tabular}{r l}
 		\toprule
 		\textbf{Feature Calculation:} 		& 02:22 \\
@@ -498,18 +537,20 @@ Feature calculation, model training and feature selection, and classification we
 	\end{tabular}
 \end{table}
 
+TBD (Ashay, put your machine specs and processing time here)
 
 
-\paragraph{Feature Selection Performance}
-One may assume that the feature selection ordering may well correlate well with those chosen by visual examination of the histograms, but that is not the case.  Since some of the features inform on some of the others, once a feature is selected and incorporated into the model, the addition of a feature that is highly correlated to one already in the set would result in little performance improvement.  The performance of the LgR model as a function of features added is shown in Figure \ref{feat_selection}.  Overall, the performance on test data tracks relatively well to performance on training data, suggesting that overfitting is not occuring to a great extent for the first dozen or so features.
+
+\paragraph{LgR Feature Selection Performance}
+One might assume that the feature selection ordering may well correlate well with those chosen by visual examination of the histograms, but that is not the case.  Since some of the features inform on some of the others, once a feature is selected and incorporated into the model, the addition of a feature that is highly correlated to one already in the set would result in little performance improvement.  The performance of the LgR model as a function of features added is shown in Figure \ref{feat_selection}.  Overall, the performance on test data tracks relatively well to performance on training data, suggesting that overfitting is not occuring to a great extent for the first dozen or so features.
 
 \begin{figure}
 	\includegraphics[width=.9\linewidth]{iceberg/feat_sel.png}
-	\caption{Performance During Feature Selection}\label{feat_selection}
+	\caption{Performance During Feature Selection for LgR}\label{feat_selection}
 \end{figure}
 
 \paragraph{Predictive Performance}
-The best performance achieved as of the writing of this paper is \textbf{0.3711}, which is about the 18th percentile as of the submission of this paper. \footnote{Kaggle's scoring script uses Log Loss, which is consistent with the evaluation methods used herein}.  The Receiver Operator Characteristics (ROC) plot is shown in Figure \ref{roc}.
+LgR - The best performance achieved as of the writing of this paper is \textbf{0.3682}, which is about the 18th percentile as of the submission of this paper. \footnote{Kaggle's scoring script uses Log Loss, which is consistent with the evaluation methods used herein}.  The Receiver Operator Characteristics (ROC) plot is shown in Figure \ref{roc}.
 
 \begin{figure}
 	\centering
@@ -519,12 +560,20 @@ The best performance achieved as of the writing of this paper is \textbf{0.3711}
 	Sensitivity represents icebergs correctly classified as icebergs, and specificity represents non-icebergs incorrectly classified as icebergs.
 \end{figure}
 
+TBD (Ashay, please talk about your performance here)
+
 \subsection{Summary and Future Work}
 \paragraph{Summary}
-The performance of the classifier resulting from this effort was not exemplary.  The methodoloy chosen for feature experimentation and calculation was manual and labor intensive, and frankly the problem is not within the author's domain of experience.  The author hypothesizes that the high level of mutual information shared by many of the custom features ultimately limited learning performance of the model.  This hypothesis is supported by both Figure \ref{correlation} and Figure \ref{feat_selection}.  The author considers the project a success, despite the mediocre results achieved.  The lessons learned about how to plan and structure a Datamining project as well as some of the practical aspects of implementing algorithms dealing with real data will serve the author well.
+The performance of the LgR classifier resulting from this effort was not exemplary.  The methodology chosen for feature experimentation and calculation was manual and labor intensive, and frankly the problem is not within the author's domain of experience.  The author hypothesizes that the high level of mutual information shared by many of the custom features ultimately limited learning performance of the model.  This hypothesis is supported by both Figure \ref{correlation} and Figure \ref{feat_selection}.  The author considers the project a success, despite the average results achieved.  The lessons learned about how to plan and structure a Datamining project as well as some of the practical aspects of implementing algorithms and dealing with real data will serve the author well.
+
+TBD (Ashay, elaborate/modify as needed)
 
 \paragraph{Future Work}
-Some potential future improvements to this approach would be to adopt an entropy-based feature selection algorithm rather than the simple greedy algorithm described herein - that would enables the selection of features according to the information they contain about class, derived from their probability density functions.  Further, one could revisit the Neural Network approach which would allow for nonlinearity and higher complexity.  Neural Networks could incorporate both customer features (as described herein) as well as image-oriented features such as the image processing filters discussed herein or alternative features such as Histogram of Oriented Gradients.
+Some potential future improvements to the LgR approach would be to adopt an entropy-based or correlation-based feature selection algorithm rather than the simple greedy algorithm described herein - that would enable the selection of features according to the information they contain about class, derived from their probability density functions or correlation to class label vs other existing features, respectively.  
+
+Further, one could revisit the Neural Network approach which would allow for nonlinearity and higher complexity.  Neural Networks could incorporate both custom features (as described in the LgR approach) as well as image-oriented features such as the image processing filters discussed herein or the Histogram of Oriented Gradients.  Additionally, some additional domain expertise applied to this problem would surely result in more relevant features which capture more of the known physical phenomena related to SAR imagery that could impact classification performance.  The higher-mode behavior observed in the plots of background intensity as a function of incidence angle is just one example.
+
+TBD (Ashay, any future work you've identified?)
 
 \subsection{Citations and Subsubsection}
 %This level should be used sparingly, but can provide a sense to the reader of the outline and, therefore, relationship of information.  You'll need to have at least 10 citations.  Here is an example.  This work was began by Micky Mouse\cite{vbku10}.  Here's a way to provide bullet points:

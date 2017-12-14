@@ -113,7 +113,7 @@ t.train <- proc.time()[3]
 ## Classify Unseen Data
 write('\nClassifying Unseen Test Data', stdout())
 out <- data.frame()
-records2 <- dbGetQuery(mydb, 'SELECT idn FROM test')[,1][1:500]
+records2 <- dbGetQuery(mydb, 'SELECT idn FROM test')[,1]#[1:500]
 r2len <- length(records2)
 pb <- txtProgressBar(style=3, file=stderr())
 for(r in records2) {

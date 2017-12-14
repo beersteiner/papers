@@ -124,38 +124,36 @@ colorize <- function(img1, img2, img3) {
     ##grid.raster(col, interpolate=FALSE)
 }
 
-## Normalize band 1 to incidence angle
-aNorm1 <- function(img, ang) {
-    if(ang %in% c(NA)) ang <- 40
-    intcpt <- -3.156
-    coef <- -0.46
-    at40 <- intcpt + coef * 40 # -3.156 intercept, -0.46 inc_angle
-    est <- intcpt + coef * ang
-    img <- img - (est - at40)
+## Normalize img to incidence angle
+aNorm <- function(img, ang, band) {
+    ## Previously calculated mean of available inc_angle
+    mean.inc.angle <- 39.26871
+    ## If inc_angle not available, assume mean (zero offset)
+    if(ang %in% c(NA)) return(img)
+    ## These are intercepts for a best-fit line for mean background
+    ##  intensity vs inc_angle:
+    intcpt <- c(-3.156, -15.563)[band]
+    coef <- c(-0.46, -0.283)[band]
+    ## Calculate where the mean inc_angle falls on best-fit line
+    atmean <- intcpt + coef * mean.inc.angle 
+    ## Calculate where this angle falls on best-fit line
+    est <- intcpt + coef * ang 
+    ## Subtract the difference to normalize to mean inc_angle
+    img <- img - (est - atmean)
     return(img)
 }
 
-## Normalize band 2 to incidence angle
-aNorm2 <- function(img, ang) {
-    if(ang %in% c(NA)) ang <- 40
-    intcpt <- -3.156
-    coef <- -0.46
-    at40 <- intcpt + coef * 40 # -3.156 intercept, -0.46 inc_angle
-    est <- intcpt + coef * ang
-    img <- img - (est - at40)
-    return(img)
-}
 
 ## This will get the features from idn that are used in the LR
 getFeat <- function(tbl, idn) {
     ## Get image and other items needed to calculate features
     inc_angle <- getJinc_angle(tbl,idn)
     #b1 <- getJImg(tbl, 1, idn)
-    b1 <- aNorm1(getJImg(tbl, 1, idn), inc_angle)
+    b1 <- aNorm(getJImg(tbl, 1, idn), inc_angle, 1)
     b1.max.position <- findCenter(b1)
     b1.tar <- zoom(b1, b1.max.position, 3)
     #b2 <- getJImg(tbl, 2, idn)
-    b2 <- aNorm2(getJImg(tbl, 2, idn), inc_angle)
+    b2 <- aNorm(getJImg(tbl, 2, idn), inc_angle, 2)
     b2.tar <- zoom(b2, b1.max.position, 3)
     
     

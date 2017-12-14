@@ -1,35 +1,40 @@
 \select@language {english}
 \contentsline {section}{\numberline {1}Introduction}{1}{section.1}
 \contentsline {subsection}{\numberline {1.1}Author Identification}{1}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Statoi/C-CORE Iceberg Classifier Challenge}{1}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.2}Statoi/C-CORE Iceberg Classifier Challenge}{2}{subsection.1.2}
 \contentsline {section}{\numberline {2}Datamining}{2}{section.2}
 \contentsline {subsection}{\numberline {2.1}Data Preprossing}{2}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Mining, Interpretation, and Action}{3}{subsection.2.2}
 \contentsline {paragraph}{Top Ten Algorithms in Datamining}{3}{paragraph*.1}
 \contentsline {section}{\numberline {3}Author Idenfication: Full Problem Description}{4}{section.3}
-\contentsline {subsection}{\numberline {3.1}Data Analysis}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.1}Data Analysis}{5}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Methods}{5}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Results}{5}{subsection.3.3}
 \contentsline {subsection}{\numberline {3.4}Summary and Future Work}{5}{subsection.3.4}
-\contentsline {section}{\numberline {4}Iceberg: Full Problem Description}{5}{section.4}
+\contentsline {section}{\numberline {4}Iceberg: Full Problem Description}{6}{section.4}
 \contentsline {subsection}{\numberline {4.1}Data Analysis}{6}{subsection.4.1}
 \contentsline {paragraph}{Initial Analysis}{6}{paragraph*.2}
 \contentsline {paragraph}{Further Analysis}{6}{paragraph*.4}
-\contentsline {paragraph}{Hypotheses}{6}{paragraph*.6}
+\contentsline {paragraph}{Hypotheses}{6}{paragraph*.8}
 \contentsline {subsection}{\numberline {4.2}Methods}{7}{subsection.4.2}
-\contentsline {paragraph}{Model Selection}{7}{paragraph*.7}
-\contentsline {paragraph}{Logistic Regression}{7}{paragraph*.8}
-\contentsline {paragraph}{Features}{7}{paragraph*.9}
-\contentsline {paragraph}{Challenges}{8}{paragraph*.11}
-\contentsline {paragraph}{Implementation}{8}{paragraph*.13}
-\contentsline {subsection}{\numberline {4.3}Results}{8}{subsection.4.3}
-\contentsline {paragraph}{Processing Performance}{8}{paragraph*.14}
-\contentsline {paragraph}{Feature Selection Performance}{9}{paragraph*.17}
-\contentsline {paragraph}{Predictive Performance}{9}{paragraph*.19}
-\contentsline {subsection}{\numberline {4.4}Summary and Future Work}{9}{subsection.4.4}
-\contentsline {paragraph}{Summary}{9}{paragraph*.21}
-\contentsline {paragraph}{Future Work}{9}{paragraph*.22}
+\contentsline {paragraph}{Model Selection}{7}{paragraph*.9}
+\contentsline {paragraph}{Logistic Regression}{7}{paragraph*.10}
+\contentsline {paragraph}{TBD}{8}{paragraph*.11}
+\contentsline {paragraph}{Features}{8}{paragraph*.12}
+\contentsline {paragraph}{Challenges}{8}{paragraph*.14}
+\contentsline {paragraph}{}{8}{paragraph*.15}
+\contentsline {paragraph}{}{8}{paragraph*.17}
+\contentsline {paragraph}{Implementation}{8}{paragraph*.18}
+\contentsline {paragraph}{}{8}{paragraph*.19}
+\contentsline {paragraph}{}{9}{paragraph*.20}
+\contentsline {subsection}{\numberline {4.3}Results}{9}{subsection.4.3}
+\contentsline {paragraph}{Processing Performance}{9}{paragraph*.21}
+\contentsline {paragraph}{LgR Feature Selection Performance}{9}{paragraph*.24}
+\contentsline {paragraph}{Predictive Performance}{10}{paragraph*.26}
+\contentsline {subsection}{\numberline {4.4}Summary and Future Work}{10}{subsection.4.4}
+\contentsline {paragraph}{Summary}{10}{paragraph*.28}
+\contentsline {paragraph}{Future Work}{10}{paragraph*.29}
 \contentsline {subsection}{\numberline {4.5}Citations and Subsubsection}{10}{subsection.4.5}
-\contentsline {section}{Acknowledgments}{10}{section*.23}
-\contentsline {section}{References}{10}{section*.24}
+\contentsline {section}{Acknowledgments}{10}{section*.30}
+\contentsline {section}{References}{10}{section*.31}
 \contentsfinish 
