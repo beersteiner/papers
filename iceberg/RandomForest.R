@@ -1,10 +1,3 @@
-#install.packages("rjson")
-#install.packages("OpenImageR")
-#install.packages("grid")
-#install.packages("mice")
-#install.packages("RMySQL")
-#install.packages("ROSE")
-install.packages("pROC")
 library(pROC)
 library(mice)
 library('RMySQL')
@@ -13,6 +6,8 @@ library(rjson)
 library(OpenImageR)
 library(readr)
 library(ROSE)
+library(randomForest)
+
 
 
 #db connection function
@@ -104,16 +99,6 @@ getFeat = function(tbl, idn) {
 }
 
 
-## Log Loss Function
-##   http://www.exegetic.biz/blog/2015/12/making-sense-logarithmic-loss/
-logloss <- function(act, pred) {
-  eps <- 1e-15
-  pred <- pmin(pmax(pred, eps), 1-eps)
-  -(sum(act * log(pred) + (1 - act) * log(1 - pred))) / length(act)
-}
-
-
-
 
 
 
@@ -169,12 +154,13 @@ colSums(is.na(test_data))
 #maxit = 20 maximum iteration taken to impute missing value
 #method = 'pmm' Predictive mean matching as the inc_angle is continuous data
 imputed_Data = mice(train_data, m=5, maxit = 20, method = 'pmm', seed = 500)
-imputed_Data$imp$inc_angle
-#summary(imputed_Data)
-#imputed_Data$imp$V19
 
-#Complete Function gives complete Dataset for selected imputed value set
-#complete(imputed_Data,1)
+training_data = complete(imputed_Data,1)[1:1000,]
+training_label = complete(imputed_Data,1)[1:1000,20]
+validation_data = complete(imputed_Data,1)[1001:1604,1:19]
+validation_label = complete(imputed_Data,1)[1001:1604,20]
+
+#Actual Loop
 
 models = list()
 accuracy = rep(0,5)
@@ -185,38 +171,41 @@ for (i in 1:5) {
   validation_data = complete(imputed_Data,i)[1001:1604,1:19]
   validation_label = complete(imputed_Data,i)[1001:1604,20]
   
-  model = glm(is_iceburg ~ ., data = as.data.frame(training_data), family = binomial(link = 'logit'))
-  models[[i]] = model
+  model.rf=randomForest(is_iceburg ~ . , data = as.data.frame(training_data),ntree = 50,nodesize = 10,mtry = 19)
+  models[[i]] = model.rf
   
-  pred = predict(model,validation_data,type = 'response')
-  prediction = rep(0,length(pred))
-  prediction[pred > 0.5] = 1
+  pred_rf = predict(model.rf,newdata = validation_data,type = 'response')
+  prediction = rep(0,length(pred_rf))
+  prediction[pred_rf > 0.5] = 1
   
   acc = mean(prediction == validation_label) * 100
   accuracy[i] = acc
   cat("Model ",i," - Accuracy - ",acc,"\n")
   
-  roc.curve(validation_label,pred)
+  roc.curve(validation_label,pred_rf)
   
-  auc[i] = auc(validation_label,pred)
+  auc[i] = auc(validation_label,pred_rf)
   
-  loss[i] = logloss(validation_label,pred)
-
+  loss[i] = logloss(validation_label,pred_rf)
+  
 }
-
 
 model = models[[which.max(auc)]]
 log_loss = loss[which.min(loss)]
-#0.6262356
+log_loss
+#0.5769474
 
 auc_val = auc[which.max(auc)]
-#0.7133157
+auc_val
+#0.7778883
 
-test_prediction = predict(model,as.data.frame(test_data),type = 'response')
+which.max(auc)
 
+test_prediction = predict(model,as.data.frame(test_data))
+test_prediction[test_prediction < 0] = 0.0001
 result = cbind(test_id,test_prediction)
 colnames(result) = c("id","is_iceberg")
 result = as.data.frame(result)
 write_csv(x = result,path =  paste("prediction.csv",sep = ""),append = FALSE,col_names = TRUE)
 
-#Kaggle score 0.5505
+# Kaggle score 0.5345
