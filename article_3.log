@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  14 DEC 2017 19:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  14 DEC 2017 19:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1131,7 +1131,7 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5] <iceberg/analysis/band_1_max.png, id=179, 504.9264pt x 505.4082pt>
+[5] <iceberg/analysis/band_1_max.png, id=172, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/band_1_max.png Graphic file (type png)
 
 <use iceberg/analysis/band_1_max.png>
@@ -1139,7 +1139,7 @@ Package pdftex.def Info: iceberg/analysis/band_1_max.png used on input line 327
 .
 (pdftex.def)             Requested size: 100.98349pt x 101.07983pt.
 
-<iceberg/analysis/band_2_max.png, id=180, 504.9264pt x 505.4082pt>
+<iceberg/analysis/band_2_max.png, id=173, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/band_2_max.png Graphic file (type png)
 
 <use iceberg/analysis/band_2_max.png>
@@ -1147,7 +1147,7 @@ Package pdftex.def Info: iceberg/analysis/band_2_max.png used on input line 330
 .
 (pdftex.def)             Requested size: 100.98349pt x 101.07983pt.
 
-<iceberg/analysis/band_1_mean.png, id=181, 504.9264pt x 505.4082pt>
+<iceberg/analysis/band_1_mean.png, id=174, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/band_1_mean.png Graphic file (type png)
 
 <use iceberg/analysis/band_1_mean.png>
@@ -1155,7 +1155,7 @@ Package pdftex.def Info: iceberg/analysis/band_1_mean.png used on input line 33
 3.
 (pdftex.def)             Requested size: 100.98349pt x 101.07983pt.
 
-<iceberg/analysis/band_2_mean.png, id=182, 504.9264pt x 505.4082pt>
+<iceberg/analysis/band_2_mean.png, id=175, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/band_2_mean.png Graphic file (type png)
 
 <use iceberg/analysis/band_2_mean.png>
@@ -1170,7 +1170,7 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [6]
-<iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png, id=227, 481.8pt x 481.
+<iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png, id=221, 481.8pt x 481.
 8pt>
 File: iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png Graphic file (type
  png)
@@ -1179,7 +1179,7 @@ Package pdftex.def Info: iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png
  used on input line 355.
 (pdftex.def)             Requested size: 98.17773pt x 98.17415pt.
 
-<iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png, id=228, 481.8pt x 481.
+<iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png, id=222, 481.8pt x 481.
 8pt>
 File: iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png Graphic file (type
  png)
@@ -1188,7 +1188,7 @@ Package pdftex.def Info: iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png
  used on input line 358.
 (pdftex.def)             Requested size: 98.17773pt x 98.17415pt.
 
-<iceberg/analysis/b1_bg_intensity-ing_angle.png, id=229, 481.8pt x 481.8pt>
+<iceberg/analysis/b1_bg_intensity-ing_angle.png, id=223, 481.8pt x 481.8pt>
 File: iceberg/analysis/b1_bg_intensity-ing_angle.png Graphic file (type png)
 
 <use iceberg/analysis/b1_bg_intensity-ing_angle.png>
@@ -1196,7 +1196,7 @@ Package pdftex.def Info: iceberg/analysis/b1_bg_intensity-ing_angle.png used on
  input line 365.
 (pdftex.def)             Requested size: 98.17773pt x 98.17415pt.
 
-<iceberg/analysis/b2_bg_intensity-ing_angle.png, id=230, 481.8pt x 481.8pt>
+<iceberg/analysis/b2_bg_intensity-ing_angle.png, id=224, 481.8pt x 481.8pt>
 File: iceberg/analysis/b2_bg_intensity-ing_angle.png Graphic file (type png)
 
 <use iceberg/analysis/b2_bg_intensity-ing_angle.png>
@@ -1204,7 +1204,7 @@ Package pdftex.def Info: iceberg/analysis/b2_bg_intensity-ing_angle.png used on
  input line 368.
 (pdftex.def)             Requested size: 98.17773pt x 98.17415pt.
 
-<iceberg/analysis/525ab75c.png, id=231, 481.8pt x 602.25pt>
+<iceberg/analysis/525ab75c.png, id=225, 481.8pt x 602.25pt>
 File: iceberg/analysis/525ab75c.png Graphic file (type png)
 
 <use iceberg/analysis/525ab75c.png>
@@ -1224,7 +1224,7 @@ e_prenorm.png (PNG copy)> <./iceberg/analysis/b2_bg_intensity-ing_angle_prenorm
 .png (PNG copy)> <./iceberg/analysis/b1_bg_intensity-ing_angle.png (PNG copy)> 
 <./iceberg/analysis/b2_bg_intensity-ing_angle.png (PNG copy)> <./iceberg/analys
 is/525ab75c.png (PNG copy)>]
-<iceberg/analysis/tar_sum_gs_sum_mean.png, id=256, 504.9264pt x 505.4082pt>
+<iceberg/analysis/tar_sum_gs_sum_mean.png, id=250, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tar_sum_gs_sum_mean.png Graphic file (type png)
 
 <use iceberg/analysis/tar_sum_gs_sum_mean.png>
@@ -1232,7 +1232,7 @@ Package pdftex.def Info: iceberg/analysis/tar_sum_gs_sum_mean.png used on input
  line 438.
 (pdftex.def)             Requested size: 504.92517pt x 505.40695pt.
 
-<iceberg/analysis/tb_mean_dif_dif.png, id=257, 504.9264pt x 505.4082pt>
+<iceberg/analysis/tb_mean_dif_dif.png, id=251, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tb_mean_dif_dif.png Graphic file (type png)
 
 <use iceberg/analysis/tb_mean_dif_dif.png>
@@ -1240,7 +1240,7 @@ Package pdftex.def Info: iceberg/analysis/tb_mean_dif_dif.png used on input lin
 e 443.
 (pdftex.def)             Requested size: 504.92517pt x 505.40695pt.
 
-<iceberg/analysis/tar_cor.png, id=258, 504.9264pt x 505.4082pt>
+<iceberg/analysis/tar_cor.png, id=252, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tar_cor.png Graphic file (type png)
 
 <use iceberg/analysis/tar_cor.png>
@@ -1255,7 +1255,7 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8] <iceberg/analysis/corr_matrix.png, id=300, 481.8pt x 481.8pt>
+[8] <iceberg/analysis/corr_matrix.png, id=294, 481.8pt x 481.8pt>
 File: iceberg/analysis/corr_matrix.png Graphic file (type png)
 
 <use iceberg/analysis/corr_matrix.png>
@@ -1270,7 +1270,7 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9 <./iceberg/analysis/corr_matrix.png (PNG copy)>]
-<iceberg/feat_sel.png, id=320, 481.8pt x 481.8pt>
+<iceberg/feat_sel.png, id=314, 481.8pt x 481.8pt>
 File: iceberg/feat_sel.png Graphic file (type png)
  <use iceberg/feat_sel.png>
 Package pdftex.def Info: iceberg/feat_sel.png used on input line 555.
@@ -1281,7 +1281,7 @@ Overfull \hbox (12.23767pt too wide) in paragraph at lines 560--561
 e best per-for-mance achieved
  []
 
-<iceberg/ROC_Results.png, id=323, 481.8pt x 481.8pt>
+<iceberg/ROC_Results.png, id=317, 481.8pt x 481.8pt>
 File: iceberg/ROC_Results.png Graphic file (type png)
 
 <use iceberg/ROC_Results.png>
@@ -1317,22 +1317,22 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
 
 [12 <./iceberg/analysis/tar_sum_gs_sum_mean.png (PNG copy)> <./iceberg/analysis
 /tb_mean_dif_dif.png (PNG copy)> <./iceberg/analysis/tar_cor.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 611.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 611.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 604.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 604.
 
 (./article_3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 611.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 611.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 604.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 604.
 Package rerunfilecheck Info: File `article_3.out' has not changed.
-(rerunfilecheck)             Checksum: 340CA5CBD996F36ED73BE5426A38D500;1226.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 611.
+(rerunfilecheck)             Checksum: FDF9CE1326132892B3CDECCFEC70B683;1149.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 604.
  ) 
 Here is how much of TeX's memory you used:
- 13159 strings out of 493029
- 195164 string characters out of 6136234
- 444720 words of memory out of 5000000
- 15994 multiletter control sequences out of 15000+600000
- 79301 words of font info for 287 fonts, out of 8000000 for 9000
+ 13151 strings out of 493029
+ 195048 string characters out of 6136234
+ 444728 words of memory out of 5000000
+ 15990 multiletter control sequences out of 15000+600000
+ 79100 words of font info for 285 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,14n,77p,1734b,1002s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1350,10 +1350,10 @@ ype1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/
 usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on article_3.pdf (12 pages, 1359603 bytes).
+Output written on article_3.pdf (12 pages, 1359256 bytes).
 PDF statistics:
- 464 PDF objects out of 1000 (max. 8388607)
- 395 compressed objects within 4 object streams
- 157 named destinations out of 1000 (max. 500000)
- 64740 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 457 PDF objects out of 1000 (max. 8388607)
+ 389 compressed objects within 4 object streams
+ 156 named destinations out of 1000 (max. 500000)
+ 64732 words of extra memory for PDF output out of 74296 (max. 10000000)
 
