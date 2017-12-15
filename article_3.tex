@@ -62,7 +62,7 @@
 \affiliation{\textsuperscript{2}\textit{Computer Science, School of Informatics, Computing, and Engineering, Indiana University, Bloomington, IN, USA}} % Author affiliation
 \affiliation{*\textbf{Corresponding author}: jodstein@iu.edu} % Corresponding author
 
-\affiliation{\textsuperscript{3}\textit{Computer Science, School of Informatics, Computing, and Engineering, Indiana University, Bloomington, IN, USA}} % Author affiliation
+\affiliation{\textsuperscript{3}\textit{Data  Science, School of Informatics, Computing, and Engineering, Indiana University, Bloomington, IN, USA}} % Author affiliation
 \affiliation{*\textbf{Corresponding author}: sspradha@iu.edu} % Corresponding author
 
 \Keywords{NLP --- Natural Language Processing --- SAR --- Image Recognition --- HOG --- Histogram of Oriented Gradients --- Logistic Regression --- Random Forest --- XGBoost} % Keywords - if you don't want any simply remove all the text between the curly brackets
@@ -74,7 +74,7 @@
 %----------------------------------------------------------------------------------------
 
 \Abstract{\textbf{Executive Summary} 
-	This report summarizes two datamining projects undertaken by the authors. The first project attempts to classify `scattered pages' from works of fiction written by Edgar Allan Poe, HP Lovecraft, and Mary Wollstonecraft Shelley according to their author.  Various approaches were explored, including TBD (Samanvitha). The best-performing approach was achieved by TBD, with a Log Loss of TBD. The second project attempts to classify Synthetic Aperture Radar images according to whether the image has captured an iceberg or not.  We have used two approaches including Convolution Neural Networks and Histogram of Oriented Gradients to process the image in a way to obtain custom features. Finally, we performed regression on custom features using Logistic Regression, Random Forest and XGBoost Algorithms. The best-performing approach was achieved by Logistic Regression using custom features, with a Log Loss of 0.3682.
+	This report summarizes two datamining projects undertaken by the authors. The first project attempts to classify `scattered pages' from works of fiction written by Edgar Allan Poe, HP Lovecraft, and Mary Wollstonecraft Shelley according to their author.  Various approaches were explored, including Naive Bayes, Decision Trees, Maximun Entropy. The best-performing approach was achieved by Maximum Entropy. The second project attempts to classify Synthetic Aperture Radar images according to whether the image has captured an iceberg or not.  We have used two approaches including Convolution Neural Networks and Histogram of Oriented Gradients to process the image in a way to obtain custom features. Finally, we performed regression on custom features using Logistic Regression, Random Forest and XGBoost Algorithms. The best-performing approach was achieved by Logistic Regression using custom features, with a Log Loss of 0.3682.
 }
 
 
@@ -98,17 +98,8 @@ The two projects presented herein (Spooky Author Identification and Iceberg Clas
 Data Mining (DM) has three broad areas of application: answering questions, exploring and discovering relationships, and annotation.  Kaggle competitions, including those described in this paper, are a convenient way for an entity with a requirement in one of these application spaces to draw from a large community of willing problem solvers to find effective and efficient solutions to satisfy their requirement.  Spooky Author Identification is considered a `Playground Competition', meaning the underlying motivation is to encourage increased participation in the Kaggle community and potentially spur innovative advances in to standing challenges in Natural Language Processing.  In the case of Iceberg Classification, the underlying requirement is for Statoil to accurately and efficiently identify icebergs that could threaten their sea-based natural resources operations.  In both cases, DM presents an opportunity to discover useful relationships between written word and their author or between SAR imagery and the target being imaged, to enable classification accuracy and efficiency well beyond human performance.
 
 \subsection{Author Identification}
-TBD - Samanvitha please complete this section.
-What is the problem to be solved?  What is the data? How is goodness quantified?  This should not be too technical, but we can say, for example, given three authors $A = \{a_1, a_2, a_3\}$ and selections of their individiually corresponding works $S_{a_1}, S_{a_2}, S_{a_3}$,  we are constructing a probability  mass function $f$ over $A$ that is applied to a text $t$ written by one of the authors, but unlabled:
-\begin{equation}
-f(A|t,S) = \{p_{a_1}, p_{a_2}, p_{a_3}\}
-\end{equation}
-
-A text is simply a passage from one of the author's works:
-\begin{quote}
-Once upon a midnight dreary, while I pondered, weak and weary, Over many a quaint and curious volume of forgotten lore—While I nodded, nearly napping, suddenly there came a tapping, As of some one gently rapping, rapping at my chamber door.“’Tis some visitor,” I muttered, “tapping at my chamber door— Only this and nothing more.”
-\end{quote}
-from Edgar Allen Poe's, \textit{The Raven}.  You must find out whether it's only prose -- and how much of the original structure is maintained.  Likely you will not take in text directly -- so this must be described.
+The Author Identification problem is to accurately classify whether a given statement of text (an excerpt) is from one of the Horror(Spooky) Authors namely, Edgar Allen Poe, H P Lovecraft, and Mary Wollstonecraft Craft. The data has three classes as “EAP”, “HPL”, and “MWS”. The training set has three columns, one identifier, one column of text, and one column as the class label with one of the three classes. The excerpts are anywhere from a quote to a description. The classifier must calculate the probability that and map the text to one of the authors. The test data set has an identifier and a text per row and the trained classifier must classify this set. Kaggle evaluates the goodness of the classifier using the below stated Log Loss function. A good classifier must have a low log loss.
+$$LL = - \frac{1}{N} \sum_{i} \sum_{j} y_ij log(p_ij)$$
 
 
 \subsection{Statoi/C-CORE Iceberg Classifier Challenge}
@@ -216,63 +207,63 @@ New types of problems in DM include finding more stable decision-tree algorithms
 %  Author Identication
 %   
 %------------------------------------------------
-\section{Author Idenfication: Full Problem Description}
-\begin{itemize}[noitemsep]
-\item Define problem
-\item Formally describe problem--inputs, outputs, training and testing method
-\end{itemize}
-
-%\begin{figure*}[ht]\centering % Using \begin{figure*} makes the figure take up the entire width of the page
-%\includegraphics[width=\linewidth]{view}
-%\caption{You can span in the width of the page if you need to.}
-%\label{fig:view}
-%\end{figure*}
-
-\lipsum[4] % Dummy text
-
-\begin{equation}
-\cos^3 \theta =\frac{1}{4}\cos\theta+\frac{3}{4}\cos 3\theta
-\label{eq:refname2}
-\end{equation}
-
-\lipsum[5] % Dummy text
-
+\section{Author Identification: Full Problem Description}
+Edgar Allen Poe, H P Lovecraft, and Mary Wollstonecraft Craft are three popular Horror Fiction authors of their times and whose works have stood the test of time. Poe’s Raven or Shelly’s Frankenstein are works which have defined the genre for centuries. 
+In the Spooky Author Challenge, the aim is build a classifier using a training set which contains excerpts from works by the three authors. The training dataset consists of three variables, an identifier, a string of text which is the excerpt and a class label column.  There are 19,560 records in it. The unlabeled test set consists of 8,394 records and the Classifier must label it as “EAP”, “HPL” or “MWS” as its solution
 
 \subsection{Data Analysis}
+Any data which is found has to be cleaned and made machine readable. The text data is the only component here. The strings are excerpts from various works. It can be noticed that some are descriptive sentences such as narration while some have dialogs in the text. They are all strings varying lengths. 
+One of the text’s features which stands out is that most of the data from MWS are predominantly in first person it is primarily sourced from Frankenstein. 
+There are number of such instances of the data can be seen here. The following steps were used:
+
 \begin{itemize}[noitemsep]
-\item Describe the data in full detail--from its raw form to the transformation
-\item Provide summary statistics and relationships
+\item CSV: As the training and test files were CSVs, when the data was loaded onto MySQL, the comma failed as a delimiter, and had to be processed to make it ‘~’ as this not part of regular sentence structure.
+\item Removing of all the punctuations: For the purposes of this assignment, the punctuations were ignored and hence removed as part of pre-processing.
+\item Stemming and Stopwords: The words were stemmed and stopwords were eliminated before the text was used for training and testing the data as part of pre-processing. 
 \end{itemize}
 
-\lipsum[6] % Dummy text
+
 
 \subsection{Methods}
+There are multiple models available for text processing. The models which were considered for Naïve Bayes’, Decision Trees, SVMs and Maximum Entropy Models.
 \begin{itemize}[noitemsep]
-\item Discuss the algorithm you've chosen, \textit{e.g.}, why you chose it
-\item Provide some background material on your method that shows you are well-acquianted with it
-\item Challenges to your method
-\item What software and hardware did you use, packages, \textit{etc.}
-\item Final structure of data after preprocessing
-\item Present training and testing as some combination of text and visualizations
-\end{itemize}
+\item \textit{Naïve Bayes}: Though Naïve Bayes’ is a relatively simple approach, like Occum’s Razor, a simple approach and fruitful approach. Naïve Bayes’ approach assumes that each feature is independent of one another. They are independently considered, and a probability is assigned to it. This is highly scalable in nature. It follows the following conditional probability method to classify
+$$ p(C_k | x_1,x_2,…x_n) $$
+$$P(C_k|x) = \frac{p(C_k)p(x|C_x)}{p(x)}$$
+Naïve Bayes works particularly well for textual data and hence gives highly reliable output.
+Python’s NLTK Naïve Bayes’ classifier was utilized here. This was trained on all the records of the training set and was made to classify the entire test set.
+\item \textit{Decision Trees}: Decision Trees or Classification Trees uses various features which is learnt by the classifier to form nodes. Generally, a binary decision is made such as True or False in order to traverse the tree and there are class labels assigned as the root nodes. The path taken from root node to the leaf node serves are the decision made to classify the input as particular class. Decision Trees are easily interpretable by humans owing to their visual nature and hence are highly useful.\\
+Python’s NLTK Decision Tree classifier was utilized here. Cross Validation was utilized here, and was trained on sample of the records of the training set and was made to classify the entire test set. The dataset was too large and there were memory errors which occurs when the training set was larger than 5000 records. 
 
+\item \textit{SVM}: Support Vector Machines are classifiers used for supervised learning for when the given set of data is linearly separable using a hyperplane of required dimension. SVMs aim at obtaining the best possible solution for the linear separation by attempting to obtain a partition which yields the largest margin. SVMs are useful in classifying larger data sets as they rely only the support vectors to gauge the hyperplane. This is a well renowned tool for text classification.\\
+Python’s NLTK and sklearn’s SVC classifier was utilized here. It was trained on sample of the records of the training set and was made to classify the entire test set.
+
+\item \textit{Maximum Entropy}: Maximum Entropy implies that classifiers utilize the most uniform class which meets all the constraints. This has the advantage being applicable to any probability distribution. This classifier unlike Naïve Bayes doesn’t assume independence of features.  Hence, it uses contextual information to obtain information for classification. But this method faces an optimization issue which are improved using an iterative scaling algorithm such as the GIS (Generalized Iterative Scaling) or the IIS (Improved Iterative Scaling) for lambda parameters to be eliminated in the algorithm.\\
+Python’s NLTK Maxent classifier was utilized here. Cross Validation was utilized here, and was trained on sample of the records of the training set and was made to classify the entire test set. The dataset was too large and there were memory errors which occurs when the training set was larger than 5000 records. 
+
+\end{itemize}
+\begin{figure}[ht]
+	\begin{minipage}{0.24\textwidth}
+		\includegraphics[width=2.0\linewidth]{author/decision_tree.PNG}
+	\end{minipage}%
+	\caption{Partial Decision Tree}
+\end{figure}
 %------------------------------------------------
 
 \subsection{Results}
+The classifiers each had certain drawbacks as stated above and the results are as follows.
 \begin{itemize}[noitemsep]
-\item Dispassionately describe your results both quantified and qualified
-\item Do you deem this successful
-\item What do the results suggest
-\item What were challenges
+\item Naïve Bayes performed well with an accuracy rate of 0.910465294448 from the classifier. As stated above this is simple yet a powerful solution for classification.
+\item Decision Trees under cross validation gave extremely high accuracy rate of 0.978. This may seem like a perfect classifier, but it most certainly is skewed. There is a high chance of overfitting which has occurred in this classifier implying that the test data hasn’t varied much from the training data. Hence, it is not an optimal solution.
+\item SVMs has produced a really low accuracy rate of 0.406 and this was cross validated, but the score failed to improve.
+\item Maxent classifier produced accuracy 0.944 with cross validation of 5000 records and 0.789 with 2000 records per iteration.
 \end{itemize}
 Remember, we're interested in the journey, so simply because an approach failed doesn't mean failure if you discuss the failure!
 \subsection{Summary and Future Work}
-\begin{itemize}[noitemsep]
-\item Briefly summarize project and outcome
-\item What would you do differently in the future?
-\end{itemize}
+The Spooky Author Detection project was intended for the classifier to identify Spooky Authors namely, Edgar Allen Poe, H P Lovecraft, and Mary Wollstonecraft Craft. The data has three classes as “EAP”, “HPL”, and “MWS”.  Excerpts from the authors literary work used to train the classifiers to learn the features of the authors. The most reliable results were obtained from the Naïve Bayes’ classifier despite being a simple approach. Maxent classifier obtained better results by improving the cross validation. This project can be deemed a success, despite the obvious gaps in the results mainly because the data was real world data which was worked on. This yielded acceptable results. The handling and management of data was highlighted through this effort.
+The potential work can be done using Neural Networks. As stated there are nuances in the data set which were left unexplored for the scope of the current work done, like Shelly’s work being primarily in First person, Shelly inspiring Poe and Lovecraft’s work which may be reflected in the data as homage etc. Using NN such prospects can be explored, and better results might be obtained.
 
-\lipsum[10] % Dummy text
+
 \section{Iceberg: Full Problem Description}
 
 Statoil, an energy company with oil and natural gas operations based largely in the Norwegian Continental Shelf region, has an operational need to track the presence of icebergs that may present a threat to the safety and efficiency of those operations. \cite{statoil} The company has therefore posed the following iceberg classification problem to the data science community.  Statoil partners with C-CORE (a Canadian R\&D corporation) to obtain access to Synthetic Aperture Radar (SAR) imagery data from the Sentinel-1 satellite constellation, and the challenge is to classify the object in each image as an iceberg or non-iceberg (presumably a ship, which is not likely to pose a threat to operations). A labeled training set (1604 records) and an unlabeled test set (8424 records) is provided, and the task is to classify each image as containing an iceberg (\texttt{is\_iceberg}=1) or not (\texttt{is\_iceberg}=0). \cite{kaggle-ice}
