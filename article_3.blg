@@ -1,4 +1,6 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: article_3.aux
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: article_3.aux
 The style file: unsrt.bst
 Database file #1: sample.bib
 Warning--entry type for "Ship-Iceberg_CNN" isn't style-file defined
@@ -27,4 +29,45 @@ Warning--empty publisher in mccullagh
 Warning--empty year in mccullagh
 Warning--empty journal in cawley
 Warning--empty year in cawley
+You've used 17 entries,
+            1791 wiz_defined-function locations,
+            534 strings with 6013 characters,
+and the built_in function-call counts, 3392 in all, are:
+= -- 262
+> -- 131
+< -- 4
++ -- 53
+- -- 36
+* -- 207
+:= -- 495
+add.period$ -- 43
+call.type$ -- 17
+change.case$ -- 16
+chr.to.int$ -- 0
+cite$ -- 31
+duplicate$ -- 159
+empty$ -- 385
+format.name$ -- 36
+if$ -- 763
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 13
+newline$ -- 79
+num.names$ -- 19
+pop$ -- 84
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 106
+stack$ -- 0
+substring$ -- 184
+swap$ -- 38
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 14
+while$ -- 28
+width$ -- 19
+write$ -- 148
 (There were 20 warnings)

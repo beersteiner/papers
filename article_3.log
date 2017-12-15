@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 DEC 2017 06:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  15 DEC 2017 06:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -873,14 +873,7 @@ Package: abstract 2009/06/08 v1.2a configurable abstracts
 \absparindent=\skip69
 \absparsep=\skip70
 )
-(./article_3.aux
-
-LaTeX Warning: Label `roc' multiply defined.
-
-
-LaTeX Warning: Label `roc' multiply defined.
-
-)
+(./article_3.aux)
 \openout1 = `article_3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
@@ -1262,11 +1255,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 397--398
 
  []
 
-
-LaTeX Warning: Reference `more-features' on page 8 undefined on input line 411.
-
-
-<iceberg/analysis/tar_sum_gs_sum_mean.png, id=225, 504.9264pt x 505.4082pt>
+<iceberg/analysis/tar_sum_gs_sum_mean.png, id=226, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tar_sum_gs_sum_mean.png Graphic file (type png)
 
 <use iceberg/analysis/tar_sum_gs_sum_mean.png>
@@ -1274,7 +1263,7 @@ Package pdftex.def Info: iceberg/analysis/tar_sum_gs_sum_mean.png used on input
  line 422.
 (pdftex.def)             Requested size: 504.92517pt x 505.40695pt.
 
-<iceberg/analysis/tb_mean_dif_dif.png, id=226, 504.9264pt x 505.4082pt>
+<iceberg/analysis/tb_mean_dif_dif.png, id=227, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tb_mean_dif_dif.png Graphic file (type png)
 
 <use iceberg/analysis/tb_mean_dif_dif.png>
@@ -1282,7 +1271,7 @@ Package pdftex.def Info: iceberg/analysis/tb_mean_dif_dif.png used on input lin
 e 427.
 (pdftex.def)             Requested size: 504.92517pt x 505.40695pt.
 
-<iceberg/analysis/tar_cor.png, id=227, 504.9264pt x 505.4082pt>
+<iceberg/analysis/tar_cor.png, id=228, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tar_cor.png Graphic file (type png)
 
 <use iceberg/analysis/tar_cor.png>
@@ -1297,7 +1286,19 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8] <iceberg/analysis/corr_matrix.png, id=263, 481.8pt x 481.8pt>
+[8]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+Package Fancyhdr Warning: \headheight is too small (11.0pt): 
+ Make it at least 31.96901pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9 <./iceberg/analysis/tar_sum_gs_sum_mean.png (PNG copy)> <./iceberg/analysis/
+tb_mean_dif_dif.png (PNG copy)> <./iceberg/analysis/tar_cor.png (PNG copy)>]
+<iceberg/analysis/corr_matrix.png, id=271, 481.8pt x 481.8pt>
 File: iceberg/analysis/corr_matrix.png Graphic file (type png)
 
 <use iceberg/analysis/corr_matrix.png>
@@ -1311,7 +1312,7 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[9 <./iceberg/analysis/corr_matrix.png (PNG copy)>]
+[10 <./iceberg/analysis/corr_matrix.png (PNG copy)>]
 Overfull \hbox (7.02744pt too wide) in paragraph at lines 508--512
 [] [][] \OT1/ptm/m/n/10 (-20) HOG with XG-Boost - As men-tioned ear-lier, we pr
 e-processed
@@ -1323,7 +1324,7 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10] <iceberg/feat_sel.png, id=321, 481.8pt x 481.8pt>
+[11] <iceberg/feat_sel.png, id=329, 481.8pt x 481.8pt>
 File: iceberg/feat_sel.png Graphic file (type png)
 
 <use iceberg/feat_sel.png>
@@ -1340,7 +1341,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 585--586
 
  []
 
-<iceberg/ROC_Results.png, id=324, 481.8pt x 481.8pt>
+<iceberg/ROC_Results.png, id=332, 481.8pt x 481.8pt>
 File: iceberg/ROC_Results.png Graphic file (type png)
 
 <use iceberg/ROC_Results.png>
@@ -1351,7 +1352,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 595--596
 
  []
 
-<iceberg/hog_logit_roc.png, id=325, 360.59718pt x 338.76563pt>
+<iceberg/hog_logit_roc.png, id=334, 360.59718pt x 338.76563pt>
 File: iceberg/hog_logit_roc.png Graphic file (type png)
 
 <use iceberg/hog_logit_roc.png>
@@ -1362,7 +1363,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 605--606
 
  []
 
-<iceberg/xgboost.png, id=326, 385.44pt x 362.10281pt>
+<iceberg/xgboost.png, id=336, 385.44pt x 362.10281pt>
 File: iceberg/xgboost.png Graphic file (type png)
 
 <use iceberg/xgboost.png>
@@ -1373,21 +1374,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 615--616
 
  []
 
-
-Package Fancyhdr Warning: \headheight is too small (11.0pt): 
- Make it at least 31.96901pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[11 <./iceberg/feat_sel.png (PNG copy)> <./iceberg/ROC_Results.png> <./iceberg/
-hog_logit_roc.png>]
-<iceberg/random_forest.png, id=340, 331.99031pt x 311.66437pt>
+<iceberg/random_forest.png, id=338, 331.99031pt x 311.66437pt>
 File: iceberg/random_forest.png Graphic file (type png)
 
 <use iceberg/random_forest.png>
 Package pdftex.def Info: iceberg/random_forest.png used on input line 619.
 (pdftex.def)             Requested size: 218.17422pt x 204.81932pt.
 
+
+Package Fancyhdr Warning: \headheight is too small (11.0pt): 
+ Make it at least 31.96901pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12 <./iceberg/feat_sel.png (PNG copy)> <./iceberg/ROC_Results.png> <./iceberg/
+hog_logit_roc.png>]
 Overfull \hbox (7.96114pt too wide) in paragraph at lines 631--632
 \OT1/ptm/m/n/10 (-20) LgR ap-proach would be to adopt an entropy-based or corre
 lation-
@@ -1400,7 +1401,7 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12 <./iceberg/xgboost.png> <./iceberg/random_forest.png>])
+[13 <./iceberg/xgboost.png> <./iceberg/random_forest.png>])
 
 AED: lastpage setting LastPage
 
@@ -1409,7 +1410,7 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[13
+[14
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 655.
@@ -1419,20 +1420,13 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 655.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 655.
 Package rerunfilecheck Info: File `article_3.out' has not changed.
 (rerunfilecheck)             Checksum: 28B614D06B23D5750F6D506F3DFBC2AA;1149.
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 655.
  ) 
 Here is how much of TeX's memory you used:
- 13141 strings out of 493029
- 195016 string characters out of 6136234
- 441158 words of memory out of 5000000
- 15992 multiletter control sequences out of 15000+600000
+ 13145 strings out of 493029
+ 195068 string characters out of 6136234
+ 442306 words of memory out of 5000000
+ 15994 multiletter control sequences out of 15000+600000
  77481 words of font info for 285 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,14n,77p,1735b,1002s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1449,10 +1443,10 @@ xlive/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf
 1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on article_3.pdf (13 pages, 1151577 bytes).
+Output written on article_3.pdf (14 pages, 1362157 bytes).
 PDF statistics:
- 436 PDF objects out of 1000 (max. 8388607)
- 363 compressed objects within 4 object streams
- 136 named destinations out of 1000 (max. 500000)
+ 446 PDF objects out of 1000 (max. 8388607)
+ 372 compressed objects within 4 object streams
+ 138 named destinations out of 1000 (max. 500000)
  61163 words of extra memory for PDF output out of 61914 (max. 10000000)
 

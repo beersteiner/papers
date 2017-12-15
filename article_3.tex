@@ -410,7 +410,7 @@ Highlights of XGBoost:
 
 \paragraph{Features} The LgR modeling approach enabled experimentation of new potential features, which became the next focus.  Table \ref{more-features} summarizes, in some detail, a few of the more interesting features that were explored for LgR based on the previously mentioned visual analysis and domain research.  Additional features are briefly described below.
 
-\begin{table*}[H]
+\begin{table*}[ht!]
 	\caption{Additional Features for LgR}\label{more-features}
 	\begin{tabular}{l p{.45\linewidth} l}
 		\toprule
@@ -592,32 +592,32 @@ LgR - The best performance achieved as of the writing of this paper is \textbf{0
 	Sensitivity represents icebergs correctly classified as icebergs, and specificity represents non-icebergs incorrectly classified as icebergs.
 \end{figure}
 
-HOG with LgR - When we used Histogram of Oriented Gradients with Logistic Regression, we are able to achieve \textbf{0.5505} score after submitting the predictions on test data to Kaggle. Figure 8 shows the ROC plot for the prediction made on validation data. Area Under Curve (AUC) for the model is \textbf{0.7133157}. Log-loss for the trained model is \textbf{0.6262356}.\\ 	 
+HOG with LgR - When we used Histogram of Oriented Gradients with Logistic Regression, we are able to achieve \textbf{0.5505} score after submitting the predictions on test data to Kaggle. Figure \ref{roc-hoglgr} shows the ROC plot for the prediction made on validation data. Area Under Curve (AUC) for the model is \textbf{0.7133157}. Log-loss for the trained model is \textbf{0.6262356}.\\ 	 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{iceberg/hog_logit_roc.png}
-	\caption{HOG with Logistic Regression ROC plot}\label{roc}
+	\caption{HOG with Logistic Regression ROC plot}\label{roc-hoglgr}
 	\small
 	True-Positive rate represents icebergs correctly classified as icebergs, and False-Positive rate represents non-icebergs incorrectly classified as icebergs.
 \end{figure}
 
-HOG with XGBoost - When we used Histogram of Oriented Gradients with XGBoost, we are able to achieve \textbf{0.5986} score after submitting the predictions on test data to Kaggle. Figure 9 shows the ROC plot for the prediction made on validation data. Area Under Curve (AUC) for the model is \textbf{0.8170044}. Log-loss for the trained model is \textbf{0.6610249}.\\
+HOG with XGBoost - When we used Histogram of Oriented Gradients with XGBoost, we are able to achieve \textbf{0.5986} score after submitting the predictions on test data to Kaggle. Figure \ref{roc-hogxg} shows the ROC plot for the prediction made on validation data. Area Under Curve (AUC) for the model is \textbf{0.8170044}. Log-loss for the trained model is \textbf{0.6610249}.\\
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{iceberg/xgboost.png}
-	\caption{HOG with XGBoost ROC plot}\label{roc}
+	\caption{HOG with XGBoost ROC plot}\label{roc-hogxg}
 	\small
 	True-Positive rate represents icebergs correctly classified as icebergs, and False-Positive rate represents non-icebergs incorrectly classified as icebergs.
 \end{figure}
 
-HOG with Random Forest - When we used Histogram of Oriented Gradients with Random Forest, we are able to achieve \textbf{0.5345} score after submitting the predictions on test data to Kaggle. Figure 10 shows the ROC plot for the prediction made on validation data. Area Under Curve (AUC) for the model is \textbf{0.7778883}. Log-loss for the trained model is \textbf{0.5769474}.\\
+HOG with Random Forest - When we used Histogram of Oriented Gradients with Random Forest, we are able to achieve \textbf{0.5345} score after submitting the predictions on test data to Kaggle. Figure \ref{roc-hogrf} shows the ROC plot for the prediction made on validation data. Area Under Curve (AUC) for the model is \textbf{0.7778883}. Log-loss for the trained model is \textbf{0.5769474}.\\
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{iceberg/random_forest.png}
-	\caption{HOG with Random Forest ROC plot}\label{roc}
+	\caption{HOG with Random Forest ROC plot}\label{roc-hogrf}
 	\small
 	True-Positive rate represents icebergs correctly classified as icebergs, and False-Positive rate represents non-icebergs incorrectly classified as icebergs.
 \end{figure}
