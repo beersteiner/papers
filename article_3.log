@@ -1,17 +1,15 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.23)  14 DEC 2017 19:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.9)  14 DEC 2017 23:41
 entering extended mode
- restricted \write18 enabled.
- %&-line parsing enabled.
-**article_3.tex
-(./article_3.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
-(./SelfArx.cls
+**./article_3.tex
+(article_3.tex
+LaTeX2e <2017-04-15>
+Babel <3.15> and hyphenation patterns for 75 language(s) loaded.
+(SelfArx.cls
 Document Class: SelfArx 25/01/2012, v1.0
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\tools\calc.sty"
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count79
 \calc@Bcount=\count80
@@ -24,10 +22,10 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count81
 \calc@Cskip=\skip43
 )
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cls"
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/fleqn.clo
-File: fleqn.clo 2015/03/31 v1.1i Standard LaTeX option (flush left equations)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\fleqn.clo"
+File: fleqn.clo 2016/12/29 v1.2a Standard LaTeX option (flush left equations)
 \mathindent=\dimen104
 Applying: [2015/01/01] Make \[ robust on input line 50.
 LaTeX Info: Redefining \[ on input line 51.
@@ -36,7 +34,7 @@ Applying: [2015/01/01] Make \] robust on input line 74.
 LaTeX Info: Redefining \] on input line 75.
 Already applied: [0000/00/00] Make \] robust on input line 83.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size10.clo"
 File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count82
@@ -51,14 +49,15 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip45
 \bibindent=\dimen105
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.s
+ty"
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 )
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\times.sty"
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/mathptmx.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\mathptmx.st
+y"
 Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
@@ -94,20 +93,19 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
 LaTeX Info: Redefining \hbar on input line 50.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\inputenc.sty"
 Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
-File: utf8.def 2015/12/03 v1.1r UTF-8 support for inputenc
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\utf8.def"
+File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
 Now handling font encoding OML ...
 ... no UTF-8 mapping file for font encoding OML
 Now handling font encoding T1 ...
 ... processing UTF-8 mapping file for font encoding T1
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.dfu
-File: t1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\t1enc.dfu"
+File: t1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -319,11 +317,17 @@ File: t1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
    defining Unicode char U+0219 (decimal 537)
    defining Unicode char U+021A (decimal 538)
    defining Unicode char U+021B (decimal 539)
-   defining Unicode char U+01E02 (decimal 7682)
-   defining Unicode char U+01E03 (decimal 7683)
+   defining Unicode char U+0232 (decimal 562)
+   defining Unicode char U+0233 (decimal 563)
+   defining Unicode char U+1E02 (decimal 7682)
+   defining Unicode char U+1E03 (decimal 7683)
    defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2010 (decimal 8208)
+   defining Unicode char U+2011 (decimal 8209)
+   defining Unicode char U+2012 (decimal 8210)
    defining Unicode char U+2013 (decimal 8211)
    defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2015 (decimal 8213)
    defining Unicode char U+2018 (decimal 8216)
    defining Unicode char U+2019 (decimal 8217)
    defining Unicode char U+201A (decimal 8218)
@@ -335,12 +339,14 @@ File: t1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
    defining Unicode char U+2039 (decimal 8249)
    defining Unicode char U+203A (decimal 8250)
    defining Unicode char U+2423 (decimal 9251)
+   defining Unicode char U+1E20 (decimal 7712)
+   defining Unicode char U+1E21 (decimal 7713)
 )
 Now handling font encoding OT1 ...
 ... processing UTF-8 mapping file for font encoding OT1
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/ot1enc.dfu
-File: ot1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ot1enc.dfu"
+File: ot1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A0 (decimal 160)
    defining Unicode char U+00A1 (decimal 161)
    defining Unicode char U+00A3 (decimal 163)
@@ -380,8 +386,8 @@ File: ot1enc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
 Now handling font encoding OMS ...
 ... processing UTF-8 mapping file for font encoding OMS
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omsenc.dfu
-File: omsenc.dfu 2015/12/03 v1.1r UTF-8 support for inputenc
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omsenc.dfu"
+File: omsenc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
    defining Unicode char U+00A7 (decimal 167)
    defining Unicode char U+00B6 (decimal 182)
    defining Unicode char U+00B7 (decimal 183)
@@ -404,41 +410,47 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2016/03/03 v2.15a AMS math features
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsmath.st
+y"
+Package: amsmath 2017/09/02 v2.17a AMS math features
 \@mathmargin=\skip46
 
 For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amstext.st
+y"
 Package: amstext 2000/06/29 v2.01 AMS text
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty
+"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
 \ex@=\dimen106
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty
+"
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen107
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 1999/12/14 v2.01 operator names
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty
+"
+Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count90
-LaTeX Info: Redefining \frac on input line 199.
+LaTeX Info: Redefining \frac on input line 213.
 \uproot@=\count91
 \leftroot@=\count92
-LaTeX Info: Redefining \overline on input line 297.
+LaTeX Info: Redefining \overline on input line 375.
 \classnum@=\count93
 \DOTSCASE@=\count94
-LaTeX Info: Redefining \ldots on input line 394.
-LaTeX Info: Redefining \dots on input line 397.
-LaTeX Info: Redefining \cdots on input line 518.
+LaTeX Info: Redefining \ldots on input line 472.
+LaTeX Info: Redefining \dots on input line 475.
+LaTeX Info: Redefining \cdots on input line 596.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
 \big@size=\dimen108
-LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
 \macc@depth=\count95
 \c@MaxMatrixCols=\count96
 \dotsspace@=\muskip10
@@ -459,69 +471,70 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
 \multlinegap=\skip47
 \multlinetaggap=\skip48
 \mathdisplay@stack=\toks20
-LaTeX Info: Redefining \[ on input line 2735.
-LaTeX Info: Redefining \] on input line 2736.
+LaTeX Info: Redefining \[ on input line 2817.
+LaTeX Info: Redefining \] on input line 2818.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.
+sty"
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup6
 \symAMSb=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfonts\amssymb.s
+ty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx.
+sty"
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval.st
+y"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks21
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphics.
+sty"
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-cfg\graph
+ics.cfg"
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 95.
+Package graphics Info: Driver file: pdftex.def on input line 99.
 
-(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count102
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-def\pdfte
+x.def"
+File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen115
 \Gin@req@width=\dimen116
 )
-(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-cfg\color
+.cfg"
+File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
-Package xcolor Info: Model `RGB' extended on input line 1353.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\booktabs\booktabs.
+sty"
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \heavyrulewidth=\dimen117
 \lightrulewidth=\dimen118
@@ -533,27 +546,30 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \cmidrulesep=\dimen124
 \cmidrulekern=\dimen125
 \defaultaddspace=\dimen126
-\@cmidla=\count103
-\@cmidlb=\count104
+\@cmidla=\count102
+\@cmidlb=\count103
 \@aboverulesep=\dimen127
 \@belowrulesep=\dimen128
-\@thisruleclass=\count105
-\@lastruleclass=\count106
+\@thisruleclass=\count104
+\@lastruleclass=\count105
 \@thisrulewidth=\dimen129
 )
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
+sty"
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifvtex.
+sty"
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.
+sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count107
-\Gm@cntv=\count108
-\c@Gm@tempcnt=\count109
+\Gm@cnth=\count106
+\Gm@cntv=\count107
+\c@Gm@tempcnt=\count108
 \Gm@bindingoffset=\dimen130
 \Gm@wd@mp=\dimen131
 \Gm@odd@mp=\dimen132
@@ -563,12 +579,16 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen136
 \Gm@layoutvoffset=\dimen137
 \Gm@dimlist=\toks22
-)
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.
+cfg"))
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption.st
+y"
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\caption\caption3.s
+ty"
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
 \captionmargin=\dimen138
 \captionmargin@=\dimen139
@@ -578,24 +598,29 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \caption@parindent=\dimen143
 \caption@hangindent=\dimen144
 )
-\c@ContinuedFloat=\count110
+\c@ContinuedFloat=\count109
 )
-(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-\fancy@headwidth=\skip49
-\f@ncyO@elh=\skip50
-\f@ncyO@erh=\skip51
-\f@ncyO@olh=\skip52
-\f@ncyO@orh=\skip53
-\f@ncyO@elf=\skip54
-\f@ncyO@erf=\skip55
-\f@ncyO@olf=\skip56
-\f@ncyO@orf=\skip57
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.
+sty"
+Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
+s
+\f@nch@headwidth=\skip49
+\f@nch@O@elh=\skip50
+\f@nch@O@erh=\skip51
+\f@nch@O@olh=\skip52
+\f@nch@O@orh=\skip53
+\f@nch@O@elf=\skip54
+\f@nch@O@erf=\skip55
+\f@nch@O@olf=\skip56
+\f@nch@O@orf=\skip57
 )
-(/usr/share/texlive/texmf-dist/tex/latex/lastpage/lastpage.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lastpage\lastpage.
+sty"
 Package: lastpage 2015/03/29 v1.2m Refers to last page's name (HMM; JPG)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2016/03/15 v2.10.1 Sectioning titles
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\titlesec\titlesec.
+sty"
+Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box28
 \beforetitleunit=\skip58
 \aftertitleunit=\skip59
@@ -606,173 +631,202 @@ Package: titlesec 2016/03/15 v2.10.1 Sectioning titles
 \titlewidthlast=\dimen148
 \titlewidthfirst=\dimen149
 )
-(/usr/share/texlive/texmf-dist/tex/latex/titlesec/ttlkeys.def
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\titlesec\ttlkeys.d
+ef"
 File: ttlkeys.def 2016/03/15
 )
 \tocsep=\skip60
 
-(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\titlesec\titletoc.
+sty"
 Package: titletoc 2011/12/15 v1.6 TOC entries
 \ttl@leftsep=\dimen150
 )
-\@authcnt=\count111
-\@tmpcnt=\count112
+\@authcnt=\count110
+\@tmpcnt=\count111
 
-(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\enumitem\enumitem.
+sty"
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip61
 \enit@outerparindent=\dimen151
 \enit@toks=\toks24
 \enit@inbox=\box29
-\enitdp@description=\count113
+\enitdp@description=\count112
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtyp
+e.sty"
+Package: microtype 2017/07/07 v2.7 Micro-typographical refinements (RS)
 \MT@toks=\toks25
-\MT@count=\count114
-LaTeX Info: Redefining \textls on input line 766.
+\MT@count=\count113
+LaTeX Info: Redefining \textls on input line 789.
 \MT@outer@kern=\dimen152
-LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
-\MT@listname@count=\count115
+LaTeX Info: Redefining \textmicrotypecontext on input line 1334.
+\MT@listname@count=\count114
 
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def
-File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
-
-LaTeX Info: Redefining \lsstyle on input line 915.
-LaTeX Info: Redefining \lslig on input line 915.
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtyp
+e-pdftex.def"
+File: microtype-pdftex.def 2017/07/07 v2.7 Definitions specific to pdftex (RS)
+LaTeX Info: Redefining \lsstyle on input line 912.
+LaTeX Info: Redefining \lslig on input line 912.
 \MT@outer@space=\skip62
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\microtyp
+e.cfg"
+File: microtype.cfg 2017/07/07 v2.7 microtype main configuration file (RS)
 ))
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2016/02/24 3.9q The Babel package
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.sty"
+Package: babel 2017/11/03 3.15 The Babel package
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\switch.def
+"
+File: switch.def 2017/11/03 3.15 Babel switching mechanism
+)
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\arabi\bblopts.cfg"
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\babel-english\engl
+ish.ldf"
+Language: english 2017/06/06 v3.3r English support from the babel system
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
-Language: english 2012/08/20 v3.3p English support from the babel system
-
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2016/02/24 3.9q Babel common definitions
-\babel@savecnt=\count116
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.def"
+File: babel.def 2017/11/03 3.15 Babel common definitions
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\switch.def
+"
+File: switch.def 2017/11/03 3.15 Babel switching mechanism
+)
+\babel@savecnt=\count115
 \U@D=\dimen153
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/lipsum/lipsum.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty"
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
-\c@lips@count=\count117
+\c@lips@count=\count116
 )
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\hyperref.
+sty"
+Package: hyperref 2017/03/14 v6.85a Hypertext links for LaTeX
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
-Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\hobsub-
+hyperref.sty"
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
-Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\hobsub-
+generic.sty"
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 Package hobsub Info: Skipping package `ifvtex' (already loaded).
-Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
 Package hobsub Info: Skipping package `ifpdf' (already loaded).
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
-Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
 )
-Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
-Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
-Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
-Package: xcolor-patch 2011/01/30 xcolor patch
-Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
-Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
-Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
-Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
-Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\auxhook.s
+ty"
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\kvoptions
+.sty"
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen154
-\Hy@linkcounter=\count118
-\Hy@pagecounter=\count119
+\Hy@linkcounter=\count117
+\Hy@pagecounter=\count118
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\pd1enc.de
+f"
+File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count120
+\Hy@SavedSpaceFactor=\count119
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\00miktex\hyperref.
+cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Hyper figures OFF on input line 4443.
-Package hyperref Info: Link nesting OFF on input line 4448.
-Package hyperref Info: Hyper index ON on input line 4451.
-Package hyperref Info: Plain pages OFF on input line 4458.
-Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Hyper figures OFF on input line 4498.
+Package hyperref Info: Link nesting OFF on input line 4503.
+Package hyperref Info: Hyper index ON on input line 4506.
+Package hyperref Info: Plain pages OFF on input line 4513.
+Package hyperref Info: Backreferencing OFF on input line 4518.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count121
-
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+Package hyperref Info: Bookmarks ON on input line 4751.
+\c@Hy@tempcnt=\count120
+ ("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\url\url.sty"
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5041.
+LaTeX Info: Redefining \url on input line 5104.
 \XeTeXLinkMargin=\dimen155
-\Fld@menulength=\count122
+\Fld@menulength=\count121
 \Field@Width=\dimen156
 \Fld@charsize=\dimen157
-Package hyperref Info: Hyper figures OFF on input line 6295.
-Package hyperref Info: Link nesting OFF on input line 6300.
-Package hyperref Info: Hyper index ON on input line 6303.
-Package hyperref Info: backreferencing OFF on input line 6310.
-Package hyperref Info: Link coloring OFF on input line 6315.
-Package hyperref Info: Link coloring with OCG OFF on input line 6320.
-Package hyperref Info: PDF/A mode OFF on input line 6325.
-LaTeX Info: Redefining \ref on input line 6365.
-LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count123
-\c@Item=\count124
-\c@Hfootnote=\count125
+Package hyperref Info: Hyper figures OFF on input line 6358.
+Package hyperref Info: Link nesting OFF on input line 6363.
+Package hyperref Info: Hyper index ON on input line 6366.
+Package hyperref Info: backreferencing OFF on input line 6373.
+Package hyperref Info: Link coloring OFF on input line 6378.
+Package hyperref Info: Link coloring with OCG OFF on input line 6383.
+Package hyperref Info: PDF/A mode OFF on input line 6388.
+LaTeX Info: Redefining \ref on input line 6428.
+LaTeX Info: Redefining \pageref on input line 6432.
+\Hy@abspage=\count122
+\c@Item=\count123
+\c@Hfootnote=\count124
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count126
-\c@bookmark@seq@number=\count127
 
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
-Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\hpdftex.d
+ef"
+File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+\Fld@listcount=\count125
+\c@bookmark@seq@number=\count126
+
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\rerunfile
+check.sty"
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
@@ -782,61 +836,76 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 32.
 Package hyperref Info: Option `breaklinks' set `true' on input line 32.
 Package hyperref Info: Option `bookmarksopen' set `false' on input line 32.
 
-(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\algorithms\algorit
+hm.sty"
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
 nment
 
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count128
+\c@float@type=\count127
 \float@exts=\toks26
 \float@box=\box30
 \@float@everytoks=\toks27
 \@floatcapt=\box31
 )
 \@float@every@algorithm=\toks28
-\c@algorithm=\count129
+\c@algorithm=\count128
 )
-(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\algorithms\algorit
+hmic.sty"
 Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
-\c@ALC@unique=\count130
-\c@ALC@line=\count131
-\c@ALC@rem=\count132
-\c@ALC@depth=\count133
+\c@ALC@unique=\count129
+\c@ALC@line=\count130
+\c@ALC@rem=\count131
+\c@ALC@depth=\count132
 \ALC@tlm=\skip64
 \algorithmicindent=\skip65
 )
-(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\multirow\multirow.
+sty"
+Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
+\multirow@colwidth=\skip66
+\multirow@cntb=\count133
+\multirow@dima=\skip67
 \bigstrutjot=\dimen158
 )
-(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\alltt.sty"
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
-(/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
-Package: relsize 2013/03/29 ver 4.1
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ltxmisc\relsize.st
+y"
+Package: relsize 2003/07/04 ver 3.1
 )
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\adjustbox\adjustbo
+x.sty"
 Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
 
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.st
+y"
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.
+tex"
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\xkeyval\xkvutils
+.tex"
 \XKV@toks=\toks29
 \XKV@tempa@toks=\toks30
 )
 \XKV@depth=\count134
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\adjustbox\adjcalc.
+sty"
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/trimclip.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\adjustbox\trimclip
+.sty"
 Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
 
-(/usr/share/texlive/texmf-dist/tex/latex/collectbox/collectbox.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\collectbox\collect
+box.sty"
 Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \collectedbox=\box32
 )
@@ -846,7 +915,8 @@ Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
 \tc@ury=\dimen162
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(/usr/share/texlive/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\adjustbox\tc-pdfte
+x.def"
 File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen163
@@ -854,47 +924,63 @@ File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
 \adjbox@Depth=\dimen165
 \adjbox@Totalheight=\dimen166
 
-(/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
-Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ifoddpage\ifoddpag
+e.sty"
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
 \c@checkoddpage=\count135
 )
-(/usr/share/texlive/texmf-dist/tex/latex/varwidth/varwidth.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\ltxmisc\varwidth.s
+ty"
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box33
 \sift@deathcycles=\count136
 \@vwid@loff=\dimen167
 \@vwid@roff=\dimen168
 ))
-(/usr/share/texlive/texmf-dist/tex/latex/abstract/abstract.sty
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\abstract\abstract.
+sty"
 Package: abstract 2009/06/08 v1.2a configurable abstracts
-\abstitleskip=\skip66
-\absleftindent=\skip67
-\absrightindent=\skip68
-\absparindent=\skip69
-\absparsep=\skip70
+\abstitleskip=\skip68
+\absleftindent=\skip69
+\absrightindent=\skip70
+\absparindent=\skip71
+\absparsep=\skip72
+) (article_3.aux
+
+LaTeX Warning: Label `machine-specs' multiply defined.
+
+
+LaTeX Warning: Label `roc' multiply defined.
+
+
+LaTeX Warning: Label `roc' multiply defined.
+
+
+LaTeX Warning: Label `roc' multiply defined.
+
 )
-(./article_3.aux)
 \openout1 = `article_3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 78.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
+LaTeX Font Info:    ... okay on input line 81.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 81.
+ ("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf.mk
+ii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count137
 \scratchdimen=\dimen169
@@ -907,21 +993,22 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 \MPnumerator=\count141
 \makeMPintoPDFobject=\count142
 \everyMPtoPDFconversion=\toks32
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 )
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-
+base.sty"
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\oberdiek\grfext.st
+y"
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -962,8 +1049,8 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 78.
-LaTeX Info: Redefining \microtypecontext on input line 78.
+(lastpage)             ! on input line 81.
+LaTeX Info: Redefining \microtypecontext on input line 81.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -973,125 +1060,133 @@ Package microtype Info: Using default expansion set `basictext'.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg
+
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\mt-ptm.c
+fg"
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
 \AtBeginShipoutBox=\box35
-Package hyperref Info: Link coloring ON on input line 78.
+Package hyperref Info: Link coloring ON on input line 81.
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\hyperref\nameref.s
+ty"
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
-Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\gettitl
+estring.sty"
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count143
 )
-LaTeX Info: Redefining \ref on input line 78.
-LaTeX Info: Redefining \pageref on input line 78.
-LaTeX Info: Redefining \nameref on input line 78.
-
-(./article_3.out) (./article_3.out)
+LaTeX Info: Redefining \ref on input line 81.
+LaTeX Info: Redefining \pageref on input line 81.
+LaTeX Info: Redefining \nameref on input line 81.
+ (article_3.out) (article_3.out)
 \@outlinefile=\write3
 \openout3 = `article_3.out'.
 
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 85.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 88.
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
-Package microtype Info: Loading generic settings for font family
+Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <20> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 85.
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 85
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 88.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 88
 .
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd
+"
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-Package microtype Info: Loading generic settings for font family
+Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `ztmcm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 85
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 88
 .
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omlztmcm.fd
+"
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 85
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 88
 .
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsztmcm.fd
+"
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 85
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 88
 .
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omxztmcm.fd
+"
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 88.
 
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\mt-msa.c
+fg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\microtype\mt-msb.c
+fg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <8> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 85.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 88.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 85.
- (./article_3.toc)
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 88.
+ (article_3.toc)
 \tf@toc=\write4
 \openout4 = `article_3.toc'.
 
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 93.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 96.
+
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Package microtype Info: Loading generic settings for font family
+Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `pcr' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+[1{C:/Users/meeta/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 124.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 127.
 
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+("C:\Users\meeta\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 124.
-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 127.
 
 Package Fancyhdr Warning: \headheight is too small (11.0pt): 
  Make it at least 31.96901pt.
@@ -1099,6 +1194,11 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [2]
+Overfull \hbox (5.20064pt too wide) in paragraph at lines 162--164
+\OT1/ptm/m/n/10 (-20) Data anal-y-sis can in-clude ex-am-in-ing his-tograms, ba
+r/pair-
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (11.0pt): 
  Make it at least 31.96901pt.
@@ -1106,7 +1206,13 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [3]
-Overfull \hbox (2.10997pt too wide) in paragraph at lines 185--186
+Overfull \hbox (0.9549pt too wide) in paragraph at lines 194--195
+\OT1/ptm/m/n/10 (-20) K-Means naively as-signs K cen-troids to the space shared
+
+ []
+
+
+Overfull \hbox (2.10997pt too wide) in paragraph at lines 195--196
 []\OT1/ptm/b/n/10 Support Vec-tor Ma-chines: \OT1/ptm/m/n/10 (-20) SVMs at-temp
 t to find some
  []
@@ -1118,50 +1224,41 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [4]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 256.
-Package microtype Info: Loading generic settings for font family
-(microtype)             `cmss' (encoding: OT1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-
 
 Package Fancyhdr Warning: \headheight is too small (11.0pt): 
  Make it at least 31.96901pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5] <iceberg/analysis/band_1_max.png, id=172, 504.9264pt x 505.4082pt>
+[5]
+<iceberg/analysis/band_1_max.png, id=169, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/band_1_max.png Graphic file (type png)
-
 <use iceberg/analysis/band_1_max.png>
-Package pdftex.def Info: iceberg/analysis/band_1_max.png used on input line 327
-.
-(pdftex.def)             Requested size: 100.98349pt x 101.07983pt.
-
-<iceberg/analysis/band_2_max.png, id=173, 504.9264pt x 505.4082pt>
+Package pdftex.def Info: iceberg/analysis/band_1_max.png  used on input line 29
+4. on input line 294.
+Package pdftex.def Info: Requested size: 100.98349pt x 101.07983pt on input lin
+e 294.
+<iceberg/analysis/band_2_max.png, id=170, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/band_2_max.png Graphic file (type png)
-
 <use iceberg/analysis/band_2_max.png>
-Package pdftex.def Info: iceberg/analysis/band_2_max.png used on input line 330
-.
-(pdftex.def)             Requested size: 100.98349pt x 101.07983pt.
-
-<iceberg/analysis/band_1_mean.png, id=174, 504.9264pt x 505.4082pt>
+Package pdftex.def Info: iceberg/analysis/band_2_max.png  used on input line 29
+7. on input line 297.
+Package pdftex.def Info: Requested size: 100.98349pt x 101.07983pt on input lin
+e 297.
+<iceberg/analysis/band_1_mean.png, id=171, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/band_1_mean.png Graphic file (type png)
-
 <use iceberg/analysis/band_1_mean.png>
-Package pdftex.def Info: iceberg/analysis/band_1_mean.png used on input line 33
-3.
-(pdftex.def)             Requested size: 100.98349pt x 101.07983pt.
-
-<iceberg/analysis/band_2_mean.png, id=175, 504.9264pt x 505.4082pt>
+Package pdftex.def Info: iceberg/analysis/band_1_mean.png  used on input line 3
+00. on input line 300.
+Package pdftex.def Info: Requested size: 100.98349pt x 101.07983pt on input lin
+e 300.
+<iceberg/analysis/band_2_mean.png, id=172, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/band_2_mean.png Graphic file (type png)
-
 <use iceberg/analysis/band_2_mean.png>
-Package pdftex.def Info: iceberg/analysis/band_2_mean.png used on input line 33
-6.
-(pdftex.def)             Requested size: 100.98349pt x 101.07983pt.
+Package pdftex.def Info: iceberg/analysis/band_2_mean.png  used on input line 3
+03. on input line 303.
+Package pdftex.def Info: Requested size: 100.98349pt x 101.07983pt on input lin
+e 303.
 
 
 Package Fancyhdr Warning: \headheight is too small (11.0pt): 
@@ -1169,47 +1266,53 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6]
-<iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png, id=221, 481.8pt x 481.
+[6 <./iceberg/analysis/band_1_max.png (PNG copy)> <./iceberg/analysis/band_2_ma
+x.png (PNG copy)> <./iceberg/analysis/band_1_mean.png (PNG copy)> <./iceberg/an
+alysis/band_2_mean.png (PNG copy)>]
+<iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png, id=192, 481.8pt x 481.
 8pt>
 File: iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png Graphic file (type
  png)
- <use iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png>
+<use iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png>
 Package pdftex.def Info: iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png
- used on input line 355.
-(pdftex.def)             Requested size: 98.17773pt x 98.17415pt.
-
-<iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png, id=222, 481.8pt x 481.
+  used on input line 322. on input line 322.
+Package pdftex.def Info: Requested size: 98.17773pt x 98.17415pt on input line 
+322.
+<iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png, id=193, 481.8pt x 481.
 8pt>
 File: iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png Graphic file (type
  png)
- <use iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png>
+<use iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png>
 Package pdftex.def Info: iceberg/analysis/b2_bg_intensity-ing_angle_prenorm.png
- used on input line 358.
-(pdftex.def)             Requested size: 98.17773pt x 98.17415pt.
-
-<iceberg/analysis/b1_bg_intensity-ing_angle.png, id=223, 481.8pt x 481.8pt>
+  used on input line 325. on input line 325.
+Package pdftex.def Info: Requested size: 98.17773pt x 98.17415pt on input line 
+325.
+<iceberg/analysis/b1_bg_intensity-ing_angle.png, id=194, 481.8pt x 481.8pt>
 File: iceberg/analysis/b1_bg_intensity-ing_angle.png Graphic file (type png)
-
 <use iceberg/analysis/b1_bg_intensity-ing_angle.png>
-Package pdftex.def Info: iceberg/analysis/b1_bg_intensity-ing_angle.png used on
- input line 365.
-(pdftex.def)             Requested size: 98.17773pt x 98.17415pt.
-
-<iceberg/analysis/b2_bg_intensity-ing_angle.png, id=224, 481.8pt x 481.8pt>
+Package pdftex.def Info: iceberg/analysis/b1_bg_intensity-ing_angle.png  used o
+n input line 332. on input line 332.
+Package pdftex.def Info: Requested size: 98.17773pt x 98.17415pt on input line 
+332.
+<iceberg/analysis/b2_bg_intensity-ing_angle.png, id=195, 481.8pt x 481.8pt>
 File: iceberg/analysis/b2_bg_intensity-ing_angle.png Graphic file (type png)
-
 <use iceberg/analysis/b2_bg_intensity-ing_angle.png>
-Package pdftex.def Info: iceberg/analysis/b2_bg_intensity-ing_angle.png used on
- input line 368.
-(pdftex.def)             Requested size: 98.17773pt x 98.17415pt.
-
-<iceberg/analysis/525ab75c.png, id=225, 481.8pt x 602.25pt>
+Package pdftex.def Info: iceberg/analysis/b2_bg_intensity-ing_angle.png  used o
+n input line 335. on input line 335.
+Package pdftex.def Info: Requested size: 98.17773pt x 98.17415pt on input line 
+335.
+<iceberg/analysis/525ab75c.png, id=196, 481.8pt x 602.25pt>
 File: iceberg/analysis/525ab75c.png Graphic file (type png)
-
 <use iceberg/analysis/525ab75c.png>
-Package pdftex.def Info: iceberg/analysis/525ab75c.png used on input line 374.
-(pdftex.def)             Requested size: 218.17422pt x 272.71007pt.
+Package pdftex.def Info: iceberg/analysis/525ab75c.png  used on input line 341.
+ on input line 341.
+Package pdftex.def Info: Requested size: 218.17422pt x 272.71007pt on input lin
+e 341.
+
+Overfull \hbox (12.60172pt too wide) in paragraph at lines 353--354
+[]\OT1/ptm/m/n/10 (-20) We have com-puted His-togram of Ori-ented Gra-di-ents(H
+OG)
+ []
 
 
 Package Fancyhdr Warning: \headheight is too small (11.0pt): 
@@ -1217,51 +1320,64 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[7 <./iceberg/analysis/band_1_max.png (PNG copy)> <./iceberg/analysis/band_2_ma
-x.png (PNG copy)> <./iceberg/analysis/band_1_mean.png (PNG copy)> <./iceberg/an
-alysis/band_2_mean.png (PNG copy)> <./iceberg/analysis/b1_bg_intensity-ing_angl
-e_prenorm.png (PNG copy)> <./iceberg/analysis/b2_bg_intensity-ing_angle_prenorm
-.png (PNG copy)> <./iceberg/analysis/b1_bg_intensity-ing_angle.png (PNG copy)> 
-<./iceberg/analysis/b2_bg_intensity-ing_angle.png (PNG copy)> <./iceberg/analys
-is/525ab75c.png (PNG copy)>]
-<iceberg/analysis/tar_sum_gs_sum_mean.png, id=250, 504.9264pt x 505.4082pt>
+[7 <./iceberg/analysis/b1_bg_intensity-ing_angle_prenorm.png (PNG copy)> <./ice
+berg/analysis/b2_bg_intensity-ing_angle_prenorm.png (PNG copy)> <./iceberg/anal
+ysis/b1_bg_intensity-ing_angle.png (PNG copy)> <./iceberg/analysis/b2_bg_intens
+ity-ing_angle.png (PNG copy)> <./iceberg/analysis/525ab75c.png (PNG copy)>]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 365.
+
+Underfull \hbox (badness 10000) in paragraph at lines 395--396
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--397
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 397--398
+
+ []
+
+<iceberg/analysis/tar_sum_gs_sum_mean.png, id=224, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tar_sum_gs_sum_mean.png Graphic file (type png)
-
 <use iceberg/analysis/tar_sum_gs_sum_mean.png>
-Package pdftex.def Info: iceberg/analysis/tar_sum_gs_sum_mean.png used on input
- line 438.
-(pdftex.def)             Requested size: 504.92517pt x 505.40695pt.
-
-<iceberg/analysis/tb_mean_dif_dif.png, id=251, 504.9264pt x 505.4082pt>
+Package pdftex.def Info: iceberg/analysis/tar_sum_gs_sum_mean.png  used on inpu
+t line 422. on input line 422.
+Package pdftex.def Info: Requested size: 504.92517pt x 505.40695pt on input lin
+e 422.
+<iceberg/analysis/tb_mean_dif_dif.png, id=225, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tb_mean_dif_dif.png Graphic file (type png)
-
 <use iceberg/analysis/tb_mean_dif_dif.png>
-Package pdftex.def Info: iceberg/analysis/tb_mean_dif_dif.png used on input lin
-e 443.
-(pdftex.def)             Requested size: 504.92517pt x 505.40695pt.
-
-<iceberg/analysis/tar_cor.png, id=252, 504.9264pt x 505.4082pt>
+Package pdftex.def Info: iceberg/analysis/tb_mean_dif_dif.png  used on input li
+ne 427. on input line 427.
+Package pdftex.def Info: Requested size: 504.92517pt x 505.40695pt on input lin
+e 427.
+<iceberg/analysis/tar_cor.png, id=226, 504.9264pt x 505.4082pt>
 File: iceberg/analysis/tar_cor.png Graphic file (type png)
-
 <use iceberg/analysis/tar_cor.png>
-Package pdftex.def Info: iceberg/analysis/tar_cor.png used on input line 448.
-(pdftex.def)             Requested size: 504.92517pt x 505.40695pt.
+Package pdftex.def Info: iceberg/analysis/tar_cor.png  used on input line 432. 
+on input line 432.
+Package pdftex.def Info: Requested size: 504.92517pt x 505.40695pt on input lin
+e 432.
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 454.
-
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 438.
 
 Package Fancyhdr Warning: \headheight is too small (11.0pt): 
  Make it at least 31.96901pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[8] <iceberg/analysis/corr_matrix.png, id=294, 481.8pt x 481.8pt>
+[8]
+<iceberg/analysis/corr_matrix.png, id=263, 481.8pt x 481.8pt>
 File: iceberg/analysis/corr_matrix.png Graphic file (type png)
-
 <use iceberg/analysis/corr_matrix.png>
-Package pdftex.def Info: iceberg/analysis/corr_matrix.png used on input line 47
-2.
-(pdftex.def)             Requested size: 218.17422pt x 218.16805pt.
+Package pdftex.def Info: iceberg/analysis/corr_matrix.png  used on input line 4
+56. on input line 456.
+Package pdftex.def Info: Requested size: 218.17422pt x 218.16805pt on input lin
+e 456.
 
 
 Package Fancyhdr Warning: \headheight is too small (11.0pt): 
@@ -1270,27 +1386,9 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [9 <./iceberg/analysis/corr_matrix.png (PNG copy)>]
-<iceberg/feat_sel.png, id=314, 481.8pt x 481.8pt>
-File: iceberg/feat_sel.png Graphic file (type png)
- <use iceberg/feat_sel.png>
-Package pdftex.def Info: iceberg/feat_sel.png used on input line 555.
-(pdftex.def)             Requested size: 218.17422pt x 218.16805pt.
-
-Overfull \hbox (12.23767pt too wide) in paragraph at lines 560--561
-[] []\OT1/phv/b/n/9 Pre-dic-tive Per-for-mance[] \OT1/ptm/m/n/10 (-20) LgR - Th
-e best per-for-mance achieved
- []
-
-<iceberg/ROC_Results.png, id=317, 481.8pt x 481.8pt>
-File: iceberg/ROC_Results.png Graphic file (type png)
-
-<use iceberg/ROC_Results.png>
-Package pdftex.def Info: iceberg/ROC_Results.png used on input line 564.
-(pdftex.def)             Requested size: 218.17422pt x 218.16805pt.
-
-Overfull \hbox (7.96114pt too wide) in paragraph at lines 579--580
-\OT1/ptm/m/n/10 (-20) LgR ap-proach would be to adopt an entropy-based or corre
-lation-
+Overfull \hbox (7.02744pt too wide) in paragraph at lines 508--512
+[] [][] \OT1/ptm/m/n/10 (-20) HOG with XG-Boost - As men-tioned ear-lier, we pr
+e-processed
  []
 
 
@@ -1299,7 +1397,90 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[10 <./iceberg/feat_sel.png (PNG copy)>] (./article_3.bbl)
+[10]
+<iceberg/feat_sel.png, id=319, 481.8pt x 481.8pt>
+File: iceberg/feat_sel.png Graphic file (type png)
+<use iceberg/feat_sel.png>
+Package pdftex.def Info: iceberg/feat_sel.png  used on input line 578. on input
+ line 578.
+Package pdftex.def Info: Requested size: 218.17422pt x 218.16805pt on input lin
+e 578.
+
+Overfull \hbox (12.23767pt too wide) in paragraph at lines 583--584
+[] []\OT1/phv/b/n/9 Pre-dic-tive Per-for-mance[] \OT1/ptm/m/n/10 (-20) LgR - Th
+e best per-for-mance achieved
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 583--584
+
+ []
+
+<iceberg/ROC_Results.png, id=322, 481.8pt x 481.8pt>
+File: iceberg/ROC_Results.png Graphic file (type png)
+<use iceberg/ROC_Results.png>
+Package pdftex.def Info: iceberg/ROC_Results.png  used on input line 587. on in
+put line 587.
+Package pdftex.def Info: Requested size: 218.17422pt x 218.16805pt on input lin
+e 587.
+
+Underfull \hbox (badness 10000) in paragraph at lines 593--594
+
+ []
+
+<iceberg/hog_logit_roc.png, id=323, 360.59718pt x 338.76563pt>
+File: iceberg/hog_logit_roc.png Graphic file (type png)
+<use iceberg/hog_logit_roc.png>
+Package pdftex.def Info: iceberg/hog_logit_roc.png  used on input line 597. on 
+input line 597.
+Package pdftex.def Info: Requested size: 218.17422pt x 204.96675pt on input lin
+e 597.
+
+Underfull \hbox (badness 10000) in paragraph at lines 603--604
+
+ []
+
+<iceberg/xgboost.png, id=324, 385.44pt x 362.10281pt>
+File: iceberg/xgboost.png Graphic file (type png)
+<use iceberg/xgboost.png>
+Package pdftex.def Info: iceberg/xgboost.png  used on input line 607. on input 
+line 607.
+Package pdftex.def Info: Requested size: 218.17422pt x 204.96417pt on input lin
+e 607.
+
+Underfull \hbox (badness 10000) in paragraph at lines 613--614
+
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (11.0pt): 
+ Make it at least 31.96901pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11 <./iceberg/feat_sel.png (PNG copy)> <./iceberg/ROC_Results.png> <./iceberg/
+hog_logit_roc.png>]
+<iceberg/random_forest.png, id=339, 331.99031pt x 311.66437pt>
+File: iceberg/random_forest.png Graphic file (type png)
+<use iceberg/random_forest.png>
+Package pdftex.def Info: iceberg/random_forest.png  used on input line 617. on 
+input line 617.
+Package pdftex.def Info: Requested size: 218.17422pt x 204.81932pt on input lin
+e 617.
+
+Overfull \hbox (7.96114pt too wide) in paragraph at lines 629--630
+\OT1/ptm/m/n/10 (-20) LgR ap-proach would be to adopt an entropy-based or corre
+lation-
+ []
+
+(article_3.bbl
+
+Package Fancyhdr Warning: \headheight is too small (11.0pt): 
+ Make it at least 31.96901pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[12 <./iceberg/xgboost.png> <./iceberg/random_forest.png>])
 
 AED: lastpage setting LastPage
 
@@ -1308,52 +1489,59 @@ Package Fancyhdr Warning: \headheight is too small (11.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11 <./iceberg/ROC_Results.png>]
+[13
+
+]
 
 Package Fancyhdr Warning: \headheight is too small (11.0pt): 
  Make it at least 31.96901pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[12 <./iceberg/analysis/tar_sum_gs_sum_mean.png (PNG copy)> <./iceberg/analysis
+[14 <./iceberg/analysis/tar_sum_gs_sum_mean.png (PNG copy)> <./iceberg/analysis
 /tb_mean_dif_dif.png (PNG copy)> <./iceberg/analysis/tar_cor.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 604.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 604.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 653.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 653.
 
-(./article_3.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 604.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 604.
+(article_3.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 653.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 653.
 Package rerunfilecheck Info: File `article_3.out' has not changed.
-(rerunfilecheck)             Checksum: FDF9CE1326132892B3CDECCFEC70B683;1149.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 604.
+(rerunfilecheck)             Checksum: 226DB69A5C5D9AE706B3F706EFE60D7E;1167.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 653.
  ) 
 Here is how much of TeX's memory you used:
- 13151 strings out of 493029
- 195048 string characters out of 6136234
- 444728 words of memory out of 5000000
- 15990 multiletter control sequences out of 15000+600000
- 79100 words of font info for 285 fonts, out of 8000000 for 9000
+ 13300 strings out of 493312
+ 203024 string characters out of 3129827
+ 448835 words of memory out of 3000000
+ 16159 multiletter control sequences out of 15000+200000
+ 77481 words of font info for 285 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,14n,77p,1734b,1002s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/u
-crb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/
-usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on article_3.pdf (12 pages, 1359256 bytes).
+ 43i,14n,77p,1736b,1002s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc
+}<C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
+cm/cmex10.pfb><C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmmi10.pfb><C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/meeta/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/meeta/AppData/Loc
+al/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/meeta/AppDa
+ta/Local/Programs/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/meeta
+/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/User
+s/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><
+C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvro
+8a.pfb><C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/symbol
+/usyr.pfb><C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/sym
+bol/usyr.pfb><C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/
+times/utmb8a.pfb><C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+urw/times/utmr8a.pfb><C:/Users/meeta/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on article_3.pdf (14 pages, 1404941 bytes).
 PDF statistics:
- 457 PDF objects out of 1000 (max. 8388607)
- 389 compressed objects within 4 object streams
- 156 named destinations out of 1000 (max. 500000)
- 64732 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 437 PDF objects out of 1000 (max. 8388607)
+ 138 named destinations out of 1000 (max. 500000)
+ 61163 words of extra memory for PDF output out of 61914 (max. 10000000)
 

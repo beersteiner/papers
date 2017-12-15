@@ -10,30 +10,33 @@
 \contentsline {subsection}{\numberline {3.1}Data Analysis}{5}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Methods}{5}{subsection.3.2}
 \contentsline {subsection}{\numberline {3.3}Results}{5}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Summary and Future Work}{5}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.4}Summary and Future Work}{6}{subsection.3.4}
 \contentsline {section}{\numberline {4}Iceberg: Full Problem Description}{6}{section.4}
 \contentsline {subsection}{\numberline {4.1}Data Analysis}{6}{subsection.4.1}
 \contentsline {paragraph}{Initial Analysis}{6}{paragraph*.2}
 \contentsline {paragraph}{Further Analysis}{6}{paragraph*.4}
 \contentsline {paragraph}{Hypotheses}{7}{paragraph*.8}
-\contentsline {subsection}{\numberline {4.2}Methods}{8}{subsection.4.2}
-\contentsline {paragraph}{Model Selection}{8}{paragraph*.9}
+\contentsline {subsection}{\numberline {4.2}Methods}{7}{subsection.4.2}
+\contentsline {paragraph}{Model Selection}{7}{paragraph*.9}
 \contentsline {paragraph}{Logistic Regression}{8}{paragraph*.10}
-\contentsline {paragraph}{TBD}{8}{paragraph*.11}
-\contentsline {paragraph}{Features}{8}{paragraph*.12}
-\contentsline {paragraph}{Challenges}{9}{paragraph*.14}
-\contentsline {paragraph}{}{9}{paragraph*.15}
-\contentsline {paragraph}{}{9}{paragraph*.17}
-\contentsline {paragraph}{Implementation}{9}{paragraph*.18}
-\contentsline {paragraph}{}{9}{paragraph*.19}
+\contentsline {paragraph}{Random Forest}{8}{paragraph*.11}
+\contentsline {paragraph}{XGBoost}{8}{paragraph*.12}
+\contentsline {paragraph}{Features}{8}{paragraph*.13}
+\contentsline {paragraph}{Challenges}{9}{paragraph*.15}
+\contentsline {paragraph}{}{9}{paragraph*.16}
+\contentsline {paragraph}{}{9}{paragraph*.18}
+\contentsline {paragraph}{Implementation}{9}{paragraph*.19}
 \contentsline {paragraph}{}{9}{paragraph*.20}
-\contentsline {subsection}{\numberline {4.3}Results}{9}{subsection.4.3}
-\contentsline {paragraph}{Processing Performance}{9}{paragraph*.21}
-\contentsline {paragraph}{LgR Feature Selection Performance}{10}{paragraph*.24}
-\contentsline {paragraph}{Predictive Performance}{10}{paragraph*.26}
-\contentsline {subsection}{\numberline {4.4}Summary and Future Work}{10}{subsection.4.4}
-\contentsline {paragraph}{Summary}{10}{paragraph*.28}
-\contentsline {paragraph}{Future Work}{10}{paragraph*.29}
-\contentsline {section}{Acknowledgments}{11}{section*.30}
-\contentsline {section}{References}{11}{section*.31}
+\contentsline {paragraph}{}{10}{paragraph*.21}
+\contentsline {paragraph}{}{10}{paragraph*.22}
+\contentsline {paragraph}{}{10}{paragraph*.23}
+\contentsline {subsection}{\numberline {4.3}Results}{10}{subsection.4.3}
+\contentsline {paragraph}{Processing Performance}{10}{paragraph*.24}
+\contentsline {paragraph}{LgR Feature Selection Performance}{11}{paragraph*.28}
+\contentsline {paragraph}{Predictive Performance}{11}{paragraph*.30}
+\contentsline {subsection}{\numberline {4.4}Summary and Future Work}{12}{subsection.4.4}
+\contentsline {paragraph}{Summary}{12}{paragraph*.35}
+\contentsline {paragraph}{Future Work}{12}{paragraph*.36}
+\contentsline {section}{Acknowledgments}{12}{section*.37}
+\contentsline {section}{References}{12}{section*.38}
 \contentsfinish 

@@ -220,3 +220,4 @@ result = as.data.frame(result)
 write_csv(x = result,path =  paste("prediction.csv",sep = ""),append = FALSE,col_names = TRUE)
 
 #Kaggle score 0.5505
+

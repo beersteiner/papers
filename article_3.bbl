@@ -31,6 +31,12 @@ Gianfranco de~Grandi Jong-Sen~Lee, Mitchell~Grunes.
 \newblock In IEEE, editor, {\em IEEE Transactions on Geoscience and Remote
   Sensing}, volume~37.
 
+\bibitem{hog}
+N.~Dalal and B.~Triggs.
+\newblock Histograms of oriented gradients for human detection.
+\newblock In {\em 2005 IEEE Computer Society Conference on Computer Vision and
+  Pattern Recognition (CVPR'05)}, volume~1, pages 886--893 vol. 1, June 2005.
+
 \bibitem{wesche}
 Wolfgang~Dierking Christine~Wesche.
 \newblock Iceberg signatures and detection in sar images in two test regions of
