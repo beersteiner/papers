@@ -348,7 +348,7 @@ Each record contains three components (besides an identifier):
 	\item Ships are relatively sharp and angular, whereas icebergs are smooth and irregular, so differences in surface backscatter intensities (mean, max, variance) may yield class information.
 	\item Volume backscatter properties of ice and metal \cite{howell} are different, so comparisons between band 1 and band 2 may yield some class information.  
 	\item Icebergs (being made of frozen water) may have some observable characteristics that are similar to the surrounding water, whereas ships may not.  Therefore, comparison of the OoI to the background seawater may yield class information.
-	\item The fast majority of iceberg volume is below the ocean's surface, and the angle of the ice as it protrudes from the water's surface is likely to be off-normal, whereas that of ships is likely to be near-normal.  Therefore, gradient and edge-detection approaches near the object-to-ocean transition area may yield class information.
+	\item The vast majority of iceberg volume is below the ocean's surface, and the angle of the ice as it protrudes from the water's surface is likely to be off-normal, whereas that of ships is likely to be near-normal.  Therefore, gradient and edge-detection approaches near the object-to-ocean transition area may yield class information.
 	\item Incident angle is likely to have an effect on both the intensity and polarity of the return signal. \cite{makynen}
 	\item We have computed Histogram of Oriented Gradients(HOG) descriptor for both positive and negative observations. By Positive observation, we mean the observation for which response 'is\_iceburg' is $1$ and Negative observation is the one for which reponse 'is\_iceburg' is $0$. Intuition behind using HOG is to convert $75\times75$ image into a set of numeric values, where each value can be used as separate feature. By this phenomenon, we are able to extract 9 features per image, i.e. for $band\_1 = 9$ and for $band\_2 = 9$. This processed data is used to train regression model and predict test results. 
 \end{itemize}
@@ -410,7 +410,7 @@ Highlights of XGBoost:
 
 \paragraph{Features} The LgR modeling approach enabled experimentation of new potential features, which became the next focus.  Table \ref{more-features} summarizes, in some detail, a few of the more interesting features that were explored for LgR based on the previously mentioned visual analysis and domain research.  Additional features are briefly described below.
 
-\begin{table*}[ht]
+\begin{table*}[H]
 	\caption{Additional Features for LgR}\label{more-features}
 	\begin{tabular}{l p{.45\linewidth} l}
 		\toprule
@@ -468,7 +468,7 @@ Highlights of XGBoost:
 We tried various combinations of these parameters to obtain best results in terms of log loss. But higher values of cells and orientations resulted into higher order of HOG descriptors and lots of features in processed dataset which affected the performace. Hence, we tuned these parameters as 'cells' = 1 and 'orientation' = 9 to get 9-point descriptor.   
 \end{itemize}
 \paragraph{Implementation} 
-\paragraph{}Lgr - Given the manual nature of the feature development and experimentation approach chosen, it was important to automate updates to the analysis, training, and validation approach to the greatest extent possible.  Automation of these aspect enables rapid identification and incorporation of improvements to the feature set.  To this end, all database interaction, image processing, and feature calculation was centralized to a single code source.  An analysis script was run after each change to the feature set to quickly visualize some characteristics of new features.  In addition to automation, V-fold cross validation was utilized as the primary means of model performance prediction.  It should be noted that test data used in cross-validation was present during all data analysis tasks, which may introduce bias as a result in the model selection process. \cite{cawley}  Finally, a simple greedy algorithm was chosen to select which features to use during the training process.  Essentially, starting from an empty feature set, the feature which (when added to the set) results in the lowest Log Loss on the test data during V-fold cross validation is added.  A subset of the (now ordered) feature list which results in the lowest total Log Loss on the test data is then selected for use.  The author notes this algorithm is not guaranteed to find the optimal set of features on which to train.  In fact it was observed that some of the later Kaggle submissions (which represented a superset of features as compared with past submissions) achieved worse performance!  This is because the optimal subset of features was never encountered during the greedy selection process.
+\paragraph{}Lgr - Given the manual nature of the feature development and experimentation approach chosen, it was important to automate updates to the analysis, training, and validation approach to the greatest extent possible.  Automation of these aspects enables rapid identification and incorporation of improvements to the feature set.  To this end, all database interaction, image processing, and feature calculation was centralized to a single code source.  An analysis script was run after each change to the feature set to quickly visualize some characteristics of new features.  In addition to automation, V-fold cross validation was utilized as the primary means of model performance prediction.  It should be noted that test data used in cross-validation was present during all data analysis tasks, which may introduce bias as a result in the model selection process. \cite{cawley}  Finally, a simple greedy algorithm was chosen to select which features to use during the training process.  Essentially, starting from an empty feature set, the feature which (when added to the set) results in the lowest Log Loss on the test data during V-fold cross validation is added.  A subset of the (now ordered) feature list which results in the lowest total Log Loss on the test data is then selected for use.  The author notes this algorithm is not guaranteed to find the optimal set of features on which to train.  In fact it was observed that some of the later Kaggle submissions (which represented a superset of features as compared with past submissions) achieved worse performance!  This is because the optimal subset of features was never encountered during the greedy selection process.
 
 \begin{algorithm}
 	\caption{LgR Feature Selection}
@@ -528,11 +528,11 @@ We have tuned parameters of \textbf{randomForest} to following values to obtain 
 \subsection{Results}
 
 \paragraph{Processing Performance}
-Feature calculation, model training and feature selection, and classification were performed on a personal laptop, the specifications of which are found in Table \ref{machine-specs}.  Processing times are shown in Table \ref{proc-time}.
+Feature calculation, model training and feature selection, and classification were performed on a personal laptop, the specifications of which are found in Table \ref{machine-specs-lgr} for LgR and \ref{machine-specs} for HOG LgR.  Processing times for Lgr are shown in Table \ref{proc-time-lgr}.
 
 \begin{table}[H]
 	\centering
-	\caption{Machine Specifications for LgR}\label{machine-specs}
+	\caption{Machine Specifications for LgR}\label{machine-specs-lgr}
 	\begin{tabular}{r l}
 		\toprule
 		\textbf{Processor:} 		& Intel Core i5-5200 @ 2.2 GHz x 4 \\
@@ -540,20 +540,7 @@ Feature calculation, model training and feature selection, and classification we
 		\textbf{Operating System:}	& Ubuntu 16.04 LTS \\
 		\textbf{Applications:}		& R and MySQL \\
 		\textbf{R Packages:}		& RMySQL, rjson, grid, ggplot2, \\
-									& corrplot
-	\end{tabular}
-\end{table}
-
-\begin{table}[H]
-	\centering
-	\caption{Processing Time (mm:ss) for LgR}\label{proc-time}
-	\begin{tabular}{r l}
-		\toprule
-		\textbf{Feature Calculation:} 		& 02:22 \\
-		\textbf{Feature Selection:}			& 01:26 \\
-		\textbf{Model Training:}			& 00:00  \\
-		\textbf{Test Data Classification:}	& 13:04 \\
-		\textbf{Total:}						& 16:52
+									& corrplot, pROC
 	\end{tabular}
 \end{table}
 
@@ -571,6 +558,21 @@ Feature calculation, model training and feature selection, and classification we
 	\end{tabular}
 \end{table}
 
+\begin{table}[H]
+	\centering
+	\caption{Processing Time (mm:ss) for LgR}\label{proc-time-lgr}
+	\begin{tabular}{r l}
+		\toprule
+		\textbf{Feature Calculation:} 		& 02:22 \\
+		\textbf{Feature Selection:}			& 01:26 \\
+		\textbf{Model Training:}			& 00:00  \\
+		\textbf{Test Data Classification:}	& 13:04 \\
+		\textbf{Total:}						& 16:52
+	\end{tabular}
+\end{table}
+
+
+
 \paragraph{LgR Feature Selection Performance}
 One might assume that the feature selection ordering may well correlate well with those chosen by visual examination of the histograms, but that is not the case.  Since some of the features inform on some of the others, once a feature is selected and incorporated into the model, the addition of a feature that is highly correlated to one already in the set would result in little performance improvement.  The performance of the LgR model as a function of features added is shown in Figure \ref{feat_selection}.  Overall, the performance on test data tracks relatively well to performance on training data, suggesting that overfitting is not occuring to a great extent for the first dozen or so features.
 
@@ -580,12 +582,12 @@ One might assume that the feature selection ordering may well correlate well wit
 \end{figure}
 
 \paragraph{Predictive Performance}
-LgR - The best performance achieved as of the writing of this paper is \textbf{0.3682}, which is about the 18th percentile as of the submission of this paper. \footnote{Kaggle's scoring script uses Log Loss, which is consistent with the evaluation methods used herein}.  The Receiver Operator Characteristics (ROC) plot is shown in Figure \ref{roc}.\\
+LgR - The best performance achieved as of the writing of this paper is \textbf{0.3682}, which is about the 18th percentile as of the submission of this paper. \footnote{Kaggle's scoring script uses Log Loss, which is consistent with the evaluation methods used herein}.  The Receiver Operator Characteristics (ROC) plot is shown in Figure \ref{roc-lgr}.\\
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.9\linewidth]{iceberg/ROC_Results.png}
-	\caption{Logistic Regression ROC Results}\label{roc}
+	\caption{Logistic Regression ROC Results}\label{roc-lgr}
 	\small
 	Sensitivity represents icebergs correctly classified as icebergs, and specificity represents non-icebergs incorrectly classified as icebergs.
 \end{figure}
