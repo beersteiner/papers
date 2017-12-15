@@ -71,7 +71,7 @@
 %----------------------------------------------------------------------------------------
 
 \Abstract{\textbf{Executive Summary} 
-	This report summarizes two datamining projects undertaken by the authors.  The first project attempts to classify `scattered pages' from works of fiction written by Edgar Allan Poe, HP Lovecraft, and Mary Wollstonecraft Shelley according to their author.  Various approaches were explored, including TBD (Samanvitha).  The best-performing approach was achieved by TBD, with a Log Loss of TBD.  The second project attempts to classify Synthetic Aperture Radar images according to whether the image has captured an iceberg or not.  Again, various approaches were explored including Logistic Regression using custom features, TBD (Ashay).  The best-performing approach was achieved by Logistic Regression using custom features, with a Log Loss of 0.3682 (TBD, Ashay update this if you do better!).
+	This report summarizes two DM projects undertaken by the authors.  The first project attempts to classify `scattered pages' from works of fiction written by Edgar Allan Poe, HP Lovecraft, and Mary Wollstonecraft Shelley according to their author.  Various approaches were explored, including TBD (Samanvitha).  The best-performing approach was achieved by TBD, with a Log Loss of TBD.  The second project attempts to classify Synthetic Aperture Radar images according to whether the image has captured an iceberg or not.  Again, various approaches were explored including Logistic Regression using custom features, TBD (Ashay).  The best-performing approach was achieved by Logistic Regression using custom features, with a Log Loss of 0.3682 (TBD, Ashay update this if you do better!).
 	}
 
 
@@ -90,13 +90,12 @@
 %----------------------------------------------------------------------------------------
 
 \section{Introduction}
-TBD (Need to complete this)
-\begin{itemize}[noitemsep] %use noitem to make more compact
-\item Briefly, but more completely than in the Executive Summary, explain the kaggle competition -- how to get to it, \textit{etc.}.
-\item   Discuss datamining abstractly and how it fits as a solution to the kaggle competition.
-\item Briefly, but more completely than in the Executive Summary, explain the two problems in two different subsections.
-\end{itemize}
+The two projects presented herein (Spooky Author Identification and Iceberg Classifier Challenge) are the results of the combined efforts of the authors to meet the corresponding challenges published by Kaggle. \cite{kaggle-author} \cite{kaggle-ice}  Kaggle.com is a site dedicated to the Data Science community where entities can post problems and challenges to be taken on by Data Science academics and enthusiasts.  Readers can find more details on each of these challenges at Kaggle's website \footnote{\url{https://www.kaggle.com/}} in the Competitions section.
+
+Datamining (DM) has three broad areas of application: answering questions, exploring and discovering relationships, and annotation.  Kaggle competitions, including those described in this paper, are a convenient way for an entity with a requirement in one of these application spaces to draw from a large community of willing problem solvers to find effective and efficient solutions to satisfy their requirement.  Spooky Author Identification is considered a `Playground Competition', meaning the underlying motivation is to encourage increased participation in the Kaggle community and potentially spur innovative advances in to standing challenges in Natural Language Processing.  In the case of Iceberg Classification, the underlying requirement is for Statoil to accurately and efficiently identify icebergs that could threaten their sea-based natural resources operations.  In both cases, DM presents an opportunity to discover useful relationships between written word and their author or between SAR imagery and the target being imaged, to enable classification accuracy and efficiency well beyond human performance.
+
 \subsection{Author Identification}
+TBD - Samanvitha please complete this section.
 What is the problem to be solved?  What is the data? How is goodness quantified?  This should not be too technical, but we can say, for example, given three authors $A = \{a_1, a_2, a_3\}$ and selections of their individiually corresponding works $S_{a_1}, S_{a_2}, S_{a_3}$,  we are constructing a probability  mass function $f$ over $A$ that is applied to a text $t$ written by one of the authors, but unlabled:
 \begin{equation}
 f(A|t,S) = \{p_{a_1}, p_{a_2}, p_{a_3}\}
@@ -107,24 +106,30 @@ A text is simply a passage from one of the author's works:
 Once upon a midnight dreary, while I pondered, weak and weary, Over many a quaint and curious volume of forgotten lore—While I nodded, nearly napping, suddenly there came a tapping, As of some one gently rapping, rapping at my chamber door.“’Tis some visitor,” I muttered, “tapping at my chamber door— Only this and nothing more.”
 \end{quote}
 from Edgar Allen Poe's, \textit{The Raven}.  You must find out whether it's only prose -- and how much of the original structure is maintained.  Likely you will not take in text directly -- so this must be described.
+
+
 \subsection{Statoi/C-CORE Iceberg Classifier Challenge}
 
-  Use footnotes sparingly, but you must use at least two in this document\footnote{A footnote provides some ancillary information that's somewhat misplaced in the text, \textit{i.e.}, the reader can skip it without missing any critical information.  On the other hand, a dedicated reader appreciates the extra information.  A footnote might clarify information in an informal way.  Although possible, putting mathematics in a footnote is a bit odd.}.
+The Iceberg Classifier Challenge is to accurately classify whether a Synthetic Aperture Radar (SAR) image contains an iceberg or something that is not an iceberg, which makes it a binary classification problem.  The data provided includes an $75 \times 75$ image that represents horizontally polarized backscatter intensity (\texttt{band\_1}), a $75 \times 75$ image that represents vertically polarized backscatter intensity (\texttt{band\_2}), and the angle of incidence between Earth-normal and the transmit beam (\texttt{inc\_angle}).  Training data also contains the class label (\texttt{is\_iceberg}).  The classifier is to calculate the probability that the image contains an iceberg (1) or not (0).  Kaggle evaluates the goodness of the classifier using Log Loss, shown below.
+
+$$LL = - \frac{1}{N} \sum_{i=1}^N t_i log(y(x_i)) + (1-t_i) log(1-y(x_i))$$
+
+The best classifiers will have Log Loss scores near zero.  Receiver Operator Characteristics (ROC) was also used to evaluate the True Positive vs False Positive behavior of the classifier.  High-performing classifier will have ROC curves that resemble a step function and with an area under the curve (AUC) near 1.0.  \footnote{ROC finds its origins in World War 2 as radar operators were evaluated on their ability to distinguish real targets from false targets and clutter. \cite{Lusted1217}}
 
 
 \section{Datamining}
 
 \begin{itemize}[noitemsep]
 
-\item What is datamining?  Datamining seeks to inform decision making by answering questions about, exploring or discovering relationships in, or providing annotation of data.
+\item What is DM?  DM seeks to inform decision making by answering questions about, exploring or discovering relationships in, or providing annotation of data.
 
-\item What does it yield?  Datamining yields information that is not possible or practical to directly observe, based on data that is practical to observe.  This information may be predicted trends in human behavior, perceived relationships or clusters within high-dimension data, or a prediction of future events.  In all cases, the yielded information is deemed valuable to someone who is then enabled to make decisions based on that information.
+\item What does it yield?  DM yields information that is not possible or practical to directly observe, based on data that is practical to observe.  This information may be predicted trends in human behavior, perceived relationships or clusters within high-dimension data, or a prediction of future events.  In all cases, the yielded information is deemed valuable to someone who is then enabled to make decisions based on that information.
 
 \item What are the general steps?  
 
 \begin{itemize}
 	
-	\item The first (and most difficult) step in datamining is developing the problem statement: What decision or action is the datamining effort required to inform or enable, and what must the datamining effort yield in order to satisfy that requirement?
+	\item The first (and most difficult) step in DM is developing the problem statement: What decision or action is the DM effort required to inform or enable, and what must the DM effort yield in order to satisfy that requirement?
 	
 	\item The second step is data acquisition.  Acquisition of data is non-trivial.  It can be difficult, expensive, and in some cases even prohibited or restricted by law.  Therefore, the miner must be intentional about pursuing the acquisition of data that is both needed (from the problem statement) and available, whether by manual observation, survey, or automated sensing/recording.
 	
@@ -132,7 +137,7 @@ from Edgar Allen Poe's, \textit{The Raven}.  You must find out whether it's only
 	
 	\item The fourth step is to actually mine the data (i.e. answer questions, explore or discover relationships, or annotate).  The methodology, assumptions, models, and parameters of how the mining is performed can depend on the objective, the data itself, and the miner themselves.
 	
-	\item The fifth and final step in datamining is to interpret the output of the mining step and either validate that it meets the stated objective/requirement of the problem statement, or determine that changes to the pre-processing or mining steps are warranted and start again with a modified approach.
+	\item The fifth and final step in DM is to interpret the output of the mining step and either validate that it meets the stated objective/requirement of the problem statement, or determine that changes to the pre-processing or mining steps are warranted and start again with a modified approach.
 
 \end{itemize}
 
@@ -165,14 +170,14 @@ from Edgar Allen Poe's, \textit{The Raven}.  You must find out whether it's only
 \end{itemize}
 Finally, data with unknown, erroneous, or missing values must be handled.  Some of these handling techniques may be implemented in the mining algorithm(s) themselves, but some may be performed prior to the mining step.  Unknown/missing data handling is more challenging for some algorithms (i.e. regression) than it is for others (i.e. decision trees).  Some algorithms need each record to have good data, or they will simply not work.  Other algorithms can be made to handle unknown/missing data in a reliable way and achieve good performance.  Still other algorithms can operate on records having missing data with no extra effort.  The primary challenge, especially for high-dimensionality data, is that the impact of the handling technique can be different for every attribute, and must be understood and chosen carefully.
 
-\item What is the general load (time, space, \$) for preprocessing?  Computationally, preprocessing may consume $O(n)$ or $O(n log m)$ time where $n$ is the number of records to process and $m$ may be search steps if matching, inclusion, or sorting operations are required.  Preprocessing may consume anywhere from constant space to $O(n)$ space, if the records are processed one at a time and stored back into their original location, or copies are made.  Practically speaking, preprocessing can consume upwards of 80\% of the labor hours, and therefore ~80\% of the funding, of the overall datamining effort.  That is because it is the most human-intensive step of the process.  Automation of the preprocessing step, although possible, is of limited benefit if the datamining problems vary significantly in size, scope, data representation, purpose, etc.  The ability to predict the preprocessing impacts of data across problem spaces is indeed an analytics problem unto itself.
+\item What is the general load (time, space, \$) for preprocessing?  Computationally, preprocessing may consume $O(n)$ or $O(n log m)$ time where $n$ is the number of records to process and $m$ may be search steps if matching, inclusion, or sorting operations are required.  Preprocessing may consume anywhere from constant space to $O(n)$ space, if the records are processed one at a time and stored back into their original location, or copies are made.  Practically speaking, preprocessing can consume upwards of 80\% of the labor hours, and therefore ~80\% of the funding, of the overall DM effort.  That is because it is the most human-intensive step of the process.  Automation of the preprocessing step, although possible, is of limited benefit if the DM problems vary significantly in size, scope, data representation, purpose, etc.  The ability to predict the preprocessing impacts of data across problem spaces is indeed an analytics problem unto itself.
 
 \end{itemize}
 
 \subsection{Mining, Interpretation, and Action}
 
-\paragraph{Top Ten Algorithms in Datamining}
-Below is a brief overview of the top 10 algorithms in Datamining. \cite{Wu:2007:TAD:1327434.1327436}
+\paragraph{Top Ten Algorithms in DM}
+Below is a brief overview of the top 10 algorithms in DM. \cite{Wu:2007:TAD:1327434.1327436}
 
 \begin{itemize}
 	\item{\textbf{C4.5:}} C4.5 is an algorithm that can be used for decisions trees or rulesets. For trees, tt essentially builds a decision tree by recursively splitting the data on attributes until the data is fully explained by the tree.  It then prunes the tree by calculating a binomial error estimate at each of the leaves, and comparing that with the error that would be introduced by collapsing to the parent node, and repeating until complete.  For rulesets, it similarly generates rules representing every complete path through the notional unpruned tree (i.e. the rules generated fully explain the data).  Then, C4.5 discards conditions in the generated rules to minimize the binomial error estimate using hill-climing techniques.  Finally, in both cases, a default rule is created in case data do not satisfy any of the remaining rules.
@@ -187,10 +192,11 @@ Below is a brief overview of the top 10 algorithms in Datamining. \cite{Wu:2007:
 	\item{\textbf{Classification and Regression Trees (CART):}} CART is an umbrella term encompassing several variations on building trees for use with categorical or real-valued data.  In general, they work by building binary classification trees using intelligent selection criteria for choosing attributes to split on (such as information gain or the Gini impurity), and then perform pruning of the resulting tree (or stopping criteria) by minimizing a loss which contains a complexity penalty element and a misclassification (or error, in the real-valued case) element.
 \end{itemize}
 
-\begin{itemize}[noitemsep]
-	\item Does datamining tell us what to do? TBD
-	\item What are some new types of problems in datamining? TBD
-\end{itemize}
+Despite DM's many benefits, the algorithms do not solve problems or tell users what to do.  It is up to the human Dataminer to clearly understand the problem space, define what they need from the DM solution, exercise the DM process, interpret and validate the results and limitations of the results, and then use the results to inform their action.
+
+New types of problems in DM include finding more stable decision-tree algorithms, decomposition of complex models into ensembles of simpler models, and improvement in feature selection techniques. \cite{Wu:2007:TAD:1327434.1327436} Additional (albeit tangential) topics related to DM include security/privacy implications of DM, the convergence of DM and Internet of Things (IoT), and novel applications of DM.
+
+
 
 
 
@@ -302,7 +308,7 @@ Remember, we're interested in the journey, so simply because an approach failed 
 \lipsum[10] % Dummy text
 \section{Iceberg: Full Problem Description}
 
-Statoil, an energy company with oil and natural gas operations based largely in the Norwegian Continental Shelf region, has an operational need to track the presence of icebergs that may present a threat to the safety and efficiency of those operations. \cite{statoil} The company has therefore posed the following iceberg classification problem to the data science community.  Statoil partners with C-CORE (a Canadian R\&D corporation) to obtain access to Synthetic Aperture Radar (SAR) imagery data from the Sentinel-1 satellite constellation, and the challenge is to classify the object in each image as an iceberg or non-iceberg (presumably a ship, which is not likely to pose a threat to operations). A labeled training set (1604 records) and an unlabeled test set (8424 records) is provided, and the task is to classify each image as containing an iceberg (\texttt{is\_iceberg}=1) or not (\texttt{is\_iceberg}=0). \cite{kaggle}
+Statoil, an energy company with oil and natural gas operations based largely in the Norwegian Continental Shelf region, has an operational need to track the presence of icebergs that may present a threat to the safety and efficiency of those operations. \cite{statoil} The company has therefore posed the following iceberg classification problem to the data science community.  Statoil partners with C-CORE (a Canadian R\&D corporation) to obtain access to Synthetic Aperture Radar (SAR) imagery data from the Sentinel-1 satellite constellation, and the challenge is to classify the object in each image as an iceberg or non-iceberg (presumably a ship, which is not likely to pose a threat to operations). A labeled training set (1604 records) and an unlabeled test set (8424 records) is provided, and the task is to classify each image as containing an iceberg (\texttt{is\_iceberg}=1) or not (\texttt{is\_iceberg}=0). \cite{kaggle-ice}
 
 \subsection{Data Analysis}
 Each record contains three components (besides an identifier):
@@ -565,7 +571,7 @@ TBD (Ashay, please talk about your performance here)
 
 \subsection{Summary and Future Work}
 \paragraph{Summary}
-The performance of the LgR classifier resulting from this effort was not exemplary.  The methodology chosen for feature experimentation and calculation was manual and labor intensive, and frankly the problem is not within the author's domain of experience.  The author hypothesizes that the high level of mutual information shared by many of the custom features ultimately limited learning performance of the model.  This hypothesis is supported by both Figure \ref{correlation} and Figure \ref{feat_selection}.  The author considers the project a success, despite the average results achieved.  The lessons learned about how to plan and structure a Datamining project as well as some of the practical aspects of implementing algorithms and dealing with real data will serve the author well.
+The performance of the LgR classifier resulting from this effort was not exemplary.  The methodology chosen for feature experimentation and calculation was manual and labor intensive, and frankly the problem is not within the author's domain of experience.  The author hypothesizes that the high level of mutual information shared by many of the custom features ultimately limited learning performance of the model.  This hypothesis is supported by both Figure \ref{correlation} and Figure \ref{feat_selection}.  The author considers the project a success, despite the average results achieved.  The lessons learned about how to plan and structure a DM project as well as some of the practical aspects of implementing algorithms and dealing with real data will serve the author well.
 
 TBD (Ashay, elaborate/modify as needed)
 

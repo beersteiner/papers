@@ -1,5 +1,18 @@
 \begin{thebibliography}{10}
 
+\bibitem{kaggle-author}
+Kaggle Inc.
+\newblock Spooky author identification.
+
+\bibitem{kaggle-ice}
+Kaggle Inc.
+\newblock Statoil/c-core iceberg classifier challenge.
+
+\bibitem{Lusted1217}
+Lee~B. Lusted.
+\newblock Signal detectability and medical decision-making.
+\newblock {\em Science}, 171(3977):1217--1219, 1971.
+
 \bibitem{Wu:2007:TAD:1327434.1327436}
 Xindong Wu, Vipin Kumar, J.~Ross~Quinlan, Joydeep Ghosh, Qiang Yang, Hiroshi
   Motoda, Geoffrey~J. McLachlan, Angus Ng, Bing Liu, Philip~S. Yu, Zhi-Hua
@@ -10,10 +23,6 @@ Xindong Wu, Vipin Kumar, J.~Ross~Quinlan, Joydeep Ghosh, Qiang Yang, Hiroshi
 \bibitem{statoil}
 Statoil ASA.
 \newblock What we do.
-
-\bibitem{kaggle}
-Kaggle Inc.
-\newblock Statoil/c-core iceberg classifier challenge.
 
 \bibitem{polarimetric}
 Gianfranco de~Grandi Jong-Sen~Lee, Mitchell~Grunes.
