@@ -104,6 +104,16 @@ getFeat = function(tbl, idn) {
 }
 
 
+## Log Loss Function
+##   http://www.exegetic.biz/blog/2015/12/making-sense-logarithmic-loss/
+logloss <- function(act, pred) {
+  eps <- 1e-15
+  pred <- pmin(pmax(pred, eps), 1-eps)
+  -(sum(act * log(pred) + (1 - act) * log(1 - pred))) / length(act)
+}
+
+
+
 
 
 
@@ -166,9 +176,10 @@ imputed_Data$imp$inc_angle
 #Complete Function gives complete Dataset for selected imputed value set
 #complete(imputed_Data,1)
 
-model = 0
+models = list()
 accuracy = rep(0,5)
 auc = rep(0,5)
+loss = rep(0,5)
 for (i in 1:5) {
   training_data = complete(imputed_Data,i)[1:1000,]
   validation_data = complete(imputed_Data,i)[1001:1604,1:19]
@@ -189,9 +200,17 @@ for (i in 1:5) {
   
   auc[i] = auc(validation_label,pred)
   
+  loss[i] = logloss(validation_label,pred)
+
 }
 
+
 model = models[[which.max(auc)]]
+log_loss = loss[which.min(loss)]
+#0.6262356
+
+auc_val = auc[which.max(auc)]
+#0.7133157
 
 test_prediction = predict(model,as.data.frame(test_data),type = 'response')
 
@@ -199,3 +218,5 @@ result = cbind(test_id,test_prediction)
 colnames(result) = c("id","is_iceberg")
 result = as.data.frame(result)
 write_csv(x = result,path =  paste("prediction.csv",sep = ""),append = FALSE,col_names = TRUE)
+
+#Kaggle score 0.5505
