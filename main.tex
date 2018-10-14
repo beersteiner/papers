@@ -1,31 +1,181 @@
-\documentclass{article}
+\documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 
-\title{QE}
-\author{John Stein}
-\date{October 2018}
+\title{Qualifying Examination Paper}
+\author{John Stein (jodstein@iu.edu)}
+\date{November 2018}
 
 \usepackage{natbib}
 \usepackage{graphicx}
+\usepackage{setspace}\singlespacing
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{appendix}
 
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    % https://stackoverflow.com/questions/3141702/vertically-centering-a-title-page
+    \null
+    \nointerlineskip
+    \vfill
+    \let\snewpage \newpage
+    \let\newpage \relax
+    \maketitle
+    \let \newpage \snewpage
+    \vfill
+    \thispagestyle{empty}
+\end{titlepage}
 
-\section{Introduction}
-There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here, it will instantly disappear and be replaced by something even more bizarre and inexplicable.
-There is another theory which states that this has already happened.
 
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=1.7]{universe}
-\caption{The Universe}
-\label{fig:universe}
-\end{figure}
+\tableofcontents
+\thispagestyle{empty}
 
-\section{Conclusion}
-``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
 
+%%%%%%%%%%%%%%%%% Paper %%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{page}{1}
+\section{Generative Adversarial Networks (GANs)}
+
+\subsection{Introduction}
+The Generative Adversarial Nets (GAN) framework was first introduced by Goodfellow et al. in 2014 \cite{NIPS2014_5423}.  Deep learning approaches, although highly successful in discrimination or classification tasks, had enjoyed limited success in generative tasks.  The GAN framework represents an innovative approach for using existing deep learning principles to address generative tasks.  The GAN framework involves the simultaneous training of both a generative model $G$ with parameters $\theta_g$ and a discriminative model $D$ with parameters $\theta_d$.  Given a target data space $T$ with distribution $p_t$, $G$'s task is to learn a mapping from an input $z$ to a data space $G(z, \theta_g)$ with distribution $p_g$; while $D$'s task is take input $x$ belonging to either $T$ or $G(z)$ and learn to classify $x$ as belonging either to $p_t$ or $p_g$.  The adversarial component of the task is that while $D$ is adjusting $\theta_d$ to classify $x$ as belonging to $p_t$ or $p_g$, $G$ is simultaneously adjusting $\theta_g$ to maximize $D$'s error by trying to capture $p_t$ with $p_g$.  In this way, $G$ learns how to generate data that is hard for an ever-improving $D$ to distinguish.  Importantly, labeled data is not required for either $G$ or $D$ because the loss function used by $G$ is defined in terms of $D(G(z)) \in \{0, 1\}$ (ie. did $G$ fool $D$?) and the labels for $x$ are $\{p_t, p_g\}$ (ie. from target or generated data?).  Thus, the GAN framework presents a promising approach for generating data that approximates a target distribution in an unsupervised manner.
+
+\subsection{GAN Advancements}
+The GAN framework has resulted in significant advancement within many Computer Vision related areas of study, and has inspired many GAN variations that represent improvements or specialized implementations.
+
+In the original GAN, $G$ learns to generate data that estimates $p_t$, but cannot target specific sub-distributions within $p_t$, such as class labels or modes within $p_t$.  Shortly after the original GAN was introduced, Mirza and Osindero introduced an extension called Conditional GAN \cite{mirza2014conditional} which addresses this need.  By essentially adding a conditioning input layer to both models $G$ and $D$, one can present the conditioning data $y$ alongside the normal data ($z$ for $G$ and $x \in G(z) \cup T$ for $D$).  $G$ will therefore learn a mapping given $z$ and $y$ that will result in making classification difficult for $D$ given $x$ and $y$.  This advancement seems obvious in retrospect, but warrants contemplation.  While $G$ represents a mapping that captures the distribution of the target data space $T$ in general, the input $z$ can be thought of as the diversity component of the input and the input $y$ can be thought of as the specification component of the input.  Since the $y$ specification value is consistent within modes, a smaller portion of the overall networks for $G$ and $D$ can focus on the generation and discrimination, respectively, of the modal contribution whereas the remaining portions of the networks can focus on the unspecified contributions from $z$.  Of course, Conditional GAN requires that conditioning data (eg. labels) is available for all target samples $x \in X$.
+
+
+\subsection{Remaining Challenges and Opportunities}
+
+
+
+\begin{itemize}
+    \item Introduction to GANs \cite{NIPS2014_5423} \\ %seminal
+    \item How they work\\
+    \item Why they are novel/interesting\\
+    \item Benefits, Security (Defense, Offense)\\
+
+    \item GAN types: % https://github.com/nashory/gans-awesome-applications
+    \begin{itemize}
+        \item DCGAN \cite{DBLP:journals/corr/RadfordMC15}: (replace pooling with conv, use batchnorm everywhere, remove fully connected, relu for gen, leaky relu for discrim) %seminal
+        \item Hash
+        \item Attention
+        \item Conditional \cite{mirza2014conditional}\\
+        \item InfoGAN https://arxiv.org/abs/1606.03657 (unsupervised, repr disentanglement)
+        \item Wasserstein GAN (WGAN) https://arxiv.org/abs/1701.07875 (improves learning stability and mode collapse)
+        \item BEGAN: Boundary Equilibrium Generative Adversarial Networks
+    \end{itemize}
+
+    \item Uses: 
+    \begin{itemize}
+        \item Image Translation \& 3D
+        \begin{itemize}
+            \item Cross-View Image Synthesis Using Conditional GANs \cite{regmi2018crossview}
+            \item Learning a Probabilistic Latent Space of Object Shapes via 3D Generative-Adversarial Modeling \cite{NIPS2016_6096}
+        \end{itemize}
+        
+        \item Domain Transfer
+        \begin{itemize}
+            \item Domain-Adversarial Training of Neural Networks \cite{ganin2016domain}
+            \item Image-to-Image Translation with Conditional GANs \cite{isola2017image}
+        \end{itemize}
+        
+        \item Image Recovery 
+        \begin{itemize}
+            \item inpainting: Context Encoders - Feature Learning by Inpainting\_Pathak \cite{pathakCVPR16context}
+            \item resolution: Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network \cite{ledig2017photo}
+            \item honorable mentions (face resolution: "Finding Tiny Faces in the Wild with Generative Adversarial Network" \cite{bai2018finding}, "Generative Adversarial Networks recover features in astrophysical images of galaxies beyond the deconvolution limit" \cite{schawinski2017generative})
+        \end{itemize}
+        
+        \item Image Synthesis (including from text "Generative Adversarial Text to Image Synthesis" \cite{reed2016generative}, semi-supervised learning "Improved Techniques for Training GANs" \cite{salimans2016improved})
+        
+        \item Pattern recognition and segmentation (Semantic Segmentation using Adversarial Networks \cite{Luc2016SemanticSU} 
+        
+        \item Adversarial/Security
+        \begin{itemize}
+            \item Adversarial Examples Generation and Defense Based on Generative Adversarial Network \cite{xia2016adversarial}
+            \item Recycle-GAN \cite{bansal2018recyclegan}
+            \item H.m.: deepfakes \cite{deepfakes-faceswap}
+            \item My paper
+        \end{itemize}
+        
+        \item Video
+        \begin{itemize}
+        \item Deep multi-scale video prediction beyond mean square error \cite{Mathieu2015DeepMV}
+        \item Video-to-Video Synthesis \cite{wang2018videotovideo}
+            \item MoCoGAN \cite{tulyakov2017mocogan}
+        \end{itemize}
+        
+        \item Task-Oriented (robotics)
+        
+    \end{itemize}
+    
+    \item Areas of Advancement:
+    \begin{itemize}
+        \item use cases
+        \item mode collapse
+        \item unsupervised and semi-supervised learning ability
+        \item learning stability
+        \item regularization
+        \item vanishing gradient
+        \item loss types
+        \item structures
+        \item video, sequencing
+    \end{itemize}
+
+
+
+
+
+
+    \item Other Potentials:
+    \begin{itemize}
+        \item FaceID-GAN: Learning a Symmetry Three-Player GAN for Identity-Preserving Face Synthesis
+        \item GAGAN: Geometry-Aware Generative Adversarial Networks
+        \item MoCoGAN: Decomposing Motion and Content for Video Generation
+        \item DA-GAN: Instance-Level Image Translation by Deep Attention Generative Adversarial Networks (unsupervised)
+        \item SeGAN: Segmenting and Generating the Invisible \cite{ehsani2017segan}
+        \item From Source to Target and Back: Symmetric Bi-Directional Adaptive GAN 
+        \item Learning Pose Specific Representations by Predicting Different Views
+        \item Cross-Modal Deep Variational Hand Pose Estimation
+        \item Disentangled Person Image Generation
+    \end{itemize}
+        
+
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%% BIB %%%%%%%%%%%%%%%%%%%%
+\newpage
 \bibliographystyle{plain}
 \bibliography{references}
+\addcontentsline{toc}{section}{References}
+
+
+%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%
+\newpage
+\appendixtitleon
+\begin{appendices}
+
+\begin{center}
+    \section{Examination Committee Questions}
+\end{center}
+
+\subsection{Dr. Apu Kapadia}
+
+\subsubsection{GANs (2.5-3 pages excluding citations)}
+Researchers have recently made much progress in the area of adversarial machine learning using "generative adversarial networks." Identify 8-12 papers in this area specific to computer vision, and synthesize and summarize the various research contributions in this area; draw connections between the various papers and make sure the writeup does NOT look like a string of summaries. Instead group and summarize categories and discuss how they relate to each other.  Make sure you critique the various works when you discuss them, discussing how these works address the weaknesses of the other works you discuss. 
+
+Have a clearly marked section at the end (about 0.75 page) that talks about research challenges and directions forward from your perspective, i.e., what all remains to be done after your discussion of the various papers (including your own published work)?
+
+\subsubsection{Adversarial machine learning (1.5-2 pages excluding citations)}
+Model this section on the previous section, but expand the focus beyond computer vision and talk about 5-8 papers NOT related to computer vision and how machine learning algorithms can be 'tricked' by adversaries. Discuss how machine learning algorithms in the context of security can be made robust against adversaries trying to escape classification, for example.
+
+\subsection{Dr. David Crandall}
+
+
+\subsection{Dr. Donald Williamson}
+
+\end{appendices}
+
 \end{document}
