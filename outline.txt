@@ -1,0 +1,9 @@
+intro to GAN 2014
+
+Advancements
+    Conditional - works with multi-class, introduces specification ability 2014
+    DCGAN - improved performance, strong representation learning 2015
+    LAPGAN - (TBD) 2015
+    
+    deep multi-scale video 2015
+    
