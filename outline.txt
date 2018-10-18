@@ -1,9 +1,29 @@
-intro to GAN 2014
+intro to GAN 2014 (X)
 
 Advancements
-    Conditional - works with multi-class, introduces specification ability 2014
-    DCGAN - improved performance, strong representation learning 2015
-    LAPGAN - (TBD) 2015
-    
-    deep multi-scale video 2015
-    
+    GAN improvement
+        Conditional - works with multi-class, introduces specification ability 2014 (X)
+        DCGAN - improved performance, strong representation learning 2015 (X)
+        LAPGAN - (TBD) 2015
+        Improved Techniques for training (TBC)
+    Semantic Learning
+        Context Encoders (?)
+        Semantic Segmentation Using ... ( )
+        Gen Adv. Text to Image ( )
+        Learning Prob. Latent ... ( )
+        Segmenting & Gen the Invis. ( )
+    Image Processing
+        Image-to-Image Transl. 2017 ( )
+        Photo-realistic 2017 ( )
+        GANs recover features in astro 2017 ( )
+        Finding tiny faces 2018 ( )
+        
+    Video
+        deep multi-scale video 2015 ( )
+        MoCoGAN: Decomposing... ( )
+        Video-to-Video Synth ( )
+        Cross-view Synthesis ( )
+        RecycleGAN
+    Adversarial Applications
+        Adversarial Examples gen. ( )
+        deepfakes ( )

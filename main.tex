@@ -50,14 +50,14 @@ As the appreciation and use of GAN-based approaches increased, it was observed t
 
 %In Machine Learning, and especially Computer Vision, domain variance between training and test data has been a long standing challenge.  The domain of a data set can be explained as components of the distribution that are invariant to class label, but unique to the data set as a whole, in contrast to other similar data sets.  Ganin et al. recognized that an adversarial approach known as a Domain Adversarial Neural Network (DANN) could be used to help improve Domain Adaption (DA).  Their adversarial approach essentially minimizes the loss with respect to the basic classification task, and maximizes the loss with respect to an adversarial model trying to distinguish between the training domain and a test domain.
 
-Wtihin the theme of semantic learning and generation, several significant contributions were made during 2016 and 2017.  Pathak, Krahenbuhl, Donahue, Darrell, and Efros successfully used an adversarial approach to inpaint (fill in missing portions of) images with large extents of missing pixel data.  Their architecture was based on an encoder-decoder (TBD ref) combined with GAN.  In their approach, the encoder encodes both whole and masked (portions missing) images and $D$ tries to discriminate whole vs. masked, while $G$ generates the completed images, conditioned on the context. ...
-
- serves as $G$, attempting to reconstruct the context encoding from images with missing portions and the decoder feeds $D$ which tries to distinguish between reconstructed images and complete images.  Interestingly, and in contrast with \cite{mirza2014conditional}, the authors achieved better results when $G$ was conditioned
+Wtihin the theme of semantic learning and generation, several significant contributions were made during 2016 and 2017.  Pathak, Krahenbuhl, Donahue, Darrell, and Efros successfully used an adversarial approach to inpaint (fill in missing portions of) images with large extents of missing pixel data \cite{pathakCVPR16context}.  Their architecture was based on an encoder-decoder (TBD ref) combined with GAN.  In their approach, the encoder-decoder learns a semantic encoding based on the non-missing portions and attempts to reproduce a whole image based on that semantic encoding.  The `reconstruction loss' is defined in terms of closesness ($L2$) of the filled area to the removed area. The encoder-decoder is regarded as $G$, and a new Discriminator $D$ is trained to predict whether its input is a reconstructed output from $G$ or an original image.  Interestingly, and in contrast with \cite{mirza2014conditional}, the authors achieved better results when $G$ was conditioned
 
 
 
 
 \subsection{Remaining Challenges and Opportunities}
+
+semantics discovery (semantics of security)
 
 
 
