@@ -7,8 +7,8 @@ Advancements
         LAPGAN - (TBD) 2015
         Improved Techniques for training (TBC)
     Semantic Learning
-        Context Encoders (?)
-        Semantic Segmentation Using ... ( )
+        Context Encoders (X)
+        Semantic Segmentation Using ... (X)
         Gen Adv. Text to Image ( )
         Learning Prob. Latent ... ( )
         Segmenting & Gen the Invis. ( )
