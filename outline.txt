@@ -1,29 +1,69 @@
-intro to GAN 2014 (X)
-
-Advancements
-    GAN improvement
-        Conditional - works with multi-class, introduces specification ability 2014 (X)
-        DCGAN - improved performance, strong representation learning 2015 (X)
-        LAPGAN - (TBD) 2015
-        Improved Techniques for training (TBC)
-    Semantic Learning
-        Context Encoders (X)
-        Semantic Segmentation Using ... (X)
-        Gen Adv. Text to Image ( )
-        Learning Prob. Latent ... ( )
-        Segmenting & Gen the Invis. ( )
-    Image Processing
-        Image-to-Image Transl. 2017 ( )
-        Photo-realistic 2017 ( )
-        GANs recover features in astro 2017 ( )
-        Finding tiny faces 2018 ( )
+1 Kapadia
+    1.1 GANs    (8-12)
+        intro to GAN 2014 (X)
+    
+        GAN improvement
+            Conditional - works with multi-class, introduces specification ability 2014 (X)
+            DCGAN - improved performance, strong representation learning 2015 (X)
+            LAPGAN - (TBD) 2015
+            Improved Techniques for training (TBC)
+    
+        Semantic Learning
+            Context Encoders (X)
+            Learning Prob. Latent ... (-)
+            Semantic Segmentation Using ... (X)
+            Segmenting & Gen the Invis. (-)
+            Gen Adv. Text to Image (X)
+    
+        Image Translation
+            Image-to-Image Transl. 2017 (X)
+            Unsupervised Image-to-Image Translation Networks. 2017 (-)
         
-    Video
-        deep multi-scale video 2015 ( )
-        MoCoGAN: Decomposing... ( )
-        Video-to-Video Synth ( )
-        Cross-view Synthesis ( )
-        RecycleGAN
-    Adversarial Applications
-        Adversarial Examples gen. ( )
-        deepfakes ( )
+        Image Processing*
+            Photo-realistic 2017 ( )
+            GANs recover features in astro 2017 ( )
+            Finding tiny faces 2018 ( )
+            
+        Video
+            deep multi-scale video 2015 (X)
+            MoCoGAN: Decomposing... (X)
+            Video-to-Video Synth ( )
+            Cross-view Synthesis ( )
+            RecycleGAN
+        Adversarial Applications
+            Adversarial Examples gen. ( )
+            deepfakes ( )
+
+    1.2 ML & Security (5-8)
+        Intro
+            The security of ML 2010, barreno2010security (X)
+                Influence (caus/expl), Violation (I/A), Specificity (targ/indiscrim)
+                Training data confidentiality (addition to Violation space)
+        
+        Training Data Confidentiality
+            ML Models that remember too much, Song_2017 (X)
+            Membership Inference, shokri2017membership (X)
+            A Covert Channel...Stein (X)
+
+        Manifold Confidentiality
+            Deep Learning with Differential Privacy, abadi2016deep
+
+        Robustness to classification escape or re-targeting
+            Weak Perturbations (Classification Escape)
+                SPAM, Towards Crafting Text - samanta2017crafting ( )
+                IDS, Evading Network Anomaly - fogla2006evading ( ); Secure kernel machines - russu2016secure ( )
+            Strong Perturbations (Classification Re-targeting)
+                ZOO: Zeroth Order..., chen2017zoo [uses vision examples...] 2017 ( )
+                Towards Poisoning of Deep Learning Algorithms with Back-gradient Optimization 2017 - munoz2017towards ( )
+            Defenses
+                Efficient Defenses Against Adversarial Attacks 2017, zantedeschi2017efficient ( )
+            Other
+                DARPA ARC (https://www.darpa.mil/program/adaptive-radar-countermeasures)
+                DARPA BLADE (https://www.darpa.mil/program/behavioral-learning-for-adaptive-electronic-warfare) programs
+                CommanderSong - yuan2018commandersong
+
+
+2 
+
+3
+
