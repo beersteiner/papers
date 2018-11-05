@@ -10,6 +10,10 @@
 \usepackage{setspace}\singlespacing
 \usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
 \usepackage{appendix}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes, arrows}
+\usepackage[ruled]{algorithm2e}
 
 \begin{document}
 
@@ -119,6 +123,229 @@ Similarly, Song, Ristenpart, and Shmatikov demonstrated several white- and black
 ML robustness in the face of adversarial examples is likely to continue being an open problem for some time.  The challenge is not a transient implementation issue that will be worked out as ML technology matures, but rather, like generalization, a core learning issue at the heart of the gap between ML and true intelligence.  In this vein, I feel that a deeper understanding of complex models, specifically deep learning networks, including properties, topographies, and structures, and their effects in adversarial scenarios.  For example, characterizing parameter evolution in the manifold during training on benign data sets vs data sets with adversarial augmentation may reveal indicators that could be measured directly on future models (in the absence of adversarial data).  Further, the formalized approach discussed in \cite{russu2016secure} could be extended to more complex networks.  Since knowledge of the adversary's perturbation minimization objective helped inform provable design guidelines for the classifier, perhaps a finer-grained approach to adversarial learning (eg. segmentation of large generative and classification networks with complex tasks into matched ensembles of smaller networks with simpler tasks) will help increase model robustness to adversarial examples.
 
 
+\newpage
+\section{Privacy Prediction}
+
+Two privacy prediction tasks have been identified: (1) predict whether each pixel in a given image is part of a private object, and (2) predict whether or not a given image has private content\footnote{The tasks are addressed in reverse order from how they were presented in \ref{app:crandall} because, in the approach described herein, the solution for (2) can be largely derived from the solution for (1).}.  For both tasks, assume that $N$ images are sampled, each with $M$ pixels having $H$ channels defined as $I : {\lbrack0,256\rbrack}^{M \times H} \rightarrow \{i_{mh} | \forall m \in \lbrack0,M), \forall h \in \lbrack0,H) \}$.  Also, the following forms of evidence are available for each image $I_n$ sampled from $I$:
+
+\begin{table}[h]
+\centering
+\caption{Evidence}
+{\renewcommand{\arraystretch}{2}
+\begin{tabular}{p{7cm}|l}
+    \textbf{Evidence} & \textbf{Formalized as} \\
+    %\hline \\
+    Prediction vector of a categorical scene type $S$ (eg. natural, man-made, bathroom, etc.)
+        & $\{p(S_n = s \mid I_n) \mid \forall s \in dom(S) \}$\\
+    %\hline \\
+    Structured meta-data $D$ (GPS coordinates, timestamp, etc.)
+        & $D_n$\\
+    %\hline \\
+    Posterior probability of image if a pixel lies on some categorical object type $O$
+        & $\{p(I_n \mid i_{nm}\textrm{ on }o) \mid \forall m \in \lbrack0,M), \forall o \in dom(O) \}$\\
+    %\hline \\
+    A set $t$, where $dom(t)=\lbrack0,M)$, of coordinates for human-selected pixels that are part of private objects
+        & $t_n \subseteq \lbrack0,M)$
+\end{tabular}}
+\end{table}
+
+Let's define some assumptions.
+
+\paragraph{Evidence Assumptions:}
+\begin{enumerate}
+    \item The distribution for $I$ is equivalent to the distribution upon which the scene estimator providing $p(S_n = s \mid I_n)$ was trained.
+    \item The distribution for $I$ is equivalent to the distribution upon which the object estimator providing $p(I_n \mid i_{nm} \textrm{ on } o)$ was trained.
+    \item Both tasks are semi-supervised, such that the only form of labeled data is $t_n$\footnote{The semi-supervised assumption was adopted because human point-and-click labeling of private image regions for both training and updating of models is thought to be a realistic scenario.}.  Note that this assumption implies that $t_n$ will not be available at test time.
+\end{enumerate}
+
+In the following sections, the $n$ subscript will usually be omitted for simplicity when considering a single image.
+
+\subsection{Task 1: Which Pixels Represent Private Data?}
+
+The objective for this task can be stated as estimating $\{\forall m \in \lbrack0,M), P(C_{P_{m}} = 1 \mid I, \textrm{ evidence}) \}$ where $C_{P_m}$ is the binary class label for whether a pixel $i_m$ is part of a benign object/region (0) or part of a private object/region (1).  This set or probabilities can be regarded as a `privacy map' of $I$ for use in sensorship, for example.
+
+\subsubsection{Probabalistic Model Formulation}
+
+A simplistic approach might involve using the evidence $p(I \mid i_{m} \textrm{ on } o)$ directly but, since it is noisy evidence, false positives are likely.  One would like to incorporate any and all useful evidence into the determination, and also reduce noise to achieve congruency for pixel-on-object predictions within object areas to reduce false positives. Therefore, a probabilistic model is needed.
+
+When defining a probabilistic model, it is important to define the central assumptions behind what the model is attempting to capture in terms of privacy. For this approach, the following assumptions are used: (a) certain objects, or object details, are private, and (b) whether an image is private is determined by whether it contains private objects or object details.  Notice that certain contextual privacy scenarios, such as an image of a car known to belong to `Bob' being parked outside of a liquor store during work hours, for example, may not necessarily be marked private, even though `Bob' might argue that it is.
+
+Under these assumptions, we can model the objective task as a marginal (over all object types) of the joint probability that $i_m$ belongs to a certain object type $o$ and that object type $o$ is a private type. More formally, $\forall m \in \lbrack0,M)$:
+
+\begin{align}\label{eqn:task1.0}
+    p(C_{P_{m}} = 1 \mid I, \textrm{ evidence}) = \sum_{o \in O} \Big( p(i_m \textrm{ on } o, o \textrm{ is private} \mid I, \textrm{ evidence}) \Big)
+    %p(C_I = 1 \mid \textrm{evidence}) = 1 - \prod_{k \in K} \Big( 1 - p(\textrm{image region for $o_k$ is private} \mid \textrm{evidence}) \Big)
+\end{align}
+
+
+
+\subsubsection{Basis of the Model}
+
+To form the basis of the probabilistic model, a belief network which juxtaposes our evidence and other random variables into a reasonable set of dependency assumptions can be created. The dependency assumptions are defined as follows.  Firstly, an image ($I$) is the result of, and therefore depends on, the true object-to-pixel mapping ($i_m$ on $o_k$) that is captured by the camera.  Secondly, the scene type ($S$) prediction is based on, and therefore depends on, the image ($I$).  Thirdly, whether or not the object $o_k$ is private is dependent on $t$, but since $t$ is not available at test time $o_k$'s privacy will be regarded as independent from any observable variable.  Lastly, we'll assume for now that image metadata ($D$) in its raw form doesn't meaningfully contribute to the privacy determination problem.  GPS location and time stamps may be useful for influencing the scene probabilities or accounting for lighting differences in the image for object recognition, but we do not have direct influence over those predictors.  The resulting belief network is shown in Figure \ref{fig:belief}.
+
+%Thirdly, whether or not a given pixel is marked as being private ($m \in t$) is going to depend on (a) which object type the pixel is on ($i_m$ on $o_k$), and (b) whether that object type is private ($o_k$ is private).  However, since the number of pixels marked per private object is small (likely $\leq 1$), Bayesian inference at the pixel level involving $p(m \in t)$ will result in a weak predictor of $p(o_k \textrm{ is private})$. A better approach is to use the knowledge that is given in the problem statement about how $t$ is generated, and perform inference at the object level.  Therefore, we will represent the event that there exists at least one pixel that is marked as private as follows $(\exists i_l \textrm{ on } o_k \textrm{ s.t. } l \in t)$.  This event is dependent on whether or not the object type is private, but we assume independence from whether or not a specific pixel is marked as private.  This approach is discussed more in the following sections.  
+
+\begin{figure}[ht]
+\centering
+    \begin{tikzpicture}[
+        every node/.style={shape=ellipse, draw}
+    ]
+    %NODES
+    %\node (mt) {$m \in t$};
+    \node (io) {$i_{m}\textrm{ on }o_k$};
+    \node (i)  [right = of io] {$I$};
+    \node (s) [right = of i] {$S$};
+    %\node (t) [below = of po, text width=2cm, align=center] {$i_m \textrm{ on } o_k, \exists i_l \textrm{ on } o_k$ s.t. $l \in t$};
+    %\node (op) [below = of io] {$\exists i_l \textrm{ on } o_k \textrm{ s.t. } l \in t$};
+    \node (or) [below = of i] {$o_k$ is private};
+    \node (d) [right = of s] {$D$};
+
+    %PATHS
+    \path   (io) edge [->] (i);
+    \path   (i) edge [->] (s);
+    %\path   (po) edge [->] (t);
+    %\path   (po) edge [->] node [left, draw=none] {$f_t$} (t);
+    %\path   (or) edge [->] (op);
+    \end{tikzpicture}
+    \caption{Belief Network}\label{fig:belief}
+    %\medskip
+    %\small
+\end{figure}
+
+Now we are ready to perform some Bayesian inference to obtain $p(i_m \textrm{ on } o, o \textrm{ is private} \mid I, \textrm{ evidence})$.
+
+\begin{align}
+    & p(i_m \textrm{ on } o_k, o_k \textrm{ is priv} \mid I, \textrm{ evidence})     && = p(i_m \textrm{ on } o_k, o_k \textrm{ is priv} \mid I, S, D) \notag\\
+    & \quad && = \frac
+        {p(S, I, i_m \textrm{ on } o_k, o_k \textrm{ is priv}, D)}
+        {p(S, I, D)} \notag\\
+    & \quad && = \frac
+        {p(S \mid I) p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) p(o_k \textrm{ is priv}) p(D)}
+        {p(S \mid I) p(I) p(D)} \notag\\
+    & \quad && = \frac
+        {p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) p(o_k \textrm{ is priv})}
+        {p(I)}\\
+    & p(i_m \textrm{ on } o_k) 
+        && = \sum\limits_{n \in \lbrack0,N)} \Big( p(I_n \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) \Big) \label{eqn:joint}\\
+    & p(I)
+        && = \sum\limits_{o_k \in O} \Big( p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) \Big)%
+\end{align}%
+
+\subsubsection{Algorithm}
+
+We will consider all the factors in Equation \ref{eqn:joint}.  $p(I \mid i_m \textrm{ on } o_k)$ is provided as noisy evidence, which has a high potential for resulting in a falsely high number of contiguous object regions.  Aside from the affect of identifying only small portions of private objects, this will also adversely affect $p(o_k \textrm{ is priv})$ by driving up the number of unmarked private objects and potentially mislabeling those that are marked.  Efficient belief propagation over pixels arranged as Markov Random Fields (MRF) has been shown to produce good results in scenarios where labels are unlikely to change between two neighboring pixels except in border regions \cite{felzenszwalb2006efficient}.  We use a variant of this approach to help regularize the noisy $p(I \mid i_m \textrm{ on } o_k)$ evidence to achieve $p_R(I \mid i_m \textrm{ on } o_k)$, as shown in Algorithm \ref{alg:regObjMap}.
+
+
+\begin{algorithm}[h!]\label{alg:regObjMap}
+\caption{Regularize the Object Map}
+\KwData{
+    $I: \lbrack 0,256 \rbrack^{M \times H} \rightarrow \{i_{mh} \mid \forall m \in \lbrack 0, M ), \forall h \in \lbrack 0, H)\}$
+}
+\KwResult{$p_R(I \mid i_m \textrm{ on } o_k)$}
+
+$T \leftarrow$ small number // number of iterations for message updates\;
+$d \leftarrow$ small positive constant // penalty for labeling variation\;
+$D^{M \times K} \leftarrow -log(p(I \mid i_m \textrm{ on } o))$ /* get object probability map from noisy evidence and convert values to negative log */\;
+MSG$^t \leftarrow 0^{M \times \lvert m\textrm{'s neighbors} \rvert \times K}$\;
+MSG$^{t-1}$\;
+res $\leftarrow$ null$^M$\;
+
+\SetKwFunction{h}{h}
+\SetKwProg{Def}{def}{:}{}
+\Def{\h{x: coord}}{
+    res $\leftarrow 0^K$\;
+    \For{$k \leftarrow 0$ \KwTo $K$}{
+        \For{$q \in$ Neighbors($x$)}{
+            $res_k \leftarrow res_k +$ MSG$^{t-1}_{q,x,k}$\;
+        }
+        $res_k \leftarrow res_k + D_{x,k}$\;
+    }
+    return $res$
+}
+
+\SetKwFunction{Nei}{Neighbors}
+\Def{\Nei{x}}{return 8 pixel coordinates around x // could be 4\;}
+
+\For{$t \leftarrow 0$ \KwTo $T$}{
+    // Update messages $T$ times\;
+    MSG$^{t-1} \leftarrow$ MSG$^t$\;
+    \For{$m \leftarrow 0$ \KwTo $M$}{
+        // for each pixel coordinate\;
+        $h_m \leftarrow$ \h{$m$}\;
+        $h_{m_{min}} \leftarrow \min_{k} (h_m + d)$\;
+        $Q \leftarrow$ Neighbors($m$)\;
+        \For{$q \in Q$}{
+            $h_q \leftarrow$ \h{$q$}\;
+            \For{$k \leftarrow 0$ \KwTo $K$}{
+                MSG$^t_{m,q,k} \leftarrow \min (h_{q_{k}}, h_{m_{min}})$
+            }
+        }
+    }
+}
+\For{$m \leftarrow 0$ \KwTo $M$}{
+    res$_m \leftarrow$ $\operatorname{arg\,min}_k$ \h{$m$}\;
+}
+return res\;
+\end{algorithm}
+
+
+
+There are three factors in Equation \ref{eqn:joint} which are not supplied by the evidence or known, and need to be found.  $p(o_k \textrm{ is priv})$ is the prior distribution for a given object type being private.  This distribution will need to be learned through an enumeration of object types and instances in all the images and tallying which types, and how many, have been marked private in our training data.
+
+\begin{algorithm}
+\KwData{this text}
+\KwResult{this result}
+\caption{hey there}
+\end{algorithm}
+
+
+\subsection{Task 2: Does the Image Contain Private Data?}
+
+The objective for this task can be stated as estimating $p(C_I = 1 \mid I)$ where $C_I$ is the binary class label for whether the image is benign (0) or private (1).  
+
+
+\subsubsection{Probabilistic Model Formulation}
+
+Assuming there are $K$ objects in an image, if even one object in the image is private, then the image contains private content.  A simplistic approach might involve using the evidence $p(I_n \mid i_{nm} \textrm{ on } o)$ directly but, since it is noisy evidence, false positives are likely.  One would like to incorporate any and all useful evidence into the determination, and also reduce noise to achieve congruency for pixel-on-object predictions within object areas to reduce false positives. Therefore, a probabilistic model is needed.
+
+When defining a probabilistic model, it is important to define the central assumptions behind what the model is attempting to capture in terms of privacy. For this approach, the following assumptions are used: (a) certain objects, or object details, are private, and (b) whether an image is private is determined by whether it contains private objects or object details.  Notice that certain contextual privacy scenarios, such as an image of a car known to belong to `Bob' being parked outside of a liquor store during work hours, for example, may not necessarily be marked private, even though `Bob' might argue that it is.
+
+Under these assumptions, we can informally model the objective task as a set of Bernoulli trials over all objects in the image:
+
+\begin{align}\label{eqn:task2.0}
+    p(C_I = 1 \mid \textrm{evidence}) = 1 - \prod_{k \in K} \Big( 1 - p(\textrm{image region for $o_k$ is private} \mid \textrm{evidence}) \Big)
+\end{align}
+
+where $p(\textrm{image region for $o_k$ is private})$ is the marginal distribution of $o_k$ being object type $o$ and $o$ being a private type, as follows...
+
+\begin{align}\label{eqn:task2.1}
+    p(\textrm{image region for $o_k$ is private}) = \sum_{o \in O} p(o_k = o, o\textrm{ is private} \mid \textrm{evidence})    
+\end{align}
+
+\subsubsection{Basis of the Model}
+
+
+
+Now we are ready to infer the marginal probability distribution for $p(\textrm{image region for $o_k$ is private}) = \sum_{o \in O} p(o_k = o, o\textrm{ is private} \mid \textrm{evidence})$.  First, solve for $p(o_k = o, o\textrm{ is private} \mid \textrm{evidence})$.
+
+\begin{align*}
+    p(o_k = o, o\textrm{ is private} \mid \textrm{evidence}) =
+    %p((i_m \textrm{ on } o_k, \exists i_l \textrm{ on } o_k \textrm{ s.t. } l \in t) \mid o_k \textrm{ is private}, i_m \textrm{ on } o_k) p(o_k \textrm{ is private}) p(i_m \textrm{ on } o_k) p(I \mid i_m \textrm{ on } o_k) p(S \mid I) p(D)
+    %p(I, S, D, i_{m} \textrm{ on } o,o \textrm{ is private}, t, Z_h) = & p(t \mid i_m \textrm{ on o}, o \textrm{ is private}, Z_h) \\
+        %& p(i_m \textrm{ on o} \mid S, I) p(S \mid I) p(I) p(Z_h) p(o \textrm{ is private}) p(D)\\
+\end{align*}
+
+\subsubsection{Algorithm}
+
+1. get joint prob map $p(i_{nm} \textrm{ on o}, S_n \mid I_n, t_n)$\\
+2. use MRF (Felzenszwalb) to reduce noise \& increase congruence \cite{felzenszwalb2006efficient}.  Record max $o$ for segmentation.\\
+3. use watershed segmentation to label objects (type \& instance) \cite{87344}. During algorithm, calculate average probability for each object instance (add all pixel probabilities and keep a queue pop counter for final division).  Also build dataset of object types \& instances and if $t_n=1$ is encountered, mark that instance private.  This will be used to build a distribution for $p(o \textrm{ is private}$\\
+4. use \#3 to get $p(o_k = o)$\\
+ 
+
+
+
+
 %%%%%%%%%%%%%%%%% BIB %%%%%%%%%%%%%%%%%%%%
 \newpage
 \bibliographystyle{plain}
@@ -145,7 +372,7 @@ Have a clearly marked section at the end (about 0.75 page) that talks about rese
 \subsubsection{Adversarial machine learning (1.5-2 pages excluding citations)}
 Model this section on the previous section, but expand the focus beyond computer vision and talk about 5-8 papers NOT related to computer vision and how machine learning algorithms can be 'tricked' by adversaries. Discuss how machine learning algorithms in the context of security can be made robust against adversaries trying to escape classification, for example.
 
-\subsection{Dr. David Crandall}
+\subsection{Dr. David Crandall}\label{app:crandall}
 
 
 \subsection{Dr. Donald Williamson}

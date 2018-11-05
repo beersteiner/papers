@@ -1,0 +1,8 @@
+Q2)
+
+1. Create object map with probs for each object
+Input:
+    p(S=s | I) for all s in S
+    p(I | pix on o) for all o in O
+Output:
+    p(pix on o, S=s | I)
