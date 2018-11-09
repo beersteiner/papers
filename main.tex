@@ -14,6 +14,7 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning, shapes, arrows}
 \usepackage[ruled]{algorithm2e}
+\usepackage{amssymb}
 
 \begin{document}
 
@@ -224,16 +225,80 @@ Now we are ready to perform some Bayesian inference to obtain $p(i_m \textrm{ on
         {p(S \mid I) p(I) p(D)} \notag\\
     & \quad && = \frac
         {p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) p(o_k \textrm{ is priv})}
-        {p(I)}\\
+        {p(I)} \label{eqn:joint}\\
+    & \quad && = p(i_m \textrm{ on } o_k \mid I) p(o_k \textrm{ is priv}) \label{eqn:indep}\\
     & p(i_m \textrm{ on } o_k) 
-        && = \sum\limits_{n \in \lbrack0,N)} \Big( p(I_n \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) \Big) \label{eqn:joint}\\
+        && = \textrm{?}\\
     & p(I)
         && = \sum\limits_{o_k \in O} \Big( p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) \Big)%
 \end{align}%
 
 \subsubsection{Algorithm}
 
-We will consider all the factors in Equation \ref{eqn:joint}.  $p(I \mid i_m \textrm{ on } o_k)$ is provided as noisy evidence, which has a high potential for resulting in a falsely high number of contiguous object regions.  Aside from the affect of identifying only small portions of private objects, this will also adversely affect $p(o_k \textrm{ is priv})$ by driving up the number of unmarked private objects and potentially mislabeling those that are marked.  Efficient belief propagation over pixels arranged as Markov Random Fields (MRF) has been shown to produce good results in scenarios where labels are unlikely to change between two neighboring pixels except in border regions \cite{felzenszwalb2006efficient}.  We use a variant of this approach to help regularize the noisy $p(I \mid i_m \textrm{ on } o_k)$ evidence to achieve $p_R(I \mid i_m \textrm{ on } o_k)$, as shown in Algorithm \ref{alg:regObjMap}.
+Equation \ref{eqn:indep} illustrates independence of the events that a specific pixel belongs to a specific object and that object being a private object type.  However, the prior distribution $p(i_m \textrm{ on } o_k \ I)$ is still unknown.  We will consider the factors in Equation \ref{eqn:joint} to estimate it.  Estimation of $p(i_m \textrm{ on } o_k \ I)$ can be regarded as a constrained Maximum a Priori (MAP) estimation follows:
+
+
+\begin{gather}
+	\theta : \Big(p(i_m \textrm{ on } o_0), p(i_m \textrm{ on } o_1),
+		\dots, p(i_m \textrm{ on } o_K)\Big) \notag\\
+	L(\theta) = \prod_{n=0}^{N} \sum_{k=0}^{K} p(I_n \mid i_{nm} 
+		\textrm{ on } o_k) \theta_k \notag\\
+	LL(\theta) = \sum_{n=0}^{n=N} \log \Big( \sum_{k=0}^{k=K} 
+		p(I_n \mid i_{nm} \textrm{ on } o_k) \theta_k \Big) \label{eqn:loglik}\\
+	\sum_{k=0}^{k=K} \theta_k - 1 = 0 \label{eqn:constr}\\
+	\mathcal{L}(\theta, \lambda) = \sum_{n=0}^{n=N} \log 
+		\Big( \sum_{k=0}^{k=K} p(I_n \mid i_{nm} \textrm{ on } o_k) \theta_k \Big) + \lambda - \lambda \sum_{k=0}^{k=K} \theta_k \label{eqn:lagr}\\
+	\mathbf{F}^{K \times 1}: \mathbf{F}_k = \frac{\partial \mathcal{L}}{\partial \theta_k} = 
+		\sum_{n=0}^{N} \frac
+			{p(I_n \mid i_{nm \textrm{ on } o_k})}
+			{\sum_{j=0}^{K} p(I_n \mid i_{nm \textrm{ on } o_j}) \theta_j} = 0;
+		\frac{\partial \mathcal{L}}{\partial \lambda} = 1 - \sum_{k=0}^{K} 
+			\theta_k = 0 \label{eqn:lagr1der}\\
+	\mathbf{J}^{K \times K}: \mathbf{J}_{i,j} = \frac{\partial}{\partial \theta_j} \left( \frac
+		{\partial \mathcal{L}}{\partial \theta_i} \right) = 
+		\sum_{n=0}^{N} \frac
+			{-p(I_n \mid i_{nm \textrm{ on } o_i})p(I_n \mid i_{nm \textrm{ on } o_j})}
+			{(\sum_{l=0}^{K} p(I_n \mid i_{nm \textrm{ on } o_l}) \theta_l)^2} \label{eqn:lagr2der};
+		\frac{\partial}{\partial \lambda} \left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) = 0
+\end{gather}
+
+Equation \ref{eqn:loglik} represents the Log Likelihood of the observed data to be maximized over $\theta$, and Equation \ref{eqn:constr} represents the constraint that prior probabilities for all object types sum to 1.  A Lagrangian (Equation \ref{eqn:lagr}) is constructed to define the boundary on the Log Likelihood along which the constraint is satisfied.  The roots of the vector of first derivatives for this boundary (Equation \ref{eqn:lagr1der}) will contain the prior distribution that maximizes the posterior distribution.  Equation \ref{eqn:lagr1der} is difficult to solve in closed form. Thus, we will use the Newton-Raphson root finding algorithm to estimate the roots in quadratic time.  This algorithm also requires the second derivative of the Lagrangian, a Jacobian matrix, Equation \ref{eqn:lagr2der}.
+
+\begin{algorithm}[h]
+\caption{Newton-Raphson Root Finding Algorithm}
+	\KwData{
+		$X \leftarrow p(I_n \mid i_{nm} \textrm{ on } o_k)$; $\nabla_{\theta} \mathcal{L}$
+	}
+	\KwResult{$\theta_{root}: \{\theta_{0_{root}}, \theta_{1_{root}},
+		\dots, \theta_{K_{root}}\}$}
+	$\vec{\theta} \leftarrow 0^{M \times K}$\;
+	$\alpha \leftarrow$ small constant; $T \leftarrow$ small constant\;
+	\For{$m \leftarrow 0$ \KwTo $M$}{
+		\For{$n \leftarrow 0$ \KwTo $N$}{
+			$\vec{\theta_{m}} \leftarrow \vec{\theta_{m}} + 
+				\frac{\vec{p(I_n \mid i_{nm} \textrm{ on } o)}}{N \times \sum_{k=0}^{K} p(I_n \mid i_{nm} \textrm{ on } o_k)}$
+				// initial guess for $\theta_{m}$ assuming $I$ is uniform\;
+		}
+		Build $\mathbf{F}$ // complexity $O(NK)$\;
+		Build $\mathbf{J}^{-1}$ // complexity $O(NK+K^3)$\;
+		$t \leftarrow 0$\;
+		\While{$\mathbf{F}(\theta_{m}) > \alpha$ and $t < T$}{
+			$\vec{\theta_m} \leftarrow \vec{\theta_m} - 
+				\mathbf{J}(\vec{\theta_m})^{-1} \mathbf{F}(\vec{\theta_m})$
+				// complexity $O(NK)$\;
+			$t \leftarrow t + 1$\;
+		}
+	$\vec{\theta_m} \leftarrow \vec{\theta_m} / sum_{k=0}^{K} \theta_{mk}$
+		// satisfy constraint (i.e. solve for $\lambda$)\;
+	}
+\end{algorithm}
+
+Now that the prior $p(i_m \textrm{ on } o_k)$ has been estimated, we can calculate $p(i_m \textrm{ on } o_k \mid I)$ as follows:
+
+$$p(i_m \textrm{ on } o_k \mid I) = 
+	\frac{p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k)}{\sum_{j=0}^{K} p(I \mid i_m \textrm{ on } o_j) p(i_m \textrm{ on } o_j)}$$
+
+However, $p(i_m \textrm{ on } o_k \mid I)$ is still based on noisy evidence, which has a high potential for resulting in a falsely high number of contiguous object regions.  Aside from the affect of identifying only small portions of private objects, this will also adversely affect $p(o_k \textrm{ is priv})$ by driving up the number of unmarked private objects and potentially mislabeling those that are marked.  Efficient belief propagation over pixels arranged as Markov Random Fields (MRF) has been shown to produce good results in scenarios where labels are unlikely to change between two neighboring pixels except in border regions \cite{felzenszwalb2006efficient}.  We use a variant of this approach to help regularize the noisy $p(i_m \textrm{ on } o_k \mid I)$ evidence to achieve $p_R(i_m \textrm{ on } o_k \mid I)$, as shown in Algorithm \ref{alg:regObjMap}.
 
 
 \begin{algorithm}[h!]\label{alg:regObjMap}
@@ -241,14 +306,14 @@ We will consider all the factors in Equation \ref{eqn:joint}.  $p(I \mid i_m \te
 \KwData{
     $I: \lbrack 0,256 \rbrack^{M \times H} \rightarrow \{i_{mh} \mid \forall m \in \lbrack 0, M ), \forall h \in \lbrack 0, H)\}$
 }
-\KwResult{$p_R(I \mid i_m \textrm{ on } o_k)$}
+\KwResult{$p_R(i_m \textrm{ on } o_k \mid I)$}
 
 $T \leftarrow$ small number // number of iterations for message updates\;
 $d \leftarrow$ small positive constant // penalty for labeling variation\;
-$D^{M \times K} \leftarrow -log(p(I \mid i_m \textrm{ on } o))$ /* get object probability map from noisy evidence and convert values to negative log */\;
+$D^{M \times K} \leftarrow -log(p(i_m \textrm{ on } o \mid I))$ /* get object probability map from noisy evidence and convert values to negative log */\;
 MSG$^t \leftarrow 0^{M \times \lvert m\textrm{'s neighbors} \rvert \times K}$\;
 MSG$^{t-1}$\;
-res $\leftarrow$ null$^M$\;
+PMAP $\leftarrow$ null$^{M \times K}$\;
 
 \SetKwFunction{h}{h}
 \SetKwProg{Def}{def}{:}{}
@@ -283,19 +348,34 @@ res $\leftarrow$ null$^M$\;
     }
 }
 \For{$m \leftarrow 0$ \KwTo $M$}{
-    res$_m \leftarrow$ $\operatorname{arg\,min}_k$ \h{$m$}\;
+    $p_R(i_m \textrm{ on } o \mid I) \leftarrow \frac
+	    {\vec{log^{-1}(-\textrm{\h{m}})}}
+	    {\sum_{k=0}^{K}log^{-1}(-\textrm{\h{m}})}$
+	    // conv. to probability and ensure normalized\;
 }
 return res\;
 \end{algorithm}
 
 
+The final task is to estimate $p(o_k \textrm{ is priv})$.  To achieve this, we need to enumerate all the object types and instances in the image set.  One we have enumerated all the instances, we tally all those instances on which a human-marked pixel falls to build a prior distribution for $p(o_k \textrm{ is priv})$.
 
-There are three factors in Equation \ref{eqn:joint} which are not supplied by the evidence or known, and need to be found.  $p(o_k \textrm{ is priv})$ is the prior distribution for a given object type being private.  This distribution will need to be learned through an enumeration of object types and instances in all the images and tallying which types, and how many, have been marked private in our training data.
 
-\begin{algorithm}
-\KwData{this text}
-\KwResult{this result}
-\caption{hey there}
+\begin{algorithm}[h!]\label{alg:objEnum}
+	\KwData{$p_R(i_{nm} \textrm{ on } o_k \mid I_n) \forall n \in \lbrack0,N), \forall k \in \lbrack0,K), \forall m \in \lbrack0,M)$}
+	\KwResult{$E: \{(Obj, Prob, Priv)_0, \dots, (Obj, P_{type}, Priv)_L\}$ where Obj is the set of identified objects, Prob is the probability associated with the object type labeling, Priv is True if marked, False otherwise, and L is total number of objects}
+	\SetKwProg{Def}{def}{:}{}
+	\SetKwFunction{N}{Neighbors}
+	\Def{\N{x: coord}}{returns previously marked neighbors to $x$}
+	%$Q_{unseen}, Q_{cur}$ // declare empty queues\;
+	\For{$m \leftarrow 0$ \KwTo $M$}{
+		nbs $\leftarrow$ \N{m}\;
+		\uIf{}{}
+		\uElse{}
+		%$Q_{unseen} \leftarrow I_n$\;
+		%$Q_{cur}.\textrm{clear}$\;
+		%$Q_{cur}.\textrm{push}(Q_{unseen}.\textrm{pop}())$
+	}
+\caption{Object Enumeration}
 \end{algorithm}
 
 
