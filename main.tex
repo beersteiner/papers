@@ -11,6 +11,7 @@
 \usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
 \usepackage{appendix}
 \usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
 \usepackage{tikz}
 \usetikzlibrary{positioning, shapes, arrows}
 \usepackage[ruled]{algorithm2e}
@@ -159,7 +160,7 @@ Let's define some assumptions.
     \item Both tasks are semi-supervised, such that the only form of labeled data is $t_n$\footnote{The semi-supervised assumption was adopted because human point-and-click labeling of private image regions for both training and updating of models is thought to be a realistic scenario.}.  Note that this assumption implies that $t_n$ will not be available at test time.
 \end{enumerate}
 
-In the following sections, the $n$ subscript will usually be omitted for simplicity when considering a single image.
+In the following sections, the $n$ subscript will often be omitted for simplicity when considering a single image.
 
 \subsection{Task 1: Which Pixels Represent Private Data?}
 
@@ -167,24 +168,21 @@ The objective for this task can be stated as estimating $\{\forall m \in \lbrack
 
 \subsubsection{Probabalistic Model Formulation}
 
-A simplistic approach might involve using the evidence $p(I \mid i_{m} \textrm{ on } o)$ directly but, since it is noisy evidence, false positives are likely.  One would like to incorporate any and all useful evidence into the determination, and also reduce noise to achieve congruency for pixel-on-object predictions within object areas to reduce false positives. Therefore, a probabilistic model is needed.
+One would like to incorporate any and all useful evidence into the determination, and also reduce noise to achieve congruency for pixel-on-object predictions within object areas to reduce false positives. Therefore, a probabilistic model is needed.
 
 When defining a probabilistic model, it is important to define the central assumptions behind what the model is attempting to capture in terms of privacy. For this approach, the following assumptions are used: (a) certain objects, or object details, are private, and (b) whether an image is private is determined by whether it contains private objects or object details.  Notice that certain contextual privacy scenarios, such as an image of a car known to belong to `Bob' being parked outside of a liquor store during work hours, for example, may not necessarily be marked private, even though `Bob' might argue that it is.
 
-Under these assumptions, we can model the objective task as a marginal (over all object types) of the joint probability that $i_m$ belongs to a certain object type $o$ and that object type $o$ is a private type. More formally, $\forall m \in \lbrack0,M)$:
+Under these assumptions, we can model the objective task as a marginal (over all $K$ object types) of the joint probability that $i_m$ belongs to a certain object type $o_k$ and that object type $o_k$ is a private type. More formally, $\forall m \in \lbrack0,M)$:
 
 \begin{align}\label{eqn:task1.0}
-    p(C_{P_{m}} = 1 \mid I, \textrm{ evidence}) = \sum_{o \in O} \Big( p(i_m \textrm{ on } o, o \textrm{ is private} \mid I, \textrm{ evidence}) \Big)
-    %p(C_I = 1 \mid \textrm{evidence}) = 1 - \prod_{k \in K} \Big( 1 - p(\textrm{image region for $o_k$ is private} \mid \textrm{evidence}) \Big)
+    p(C_{P_{m}} = 1 \mid I, \textrm{ evidence}) = \sum_{k = 0}^{K} \Big( p(i_m \textrm{ on } o_k, o_k \textrm{ is private} \mid I, \textrm{ evidence}) \Big)
 \end{align}
 
 
 
 \subsubsection{Basis of the Model}
 
-To form the basis of the probabilistic model, a belief network which juxtaposes our evidence and other random variables into a reasonable set of dependency assumptions can be created. The dependency assumptions are defined as follows.  Firstly, an image ($I$) is the result of, and therefore depends on, the true object-to-pixel mapping ($i_m$ on $o_k$) that is captured by the camera.  Secondly, the scene type ($S$) prediction is based on, and therefore depends on, the image ($I$).  Thirdly, whether or not the object $o_k$ is private is dependent on $t$, but since $t$ is not available at test time $o_k$'s privacy will be regarded as independent from any observable variable.  Lastly, we'll assume for now that image metadata ($D$) in its raw form doesn't meaningfully contribute to the privacy determination problem.  GPS location and time stamps may be useful for influencing the scene probabilities or accounting for lighting differences in the image for object recognition, but we do not have direct influence over those predictors.  The resulting belief network is shown in Figure \ref{fig:belief}.
-
-%Thirdly, whether or not a given pixel is marked as being private ($m \in t$) is going to depend on (a) which object type the pixel is on ($i_m$ on $o_k$), and (b) whether that object type is private ($o_k$ is private).  However, since the number of pixels marked per private object is small (likely $\leq 1$), Bayesian inference at the pixel level involving $p(m \in t)$ will result in a weak predictor of $p(o_k \textrm{ is private})$. A better approach is to use the knowledge that is given in the problem statement about how $t$ is generated, and perform inference at the object level.  Therefore, we will represent the event that there exists at least one pixel that is marked as private as follows $(\exists i_l \textrm{ on } o_k \textrm{ s.t. } l \in t)$.  This event is dependent on whether or not the object type is private, but we assume independence from whether or not a specific pixel is marked as private.  This approach is discussed more in the following sections.  
+To form the basis of the probabilistic model, a belief network which juxtaposes our evidence and other random variables into the believed set of dependency assumptions can be created. The dependency assumptions are defined as follows.  Firstly, an image ($I$) is the result of, and therefore depends on, the true object-to-pixel mapping ($i_m$ on $o_k$) that is captured by the camera.  Secondly, the scene type ($S$) prediction is based on, and therefore depends on, the image ($I$).  Thirdly, whether or not the object $o_k$ is private is dependent on $t$, but since $t$ is not available at test time $o_k$'s privacy will be regarded as independent from any observable variable.  Lastly, we'll assume for now that image metadata ($D$) in its raw form doesn't meaningfully contribute to the privacy determination problem.  GPS location and time stamps may be useful for influencing the scene probabilities or accounting for lighting differences in the image for object recognition, but we do not have direct influence over those predictors.  The resulting belief network is shown in Figure \ref{fig:belief}.
 
 \begin{figure}[ht]
 \centering
@@ -216,38 +214,39 @@ To form the basis of the probabilistic model, a belief network which juxtaposes 
 Now we are ready to perform some Bayesian inference to obtain $p(i_m \textrm{ on } o, o \textrm{ is private} \mid I, \textrm{ evidence})$.
 
 \begin{align}
-    & p(i_m \textrm{ on } o_k, o_k \textrm{ is priv} \mid I, \textrm{ evidence})     && = p(i_m \textrm{ on } o_k, o_k \textrm{ is priv} \mid I, S, D) \notag\\
+    & p(i_m \textrm{ on } o, o \textrm{ is priv} \mid I, \textrm{ evidence})     && = p(i_m \textrm{ on } o, o \textrm{ is priv} \mid I, S, D) \notag\\
     & \quad && = \frac
-        {p(S, I, i_m \textrm{ on } o_k, o_k \textrm{ is priv}, D)}
+        {p(S, I, i_m \textrm{ on } o, o \textrm{ is priv}, D)}
         {p(S, I, D)} \notag\\
     & \quad && = \frac
-        {p(S \mid I) p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) p(o_k \textrm{ is priv}) p(D)}
+        {p(S \mid I) p(I \mid i_m \textrm{ on } o) p(i_m \textrm{ on } o) p(o \textrm{ is priv}) p(D)}
         {p(S \mid I) p(I) p(D)} \notag\\
     & \quad && = \frac
-        {p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) p(o_k \textrm{ is priv})}
+        {p(I \mid i_m \textrm{ on } o) p(i_m \textrm{ on } o) p(o \textrm{ is priv})}
         {p(I)} \label{eqn:joint}\\
-    & \quad && = p(i_m \textrm{ on } o_k \mid I) p(o_k \textrm{ is priv}) \label{eqn:indep}\\
-    & p(i_m \textrm{ on } o_k) 
+    & \quad && = p(i_m \textrm{ on } o \mid I) p(o \textrm{ is priv}) \label{eqn:indep}\\
+    & p(i_m \textrm{ on } o) 
         && = \textrm{?}\\
     & p(I)
-        && = \sum\limits_{o_k \in O} \Big( p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) \Big)%
+        && = \sum_{k = 0}^{K} \Big( p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) \Big)%
 \end{align}%
 
-\subsubsection{Algorithm}
+\subsubsection{Algorithm}\label{sec:t1alg}
 
-Equation \ref{eqn:indep} illustrates independence of the events that a specific pixel belongs to a specific object and that object being a private object type.  However, the prior distribution $p(i_m \textrm{ on } o_k \ I)$ is still unknown.  We will consider the factors in Equation \ref{eqn:joint} to estimate it.  Estimation of $p(i_m \textrm{ on } o_k \ I)$ can be regarded as a constrained Maximum a Priori (MAP) estimation follows:
+Time complexity for all algorithms are given in their respective captions.  $N$ is number of images, $M$ is number of pixels per image, $K$ is number of object types, $L_n$ is number of objects in image $I_n$, $Q$ is the number of neighbors to pixels, and $T$ is number of iterations (for root finding). 
 
+Equation \ref{eqn:indep} illustrates independence of the events that a specific pixel belongs to a specific object and that object being a private object type.  However, the prior distribution $p(i_m \textrm{ on } o \mid I)$ is still unknown.  We will consider the factors in Equation \ref{eqn:joint} to estimate it.  Estimation of $p(i_m \textrm{ on } o \mid I)$ can be regarded as a constrained Maximum a Priori (MAP) estimation follows:
 
 \begin{gather}
 	\theta : \Big(p(i_m \textrm{ on } o_0), p(i_m \textrm{ on } o_1),
-		\dots, p(i_m \textrm{ on } o_K)\Big) \notag\\
+		\dots, p(i_m \textrm{ on } o_K)\Big) \\
 	L(\theta) = \prod_{n=0}^{N} \sum_{k=0}^{K} p(I_n \mid i_{nm} 
-		\textrm{ on } o_k) \theta_k \notag\\
-	LL(\theta) = \sum_{n=0}^{n=N} \log \Big( \sum_{k=0}^{k=K} 
+		\textrm{ on } o_k) \theta_k \\
+	LL(\theta) = \sum_{n=0}^{N} \log \Big( \sum_{k=0}^{K} 
 		p(I_n \mid i_{nm} \textrm{ on } o_k) \theta_k \Big) \label{eqn:loglik}\\
-	\sum_{k=0}^{k=K} \theta_k - 1 = 0 \label{eqn:constr}\\
-	\mathcal{L}(\theta, \lambda) = \sum_{n=0}^{n=N} \log 
-		\Big( \sum_{k=0}^{k=K} p(I_n \mid i_{nm} \textrm{ on } o_k) \theta_k \Big) + \lambda - \lambda \sum_{k=0}^{k=K} \theta_k \label{eqn:lagr}\\
+	\sum_{k=0}^{K} \theta_k - 1 = 0 \label{eqn:constr}\\
+	\mathcal{L}(\theta, \lambda) = \sum_{n=0}^{N} \log 
+		\Big( \sum_{k=0}^{K} p(I_n \mid i_{nm} \textrm{ on } o_k) \theta_k \Big) + \lambda - \lambda \sum_{k=0}^{K} \theta_k \label{eqn:lagr}\\
 	\mathbf{F}^{K \times 1}: \mathbf{F}_k = \frac{\partial \mathcal{L}}{\partial \theta_k} = 
 		\sum_{n=0}^{N} \frac
 			{p(I_n \mid i_{nm \textrm{ on } o_k})}
@@ -262,16 +261,14 @@ Equation \ref{eqn:indep} illustrates independence of the events that a specific 
 		\frac{\partial}{\partial \lambda} \left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) = 0
 \end{gather}
 
-Equation \ref{eqn:loglik} represents the Log Likelihood of the observed data to be maximized over $\theta$, and Equation \ref{eqn:constr} represents the constraint that prior probabilities for all object types sum to 1.  A Lagrangian (Equation \ref{eqn:lagr}) is constructed to define the boundary on the Log Likelihood along which the constraint is satisfied.  The roots of the vector of first derivatives for this boundary (Equation \ref{eqn:lagr1der}) will contain the prior distribution that maximizes the posterior distribution.  Equation \ref{eqn:lagr1der} is difficult to solve in closed form. Thus, we will use the Newton-Raphson root finding algorithm to estimate the roots in quadratic time.  This algorithm also requires the second derivative of the Lagrangian, a Jacobian matrix, Equation \ref{eqn:lagr2der}.
+Equation \ref{eqn:loglik} represents the Log Likelihood of the observed data to be maximized over $\theta$, and Equation \ref{eqn:constr} represents the constraint that prior probabilities for all object types sum to 1.  A Lagrangian (Equation \ref{eqn:lagr}) is constructed to define the boundary on the Log Likelihood along which the constraint is satisfied.  The roots of the vector of first derivatives for this boundary (Equation \ref{eqn:lagr1der}) will contain the prior distribution that maximizes the posterior distribution.  Equation \ref{eqn:lagr1der} is difficult to solve in closed form. Thus, we will use the Newton-Raphson root finding algorithm to estimate the roots in quadratic time, Algorithm \ref{alg:newtraph}.  This algorithm also requires the second derivative of the Lagrangian, a Jacobian matrix, expressed in Equation \ref{eqn:lagr2der}.
 
-\begin{algorithm}[h]
-\caption{Newton-Raphson Root Finding Algorithm}
+\begin{algorithm}[h!]\label{alg:newtraph}
+\caption{Newton-Raphson Root Finding Algorithm, $O(M(NK + K^3 + TNK))$}
 	\KwData{
-		$X \leftarrow p(I_n \mid i_{nm} \textrm{ on } o_k)$; $\nabla_{\theta} \mathcal{L}$
-	}
-	\KwResult{$\theta_{root}: \{\theta_{0_{root}}, \theta_{1_{root}},
-		\dots, \theta_{K_{root}}\}$}
-	$\vec{\theta} \leftarrow 0^{M \times K}$\;
+		$X \leftarrow p(I_n \mid i_{nm} \textrm{ on } o_k)$}
+	\KwResult{$\theta^{M \times K}: \{\vec{\theta}_{0}^K, \dots, \vec{\theta}_{M}^K\}$}
+	$\theta \leftarrow 0^{M \times K}$\;
 	$\alpha \leftarrow$ small constant; $T \leftarrow$ small constant\;
 	\For{$m \leftarrow 0$ \KwTo $M$}{
 		\For{$n \leftarrow 0$ \KwTo $N$}{
@@ -279,8 +276,8 @@ Equation \ref{eqn:loglik} represents the Log Likelihood of the observed data to 
 				\frac{\vec{p(I_n \mid i_{nm} \textrm{ on } o)}}{N \times \sum_{k=0}^{K} p(I_n \mid i_{nm} \textrm{ on } o_k)}$
 				// initial guess for $\theta_{m}$ assuming $I$ is uniform\;
 		}
-		Build $\mathbf{F}$ // complexity $O(NK)$\;
-		Build $\mathbf{J}^{-1}$ // complexity $O(NK+K^3)$\;
+		Build $\mathbf{F}$ // Equation \ref{eqn:lagr1der} complexity $O(NK)$\;
+		Build $\mathbf{J}^{-1}$ // Inverse matrix of Equation \ref{eqn:lagr2der} complexity $O(NK+K^3)$\;
 		$t \leftarrow 0$\;
 		\While{$\mathbf{F}(\theta_{m}) > \alpha$ and $t < T$}{
 			$\vec{\theta_m} \leftarrow \vec{\theta_m} - 
@@ -293,28 +290,27 @@ Equation \ref{eqn:loglik} represents the Log Likelihood of the observed data to 
 	}
 \end{algorithm}
 
-Now that the prior $p(i_m \textrm{ on } o_k)$ has been estimated, we can calculate $p(i_m \textrm{ on } o_k \mid I)$ as follows:
+Now that the prior $p(i_m \textrm{ on } o)$ has been estimated, we can calculate $p(i_m \textrm{ on } o \mid I)$ as follows:
 
-$$p(i_m \textrm{ on } o_k \mid I) = 
-	\frac{p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k)}{\sum_{j=0}^{K} p(I \mid i_m \textrm{ on } o_j) p(i_m \textrm{ on } o_j)}$$
+\begin{align}
+    p(i_m \textrm{ on } o \mid I) = 
+	    \frac{p(I \mid i_m \textrm{ on } o) p(i_m \textrm{ on } o)}{\sum_{j=0}^{K} p(I \mid i_m \textrm{ on } o_j) p(i_m \textrm{ on } o_j)}    
+\end{align}
 
-However, $p(i_m \textrm{ on } o_k \mid I)$ is still based on noisy evidence, which has a high potential for resulting in a falsely high number of contiguous object regions.  Aside from the affect of identifying only small portions of private objects, this will also adversely affect $p(o_k \textrm{ is priv})$ by driving up the number of unmarked private objects and potentially mislabeling those that are marked.  Efficient belief propagation over pixels arranged as Markov Random Fields (MRF) has been shown to produce good results in scenarios where labels are unlikely to change between two neighboring pixels except in border regions \cite{felzenszwalb2006efficient}.  We use a variant of this approach to help regularize the noisy $p(i_m \textrm{ on } o_k \mid I)$ evidence to achieve $p_R(i_m \textrm{ on } o_k \mid I)$, as shown in Algorithm \ref{alg:regObjMap}.
+However, $p(i_m \textrm{ on } o \mid I)$ is still based on noisy evidence, which has a high potential for resulting in a falsely high number of contiguous object regions.  Aside from the affect of identifying only small portions of private objects, this will also adversely affect $p(o_k \textrm{ is priv})$ by driving up the number of unmarked private objects and potentially mislabeling those that are marked.  Efficient belief propagation over pixels arranged as Markov Random Fields (MRF) has been shown to produce good results in scenarios where labels are unlikely to change between two neighboring pixels except in border regions \cite{felzenszwalb2006efficient}.  We use a variant of this approach to help regularize the noisy $p(i_m \textrm{ on } o \mid I)$ evidence to achieve $p_R(i_m \textrm{ on } o \mid I)$, as shown in Algorithm \ref{alg:regObjMap}.
 
 
 \begin{algorithm}[h!]\label{alg:regObjMap}
-\caption{Regularize the Object Map}
+\caption{Regularize the Object Map, $O(NTMQ^2K)$}
 \KwData{
-    $I: \lbrack 0,256 \rbrack^{M \times H} \rightarrow \{i_{mh} \mid \forall m \in \lbrack 0, M ), \forall h \in \lbrack 0, H)\}$
-}
-\KwResult{$p_R(i_m \textrm{ on } o_k \mid I)$}
-
+    $I: \lbrack 0,256 \rbrack^{M \times H} \rightarrow \{i_{mh} \mid \forall m \in \lbrack 0, M ), \forall h \in \lbrack 0, H)\}$}
+\KwResult{$p_R(i_m \textrm{ on } o \mid I)$}
 $T \leftarrow$ small number // number of iterations for message updates\;
 $d \leftarrow$ small positive constant // penalty for labeling variation\;
 $D^{M \times K} \leftarrow -log(p(i_m \textrm{ on } o \mid I))$ /* get object probability map from noisy evidence and convert values to negative log */\;
 MSG$^t \leftarrow 0^{M \times \lvert m\textrm{'s neighbors} \rvert \times K}$\;
 MSG$^{t-1}$\;
 PMAP $\leftarrow$ null$^{M \times K}$\;
-
 \SetKwFunction{h}{h}
 \SetKwProg{Def}{def}{:}{}
 \Def{\h{x: coord}}{
@@ -327,10 +323,8 @@ PMAP $\leftarrow$ null$^{M \times K}$\;
     }
     return $res$
 }
-
 \SetKwFunction{Nei}{Neighbors}
 \Def{\Nei{x}}{return 8 pixel coordinates around x // could be 4\;}
-
 \For{$t \leftarrow 0$ \KwTo $T$}{
     // Update messages $T$ times\;
     MSG$^{t-1} \leftarrow$ MSG$^t$\;
@@ -357,70 +351,101 @@ return res\;
 \end{algorithm}
 
 
-The final task is to estimate $p(o_k \textrm{ is priv})$.  To achieve this, we need to enumerate all the object types and instances in the image set.  One we have enumerated all the instances, we tally all those instances on which a human-marked pixel falls to build a prior distribution for $p(o_k \textrm{ is priv})$.
-
+The final task is to estimate $p(o \textrm{ is priv})$.  To achieve this, we need to enumerate all the object instances, their types, their respective probabilities, and whether they are private.  To achieve this, we us a variant of the Two-Pass Connected Component Labeling algorithm \cite{hoshen1976percolation}, described in Algorithm \ref{alg:objEnum}.  It is important to note that although objects are enumerated according to the high object type probabilities for each pixel, probability summations for all objects types are preserved at each pixel.  This will be important later.
 
 \begin{algorithm}[h!]\label{alg:objEnum}
-	\KwData{$p_R(i_{nm} \textrm{ on } o_k \mid I_n) \forall n \in \lbrack0,N), \forall k \in \lbrack0,K), \forall m \in \lbrack0,M)$}
-	\KwResult{$E: \{(Obj, Prob, Priv)_0, \dots, (Obj, P_{type}, Priv)_L\}$ where Obj is the set of identified objects, Prob is the probability associated with the object type labeling, Priv is True if marked, False otherwise, and L is total number of objects}
+\caption{Object Enumeration, $O(NMQ + L)$}
+	\KwData{$P^{N \times M \times K} \leftarrow p_R(i_{nm} \textrm{ on } o_k \mid I_n) \forall n \in \lbrack 0,N), \forall m \in \lbrack0,M), \forall k \in \lbrack0,K)$}
+	\KwResult{$\Big( E^{N \times L_n}, Y^{N \times L_n} \Big)$ s.t. $E: (((\textrm{typ, } \vec{\textrm{psum}} \textrm{, cnt})_{00}, \dots, (\textrm{typ, } \vec{\textrm{psum}} \textrm{, cnt})_{0L_{0}}),$ \\ $((\textrm{typ, } \vec{\textrm{psum}} \textrm{, cnt})_{0N}, \dots, (\textrm{typ, } \vec{\textrm{psum}} \textrm{, cnt})_{NL_{N}})); Y: \{True, False\}^{N \times L_n}$}
+	/* where typ is the object type label, psum is the sum of probabilities for that type within the object region, cnt is the number of pixels in the object region, the training label $Y$ is True if object region is marked, False otherwise, and $L_n$ is total number of objects within image $I_n$ */\;
 	\SetKwProg{Def}{def}{:}{}
-	\SetKwFunction{N}{Neighbors}
-	\Def{\N{x: coord}}{returns previously marked neighbors to $x$}
-	%$Q_{unseen}, Q_{cur}$ // declare empty queues\;
-	\For{$m \leftarrow 0$ \KwTo $M$}{
-		nbs $\leftarrow$ \N{m}\;
-		\uIf{}{}
-		\uElse{}
-		%$Q_{unseen} \leftarrow I_n$\;
-		%$Q_{cur}.\textrm{clear}$\;
-		%$Q_{cur}.\textrm{push}(Q_{unseen}.\textrm{pop}())$
+    \SetKwFunction{N}{Neighbors}
+    \Def{\N{x: coord}}{returns Queue of previously marked neighbors to $x$ in ascending order}
+	\For{$n \leftarrow 0$ \KwTo $N$}{
+    	$\vec{\lambda} \leftarrow \infty^{M}$\;
+    	$\lambda_{cur} \leftarrow -1$\;
+    	$\vec{\Pi} \leftarrow ()$ // each element points to its parent label\;
+    	\For{$m \leftarrow 0$ \KwTo $M$}{
+    		$Q \leftarrow$ \N{m}\;
+    		\While{$Q \neq \emptyset$}{
+    		    $b \leftarrow Q$.pop()\;
+    		    $k \leftarrow \argmax_k P_{nm}$\;
+    		    \uIf{$k == (\argmax_k P_{nb})$}{
+    		        \uIf{$\lambda_b > \lambda_m$}{
+    		            $\pi_b \leftarrow \lambda_m$ // record $\lambda_m$ as parent of $\lambda_b$\;
+    		        }
+    		        \uElse{
+    		            $\lambda_m \leftarrow \lambda_b$ // adopt neighbor's label\;
+    		            $E_{n\lambda_{m}}$.psum $+= P_{nm}$\;
+    		            $E_{n\lambda_{m}}$.cnt $+= 1$\;
+    		            \uIf{$m \in t_n$}{$Y_{n\lambda_{m}} \leftarrow True$ // if this is training data}
+    		        }
+    		    }
+    		}
+    		\uIf{$\lambda_m == \infty$}{
+    		    $\lambda_{cur} \leftarrow \lambda_{cur} + 1$\;
+    		    k $\leftarrow \argmax_k P_{nm}$\;
+    		    $\lambda_m \leftarrow \lambda_{cur}$\;
+    		    $E_n$.append(typ, $P_{nm}$, 1)\;
+    		    $Y_n$.append($m \in t_n$) // if this is training data\;
+    		    $\Pi$.append($-1$)\;
+    	    }
+    	}
+    	\For{$l \leftarrow (\left| E_n \right| -1)$ \KwTo $0$}{
+    	    \uIf{$\pi_l \geq 0$}{
+    	        // collapse children into parents\;
+    	        $E_{n\pi_{l}} \leftarrow (E_{n\pi_{l}}\textrm{.type}, E_{n\pi_{l}}\textrm{.psum} + E_{nl}\textrm{.psum}, E_{n\pi_{l}}\textrm{.cnt} + E_{nl}\textrm{.cnt})$\;
+    	        $Y_{n\pi_{l}} \leftarrow Y_{n\pi_{l}} \textrm{ OR } Y_{nl}$\;
+    	        $E_n$.remove($l$); $Y_n$.remove($l$)\;
+    	    }
+    	}
 	}
-\caption{Object Enumeration}
+	return $E$\;
 \end{algorithm}
+
+Given the enumerated object data, we estimate $p(o \textrm{ is priv})$ as described in Algorithm \ref{alg:private}.  Object privacy is tallied according to the type that was chosen as most probable for the image region as opposed to soft-attribution of privacy across the type probabilities.  This is because the other types may well have resulted in very different object regions.
+
+\begin{algorithm}[h!]\label{alg:private}
+	\KwData{$E^{N}$ // the enumerated object vectors}
+	\KwResult{$P^K$ // probability distribution $p(o \textrm{ is priv})$}
+	$C: ((t_0, p_0), \dots, (t_K, p_K)) \leftarrow (0,0)^K$ // total and private counts for each object type\;
+	\For{$n \leftarrow 0$ \KwTo $N$}{
+	    \For{$l \leftarrow 0$ \KwTo $\left| E_n \right|$}{
+	        $k \leftarrow E_{nl}$.typ\;
+	        $C_{k}.t += 1$\;
+	        \uIf{$E_{nl}$.priv}{$C_{k}.p += 1$}
+	    }
+	}
+	\For{$k \leftarrow 0$ \KwTo $K$}{
+	    $P_k \leftarrow C_k.p / C_k.t$\;
+	}
+	return $P$\;
+\caption{Object Privacy Prior Estimate, $O(NL  K)$}
+\end{algorithm}
+
+Finally, all the information has been obtained to answer Task 1.  For any given pixel $i_{nm}$, we can estimate the probability of whether it lies on a private object as follows:
+
+\begin{align}
+    p(C_{P_{nm}} = 1 \mid I, \textrm{ evidence}) = \sum_{k=0}^{K} p(i_{nm} \textrm{ on } o_k \mid I_n) P_k
+\end{align}
 
 
 \subsection{Task 2: Does the Image Contain Private Data?}
 
-The objective for this task can be stated as estimating $p(C_I = 1 \mid I)$ where $C_I$ is the binary class label for whether the image is benign (0) or private (1).  
+The objective for this task can be stated as estimating $p(C_I = 1 \mid I, \textrm{ evidence})$ where $C_I$ is the binary class label for whether the image is benign (0) or private (1).  The model formulation, basis, and algorithms for Task 1 are completely reused for Task 2.  A simple extension to the knowledge we've built in Task 1 is applied in order to complete Task 2, as follows.
 
-
-\subsubsection{Probabilistic Model Formulation}
-
-Assuming there are $K$ objects in an image, if even one object in the image is private, then the image contains private content.  A simplistic approach might involve using the evidence $p(I_n \mid i_{nm} \textrm{ on } o)$ directly but, since it is noisy evidence, false positives are likely.  One would like to incorporate any and all useful evidence into the determination, and also reduce noise to achieve congruency for pixel-on-object predictions within object areas to reduce false positives. Therefore, a probabilistic model is needed.
-
-When defining a probabilistic model, it is important to define the central assumptions behind what the model is attempting to capture in terms of privacy. For this approach, the following assumptions are used: (a) certain objects, or object details, are private, and (b) whether an image is private is determined by whether it contains private objects or object details.  Notice that certain contextual privacy scenarios, such as an image of a car known to belong to `Bob' being parked outside of a liquor store during work hours, for example, may not necessarily be marked private, even though `Bob' might argue that it is.
-
-Under these assumptions, we can informally model the objective task as a set of Bernoulli trials over all objects in the image:
+Assuming there are $L_n$ objects in an image $I_n$, if even one object in the image is private, then the image contains private content.  We can model the objective task over a Binomial distribution.  Specifically, choose $L_n$ successes given $L_n$ trials (objects) with the probability of success being $p_s = (1-p(o_l \textrm{ is priv} \mid I, \textrm{ evidence}))$.  The resulting probability is the complement of our objective probability.
 
 \begin{align}\label{eqn:task2.0}
-    p(C_I = 1 \mid \textrm{evidence}) = 1 - \prod_{k \in K} \Big( 1 - p(\textrm{image region for $o_k$ is private} \mid \textrm{evidence}) \Big)
+    p(C_{P_{nm}} = 1 \mid I, \textrm{ evidence}) & = 1 - \prod_{l = 0}^{L_n} \left( 1 - p(\textrm{image region $E_{nl}$ 
+        is private} \mid \textrm{evidence}) \right)\\
+    & = 1 - \prod_{l = 0}^{L_n} \left( 1 - \sum_{k=0}^{K} (E_{nl}\textrm{.psum}_k / E_{nl}\textrm{.cnt}) p(o_k \textrm{ is priv}) \right) \label{eqn:objpriv}
 \end{align}
 
-where $p(\textrm{image region for $o_k$ is private})$ is the marginal distribution of $o_k$ being object type $o$ and $o$ being a private type, as follows...
-
-\begin{align}\label{eqn:task2.1}
-    p(\textrm{image region for $o_k$ is private}) = \sum_{o \in O} p(o_k = o, o\textrm{ is private} \mid \textrm{evidence})    
-\end{align}
-
-\subsubsection{Basis of the Model}
+Notice in Equation \ref{eqn:objpriv} that the probability of an object region being of some type $k$ is represented as the average of the $k$-probabilities across all pixels in that $l$ object region.  As mentioned in section \ref{sec:t1alg}, the actual object regions would likely have been different for different values of $k$, but capturing average probabilities for each type across all pixels in the dominant region is presumed (by the author) to be a reasonable compromise.  The independent joint probabilities for object classification and class privacy are marginalized over all object types to achieve the probability of the object region being private.
 
 
 
-Now we are ready to infer the marginal probability distribution for $p(\textrm{image region for $o_k$ is private}) = \sum_{o \in O} p(o_k = o, o\textrm{ is private} \mid \textrm{evidence})$.  First, solve for $p(o_k = o, o\textrm{ is private} \mid \textrm{evidence})$.
-
-\begin{align*}
-    p(o_k = o, o\textrm{ is private} \mid \textrm{evidence}) =
-    %p((i_m \textrm{ on } o_k, \exists i_l \textrm{ on } o_k \textrm{ s.t. } l \in t) \mid o_k \textrm{ is private}, i_m \textrm{ on } o_k) p(o_k \textrm{ is private}) p(i_m \textrm{ on } o_k) p(I \mid i_m \textrm{ on } o_k) p(S \mid I) p(D)
-    %p(I, S, D, i_{m} \textrm{ on } o,o \textrm{ is private}, t, Z_h) = & p(t \mid i_m \textrm{ on o}, o \textrm{ is private}, Z_h) \\
-        %& p(i_m \textrm{ on o} \mid S, I) p(S \mid I) p(I) p(Z_h) p(o \textrm{ is private}) p(D)\\
-\end{align*}
-
-\subsubsection{Algorithm}
-
-1. get joint prob map $p(i_{nm} \textrm{ on o}, S_n \mid I_n, t_n)$\\
-2. use MRF (Felzenszwalb) to reduce noise \& increase congruence \cite{felzenszwalb2006efficient}.  Record max $o$ for segmentation.\\
-3. use watershed segmentation to label objects (type \& instance) \cite{87344}. During algorithm, calculate average probability for each object instance (add all pixel probabilities and keep a queue pop counter for final division).  Also build dataset of object types \& instances and if $t_n=1$ is encountered, mark that instance private.  This will be used to build a distribution for $p(o \textrm{ is private}$\\
-4. use \#3 to get $p(o_k = o)$\\
  
 
 
