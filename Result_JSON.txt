@@ -1,0 +1,353 @@
+.\file10.txt
+{'sentence': 6, 'event': 1, 'subject': 'chef', 'verb': 'cut', 'object': 'fish'}
+{'sentence': 7, 'event': 2, 'subject': 'chef', 'verb': 'heat', 'object': 'taco skillet'}
+{'sentence': 9, 'event': 3, 'subject': 'chef', 'verb': 'set', 'object': 'oven rack'}
+{'sentence': 9, 'event': 3, 'subject': 'chef', 'verb': 'set', 'object': 'oven'}
+{'sentence': 9, 'event': 4, 'subject': 'chef', 'verb': 'preheat', 'object': 'oven rack'}
+{'sentence': 9, 'event': 4, 'subject': 'chef', 'verb': 'preheat', 'object': 'oven'}
+{'sentence': 12, 'event': 5, 'subject': 'chef', 'verb': 'pinch', 'object': 'pepper'}
+{'sentence': 19, 'event': 6, 'subject': 'chef', 'verb': 'sprinkle', 'object': 'cream'}
+{'sentence': 19, 'event': 6, 'subject': 'chef', 'verb': 'sprinkle', 'object': 'peak'}
+{'sentence': 19, 'event': 7, 'subject': 'chef', 'verb': 'continue', 'object': 'cream'}
+{'sentence': 19, 'event': 7, 'subject': 'chef', 'verb': 'continue', 'object': 'peak'}
+{'sentence': 20, 'event': 8, 'subject': 'chef', 'verb': 'add', 'object': 'vanilla extract'}
+{'sentence': 20, 'event': 8, 'subject': 'chef', 'verb': 'add', 'object': 'cup'}
+{'sentence': 20, 'event': 9, 'subject': 'chef', 'verb': 'beat', 'object': 'vanilla extract'}
+{'sentence': 20, 'event': 9, 'subject': 'chef', 'verb': 'beat', 'object': 'cup'}
+{'sentence': 21, 'event': 10, 'subject': 'chef', 'verb': 'loosen', 'object': 'cake'}
+{'sentence': 21, 'event': 10, 'subject': 'chef', 'verb': 'loosen', 'object': 'center'}
+{'sentence': 25, 'event': 11, 'subject': 'chef', 'verb': 'transfer', 'object': '<None>'}
+{'sentence': 25, 'event': 12, 'subject': 'chef', 'verb': 'serve', 'object': '<None>'}
+{'sentence': 28, 'event': 13, 'subject': 'chef', 'verb': 'reserve', 'object': 'flour mixture'}
+{'sentence': 29, 'event': 14, 'subject': 'chef', 'verb': 'wipe', 'object': 'skillet'}
+{'sentence': 33, 'event': 15, 'subject': '14-ounce', 'verb': 'sweeten', 'object': 'milk'}
+{'sentence': 34, 'event': 16, 'subject': 'yolk', 'verb': 'beat', 'object': 'egg yolk'}
+{'sentence': 35, 'event': 17, 'subject': 'yolk', 'verb': 'beat', 'object': 'egg yolk'}
+{'sentence': 36, 'event': 18, 'subject': 'chef', 'verb': 'spread', 'object': '<None>'}
+{'sentence': 37, 'event': 19, 'subject': 'chef', 'verb': 'whip', 'object': 'cream'}
+{'sentence': 38, 'event': 20, 'subject': 'shallot', 'verb': 'cook', 'object': 'garlic'}
+{'sentence': 39, 'event': 21, 'subject': 'chef', 'verb': 'bake', 'object': 'cream'}
+{'sentence': 41, 'event': 22, 'subject': 'chef', 'verb': 'cover', 'object': '<None>'}
+{'sentence': 41, 'event': 23, 'subject': 'chef', 'verb': 'chill', 'object': '<None>'}
+{'sentence': 42, 'event': 24, 'subject': 'chef', 'verb': 'take', 'object': 'minute'}
+{'sentence': 43, 'event': 25, 'subject': 'mixture', 'verb': 'combine', 'object': 'cashew'}
+{'sentence': 43, 'event': 25, 'subject': 'mixture', 'verb': 'combine', 'object': 'veggie broth'}
+{'sentence': 43, 'event': 26, 'subject': 'mixture', 'verb': 'blend', 'object': 'cashew'}
+{'sentence': 43, 'event': 26, 'subject': 'mixture', 'verb': 'blend', 'object': 'veggie broth'}
+{'sentence': 44, 'event': 27, 'subject': 'sauce', 'verb': 'reduce', 'object': 'heat'}
+{'sentence': 44, 'event': 28, 'subject': 'sauce', 'verb': 'simmer', 'object': 'heat'}
+{'sentence': 45, 'event': 29, 'subject': 'chef', 'verb': 'add', 'object': 'layer'}
+{'sentence': 45, 'event': 29, 'subject': 'chef', 'verb': 'add', 'object': 'marinara'}
+{'sentence': 45, 'event': 30, 'subject': 'chef', 'verb': 'cover', 'object': 'layer'}
+{'sentence': 45, 'event': 30, 'subject': 'chef', 'verb': 'cover', 'object': 'marinara'}
+{'sentence': 46, 'event': 31, 'subject': 'chef', 'verb': 'heat', 'object': 'oil'}
+{'sentence': 47, 'event': 32, 'subject': 'kale', 'verb': 'toss', 'object': '<None>'}
+{'sentence': 48, 'event': 33, 'subject': 'chef', 'verb': 'break', 'object': 'egg'}
+{'sentence': 50, 'event': 34, 'subject': 'garlic', 'verb': 'crush', 'object': 'clove'}
+{'sentence': 51, 'event': 35, 'subject': 'toast', 'verb': 'split', 'object': 'bread'}
+{'sentence': 52, 'event': 36, 'subject': 'chef', 'verb': 'remove', 'object': 'bread'}
+{'sentence': 56, 'event': 37, 'subject': 'vegetable', 'verb': 'bring', 'object': '<None>'}
+{'sentence': 56, 'event': 38, 'subject': 'vegetable', 'verb': 'cook', 'object': '<None>'}
+{'sentence': 58, 'event': 39, 'subject': 'carrot', 'verb': 'cut', 'object': '<None>'}
+{'sentence': 59, 'event': 40, 'subject': 'stock', 'verb': 'follow', 'object': 'quarts'}
+{'sentence': 59, 'event': 41, 'subject': 'recipe', 'verb': 'follow', 'object': 'quarts'}
+{'sentence': 60, 'event': 42, 'subject': 'carrot', 'verb': 'cut', 'object': '<None>'}
+{'sentence': 61, 'event': 43, 'subject': 'stalk', 'verb': 'cut', 'object': 'celery'}
+{'sentence': 62, 'event': 44, 'subject': 'onion', 'verb': 'quarter', 'object': '<None>'}
+{'sentence': 63, 'event': 45, 'subject': 'chef', 'verb': 'pour', 'object': 'chicken'}
+{'sentence': 63, 'event': 45, 'subject': 'chef', 'verb': 'pour', 'object': 'liquid'}
+{'sentence': 63, 'event': 46, 'subject': 'chef', 'verb': 'bring', 'object': 'chicken'}
+{'sentence': 63, 'event': 46, 'subject': 'chef', 'verb': 'bring', 'object': 'liquid'}
+{'sentence': 64, 'event': 47, 'subject': 'chicken', 'verb': 'be', 'object': 'heat'}
+{'sentence': 64, 'event': 47, 'subject': 'chicken', 'verb': 'be', 'object': '1'}
+{'sentence': 65, 'event': 48, 'subject': 'chef', 'verb': 'remove', 'object': 'chicken'}
+{'sentence': 70, 'event': 49, 'subject': 'chef', 'verb': 'heat', 'object': 'oil'}
+{'sentence': 70, 'event': 49, 'subject': 'chef', 'verb': 'heat', 'object': 'itâ'}
+{'sentence': 70, 'event': 50, 'subject': 'chef', 'verb': 'fry', 'object': 'oil'}
+{'sentence': 70, 'event': 50, 'subject': 'chef', 'verb': 'fry', 'object': 'itâ'}
+{'sentence': 71, 'event': 51, 'subject': 'chef', 'verb': 'bring', 'object': 'paneer'}
+{'sentence': 71, 'event': 52, 'subject': 'chef', 'verb': 'toss', 'object': 'paneer'}
+{'sentence': 73, 'event': 53, 'subject': 'pot', 'verb': 'be stretch', 'object': 'spice'}
+{'sentence': 76, 'event': 54, 'subject': 'meat', 'verb': 'add', 'object': 'sausage flavour'}
+{'sentence': 77, 'event': 55, 'subject': 'chef', 'verb': 'use', 'object': 'panko breadcrumb'}
+{'sentence': 78, 'event': 56, 'subject': 'chef', 'verb': 'have', 'object': 'Homemade hour'}
+{'sentence': 81, 'event': 57, 'subject': 'curry', 'verb': 'be', 'object': 'flavoursome'}
+{'sentence': 81, 'event': 57, 'subject': 'curry', 'verb': 'be', 'object': 'chicken'}
+{'sentence': 82, 'event': 58, 'subject': 'curry', 'verb': 'be', 'object': 'flavoursome'}
+{'sentence': 82, 'event': 58, 'subject': 'curry', 'verb': 'be', 'object': 'chicken'}
+{'sentence': 85, 'event': 59, 'subject': 'chef', 'verb': 'bake', 'object': 'Gnocchi'}
+{'sentence': 85, 'event': 59, 'subject': 'chef', 'verb': 'bake', 'object': 'tomato'}
+{'sentence': 89, 'event': 60, 'subject': 'chef', 'verb': 'serve', 'object': 'jacket'}
+{'sentence': 90, 'event': 61, 'subject': 'dish', 'verb': 'be', 'object': 'vegan'}
+{'sentence': 91, 'event': 62, 'subject': 'dish', 'verb': 'be', 'object': 'vegan'}
+{'sentence': 92, 'event': 63, 'subject': 'recipe', 'verb': 'be', 'object': 'afternoon'}
+{'sentence': 92, 'event': 63, 'subject': 'recipe', 'verb': 'be', 'object': 'coffee morning'}
+{'sentence': 93, 'event': 64, 'subject': 'salad', 'verb': 'make', 'object': 'vegan'}
+{'sentence': 93, 'event': 64, 'subject': 'salad', 'verb': 'make', 'object': 'fill meal'}
+{'sentence': 94, 'event': 65, 'subject': 'chef', 'verb': 'try', 'object': 'vegan version'}
+{'sentence': 94, 'event': 65, 'subject': 'chef', 'verb': 'try', 'object': 'oat'}
+{'sentence': 94, 'event': 65, 'subject': 'chef', 'verb': 'try', 'object': 'bean'}
+{'sentence': 94, 'event': 65, 'subject': 'chef', 'verb': 'try', 'object': 'tomato'}
+{'sentence': 96, 'event': 66, 'subject': 'chef', 'verb': 'cook', 'object': 'vegan fry'}
+{'sentence': 98, 'event': 67, 'subject': 'chef', 'verb': 'use', 'object': 'jackfruit substitute'}
+{'sentence': 98, 'event': 67, 'subject': 'chef', 'verb': 'use', 'object': 'perfect'}
+{'sentence': 98, 'event': 67, 'subject': 'chef', 'verb': 'use', 'object': 'enjoy'}
+.\file15.txt
+{'sentence': 4, 'event': 1, 'subject': 'chef', 'verb': 'add', 'object': '1 cup'}
+{'sentence': 4, 'event': 1, 'subject': 'chef', 'verb': 'add', 'object': 'mixture'}
+{'sentence': 4, 'event': 2, 'subject': 'chef', 'verb': 'stir', 'object': '1 cup'}
+{'sentence': 4, 'event': 2, 'subject': 'chef', 'verb': 'stir', 'object': 'mixture'}
+{'sentence': 5, 'event': 3, 'subject': 'chef', 'verb': 'roll', 'object': 'strand'}
+{'sentence': 6, 'event': 4, 'subject': 'chef', 'verb': 'roll', 'object': 'mixture'}
+{'sentence': 7, 'event': 5, 'subject': 'chef', 'verb': 'prepare', 'object': 'cake mix'}
+{'sentence': 8, 'event': 6, 'subject': 'chef', 'verb': 'make', 'object': 'pan'}
+{'sentence': 8, 'event': 6, 'subject': 'chef', 'verb': 'make', 'object': 'box'}
+{'sentence': 8, 'event': 6, 'subject': 'chef', 'verb': 'make', 'object': 'half'}
+{'sentence': 8, 'event': 7, 'subject': 'chef', 'verb': 'use', 'object': 'pan'}
+{'sentence': 8, 'event': 7, 'subject': 'chef', 'verb': 'use', 'object': 'box'}
+{'sentence': 8, 'event': 7, 'subject': 'chef', 'verb': 'use', 'object': 'half'}
+{'sentence': 9, 'event': 8, 'subject': 'chef', 'verb': 'frost', 'object': 'top'}
+{'sentence': 10, 'event': 9, 'subject': 'chef', 'verb': 'set', 'object': 'cake'}
+{'sentence': 10, 'event': 9, 'subject': 'chef', 'verb': 'set', 'object': 'cup'}
+{'sentence': 10, 'event': 10, 'subject': 'chef', 'verb': 'spread', 'object': 'cake'}
+{'sentence': 10, 'event': 10, 'subject': 'chef', 'verb': 'spread', 'object': 'cup'}
+{'sentence': 11, 'event': 11, 'subject': 'chef', 'verb': 'pull', 'object': 'cotton candy'}
+{'sentence': 11, 'event': 11, 'subject': 'chef', 'verb': 'pull', 'object': 'side'}
+{'sentence': 11, 'event': 12, 'subject': 'chef', 'verb': 'stick', 'object': 'cotton candy'}
+{'sentence': 11, 'event': 12, 'subject': 'chef', 'verb': 'stick', 'object': 'side'}
+{'sentence': 12, 'event': 13, 'subject': 'oz', 'verb': 'cut', 'object': 'wax bean'}
+{'sentence': 13, 'event': 14, 'subject': 'oz', 'verb': 'cut', 'object': 'wax bean'}
+{'sentence': 15, 'event': 15, 'subject': 'garlic', 'verb': 'mince', 'object': 'clove'}
+{'sentence': 16, 'event': 16, 'subject': 'chef', 'verb': 'place', 'object': 'egg'}
+{'sentence': 16, 'event': 16, 'subject': 'chef', 'verb': 'place', 'object': 'care egg'}
+{'sentence': 17, 'event': 17, 'subject': 'chef', 'verb': 'select', 'object': 'manual setting'}
+{'sentence': 17, 'event': 17, 'subject': 'chef', 'verb': 'select', 'object': 'time'}
+{'sentence': 17, 'event': 18, 'subject': 'chef', 'verb': 'set', 'object': 'manual setting'}
+{'sentence': 17, 'event': 18, 'subject': 'chef', 'verb': 'set', 'object': 'time'}
+{'sentence': 18, 'event': 19, 'subject': 'chef', 'verb': 'select', 'object': 'manual setting'}
+{'sentence': 18, 'event': 19, 'subject': 'chef', 'verb': 'select', 'object': 'time'}
+{'sentence': 18, 'event': 20, 'subject': 'chef', 'verb': 'set', 'object': 'manual setting'}
+{'sentence': 18, 'event': 20, 'subject': 'chef', 'verb': 'set', 'object': 'time'}
+{'sentence': 20, 'event': 21, 'subject': 'garlic', 'verb': 'chop', 'object': 'clove'}
+{'sentence': 23, 'event': 22, 'subject': 'chef', 'verb': 'cook', 'object': 'fish'}
+{'sentence': 23, 'event': 22, 'subject': 'chef', 'verb': 'cook', 'object': 'haddock'}
+{'sentence': 23, 'event': 23, 'subject': 'chef', 'verb': 'break', 'object': 'fish'}
+{'sentence': 23, 'event': 23, 'subject': 'chef', 'verb': 'break', 'object': 'haddock'}
+{'sentence': 24, 'event': 24, 'subject': 'chef', 'verb': 'add', 'object': 'milk'}
+{'sentence': 24, 'event': 24, 'subject': 'chef', 'verb': 'add', 'object': 'cream'}
+{'sentence': 24, 'event': 24, 'subject': 'chef', 'verb': 'add', 'object': 'butter'}
+{'sentence': 25, 'event': 25, 'subject': 'chef', 'verb': 'add', 'object': 'tomato paste'}
+{'sentence': 25, 'event': 26, 'subject': 'chef', 'verb': 'cook', 'object': 'tomato paste'}
+{'sentence': 26, 'event': 27, 'subject': 'sauce', 'verb': 'be', 'object': 'cook'}
+{'sentence': 26, 'event': 27, 'subject': 'sauce', 'verb': 'be', 'object': 'al'}
+{'sentence': 29, 'event': 28, 'subject': 'pita', 'verb': 'cut', 'object': 'piece'}
+{'sentence': 29, 'event': 28, 'subject': 'pita', 'verb': 'cut', 'object': 'regular'}
+{'sentence': 30, 'event': 29, 'subject': 'chef', 'verb': 'arrange', 'object': 'pita quarter'}
+{'sentence': 31, 'event': 30, 'subject': 'pitas', 'verb': 'be brown', 'object': 'crispy'}
+{'sentence': 32, 'event': 31, 'subject': 'chef', 'verb': 'transfer', 'object': 'cut'}
+{'sentence': 33, 'event': 32, 'subject': 'chef', 'verb': 'brush', 'object': 'side'}
+{'sentence': 34, 'event': 33, 'subject': 'bean', 'verb': 'arrange', 'object': '<None>'}
+{'sentence': 35, 'event': 34, 'subject': 'bean', 'verb': 'arrange', 'object': '<None>'}
+{'sentence': 37, 'event': 35, 'subject': 'chef', 'verb': 'add', 'object': 'panko'}
+{'sentence': 37, 'event': 35, 'subject': 'chef', 'verb': 'add', 'object': 'Parmesan'}
+{'sentence': 37, 'event': 36, 'subject': 'chef', 'verb': 'mix', 'object': 'panko'}
+{'sentence': 37, 'event': 36, 'subject': 'chef', 'verb': 'mix', 'object': 'Parmesan'}
+{'sentence': 39, 'event': 37, 'subject': 'chef', 'verb': 'add', 'object': 'garlic'}
+{'sentence': 39, 'event': 37, 'subject': 'chef', 'verb': 'add', 'object': 'pepper flake'}
+{'sentence': 40, 'event': 38, 'subject': 'chef', 'verb': 'add', 'object': 'wine'}
+{'sentence': 40, 'event': 38, 'subject': 'chef', 'verb': 'add', 'object': 'heat'}
+{'sentence': 40, 'event': 38, 'subject': 'chef', 'verb': 'add', 'object': 'liquid'}
+{'sentence': 40, 'event': 39, 'subject': 'chef', 'verb': 'raise', 'object': 'wine'}
+{'sentence': 40, 'event': 39, 'subject': 'chef', 'verb': 'raise', 'object': 'heat'}
+{'sentence': 40, 'event': 39, 'subject': 'chef', 'verb': 'raise', 'object': 'liquid'}
+{'sentence': 40, 'event': 40, 'subject': 'chef', 'verb': 'be', 'object': 'wine'}
+{'sentence': 40, 'event': 40, 'subject': 'chef', 'verb': 'be', 'object': 'heat'}
+{'sentence': 40, 'event': 40, 'subject': 'chef', 'verb': 'be', 'object': 'liquid'}
+{'sentence': 41, 'event': 41, 'subject': 'chef', 'verb': 'heat', 'object': 'pot'}
+{'sentence': 41, 'event': 41, 'subject': 'chef', 'verb': 'heat', 'object': 'clam'}
+{'sentence': 41, 'event': 41, 'subject': 'chef', 'verb': 'heat', 'object': 'cover'}
+{'sentence': 41, 'event': 42, 'subject': 'chef', 'verb': 'add', 'object': 'pot'}
+{'sentence': 41, 'event': 42, 'subject': 'chef', 'verb': 'add', 'object': 'clam'}
+{'sentence': 41, 'event': 42, 'subject': 'chef', 'verb': 'add', 'object': 'cover'}
+{'sentence': 41, 'event': 43, 'subject': 'chef', 'verb': 'cook', 'object': 'pot'}
+{'sentence': 41, 'event': 43, 'subject': 'chef', 'verb': 'cook', 'object': 'clam'}
+{'sentence': 41, 'event': 43, 'subject': 'chef', 'verb': 'cook', 'object': 'cover'}
+{'sentence': 45, 'event': 44, 'subject': 'cauliflower', 'verb': 'cover', 'object': '<None>'}
+{'sentence': 45, 'event': 45, 'subject': 'cauliflower', 'verb': 'cook', 'object': '<None>'}
+{'sentence': 46, 'event': 46, 'subject': 'chef', 'verb': 'drain', 'object': 'cup pasta liquid'}
+{'sentence': 48, 'event': 47, 'subject': 'chef', 'verb': 'fold', 'object': 'topping'}
+{'sentence': 51, 'event': 48, 'subject': 'chef', 'verb': 'Set', 'object': 'minute'}
+{'sentence': 52, 'event': 49, 'subject': 'chef', 'verb': 'repeat', 'object': 'taco total'}
+{'sentence': 55, 'event': 50, 'subject': 'chef', 'verb': 'add', 'object': 'flour mixture'}
+{'sentence': 55, 'event': 50, 'subject': 'chef', 'verb': 'add', 'object': 'milk batch'}
+{'sentence': 55, 'event': 50, 'subject': 'chef', 'verb': 'add', 'object': 'begin'}
+{'sentence': 55, 'event': 50, 'subject': 'chef', 'verb': 'add', 'object': 'end'}
+{'sentence': 56, 'event': 51, 'subject': 'chef', 'verb': 'serve', 'object': 'loaf'}
+{'sentence': 56, 'event': 51, 'subject': 'chef', 'verb': 'serve', 'object': 'room'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'cream'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'crumb'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'egg'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'milk'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'parsley'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'mustard'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'salt'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'thyme'}
+{'sentence': 61, 'event': 52, 'subject': 'bread', 'verb': 'add', 'object': 'pepper'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'cream'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'crumb'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'egg'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'milk'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'parsley'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'mustard'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'salt'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'thyme'}
+{'sentence': 61, 'event': 53, 'subject': 'bread', 'verb': 'stir', 'object': 'pepper'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'cream'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'crumb'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'egg'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'milk'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'parsley'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'mustard'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'salt'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'thyme'}
+{'sentence': 62, 'event': 54, 'subject': 'bread', 'verb': 'add', 'object': 'pepper'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'cream'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'crumb'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'egg'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'milk'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'parsley'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'mustard'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'salt'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'thyme'}
+{'sentence': 62, 'event': 55, 'subject': 'bread', 'verb': 'stir', 'object': 'pepper'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'cream'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'crumb'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'egg'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'milk'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'parsley'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'mustard'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'salt'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'thyme'}
+{'sentence': 63, 'event': 56, 'subject': 'bread', 'verb': 'add', 'object': 'pepper'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'cream'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'crumb'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'egg'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'milk'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'parsley'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'mustard'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'salt'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'thyme'}
+{'sentence': 63, 'event': 57, 'subject': 'bread', 'verb': 'stir', 'object': 'pepper'}
+{'sentence': 64, 'event': 58, 'subject': 'chef', 'verb': 'divide', 'object': 'glaze'}
+{'sentence': 65, 'event': 59, 'subject': 'loaf', 'verb': 'be prepare', 'object': 'meat'}
+{'sentence': 66, 'event': 60, 'subject': 'salt', 'verb': 'cook', 'object': 'add'}
+{'sentence': 66, 'event': 60, 'subject': 'salt', 'verb': 'cook', 'object': 'tomato paste'}
+{'sentence': 66, 'event': 60, 'subject': 'salt', 'verb': 'cook', 'object': 'tsp'}
+{'sentence': 66, 'event': 60, 'subject': 'salt', 'verb': 'cook', 'object': 'stir'}
+{'sentence': 66, 'event': 60, 'subject': 'salt', 'verb': 'cook', 'object': 'tomato'}
+{'sentence': 66, 'event': 61, 'subject': 'salt', 'verb': 'begin', 'object': 'add'}
+{'sentence': 66, 'event': 61, 'subject': 'salt', 'verb': 'begin', 'object': 'tomato paste'}
+{'sentence': 66, 'event': 61, 'subject': 'salt', 'verb': 'begin', 'object': 'tsp'}
+{'sentence': 66, 'event': 61, 'subject': 'salt', 'verb': 'begin', 'object': 'stir'}
+{'sentence': 66, 'event': 61, 'subject': 'salt', 'verb': 'begin', 'object': 'tomato'}
+{'sentence': 66, 'event': 62, 'subject': 'paste', 'verb': 'cook', 'object': 'add'}
+{'sentence': 66, 'event': 62, 'subject': 'paste', 'verb': 'cook', 'object': 'tomato paste'}
+{'sentence': 66, 'event': 62, 'subject': 'paste', 'verb': 'cook', 'object': 'tsp'}
+{'sentence': 66, 'event': 62, 'subject': 'paste', 'verb': 'cook', 'object': 'stir'}
+{'sentence': 66, 'event': 62, 'subject': 'paste', 'verb': 'cook', 'object': 'tomato'}
+{'sentence': 66, 'event': 63, 'subject': 'paste', 'verb': 'begin', 'object': 'add'}
+{'sentence': 66, 'event': 63, 'subject': 'paste', 'verb': 'begin', 'object': 'tomato paste'}
+{'sentence': 66, 'event': 63, 'subject': 'paste', 'verb': 'begin', 'object': 'tsp'}
+{'sentence': 66, 'event': 63, 'subject': 'paste', 'verb': 'begin', 'object': 'stir'}
+{'sentence': 66, 'event': 63, 'subject': 'paste', 'verb': 'begin', 'object': 'tomato'}
+{'sentence': 67, 'event': 64, 'subject': 'salt', 'verb': 'cook', 'object': 'add'}
+{'sentence': 67, 'event': 64, 'subject': 'salt', 'verb': 'cook', 'object': 'tomato paste'}
+{'sentence': 67, 'event': 64, 'subject': 'salt', 'verb': 'cook', 'object': 'tsp'}
+{'sentence': 67, 'event': 64, 'subject': 'salt', 'verb': 'cook', 'object': 'stir'}
+{'sentence': 67, 'event': 64, 'subject': 'salt', 'verb': 'cook', 'object': 'tomato'}
+{'sentence': 67, 'event': 65, 'subject': 'salt', 'verb': 'begin', 'object': 'add'}
+{'sentence': 67, 'event': 65, 'subject': 'salt', 'verb': 'begin', 'object': 'tomato paste'}
+{'sentence': 67, 'event': 65, 'subject': 'salt', 'verb': 'begin', 'object': 'tsp'}
+{'sentence': 67, 'event': 65, 'subject': 'salt', 'verb': 'begin', 'object': 'stir'}
+{'sentence': 67, 'event': 65, 'subject': 'salt', 'verb': 'begin', 'object': 'tomato'}
+{'sentence': 67, 'event': 66, 'subject': 'paste', 'verb': 'cook', 'object': 'add'}
+{'sentence': 67, 'event': 66, 'subject': 'paste', 'verb': 'cook', 'object': 'tomato paste'}
+{'sentence': 67, 'event': 66, 'subject': 'paste', 'verb': 'cook', 'object': 'tsp'}
+{'sentence': 67, 'event': 66, 'subject': 'paste', 'verb': 'cook', 'object': 'stir'}
+{'sentence': 67, 'event': 66, 'subject': 'paste', 'verb': 'cook', 'object': 'tomato'}
+{'sentence': 67, 'event': 67, 'subject': 'paste', 'verb': 'begin', 'object': 'add'}
+{'sentence': 67, 'event': 67, 'subject': 'paste', 'verb': 'begin', 'object': 'tomato paste'}
+{'sentence': 67, 'event': 67, 'subject': 'paste', 'verb': 'begin', 'object': 'tsp'}
+{'sentence': 67, 'event': 67, 'subject': 'paste', 'verb': 'begin', 'object': 'stir'}
+{'sentence': 67, 'event': 67, 'subject': 'paste', 'verb': 'begin', 'object': 'tomato'}
+{'sentence': 68, 'event': 68, 'subject': 'chef', 'verb': 'taste', 'object': 'salt'}
+{'sentence': 68, 'event': 68, 'subject': 'chef', 'verb': 'taste', 'object': 'milk'}
+{'sentence': 68, 'event': 69, 'subject': 'chef', 'verb': 'add', 'object': 'salt'}
+{'sentence': 68, 'event': 69, 'subject': 'chef', 'verb': 'add', 'object': 'milk'}
+{'sentence': 71, 'event': 70, 'subject': 'chef', 'verb': 'granulate', 'object': '1 sugar'}
+{'sentence': 73, 'event': 71, 'subject': 'chef', 'verb': 'beat', 'object': 'sugar'}
+{'sentence': 73, 'event': 71, 'subject': 'chef', 'verb': 'beat', 'object': 'egg'}
+{'sentence': 74, 'event': 72, 'subject': 'cheese', 'verb': 'be', 'object': 'cream recipe'}
+{'sentence': 74, 'event': 72, 'subject': 'cheese', 'verb': 'be', 'object': '1 recipe'}
+{'sentence': 75, 'event': 73, 'subject': 'chef', 'verb': 'Spread', 'object': 'side'}
+{'sentence': 76, 'event': 74, 'subject': 'pound', 'verb': 'dry', 'object': 'pea'}
+{'sentence': 78, 'event': 75, 'subject': 'rib', 'verb': 'dice', 'object': 'celery'}
+{'sentence': 80, 'event': 76, 'subject': 'chef', 'verb': 'bring boil', 'object': '<None>'}
+{'sentence': 81, 'event': 77, 'subject': 'chef', 'verb': 'add', 'object': 'vegetable'}
+{'sentence': 81, 'event': 77, 'subject': 'chef', 'verb': 'add', 'object': 'ham'}
+{'sentence': 81, 'event': 77, 'subject': 'chef', 'verb': 'add', 'object': 'bacon'}
+{'sentence': 81, 'event': 77, 'subject': 'chef', 'verb': 'add', 'object': 'rice'}
+{'sentence': 81, 'event': 77, 'subject': 'chef', 'verb': 'add', 'object': 'cup water'}
+{'sentence': 82, 'event': 78, 'subject': 'chef', 'verb': 'chop', 'object': 'meat'}
+{'sentence': 82, 'event': 79, 'subject': 'chef', 'verb': 'return', 'object': 'meat'}
+{'sentence': 85, 'event': 80, 'subject': 'chef', 'verb': 'place', 'object': 'loaf'}
+{'sentence': 85, 'event': 80, 'subject': 'chef', 'verb': 'place', 'object': '1'}
+{'sentence': 85, 'event': 81, 'subject': 'chef', 'verb': 'bake', 'object': 'loaf'}
+{'sentence': 85, 'event': 81, 'subject': 'chef', 'verb': 'bake', 'object': '1'}
+{'sentence': 90, 'event': 82, 'subject': 'chef', 'verb': 'make', 'object': 'tablespoon'}
+{'sentence': 90, 'event': 82, 'subject': 'chef', 'verb': 'make', 'object': 'meal'}
+{'sentence': 91, 'event': 83, 'subject': 'ingredient', 'verb': 'let', 'object': '<None>'}
+{'sentence': 91, 'event': 84, 'subject': 'ingredient', 'verb': 'marinate', 'object': '<None>'}
+{'sentence': 92, 'event': 85, 'subject': 'chef', 'verb': 'place', 'object': 'corn flour'}
+{'sentence': 93, 'event': 86, 'subject': 'dough', 'verb': 'remove', 'object': 'dough'}
+{'sentence': 93, 'event': 86, 'subject': 'dough', 'verb': 'remove', 'object': 'stress crack'}
+{'sentence': 93, 'event': 86, 'subject': 'dough', 'verb': 'remove', 'object': 'minute'}
+{'sentence': 93, 'event': 87, 'subject': 'dough', 'verb': 'place', 'object': 'dough'}
+{'sentence': 93, 'event': 87, 'subject': 'dough', 'verb': 'place', 'object': 'stress crack'}
+{'sentence': 93, 'event': 87, 'subject': 'dough', 'verb': 'place', 'object': 'minute'}
+{'sentence': 93, 'event': 88, 'subject': 'dough', 'verb': 'flip', 'object': 'dough'}
+{'sentence': 93, 'event': 88, 'subject': 'dough', 'verb': 'flip', 'object': 'stress crack'}
+{'sentence': 93, 'event': 88, 'subject': 'dough', 'verb': 'flip', 'object': 'minute'}
+{'sentence': 93, 'event': 89, 'subject': 'dough', 'verb': 'cook', 'object': 'dough'}
+{'sentence': 93, 'event': 89, 'subject': 'dough', 'verb': 'cook', 'object': 'stress crack'}
+{'sentence': 93, 'event': 89, 'subject': 'dough', 'verb': 'cook', 'object': 'minute'}
+{'sentence': 94, 'event': 90, 'subject': 'dough', 'verb': 'remove', 'object': 'dough'}
+{'sentence': 94, 'event': 90, 'subject': 'dough', 'verb': 'remove', 'object': 'stress crack'}
+{'sentence': 94, 'event': 90, 'subject': 'dough', 'verb': 'remove', 'object': 'minute'}
+{'sentence': 94, 'event': 91, 'subject': 'dough', 'verb': 'place', 'object': 'dough'}
+{'sentence': 94, 'event': 91, 'subject': 'dough', 'verb': 'place', 'object': 'stress crack'}
+{'sentence': 94, 'event': 91, 'subject': 'dough', 'verb': 'place', 'object': 'minute'}
+{'sentence': 94, 'event': 92, 'subject': 'dough', 'verb': 'flip', 'object': 'dough'}
+{'sentence': 94, 'event': 92, 'subject': 'dough', 'verb': 'flip', 'object': 'stress crack'}
+{'sentence': 94, 'event': 92, 'subject': 'dough', 'verb': 'flip', 'object': 'minute'}
+{'sentence': 94, 'event': 93, 'subject': 'dough', 'verb': 'cook', 'object': 'dough'}
+{'sentence': 94, 'event': 93, 'subject': 'dough', 'verb': 'cook', 'object': 'stress crack'}
+{'sentence': 94, 'event': 93, 'subject': 'dough', 'verb': 'cook', 'object': 'minute'}
+{'sentence': 95, 'event': 94, 'subject': 'chef', 'verb': 'add', 'object': 'fish'}
+{'sentence': 95, 'event': 95, 'subject': 'chef', 'verb': 'saute', 'object': 'fish'}
+{'sentence': 96, 'event': 96, 'subject': 'chef', 'verb': 'reheat', 'object': 'tortilla'}
+{'sentence': 96, 'event': 96, 'subject': 'chef', 'verb': 'reheat', 'object': 'lettuce'}
+{'sentence': 96, 'event': 96, 'subject': 'chef', 'verb': 'reheat', 'object': 'fish'}
+{'sentence': 96, 'event': 96, 'subject': 'chef', 'verb': 'reheat', 'object': 'cilantro sauce'}
+{'sentence': 96, 'event': 96, 'subject': 'chef', 'verb': 'reheat', 'object': 'pico guyo'}
+{'sentence': 96, 'event': 97, 'subject': 'chef', 'verb': 'remove', 'object': 'tortilla'}
+{'sentence': 96, 'event': 97, 'subject': 'chef', 'verb': 'remove', 'object': 'lettuce'}
+{'sentence': 96, 'event': 97, 'subject': 'chef', 'verb': 'remove', 'object': 'fish'}
+{'sentence': 96, 'event': 97, 'subject': 'chef', 'verb': 'remove', 'object': 'cilantro sauce'}
+{'sentence': 96, 'event': 97, 'subject': 'chef', 'verb': 'remove', 'object': 'pico guyo'}
+{'sentence': 96, 'event': 98, 'subject': 'chef', 'verb': 'add', 'object': 'tortilla'}
+{'sentence': 96, 'event': 98, 'subject': 'chef', 'verb': 'add', 'object': 'lettuce'}
+{'sentence': 96, 'event': 98, 'subject': 'chef', 'verb': 'add', 'object': 'fish'}
+{'sentence': 96, 'event': 98, 'subject': 'chef', 'verb': 'add', 'object': 'cilantro sauce'}
+{'sentence': 96, 'event': 98, 'subject': 'chef', 'verb': 'add', 'object': 'pico guyo'}
+{'sentence': 97, 'event': 99, 'subject': 'jalapeno', 'verb': 'slice', 'object': '<None>'}
