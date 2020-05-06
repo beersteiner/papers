@@ -46,7 +46,7 @@ This problem requires understanding large corpora, which is an increasingly popu
 
 
 \section{Previous Work}
-Our research about the previous work for this task exposed us to two different approaches. Traditional triplet extraction and open triplets extraction. In Traditional Extraction, the relations to be extracted are pre-defined. In Open Extraction, the relations are not pre-defined. The system is free to extract any relations it comes across while going through the text data. We also came across different methods from some of the research papers we read. Although many of these approaches involved building a neural model, we mainly focused on approaching the problem of triple extraction using a linguistic method (rule based extraction) because no labeled training data were available.
+Our research about the previous work for this task exposed us to two different approaches. Traditional triplet extraction and Open triplets extraction. In Traditional Extraction, the relations to be extracted are pre-defined. In Open Extraction, the relations are not pre-defined. The system is free to extract any relations it comes across while going through the text data. We also came across different methods from some of the research papers we read. Although many of these approaches involved building a neural model, we mainly focused on approaching the problem of triple extraction using a linguistic method (rule based extraction) because no labeled training data were available.
 
 \subsection{Semantic Relationships: Get Structured Knowledge from Unstructured Text}
 Let's have a look at text snippet, “Food Tutorials are better when directed by Wes Anderson. Bruce Lee's biopic, 'Little Dragon' to be directed by Shekhar Kapur.” \\
@@ -64,17 +64,21 @@ There are multiple approaches to perform information extraction automatically. L
 
 \end{itemize}
 
-\section{Approach}
-For this task, we used NLTK, JSON-NLP and requests framework. We extract structured information from unstructured data (text data in our case). We’ve already seen that the information in text lies in the form of relations between different entities. \subsection{Subtree Matching for triplet extraction}
-Our methodology is similar to subtree matching for relation extraction.\\
+\section{Experiments (srbaddam)}
+For this task, we used NLTK, JSON-NLP and requests framework. We extract structured information from unstructured data (text data in our case). We’ve already seen that the information in text lies in the form of relations between different entities. \subsection{Sub-tree Matching for triplet extraction}
+Our methodology is similar to sub-tree matching for relation extraction.\\
 
 The simple rule-based methods work well for information extraction tasks. However, they have a few drawbacks and shortcomings. We have to be extremely creative to come up with new rules to capture different patterns. It is difficult to build patterns that generalize well across different sentences. To enhance the rule-based methods for relation/information extraction, we should try to understand the dependency structure of the sentences at hand. We use JSON-NLP API for getting the dependency structure of the sentence. From the output of the API, we try to find interesting relationships. \\
 
-For example, let's consider the sentence to be, “Tableau was recently acquired by Salesforce.” Output from the API is <Image>\\
+For example, let's consider the sentence to be, “Tableau was recently acquired by Salesforce.” Output from the API is, \\
+
+\includegraphics[width=9cm, height=7.75cm]{image1.PNG}
 
 If you look at the entities in the sentence – Tableau and Salesforce – they are related by the term ‘acquired’. So, the pattern I can extract from this sentence is either “Salesforce acquired Tableau” or “X acquired Y”.\\
 
-Now consider another statement, “Careem, a ride-hailing major in the middle east, was acquired by Uber.” Output from the API is <Image>\\
+Now consider another statement, “Careem, a ride-hailing major in the middle east, was acquired by Uber.” Output from the API is,\\
+
+\includegraphics[width=15cm, height=9cm]{image2.PNG}
 
 From the graph, all we have to check is which dependency paths are common between multiple sentences. This method is known as Subtree matching. We will just consider the common dependency paths and extract the entities and the relation (acquired) between them. Hence, the relations extracted from these sentences are:
 \begin{itemize}
@@ -343,7 +347,7 @@ This section discusses the approach and associated experiments undertaken by Joh
     
     This approach resulted in around 5,000 relations from the Corpus, and can be viewed/run under commit \texttt{f636830a9751e43732a27ede19d0ac02b64f45a1}.
     
-    \item Dependency with Verb-as-Entity - The final significant change to the relation extractor was to regard verb tokens as entities, rather than as relations.  As stated above in the Temporal Relations step, the current method for linking a verb-relation to an event was to include the verb-relation identification number in the event label.  That hack may serve the immediate purpose, but is counter to the purist aspects of knowledge management.  An improved approach is recognize that each verb is an entity in its own right, representing an activity, action, or being, and doesn't get its meaning from any one event instance.  So, after creating an entity for each verb encountered (the idea of the verb) as well as an event for each verb encountered (the instance of a verb being involved in a specific event), it is possible to add the relation \texttt{involves\_verb} which ties the verb to the event.  In this way, the event also becomes the center for all subjects, objects, and prepositional statements.  Afterall, these other entities are only linked to each other through the event in which they all had a role.  This change was implemented late in the project, but is not planned for processing by the graph subgroup due to the fundamental change in the way even the most basic relations are captured.  Show below is an example sentence with extracted relations:
+    \item Verb-as-Entity - The final significant change to the relation extractor was to regard verb tokens as entities, rather than as relations.  As stated above in the Temporal Relations step, the current method for linking a verb-relation to an event was to include the verb-relation identification number in the event label.  That hack may serve the immediate purpose, but is counter to the purist aspects of knowledge management.  An improved approach is recognize that each verb is an entity in its own right, representing an activity, action, or being, and doesn't get its meaning from any one event instance.  So, after creating an entity for each verb encountered (the idea of the verb) as well as an event for each verb encountered (the instance of a verb being involved in a specific event), it is possible to add the relation \texttt{involves\_verb} which ties the verb to the event.  In this way, the event also becomes the center for all subjects, objects, and prepositional statements.  Afterall, these other entities are only linked to each other through the event in which they all had a role.  This change was implemented late in the project, but is not planned for processing by the graph subgroup due to the fundamental change in the way even the most basic relations are captured.  Show below is an example sentence with extracted relations:
     
     \begin{verbatim}
         "Sprinkle the cream of tartar over the egg whites and continue to 
@@ -366,7 +370,7 @@ This section discusses the approach and associated experiments undertaken by Joh
 
 \end{enumerate}
 
-\section{Evaluation}
+\section{Evaluation (rakoduru)}
 
 This is how we evaluated our work, presenting the evaluation scores in comparison to previous projects...
 
@@ -399,7 +403,9 @@ Although some of these constraints were overcome, the means by which they were o
 
 \subsection{Conclusion}
 
-Some conclusion...
+This project produced several approaches to relation extraction.  Constraints on the data size and the lack of relation labels for training purposes prevented the use of supervised learning methods for neural approaches.  Still, several challenges surfaced during the project.  Some of these challenges pertained to the approach taken (John's constituency parsing approach), while other challenges pertained to implementation and code - getting the extractor to execute the designer's intent.  The most pronounced challenge, arguably, was the coordination that was required between multiple teams toward an overall pipeline.  The individuals within the Relation Extraction group found it difficult at times to keep a consistent format, as new design requirements often spawned impacts to the extractor output.  Further, the interface between the Relation Extraction Group and the API group became a point of contention on more than one occasion.  Partially, this was due to the open extraction approach that was taken.  In other words, a pre-defined set of relation types was not established a priori, but rather each member was given the liberty to experiment with different relation types as inspiration dictated.
+
+Despite these challenges, the Relation Extraction group successfully extracted many relations from the corpus, and gained valuable experience and lessons learned to be used on future data science and language processing projects.
 
 
 % the bibliography
