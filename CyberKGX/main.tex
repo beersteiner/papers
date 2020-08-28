@@ -1,0 +1,98 @@
+\documentclass[sigconf]{acmart}
+
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+
+\usepackage{booktabs} % For formal tables
+
+\usepackage{subcaption} % for multiple subfigures
+\usepackage{footnote}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+
+
+% Copyright
+\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+
+% DOI
+%\acmDOI{10.475/123_4}
+
+% ISBN
+%\acmISBN{123-4567-24-567/08/06}
+
+%Conference
+%\acmConference[Short Name N/A]{Long Name N/A}{Date N/A}{Location N/A}
+%\acmYear{N/A}
+%\copyrightyear{2018}
+
+
+%\acmArticle{N/A}
+%\acmPrice{N/A}
+
+% These commands are optional
+%\acmBooktitle{Transactions of the ACM Woodstock conference}
+%\editor{Jennifer B. Sartor}
+%\editor{Theo D'Hondt}
+%\editor{Wolfgang De Meuter}
+
+
+\begin{document}
+\title{A Covert Channel Detector for Machine Learning Models}
+%\titlenote{Produces the permission block, and
+  %copyright information}
+%\subtitle{Extended Abstract}
+%\subtitlenote{The full version of the author's guide is available as
+  %\texttt{acmart.pdf} document}
+
+
+\author{John Stein}
+%\authornote{Dr.~Trovato insisted his name be first.}
+%\orcid{1234-5678-9012}
+\affiliation{%
+  \institution{Indiana University}
+  \streetaddress{107 S Indiana Ave}
+  \city{Bloomington}
+  \state{Indiana}
+  \postcode{47405}
+}
+\email{jodstein@iu.edu}
+
+%\author{David Crandall, PhD}
+%%\authornote{The secretary disavows any knowledge of this author's actions.}
+%\affiliation{%
+%  \institution{Indiana University}
+%  \streetaddress{107 S Indiana Ave}
+%  \city{Bloomington}
+%  \state{Indiana}
+%  \postcode{47405}
+%}
+%\email{djcran@indiana.edu}
+
+% The default list of authors is too long for headers.
+%\renewcommand{\shortauthors}{B. Trovato et al.}
+
+
+\begin{abstract}
+It has been shown that malicious model training code can augment sensitive training data with specially-crafted samples to enable later exfiltration of the sensitive data by an attacker who has black-box access to the completed model, but no direct access to the sensitive training data. \cite{DBLP:journals/corr/abs-1709-07886}  This is known as a Covert Channel for machine learning models.  It has also been shown an attacker can infer whether a specific sample was included in the training set for a black-box model if the attacker has knowledge of the model's structure or can generate models with similar structure. \cite{DBLP:journals/corr/ShokriSS16}  This is known as Membership Inference on machine learning models.  We demonstrate that a variation of the Membership Inference `attack' can be used to detect whether a given machine learning model may have a covert channel.  We review some performance factors of the detector, and discuss how performance is directly related to model capacity and sparsity of the sensitive and maliciously-crafted data.
+\end{abstract}
+
+\keywords{machine learning, models, covert channels, detector}
+
+
+\maketitle
+
+\input{body}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bibliography}
+
+\end{document}
