@@ -1,0 +1,26 @@
+Q2)
+
+
+Likelihood function for some pixel m:
+
+L(io) = prod_n[  sum_k( p(I_n | io_k) p(io_k) )  ]
+
+argmax_io ( L(io) )
+
+Maxima code...
+
+I: matrix([I11, I12, I13],[I21, I22, I23],[I31, I32, I33],[I41, I42, I43],[I51, I52, I53]);
+O: [O1, O2, O3];
+eqns: [lambda = sum( I[n,1] / ( sum( I[n,k]*O[k], k, 1, 3 ) ), n, 1, 5),
+lambda = sum( I[n,2] / ( sum( I[n,k]*O[k], k, 1, 3 ) ), n, 1, 5),
+lambda = sum( I[n,3] / ( sum( I[n,k]*O[k], k, 1, 3 ) ), n, 1, 5),
+sum( O[k], k, 1, 3) = 1];
+lag:sum( I[n,2] / ( sum( I[n,k]*O[k], k, 1, 3 ) ), n, 1, 5) - lambda;
+diff(lag,O[2],1);
+diff(1 - sum( O[k], k, 1, 3), lambda, 1);
+Lagrange: sum( log( sum(I[n,k] * O[k], k, 1, 3) ), n, 1, 5) - lambda * (sum( (O[k]), k, 1, 3) - 1);
+diff(Lagrange, O[1], 1);
+[diff(Lagrange, O[1], 1),diff(Lagrange, O[2], 1),diff(Lagrange, O[3], 1)]
+diff(Lagrange, lambda, 1);
+diff(Lagrange, O[1], 2);
+diff(a/(b*x1 + c*x2) + d/(e*x1 + f*x2) + g/(h*x1 + i*x2), x1, 1);
