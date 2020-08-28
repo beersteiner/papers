@@ -1,9 +1,10 @@
+
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 
-\title{Qualifying Examination Paper}
+\title{TBD Title}
 \author{John Stein (jodstein@iu.edu)}
-\date{November 2018}
+\date{TBD}
 
 \usepackage{natbib}
 \usepackage{graphicx}
@@ -40,265 +41,75 @@
 %%%%%%%%%%%%%%%%% Paper %%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \setcounter{page}{1}
-\section{Generative Adversarial Networks (GANs)}
 
-%\subsection{Introduction}
-The Generative Adversarial Nets (GAN) framework was first introduced by Goodfellow et al. in 2014 \cite{NIPS2014_5423}.  The GAN framework involves the simultaneous training of both a generative model $G$ with parameters $\theta_g$ and a discriminative model $D$ with parameters $\theta_d$.  Given a target data space $T$ with distribution $p_t$, $G$'s task is to learn a mapping from a noisy input $z$ to a data space that estimates the target data space $T$ ($G:Z \rightarrow G(z) \sim p_g \approx p_t$); while $D$'s task is to discriminate whether some input $x$ originated from either $T$ or $G(z)$ ($D: X \rightarrow \{0, 1\}$).  Since $G$ would like to generate samples that are representative of $T$, and therefore make $D$'s task more difficult by capturing $p_t$ with $p_g$, $G$ includes a loss term that is based on whether $D$ successfully discriminated inputs as $T$ or $G(z)$ and back-propagates $D$'s success as error to $\theta_g$ appropriately.  In this way, $G$ learns how to generate data that is hard for an ever-improving $D$ to distinguish.  Importantly, `target' or `non-target' (or $\{p_t,p_{g}\}$, respectively) are the only labels (of $x$) required by either $G$ or $D$ because the loss function used by $G$ is defined in terms of $D(t)$ and $(1-D(G(z)))$ (ie. $G$ tries to minimize while $D$ tries to maximize, or vise versa).  Thus, the GAN framework presents a promising approach for generating data that approximates a target distribution in an unsupervised manner.
+\begin{abstract}
+    As system complexity increases to meet growing expectations of almost every market in our networked world, traditional methodologies of System Security Engineering (SSE, inclusive of Cybersecurity, Information Assurance, and Anti-Tamper) are becoming untenable.  SSE, as a discipline, is not unique in this regard.  Indeed, Model Based System Engineering represents a rapidly growing capability within the field of engineering to address precisely this need.  However, SSE can be regarded as an extreme exemplar of this phenomena.  This is because with increasing complexity comes a larger attack surface (i.e. a greater number of potentially vulnerable element instantiations within the system which an attacker may use as entry or pivot points to achieve his/her objective(s)).  Since the attacker need only find one or few such vulnerable elements, growing system complexity very much favors the attacker over the developer.  As such, there is a need for capabilities which leverage computational analysis techniques to address complexity (something humans do not perform well) in order to generate a comprehensive-but-minimal data representation that is informative, relevant, and actionable to a human SSE practitioner to enable a holistic risk management approach (something that machines do not perform well).
+\end{abstract}
 
-\subsection{GANs in Computer Vision}
+\section{TBD}
 
-The GAN framework has resulted in significant advancement within many Computer Vision related areas of study, and has inspired many GAN variations that represent improvements or specialized implementations.
+\section{Problem Formulation}
 
-\subsubsection{GAN Implementation Advancements}
+\subsection{Knowledge Representation}
 
-In the original GAN, $G$ learns to generate data that estimates $p_t$, but cannot target specific sub-distributions within $p_t$, such as class labels or modes within $p_t$.  Shortly after the original GAN was introduced, Mirza and Osindero introduced an extension called Conditional GAN \cite{mirza2014conditional} which addresses this need.  By adding a conditioning input layer to both models $G$ and $D$, one can present the conditioning data $y$ alongside the normal data.  $G$ will learn a mapping from $z$ to $X$ given $y$ that will result in making classification of $X$ given $y$ difficult for $D$.  This advancement seems obvious in retrospect, but warrants contemplation.  While $G$ represents a mapping that captures the distribution of the target data space $T$ in general, the noisy input $z$ can be regarded as the diversity component of the input and $y$ can regarded as the specification component of the input.  Since $y$ is constant within a given mode, a smaller portion of the overall networks for $G$ and $D$ can focus on the generation and discrimination, respectively, of the modal contribution whereas the remaining portions of the networks can focus on the unspecified contributions from $z$.  Of course, Conditional GAN requires that conditioning data (eg. labels) are available for all target samples $t \in T$.
+Ontologies:
 
-Radford, Metz, and Chintala \cite{DBLP:journals/corr/RadfordMC15} evaluated various model architectures and recommended a set of guidelines and constraints for $G$ and $D$ architectures that appeared to perform well in terms of stability, convergence, resolution, and depth of representation.  These guidelines describe a Deep Convolutional GAN (DCGAN) and are summarized as follows: (a) use convolution and fractional convolution layers with striding to achieve adaptive down-sampling ($D$) or up-sampling ($G$), respectively, rather than fixed/deterministic methods (i.e. max pooling), (b) use batch normalization between convolution layers to mitigate collapse or failure due to poor initialization or vanishing gradients, (c) avoid fully-connected layers, with the exception of the input to $G$ and the output of $D$, to help earlier convergence, and (d) use Rectifier Linear Unit (ReLU) activation for input and hidden layers in $G$, tanh for the output layer in $G$, and Leaky ReLU for all layers in $D$.  In addition to performance improvements, the authors demonstrate that $D$ is able to learn semantically-relevant features that are both explainable (via latent-space walk based validation) and usable (via feature-based supervised classification).  In one example case they were able to discover a linear vector in $Z$-space that could control rotation of faces.  
+\begin{itemize}
 
-
-\subsubsection{GAN in Semantic Learning and Generation}
-
-Within the theme of semantic learning and generation, Pathak, Krahenbuhl, Donahue, Darrell, and Efros used an adversarial approach to inpaint (fill in missing portions of) images with large extents of missing pixel data \cite{pathakCVPR16context}.  Their architecture is based on an auto-encoder \cite{hinton2006reducing} combined with GAN.  In their approach, the encoder-decoder learns a semantic encoding based on the non-missing portions and attempts to reproduce a whole image based on that semantic encoding.  The encoder-decoder is regarded as $G$, and a new discriminator $D$ is trained to predict whether its input is a reconstructed output from $G$ or an original image.  The `reconstruction loss' for $G$ is defined in terms of distance ($L_2$) from the filled area to the removed area and the adversrial loss comes from $D$. Interestingly, and in contrast with \cite{mirza2014conditional}, the authors achieved better results when $G$, but not $D$, was conditioned with context information \footnote{The paper defines context information as the missing pixels which, if true, undermines the objective (any statement of success should be based on withholding the missing pixels from the architecture).  I have requested clarification on this from the author (17 Oct 2018) and have not received a response as of 18 Nov 2018.}.
-
-%Wu et al. took a somewhat similar approach and extended a variational autoencoder \cite{larsen2015autoencoding} within a 3-dimensional GAN architecture (3D-VAE-GAN) which learns to generate 3D images from 2D examples \cite{NIPS2016_6096}.
-
-Luc, Couprie, Chintala and Verbeek applied a straightforward GAN approach to the task of semantic segmentation on images \cite{Luc2016SemanticSU}.  Their approach uses a Convolutional Neural Network (CNN) based generative model $G$ to learn a class label for each pixel in the image based on a ground-truth labeling (supervised), thereby creating a segmentation map of the input image.  $D$ then takes a segmentation map and tries to classify it as being a ground truth map or a generated map, and passes its loss back to $G$.  
-%While $D$'s objective function tries to maximize classification accuracy of the input segmentation map as being either ground truth or generated, $G$'s objective function tries to maximize pixel class labeling accuracy with respect to ground truth while also minimizing accuracy.
-
-%Ehsani, Mottaghi, and Farhadi used a GAN approach to address the related dual purpose task of semantically segmenting objects within an image and completing those objects that were occluded by other objects in the image \cite{ehsani2017segan}.
-
-Reed et al. applied a GAN approach to the dual-task of (1) generating realistic images (2) from text-based descriptions \cite{reed2016generative}.  Essentially, they create $G$ by concatenating the input noise with an encoding of the text description and feed the result into a feed-forward CNN using fractional-striding\footnote{The paper claims this to be a de-convolutional network, but I presume it to mean a CNN using fractional striding to achieve up-sampling.}.  The architecture is a variant of the Conditional GAN.  $D$ then down-samples with CNN layers until a 4x4 representation is achieved, concatenates the text encoding onto each of the 16 frames, and continues convolutions to achieve the binary discriminator output.  The learning objectives are consistent with \cite{NIPS2014_5423}.  However, since there are two sources of error (error associated with producing fake-looking images and error associated with producing real-looking images that do not match the description), their approach addresses the second source of error by augmenting the labeled data with real images having non-matching descriptions, which $D$ must learn to recognize.
-
-\subsubsection{Image Translation}
-
-Another rich area of research that has greatly benefited from the GAN architecture is image translation.  Generally, image translation deals with the learning of a meaningful semantic representation of an image in one domain, and then generating an image with the same semantic representation from a different domain.  Isola, Zhu, Zhou, and Efros designed a solution that appears to generalize well across various domain pairs for this task \cite{isola2017image}.  Their architecture follows a U-Net auto-encoder architecture \cite{ronneberger2015u} with DCGAN constraints \cite{salimans2016improved}.  Further, similar to \cite{pathakCVPR16context}, they constrain $D$'s task to focusing on high-frequency semantic accuracy using learned image patch losses that are fed from skipped connections from encoder layers (PatchGAN), while leveraging an $L_1$ term in $G$'s loss to ensure low-frequency accuracy.  A later paper from Liu, Breuel, and Kautz also displays impressive results \cite{NIPS2017_6672} in image translation.
-
-\subsubsection{Video Implementations}
-
-A logical progression from image-based applications is to apply GAN to video.  Mathieu, Couprie, and LeCun first adopted a GAN approach to a video prediction task \cite{Mathieu2015DeepMV}.  They designed a scaled generator $G_k$ that convolves input frames at scale $k$ and predicts a future frame at that scale $Y_k$.  The overall generator $G$ then generates the final predicted frame $Y$ at full resolution using a Laplacian pyramid \cite{denton2015deep} built on each $G_k$.  The discriminator $D$ attempts to classify the last frame(s) in a sequence as being either real or generated by $G$ (the first frames in the input sequence are always real), and thus provides the usable adversarial loss to $G$.
-
-Tulyakov, Liu, Yang, and Kautz introduce MoCoGAN, a method for decomposing video into content (the objects in the video) and motion (the movement of those objects) components, each having its own generator and discriminator ($G_C, G_M, D_C, D_M$) \cite{tulyakov2017mocogan}.  $D_C$ attempts to detect whether a frame is sampled from a real video clip or a generated one, while $D_M$ attempts to detect whether a video clip (series of frames) is sampled from a real or generated clip.  $G_C$ (a CNN) takes motion vectors from $G_M$ (a Recurrent Neural Network), and it's objective includes loss terms from both $D_C$ (a CNN) and $D_M$ (a spatio-temporal CNN), while $G_M$'s objective includes a loss term from $D_M$ only.  In this way, the noise input to $G_C$ can control which objects are in the video, while the noise input to $G_M$ can control the objects' motion.  Another notable application involves segmentation-map-to-video synthesis \cite{wang2018videotovideo}.
-
-%Bansal et al. tackle the task of video-to-video translation and achieve fairly convincing results with a hierarchical GAN approach (RecycleGAN) \cite{bansal2018recyclegan}.  Their approach does not require matched video pairs (between domains), but instead introduces loss terms related to reconstruction (accuracy in translating from domain A to domain B and back to domain A again), next frame prediction, and straightforward generative and aversarial losses.
-
-\subsubsection{Implications to Security}
-
-Like any powerful technology, there are significant security implications associated with GANs, both with respect to how they are implemented and how they are used.  Indeed, most of the papers involving GAN implementations for computer vision applications rely on the ability of generated image/video to fool a human observer as an important qualitative measure of success.  The use of deep learning as a tool for generating convincing, non-authentic video was put in the public eye when a tool set developed by deepfake \cite{deepfakes-faceswap} was used maliciously to produce pornographic video content with public personalities, and later by celebrity Jordan Peele as a public service announcement, warning of the dangers of misuse of the technology \cite{peeleDeepFakes}.  
-
-Although this paper has only discussed the use of GANs to achieve a singular objective, learning and/or generative models can be juxtaposed by two owners with opposing goals.  Szegedy et al. introduced this as a potential issue, showing how minimally-perturbed examples can be generated which result in miss-classification (with high confidence) by a classification model.  Several follow-up studies have explored this phenomena further \cite{carlini2016towards, kos2017adversarial, moosavi2017universal, athalye2017synthesizing}, noting potentially serious consequences for applications such as robotics, autonomous vehicles, and military.
-
-%Lastly, Shokri et al. developed an adversarial methodology for determining whether a given sample was specifically included in the training set (which, in many cases, may be considered private) for a given classification model \cite{shokri2017membership}.  Song et al. developed a methodology
-
-\subsubsection{Remaining Challenges and Opportunities}
-
-As discussed, the GAN approach has enabled major improvements to several research areas including enablement of semi-supervised and unsupervised learning, improved performance of generative models, the learning of highly complex loss functions, data synthesis for enabling/improving other learning tasks, image and domain learning and translation, and semantic learning and generation.  In general, the GAN approach provides a relatively simple and tractable way of isolating deep learning objectives and sources of error in such a way that they can be addressed individually and researchers can make headway toward a complex objective, as is apparent in the Conditional GAN, in-painting, MoCoGAN, and text-to-image generation, among others.  Broadly stated, as deep learning models adopt more complex architectures and greater capacity, there is an increasing need to provide more meaningful and comprehensive constraint(s) to the model's objective.  GANs provide a tractable methodology for learning sets of constraints (losses) which can be as complex as the main learning objective, or even more-so.
-
-To this end, I predict that a likely trend in GAN research is the emergence of more complex GAN architectures.  Subdividing complex goals into multiple generators and complex constraints into multiple discriminators is likely to lead to elegant solutions to tasks previously considered to be too complex for more conventional singular deep learning models.  Likewise, as GAN architectures grow in complexity, the overall objective function (combination of loss terms, heuristics, and discriminator outputs) for a complex learning task may become a focus of future work.  Whereas, for example, current research is learning semantic representations in videos that involve specific objects and their spatial movement across several frames, deeper semantic learning of \textit{who, what, where, when, and why} information may demand these more complex hierarchical structures.
-
-Further, as research yields models and approaches that efficiently and effectively solve moderately complex tasks, it is reasonable to expect an increase in demand for standardized, modular, and extensible model interfaces (eg. Model Based Engineering ecosystem) for use among research and commercial entities to solve more complex tasks and continue the evolution of artificial intelligence.
-
-In the area of security, GAN approaches pose both a threat (eg. fake video, adversarial examples) as well as a benefit (eg. efficient fuzzing \cite{hu2018ganfuzz}) to security, privacy, and safety.  Specifically, the ability to generate adversarial examples potentially applies to many systems in which the input to that system is corruptible/mutable by a malicious actor.  Unfortunately, deep learning approaches to build robustness against these attacks into the system are only advancing the adversarial game one move forward.  A more effective (though admittedly not immune) approach may involve research into understanding and increasing the robustness of the manifold (hidden layers) of deep learning models.  Some objectives of research in this area may be to level-load the sensitivity of the manifold to small changes or to explore the robustness of the manifold in terms of spacial, temporal, or modal variation.
-
-\subsection{Adversarial Machine Learning}
-
-This section will explore the broader topic of Adversarial Machine Learning (ML) and it's role in security and privacy.  In 2008, Barreno, Nelson, Joseph, and Tygar discussed some security implications of ML and proposed a taxonomy to identify and analyze different attacks \cite{barreno2010security}.  In the proposed taxonomy, an attack was to be identified in terms of \textit{Influence}, \textit{Security Violation}, and \textit{Specificity}.  \textit{Influence} is similar to the concept of attack surface, and refers to whether the attacker (a) can control training data to influence the model (causative) or (b) must exploit an existing model during test/classification (exploratory).  \textit{Security Violation} refers to whether the attacker's goal is to result in misclassification of inputs (integrity compromise) or in general performance degradation (model availability compromise).  Lastly, \textit{Specificity} refers to whether the attack is targeted at a particular instance (eg. a single input) or a wide class of instances (one or multiple modes).
-
-More recently, research has shown that legitimate attacks could be performed to expose potentially private training data or reveal enough information about model structure and parametrics to effectively learn sensitive/proprietary latent semantic representation through white- and black-box methods, which is discussed further in the following sections.
-
-\subsubsection{Malicious Perturbations}
-
-When ML methods are used as a tool in an adversarial context like security, robustness of the model to adversarial examples becomes a primary design objective.  Intrusion detection systems (IDS) and Spam filters are two classic examples wherein the design objective is to accurate classify messages or traffic as benign or malicious in the presence of an attacker who's objective is to design his/her malicious content to be classified as benign (i.e. evade detection).  %This scenario depicts an \textit{exploratory}, \textit{integrity}, and \textit{specific} attack.
-
-Russu, Demontis, Biggio, Fumera, and Roli explore a formalization of the classification evasion problem and some principled reasoning toward the design of robustness in the context of linear models and kernels \cite{russu2016secure}.  Essentially, they formalize the attack paradigm as trying to transform a malicious input $x$ into a still-malicious input $x^\prime$ such that $x^\prime$ will be classified as benign and the distance (norm) between $x^\prime$ and $x$ is minimized.  They discuss different paradigms for sparse attacks, where the attacker would like to modify as few features as possible (eg. Spam), and dense attacks, where the attacker can make minimal modifications to a large number of features (such as image perturbations).  The paper provides proof, under the assumption that an attacker will try to minimize their $L_1$ distance (from $x^\prime$ to $x$) for sparse attacks and $L_2$ distance for dense attacks, that classifiers should use $L_{\infty}$ regularization and $L_2$ regularization on the parameters, respectively.  They extend the proof to non-linear kernels, resulting in recommendations of Laplacian kernels for sparse attacks, and Radial Basis Function for dense.  They did not extend their work to highly complex adversarial distance functions (like those from GANs), but it nevertheless provides a principled basis for the nature of the adversarial learning task.
-
-Spam filtering is a very real example of this problem, and has a relatively rich history from an adversarial learning perspective.  Word-based Bayesian Spam filters date back to 1998 \cite{sahami1998bayesian}, and the first `Bayes vs. Bayes' publicly-demonstrated attack was presented in 2004 \cite{graham2004beat}.  These early examples demonstrated the concept, but were not human-spoofable.  Generating adversarial perturbations that (a) retain the same general Spam content, (b) are not detectable by humans, and (c) result in classification evasion, has proved to be a difficult challenge.  Recently, Iyyer, Wieting, Gimpel, and Zettlemoyer developed an approach known as Syntactically Controlled Paraphrase Networks \cite{DBLP:journals/corr/abs-1804-06059}.  First, they implemented a parse generator which takes, as input, a sentence $s_1$, a full parse $p_1$ of $s_1$ (obtained using \cite{manning2014stanford}), and a target template $t_2$, and provides a target parse $p_2$.  Next, they implemented a paraphrase generator which takes, as input, $s_1$ and $p_2$, and generates a paraphrase sentence $s_2$.  They show that randomly generated paraphrase samples (not adversarially learned) result in a relatively high number of miss-classifications using a common classifier trained on common data sets, and also that augmenting the training data with these syntactically-diverse adversarial examples results in better performance in the face of new adversarial examples.
-
-
-\subsubsection{Training Data Confidentiality}
-
-The next two papers address the problem of confidentiality of training data used to train models.  An andividual or company may develop and train a model based on data they own and wish to protect, such as financial, medical, social, or other information, while making the model available to those who are not authorized to see the training data.  Shokri, Stronati, Song, and Shmatikov have demonstrated a methodology to determine whether a specific sample was included within the training set for a target model \cite{shokri2017membership}.  Given a specific data sample $x_?$ and a target model $M_t$, their paper shows how to (a) create multiple `shadow' models with different (real or synthesized) data from that used to train $M_t$, (b) obtain prediction responses from each of the shadow models that can be labeled as `in' or `out' depending on whether each sample was part of that shadow models training set, and then (c) use the labeled response data to train an attack model $M_a$.  After training, $M_a$ achieves good performance in predicting whether black-box responses from $M_t$ are associated with training input (`in') or test input (`out').  The paper addresses the issue of bias from confidence in the responses by synthesizing the data and sampling from only the subset of that synthesized data which results in similar confidence distributions from $M_t$.
-
-Similarly, Song, Ristenpart, and Shmatikov demonstrated several white- and black-box approaches to build covert channels into ML models for the purpose of extracting sensitive/proprietary training data.  In the attack scenario, the data owner may not wish to reveal the training data to the model developer, but rather have the model trained and delivered by a secure third party.  White-box methods were presented but, more interestingly, a `capacity abuse' attack was described that addresses the black-box scenario.  Essentially, the malicious learning algorithm automatically augments the training data with attacker-chosen data (think seeded number generator) that is then labeled with an encoding of the private training data just prior to training.  The model learns on both the original and malicious training data.  Later on, the attacker, having black-box access to the model, can present the known malicious data to the model and receive the encoded private data via the responses.  Stein built upon this work, and hypothesized that performance of the model for both its benign purpose as well as its covert purpose depends on the malicious data being sparse. \cite{stein2018covert} The intuition is that since sparse data is distant  from the private training data (in the feature space), it will not have adverse affects on classification; and since each sparse sample is distant from other sparse samples, they are mutually separable resulting in higher accuracy training data reconstruction.  Stein demonstrated under ideal conditions that the Membership Inference \cite{shokri2017membership} methodology could be used to detect whether a given model was trained on a sparse distribution or not, thereby serving as a potential indicator of covert channel(s).
-
-\subsubsection{Remaining Challenges and Opportunities}
-
-ML robustness in the face of adversarial examples is likely to continue being an open problem for some time.  The challenge is not a transient implementation issue that will be worked out as ML technology matures, but rather, like bias vs variance, a core learning issue at the heart of the gap between ML and true intelligence.  In this vein, I feel that a deeper understanding of complex models, specifically deep learning networks, including properties, topographies, and structures, and their effects in adversarial scenarios, is a promising area of study.  For example, characterizing parameter evolution in the manifold during training on benign data sets vs data sets with adversarial augmentation may reveal indicators that could be measured directly on future models (in the absence of adversarial data).  Further, the formalized approach discussed in \cite{russu2016secure} could be extended to more complex networks.  Since knowledge of the adversary's perturbation minimization objective helped inform provable design guidelines for the classifier, perhaps a finer-grained approach to adversarial learning (eg. segmentation of large generative and classification networks with complex tasks into matched ensembles of smaller networks with simpler tasks) will lead to discovery of better weakness causality and eventually prescriptions for model robustness to specific adversarial goals.
-
-
-\newpage
-\section{Privacy Prediction}\label{sec:privpred}
-
-Two privacy prediction tasks have been identified: (1) predict whether each pixel in a given image is part of a private object, and (2) predict whether or not a given image has private content\footnote{The tasks are addressed in reverse order from how they were presented in \ref{app:questions} because, in the approach described herein, the solution for (2) can be largely derived from the solution for (1).}.  For both tasks, assume that $N$ images are sampled, each with $M$ pixels having $H$ channels defined as $I : {\lbrack0,256\rbrack}^{M \times H} \rightarrow \{i_{mh} | \forall m \in \lbrack0,M), \forall h \in \lbrack0,H) \}$.  Also, the following forms of evidence are available for each image $I_n$ sampled from $I$:
-
-\begin{table}[h]
-\centering
-\caption{Evidence}
-{\renewcommand{\arraystretch}{2}
-\begin{tabular}{p{7cm}|l}
-    \textbf{Evidence} & \textbf{Formalized as} \\
-    %\hline \\
-    Prediction vector of a categorical scene type $S$ (eg. natural, man-made, bathroom, etc.)
-        & $\{p(S_n = s \mid I_n) \mid \forall s \in dom(S) \}$\\
-    %\hline \\
-    Structured meta-data $D$ (GPS coordinates, timestamp, etc.)
-        & $D_n$\\
-    %\hline \\
-    Posterior probability of image if a pixel lies on some categorical object type $O$
-        & $\{p(I_n \mid i_{nm}\textrm{ on }o) \mid \forall m \in \lbrack0,M), \forall o \in dom(O) \}$\\
-    %\hline \\
-    A set $t$, where $dom(t)=\lbrack0,M)$, of coordinates for human-selected pixels that are part of private objects
-        & $t_n \subseteq \lbrack0,M)$
-\end{tabular}}
-\end{table}
-
-In the following sections, the $n$ subscript will often be omitted for simplicity when considering a single image.
-
-\subsection{Task 1: Which Pixels Represent Private Data?}
-
-The objective for this task can be stated as estimating $\{\forall m \in \lbrack0,M), p(C_{P_{m}} = 1 \mid I, \textrm{ evidence}) \}$ where $C_{P_m}$ is the binary class label for whether a pixel $i_m$ is part of a benign object/region (0) or part of a private object/region (1).  This set or probabilities can be regarded as a `privacy map' of $I$ for use in sensorship, for example.
-
-\subsubsection{Probabalistic Model Formulation}
-
-One would like to incorporate any and all useful evidence into the determination, and also reduce noise to achieve congruency for pixel-on-object predictions within object areas to reduce false positives. Therefore, a probabilistic model is needed.
-
-When defining a probabilistic model, it is important to define the central assumptions behind what the model is attempting to capture in terms of privacy. For this approach, the following assumptions are used: 
-
-\begin{enumerate}
-    \item Both tasks are semi-supervised, such that the only form of labeled data is $t_n$\footnote{The semi-supervised assumption was adopted because human point-and-click labeling of private image regions for both training and updating of models is thought to be a realistic scenario.}.  Note that this assumption implies that $t_n$ will not be available at test time.
-    \item Certain objects, or object details, are private.
-    \item Whether an image is private is determined by whether it contains private objects or object details.
-\end{enumerate}
-
-Notice that certain contextual privacy scenarios, such as an image of a car known to belong to `Bob' being parked outside of a liquor store during work hours, for example, may not necessarily be marked private, even though `Bob' might argue that it is.
-
-Under these assumptions, we can model the objective task as a marginal (over all $K$ object types) of the joint probability that $i_m$ belongs to a certain object type $o_k$ and that object type $o_k$ is a private type. More formally, $\forall m \in \lbrack0,M)$:
-
-\begin{align}\label{eqn:task1.0}
-    p(C_{P_{m}} = 1 \mid I, \textrm{ evidence}) = \sum_{k = 0}^{K} \Big( p(i_m \textrm{ on } o_k, o_k \textrm{ is private} \mid I, \textrm{ evidence}) \Big)
-\end{align}
-
-\subsubsection{Basis of the Model}
-
-To form the basis of the probabilistic model, a belief network which juxtaposes our evidence and other random variables into the believed set of dependency assumptions is created. The dependency assumptions are defined as follows.  Firstly, an image ($I$) is the result of, and therefore depends on, the true object-to-pixel mapping ($i_m$ on $o_k$) that is captured by the camera.  Secondly, the scene type ($S$) prediction is based on, and therefore depends on, the image ($I$).  Lastly, we'll assume for now that image meta-data ($D$) in its raw form doesn't meaningfully contribute to the privacy determination problem.  GPS location and time stamps may be useful for influencing the scene probabilities or accounting for lighting differences in the image for object recognition, but we do not have direct influence over those predictors.  The resulting belief network is shown in Figure \ref{fig:belief}.
-
-\begin{figure}[ht]
-\centering
-    \begin{tikzpicture}[every node/.style={shape=ellipse, draw}]
-    %NODES
-    \node (io) {$i_{m}\textrm{ on }o_k$};
-    \node (i)  [right = of io] {$I$};
-    \node (s) [right = of i] {$S$};
-    \node (or) [below = of i] {$o_k$ is private};
-    \node (d) [right = of s] {$D$};
-    %PATHS
-    \path   (io) edge [->] (i);
-    \path   (i) edge [->] (s);
-    \end{tikzpicture}
-    \caption{Belief Network}\label{fig:belief}
-    %\medskip
-    %\small
-\end{figure}
-
-We can use Bayes rule and the chain rule to obtain the conditional joint probability distribution $p(i_m \textrm{ on } o, o \textrm{ is private} \mid I, \textrm{ evidence})$.
-
-\begin{align}
-    & p(i_m \textrm{ on } o, o \textrm{ is priv} \mid I, \textrm{ evidence})     && = p(i_m \textrm{ on } o, o \textrm{ is priv} \mid I, S, D) \notag\\
-    & \quad && = \frac
-        {p(S, I, i_m \textrm{ on } o, o \textrm{ is priv}, D)}
-        {p(S, I, D)} \notag\\
-    & \quad && = \frac
-        {p(S \mid I) p(I \mid i_m \textrm{ on } o) p(i_m \textrm{ on } o) p(o \textrm{ is priv}) p(D)}
-        {p(S \mid I) p(I) p(D)} \notag\\
-    & \quad && = \frac
-        {p(I \mid i_m \textrm{ on } o) p(i_m \textrm{ on } o) p(o \textrm{ is priv})}
-        {p(I)} \label{eqn:joint}\\
-    & \quad && = p(i_m \textrm{ on } o \mid I) p(o \textrm{ is priv}) \label{eqn:indep}\\
-    & p(i_m \textrm{ on } o) 
-        && = \textrm{?}\\
-    & p(I)
-        && = \sum_{k = 0}^{K} \Big( p(I \mid i_m \textrm{ on } o_k) p(i_m \textrm{ on } o_k) \Big)%
-\end{align}%
-
-\subsubsection{Algorithm}\label{sec:t1alg}
-
-All pseudo code can be found in Appendix \ref{app:algs}.  Time complexity for all algorithms is given in their respective captions.  $N$ is number of images, $M$ is number of pixels per image, $K$ is number of object types, $L_n$ is number of objects in image $I_n$, $Q$ is the number of neighbors to pixels, and $T$ is number of iterations (for root finding). $T$ and $Q$ are presumed to be small.
-
-Equation \ref{eqn:indep} in the previous section illustrates independence of the events that a specific pixel belongs to a specific object and that object being a private object type.  However, the prior distribution $p(i_m \textrm{ on } o \mid I)$ is still unknown.  Estimation of $p(i_m \textrm{ on } o \mid I)$ can be regarded as a constrained Maximum a Priori (MAP) estimation follows:
-
-\begin{gather}
-	\theta : \Big(p(i_m \textrm{ on } o_0), p(i_m \textrm{ on } o_1),
-		\dots, p(i_m \textrm{ on } o_K)\Big) \\
-	L(\theta) = \prod_{n=0}^{N} \sum_{k=0}^{K} p(I_n \mid i_{nm} 
-		\textrm{ on } o_k) \theta_k \\
-	LL(\theta) = \sum_{n=0}^{N} \log \Big( \sum_{k=0}^{K} 
-		p(I_n \mid i_{nm} \textrm{ on } o_k) \theta_k \Big) \label{eqn:loglik}\\
-	1 - \sum_{k=0}^{K} \theta_k = 0 \label{eqn:constr}\\
-	\mathcal{L}(\theta, \lambda) = \sum_{n=0}^{N} \log 
-		\Big( \sum_{k=0}^{K} p(I_n \mid i_{nm} \textrm{ on } o_k) \theta_k \Big) - \lambda + \lambda \sum_{k=0}^{K} \theta_k \label{eqn:lagr}\\
-	\mathbf{F}^{K \times 1}: \mathbf{F}_k = \frac{\partial \mathcal{L}}{\partial \theta_k} = 
-		\sum_{n=0}^{N} \frac
-			{p(I_n \mid i_{nm \textrm{ on } o_k})}
-			{\sum_{j=0}^{K} p(I_n \mid i_{nm \textrm{ on } o_j}) \theta_j} 
-			    + \lambda = 0;
-		\frac{\partial \mathcal{L}}{\partial \lambda} = 1 - \sum_{k=0}^{K} 
-			\theta_k = 0 \label{eqn:lagr1der}\\
-	\mathbf{J}^{K \times K}: \mathbf{J}_{i,j} = \frac{\partial}{\partial \theta_j}     \left( \frac
-		    {\partial \mathcal{L}}{\partial \theta_i} \right) = 
-		\sum_{n=0}^{N} \frac
-			{-p(I_n \mid i_{nm \textrm{ on } o_i})p(I_n \mid i_{nm 
-			    \textrm{ on } o_j})}
-			{(\sum_{l=0}^{K} p(I_n \mid i_{nm \textrm{ on } o_l}) \theta_l)^2} \label{eqn:lagr2der};
-		%\frac{\partial}{\partial \lambda} \left( \frac{\partial \mathcal{L}}{\partial \lambda} \right) = 0
-\end{gather}
-
-Equation \ref{eqn:loglik} represents the Log Likelihood of the observed data to be maximized over $\theta$, and Equation \ref{eqn:constr} represents the constraint that prior probabilities for all object types sum to 1.  A Lagrangian (Equation \ref{eqn:lagr}) is constructed to define the boundary on the Log Likelihood along which the constraint is satisfied.  The roots of the vector of first derivatives for this boundary (Equation \ref{eqn:lagr1der}) will contain the prior distribution that maximizes the posterior distribution.  Equation \ref{eqn:lagr1der} is difficult to solve in closed form. Thus, we will use the Newton-Raphson root finding algorithm to estimate the roots in $O(M(NK + K^3 + TNK))$ time, Algorithm \ref{alg:newtraph}.  This algorithm also requires the second derivative of the Lagrangian, a Jacobian matrix, expressed in Equation \ref{eqn:lagr2der}.  Essentially, the algorithm uses the hyperplane formed by the gradient at any coordinate to estimate the root as the point at which the plane passes through the axes, and repeats the process using the estimated root until a sufficiently close approximation is reached.
-
-Now that the prior $p(i_m \textrm{ on } o)$ has been estimated, we can use Bayes rule to calculate $p(i_m \textrm{ on } o \mid I)$ as follows:
-
-\begin{align}
-    p(i_m \textrm{ on } o \mid I) = 
-	    \frac{p(I \mid i_m \textrm{ on } o) p(i_m \textrm{ on } o)}{\sum_{j=0}^{K} p(I \mid i_m \textrm{ on } o_j) p(i_m \textrm{ on } o_j)}    
-\end{align}
-
-However, $p(i_m \textrm{ on } o \mid I)$ is still based on noisy evidence $p(I \mid i_m \textrm{ on } o)$, which has a high potential for resulting in a falsely high number of contiguous object regions.  Aside from the affect of identifying only small portions of private objects, this will also adversely affect $p(o_k \textrm{ is priv})$ by driving up the number of unmarked private objects and potentially mislabeling those that are marked.  Efficient belief propagation over pixels arranged as Markov Random Fields (MRF) has been shown to produce good results in scenarios where labels are unlikely to change between two neighboring pixels except in border regions \cite{felzenszwalb2006efficient}.  We use a variant of this approach to help regularize the noisy $p(i_m \textrm{ on } o \mid I)$ evidence to achieve $p_R(i_m \textrm{ on } o \mid I)$, as shown in Algorithm \ref{alg:regObjMap}.  Essentially, the algorithm iteratively updates messages between pixels which serve to penalize/regularize any two neighboring pixels having different object type probabilities.  Multiple iterations are needed to ensure influences can propagate sufficiently across potentially large object regions.
-
-The final task is to estimate $p(o \textrm{ is priv})$.  To achieve this, we need to enumerate all the object instances, their types, their respective probabilities, and whether they are private.  We us a variant of the Two-Pass Connected Component Labeling algorithm \cite{hoshen1976percolation}, described in Algorithm \ref{alg:objEnum}, which labels all the contiguous object regions and collects their associated privacy labels and statistics.  It is important to note that although objects are enumerated according to the highest object type probabilities for each pixel, probability summations for all object types are preserved at each pixel because we'll need to marginalize privacy over all object types.
-
-Given the enumerated object data, we estimate $p(o \textrm{ is priv})$ as described in Algorithm \ref{alg:private}.  Object privacy is tallied according to the type that was chosen as most probable for the image region as opposed to soft-attribution of privacy across the type probabilities.  This is because the other types may well have resulted in very different object regions, on the order of $K^{L_n}$ different mappings.
-
-As an aside, there is an opportunity to modify the original belief network such that $p(o \textrm{ is priv})$ is dependent on the scene $S$.  Specifically, if the object types are not sufficiently granular to result in good performance of $p(o \textrm{ is priv})$, the scene information may serve as a valuable conditioning variable.  An example might be if `text' is a lowest-level object type, then the appearance of `text' in a bathroom scene (prescription label?) might have very different privacy implications than `text' in an outdoor scene (road sign?).  To incorporate this dependency, Equation \ref{eqn:indep} becomes Equation \ref{eqn:indep-scene} and Algorithm \ref{alg:private} would tally privacy markings conditioned on scene type and output a probability map of dimension $K \times \left| S \right|$.  This approach, as described, is essentially intended to discover sub-classes of object types which may or may not be needed, as opposed to modeling a believed causality between scene and object privacy, which is why the dependency was omitted in the original belief network.
-
-\begin{align}
-    p(i_m \textrm{ on } o, o \textrm{ is priv} \mid I, \textrm{ evidence}) = p(i_m \textrm{ on } o \mid I) p(o \textrm{ is priv} \mid S) \label{eqn:indep-scene}
-\end{align}
-
-Finally, all the information has been obtained to answer Task 1.  For any given pixel $i_{nm}$, we can estimate the probability of whether it lies on a private object as follows:
-
-\begin{align}
-    p(C_{P_{nm}} = 1 \mid I, \textrm{ evidence}) = \sum_{k=0}^{K} p_R(i_{nm} \textrm{ on } o_k \mid I_n) P_k
-\end{align}
-
-In summary, we can estimate $p(i_m \textrm{ on } o)$ once in $O(M(NK + K^3 + TNK))$ time, regularize $p(i_m \textrm{ on } o \mid I)$ for all images in $O(NTMQ^2K)$ time, enumerate the objects in all images in $O(NMQ + L_n)$  time, estimate $p(o \textrm{ is priv})$ once in $O(N L_n K)$ time, and finally estimate the pixel privacy probability for all images in $O(N M K)$ time.  Since $L_n < M$, total running time for estimating all pixels for all images is $O(MK^3 + NMTKQ^2)$ where $T$ and $Q$ are presumed to be small.
-
-
-\subsection{Task 2: Does the Image Contain Private Data?}
-
-The objective for this task can be stated as estimating $p(C_I = 1 \mid I, \textrm{ evidence})$ where $C_I$ is the binary class label for whether the image is benign (0) or private (1).  The model formulation, basis, and algorithms for Task 1 are completely reused for Task 2.  A simple extension to the knowledge we've built in Task 1 is applied in order to complete Task 2, as follows.
-
-Assuming there are $L_n$ objects in an image $I_n$, if even one object in the image is private, then the image contains private content.  We can model the objective task over a Binomial distribution.  Specifically, choose $L_n$ successes given $L_n$ trials (objects) with the probability of success being $p_s = (1-p(E_l \textrm{ is priv} \mid I, \textrm{ evidence}))$, where $E_l$ is the $l^\textrm{th}$ object region.  The resulting probability is the complement of our objective probability.
-
-\begin{align}\label{eqn:task2.0}
-    p(C_{I_{n}} = 1 \mid I_n, \textrm{ evidence}) & = 1 - \prod_{l = 0}^{L_n} \left( 1 - p(\textrm{image region $E_{nl}$ 
-        is private} \mid I_n, \textrm{evidence}) \right)\\
-    & = 1 - \prod_{l = 0}^{L_n} \left( 1 - \sum_{k=0}^{K} (E_{nl}\textrm{ on } o_k \mid I_n) p(o_k \textrm{ is priv}) \right)\\
-    & = 1 - \prod_{l = 0}^{L_n} \left( 1 - \sum_{k=0}^{K} (E_{nl}\textrm{.psum}_k / E_{nl}\textrm{.cnt}) p(o_k \textrm{ is priv}) \right) \label{eqn:objpriv}
-\end{align}
-
-Notice in Equation \ref{eqn:objpriv} that the probability of an object region being of some type $k$ given the image is represented as the arithmetical average of the $k$-probabilities across all pixels in that $l^\textrm{th}$ object region.  This implies that individual pixel probability distributions are identically distributed within a given region, which is not true since each is the result of belief propagation over a Markov Random Field.  However, as mentioned in section \ref{sec:t1alg}, the actual object regions would likely have been different for different values of $k$, so use of the arithmetical mean for each type across all pixels in the dominant region is presumed (by the author) to be a reasonable compromise.  The independent joint probabilities for object classification and class privacy are marginalized over all object types to achieve the probability of the object region being private.  Then, the final probability of the image being private is the complement of the probability over the Binomial distribution that zero object regions are private.  This solution relies on the entirety of Task 1, except the final calculation of pixel privacy, and then calculates the probability over the Binomial distribution in $O(N L_n K)$ time, for the same total running time of $O(MK^3 + NMTKQ^2)$ where $T$ and $Q$ are presumed to be small.
-
-
-
+    \item Triplets (subject, predicate, object) \cite{jenkins2010ontologies}. Extensibility, Top-down and bottom-up.
+    
+    \item Basic Formal Ontology \cite{iso/iec_dis_21838-2}
+    
+    \item Reference Ontologies - Reference Ontology for SE (Top-Level Ontology (TLO) $\rightarrow$ Reference Ontology $\rightarrow$ Application Ontology).  Building out an ontology for Systems Engineering based on ISO/IEC/IEEE 15288. \cite{orellana2019ontology}
+    
+    \item Application Ontologies
+    
+\end{itemize}
  
+Explainability. I think the thought here is to discover relationships between attacks, targets, goals, and context.  \textcolor{red}{I need to ping Apu and make sure I understand his thoughts about how explainability applies to this area.}:
+
+\begin{itemize}
+    
+    \item Leino\/Sen\/Datta propose approach to explain CNNs based on a particular layer's $s$ influence over a particular measure $f$ with respect to a given distribution of interest $P$, which can be an instance, a class, the difference between two classes, or an entire dataset.  This approach is interesting because it appears to be very powerful and highly tunable to answer granular and specific questions. \cite{leino2018influence}  
+        
+\end{itemize}
+
+\subsection{Mapping Data to Ontologies}
+
+\subsection{Reasoning over Models}
+
+\begin{itemize}
+    
+    \item Berger - introduces Extended DFDs, maps these onto graphs, performs rule checking against ‘knowledge base’ built manually from CWE and CAPEC; uses Microsoft Threat Modeling Tool \cite{berger2016automatically}
+    
+    \item Audinot - Defines regular grammar for attack trees, operations on that grammar, and automata for those operations.  Trace semantics are implemented to determine (atk) goal reachability and, if quantitative info is available, optimal reachability (priced, timed, weighted, etc.).  With the optimal paths, certain positions (atks) are considered ‘useful’ and require further refinement. \cite{audinot2018guided}
+    
+\end{itemize}
+
+\subsection{Security Analysis Augmentation}
+
+Natural Language Processing:
+
+\begin{itemize}
+        
+    \item learning to recognize program dependency graphs (PDG) for secure and insecure use case patterns, and then implements nudge factors to help the (Stack Overflow) user choose secure examples \cite{fischer2019stack}
+        
+    \item edge2vec can learn heterogeneous node embeddings (nodes/edges can be typed, and graphs very similar to text) \cite{gao2018edge2vec}.  This could be very useful in prediction tasks (augmentation, text completion, pattern matching).
+        
+\end{itemize}
+
+\section{Related Work}
+
+\begin{itemize}
+
+    \item Jurjens - Security preservation semantics for Class/structure diagrams, statechart diagrams, and interaction/swimlane diagrams using UML.  Security is co-mingled with design. \cite{jurjens2001towards}
+    
+    \item Apvrille - further formalizes the application of SysML-sec to embedded hardware, uses EVITA vehicle architectural example, and demonstrates formal verification ability for a key distribution protocol \cite{apvrille2013sysml}
+    
+    \item Apvrille - focus on integration of reqts and attack analysis against a system design effort using the Y-chart methodology (mapping of app models onto arch models) to achieve formal V\&V using SysML (TTool).  Security is on separate diagrams from design/structure. \cite{roudier2015sysml}
+    
+\end{itemize}
+
 
 
 
@@ -320,290 +131,13 @@ Notice in Equation \ref{eqn:objpriv} that the probability of an object region be
 
 \clearpage
 \begin{center}
-    \section{Algorithms from Section \ref{sec:privpred}\label{app:algs}}
+    \section{Title}
 \end{center}
 
-\begin{algorithm}[!h]\label{alg:newtraph}
-\tiny
-\caption{Newton-Raphson Root Finding Algorithm, $O(M(NK + K^3 + TNK))$}
-	\KwData{
-		$X \leftarrow p(I_n \mid i_{nm} \textrm{ on } o_k)$}
-	\KwResult{$\theta^{M \times K}: \{\vec{\theta}_{0}^K, \dots, \vec{\theta}_{M}^K\}$}
-	$\theta \leftarrow 0^{M \times K}$\;
-	$\alpha \leftarrow$ small constant; $T \leftarrow$ small constant\;
-	\For{$m \leftarrow 0$ \KwTo $M$}{
-		\For{$n \leftarrow 0$ \KwTo $N$}{
-			$\vec{\theta_{m}} \leftarrow \vec{\theta_{m}} + 
-				\frac{\vec{p(I_n \mid i_{nm} \textrm{ on } o)}}{N \times \sum_{k=0}^{K} p(I_n \mid i_{nm} \textrm{ on } o_k)}$
-				// initial guess for $\theta_{m}$ assuming $I$ is uniform\;
-		}
-		Build $\mathbf{F}$ // Equation \ref{eqn:lagr1der} complexity $O(NK)$\;
-		Build $\mathbf{J}^{-1}$ // Inverse matrix of Equation \ref{eqn:lagr2der} complexity $O(NK+K^3)$\;
-		$t \leftarrow 0$\;
-		\While{$\mathbf{F}(\theta_{m}) > \alpha$ and $t < T$}{
-			$\vec{\theta_m} \leftarrow \vec{\theta_m} - 
-				\mathbf{J}(\vec{\theta_m})^{-1} \mathbf{F}(\vec{\theta_m})$
-				// complexity $O(NK)$\;
-			$t \leftarrow t + 1$\;
-		}
-	$\vec{\theta_m} \leftarrow \vec{\theta_m} / sum_{k=0}^{K} \theta_{mk}$
-		// satisfy constraint (i.e. solve for $\lambda$)\;
-	}
-\end{algorithm}
-
-\begin{algorithm}[hp!]\label{alg:regObjMap}
-\tiny
-\caption{Regularize the Object Map, $O(NTMQ^2K)$}
-\KwData{
-    $I: \{i_{mh} \mid \forall m \in \lbrack 0, M ), \forall h \in \lbrack 0, H)\}$}
-\KwResult{$p_R(i_m \textrm{ on } o \mid I)$}
-$T \leftarrow$ small number // number of iterations for message updates\;
-$d \leftarrow$ small positive constant // penalty for labeling variation\;
-$D^{M \times K} \leftarrow -log(p(i_m \textrm{ on } o \mid I))$ /* get object probability map from noisy evidence and convert values to negative log */\;
-MSG$^t \leftarrow 0^{M \times \lvert m\textrm{'s neighbors} \rvert \times K}$\;
-MSG$^{t-1}$\;
-PMAP $\leftarrow$ null$^{M \times K}$\;
-\SetKwFunction{h}{h}
-\SetKwProg{Def}{def}{:}{}
-\Def{\h{x: coord}}{
-    res $\leftarrow 0^K$\;
-    \For{$k \leftarrow 0$ \KwTo $K$}{
-        \For{$q \in$ Neighbors($x$)}{
-            $res_k \leftarrow res_k +$ MSG$^{t-1}_{q,x,k}$\;
-        }
-        $res_k \leftarrow res_k + D_{x,k}$\;
-    }
-    return $res$
-}
-\SetKwFunction{Nei}{Neighbors}
-\Def{\Nei{x}}{return 8 pixel coordinates around x // could be 4\;}
-\For{$t \leftarrow 0$ \KwTo $T$}{
-    // Update messages $T$ times\;
-    MSG$^{t-1} \leftarrow$ MSG$^t$\;
-    \For{$m \leftarrow 0$ \KwTo $M$}{
-        // for each pixel coordinate\;
-        $h_m \leftarrow$ \h{$m$}\;
-        $h_{m_{min}} \leftarrow \min_{k} (h_m + d)$\;
-        $Q \leftarrow$ Neighbors($m$)\;
-        \For{$q \in Q$}{
-            $h_q \leftarrow$ \h{$q$}\;
-            \For{$k \leftarrow 0$ \KwTo $K$}{
-                MSG$^t_{m,q,k} \leftarrow \min (h_{q_{k}}, h_{m_{min}})$
-            }
-        }
-    }
-}
-\For{$m \leftarrow 0$ \KwTo $M$}{
-    $p_R(i_m \textrm{ on } o \mid I) \leftarrow \frac
-	    {\vec{log^{-1}(-\textrm{\h{m}})}}
-	    {\sum_{k=0}^{K}log^{-1}(-\textrm{\h{m}})}$
-	    // conv. to probability and ensure normalized\;
-}
-return res\;
-\end{algorithm}
-
-\begin{algorithm}[hp!]\label{alg:objEnum}
-\tiny
-\caption{Object Enumeration, $O(NMQ + L)$}
-	\KwData{$P^{N \times M \times K} \leftarrow p_R(i_{nm} \textrm{ on } o_k \mid I_n) \forall n \in \lbrack 0,N), \forall m \in \lbrack0,M), \forall k \in \lbrack0,K)$}
-	\KwResult{$\Big( E^{N \times L_n}, Y^{N \times L_n} \Big)$ s.t. $E: (((\textrm{typ, } \vec{\textrm{psum}} \textrm{, cnt})_{00}, \dots, (\textrm{typ, } \vec{\textrm{psum}} \textrm{, cnt})_{0L_{0}}),$ \\ $((\textrm{typ, } \vec{\textrm{psum}} \textrm{, cnt})_{0N}, \dots, (\textrm{typ, } \vec{\textrm{psum}} \textrm{, cnt})_{NL_{N}})); Y: \{True, False\}^{N \times L_n}$}
-	/* where typ is the object type label, psum is the sum of probabilities for that type within the object region, cnt is the number of pixels in the object region, the training label $Y$ is True if object region is marked, False otherwise, and $L_n$ is total number of objects within image $I_n$ */\;
-	\SetKwProg{Def}{def}{:}{}
-    \SetKwFunction{N}{Neighbors}
-    \Def{\N{x: coord}}{returns Queue of previously marked neighbors to $x$ in ascending order}
-	\For{$n \leftarrow 0$ \KwTo $N$}{
-    	$\vec{\lambda} \leftarrow \infty^{M}$\;
-    	$\lambda_{cur} \leftarrow -1$\;
-    	$\vec{\Pi} \leftarrow ()$ // each element points to its parent label\;
-    	\For{$m \leftarrow 0$ \KwTo $M$}{
-    		$Q \leftarrow$ \N{m}\;
-    		\While{$Q \neq \emptyset$}{
-    		    $b \leftarrow Q$.pop()\;
-    		    $k \leftarrow \argmax_k P_{nm}$\;
-    		    \uIf{$k == (\argmax_k P_{nb})$}{
-    		        \uIf{$\lambda_b > \lambda_m$}{
-    		            $\pi_b \leftarrow \lambda_m$ // record $\lambda_m$ as parent of $\lambda_b$\;
-    		        }
-    		        \uElse{
-    		            $\lambda_m \leftarrow \lambda_b$ // adopt neighbor's label\;
-    		            $E_{n\lambda_{m}}$.psum $+= P_{nm}$\;
-    		            $E_{n\lambda_{m}}$.cnt $+= 1$\;
-    		            \uIf{$m \in t_n$}{$Y_{n\lambda_{m}} \leftarrow True$ // if this is training data}
-    		        }
-    		    }
-    		}
-    		\uIf{$\lambda_m == \infty$}{
-    		    $\lambda_{cur} \leftarrow \lambda_{cur} + 1$\;
-    		    k $\leftarrow \argmax_k P_{nm}$\;
-    		    $\lambda_m \leftarrow \lambda_{cur}$\;
-    		    $E_n$.append(typ, $P_{nm}$, 1)\;
-    		    $Y_n$.append($m \in t_n$) // if this is training data\;
-    		    $\Pi$.append($-1$)\;
-    	    }
-    	}
-    	\For{$l \leftarrow (\left| E_n \right| -1)$ \KwTo $0$}{
-    	    \uIf{$\pi_l \geq 0$}{
-    	        // collapse children into parents\;
-    	        $E_{n\pi_{l}} \leftarrow (E_{n\pi_{l}}\textrm{.type}, E_{n\pi_{l}}\textrm{.psum} + E_{nl}\textrm{.psum}, E_{n\pi_{l}}\textrm{.cnt} + E_{nl}\textrm{.cnt})$\;
-    	        $Y_{n\pi_{l}} \leftarrow Y_{n\pi_{l}} \textrm{ OR } Y_{nl}$\;
-    	        $E_n$.remove($l$); $Y_n$.remove($l$)\;
-    	    }
-    	}
-	}
-	return $E$\;
-\end{algorithm}
-
-\begin{algorithm}[hp!]\label{alg:private}
-\tiny
-	\KwData{$E^{N}$ // the enumerated object vectors}
-	\KwResult{$P^K$ // probability distribution $p(o \textrm{ is priv})$}
-	$C: ((t_0, p_0), \dots, (t_K, p_K)) \leftarrow (0,0)^K$ // total and private counts for each object type\;
-	\For{$n \leftarrow 0$ \KwTo $N$}{
-	    \For{$l \leftarrow 0$ \KwTo $\left| E_n \right|$}{
-	        $k \leftarrow E_{nl}$.typ\;
-	        $C_{k}.t += 1$\;
-	        \uIf{$E_{nl}$.priv}{$C_{k}.p += 1$}
-	    }
-	}
-	\For{$k \leftarrow 0$ \KwTo $K$}{
-	    $P_k \leftarrow C_k.p / C_k.t$\;
-	}
-	return $P$\;
-\caption{Object Privacy Prior Estimate, $O(NL  K)$}
-\end{algorithm}
-
-%%%%%%%%% Appendix B %%%%%%%%%%%
-
-\newpage
-\begin{center}
-    \section{Examination Committee Questions}
-\end{center}
-
-\subsection{Dr. Apu Kapadia}
-
-\subsubsection{GANs (2.5-3 pages excluding citations)}
-Researchers have recently made much progress in the area of adversarial machine learning using "generative adversarial networks." Identify 8-12 papers in this area specific to computer vision, and synthesize and summarize the various research contributions in this area; draw connections between the various papers and make sure the writeup does NOT look like a string of summaries. Instead group and summarize categories and discuss how they relate to each other.  Make sure you critique the various works when you discuss them, discussing how these works address the weaknesses of the other works you discuss. 
-
-Have a clearly marked section at the end (about 0.75 page) that talks about research challenges and directions forward from your perspective, i.e., what all remains to be done after your discussion of the various papers (including your own published work)?
-
-\subsubsection{Adversarial machine learning (1.5-2 pages excluding citations)}
-Model this section on the previous section, but expand the focus beyond computer vision and talk about 5-8 papers NOT related to computer vision and how machine learning algorithms can be 'tricked' by adversaries. Discuss how machine learning algorithms in the context of security can be made robust against adversaries trying to escape classification, for example.
-
-\subsection{Dr. David Crandall}\label{app:questions}
-
-\textit{Important note.}  A qualifying exam tests your technical
-knowledge and abilities, but also your potential to conduct
-independent, high-quality research using  the highest ethical standards.
-In answering the question below, you may consult existing
-published work, but you may not discuss the question with people other than
-members of the advisory committee.  (The sole exception is that you
-may seek non-technical help with English from the writing center on
-campus, but then you must submit both your original draft as well as
-the final draft after incorporating feedback from the editor or
-writing center.)  The University's academic integrity policy will
-govern this exam. In particular, all material you submit
-must be your own work which you
-personally and independently completed. If any portion of your
-submitted material is not your own work, you must make this explicitly
-clear using proper citations. For instance, all sentences in your
-report must be your own unless you place the relevant sentences in
-quotation marks and give a citation to the source.  \textit{Note that
-  descriptions and discussions of existing work are to be in your own
-  words based on your understanding of the work; it is \textbf{not}
-  acceptable to copy or paraphrase even a small part of another work
-  unless it is placed inside quotation marks and properly cited.}
-{In accordance with University policy, consequences of academic
-  integrity violations  include failure on this exam and expulsion
-  from the University.}
-
-
-\vspace{-12pt}
-\begin{enumerate}
-\item
-Many photos contain sensitive information, especially images
-  taken by smartphone or home cameras. A potential solution to
-  this problem is to develop automatic algorithms that analyze an
-  image's content and context to estimate if it contains private
-  content, and to censor the image if so.  Such an  algorithm
-  may have access to a variety of information about the image, but
-  this evidence is likely to be noisy. For instance, for a given
-  image $I$, consider four classes of potential noisy evidence:
-
-\begin{enumerate}
-\item The output of automatic computer vision algorithms that estimate
-  properties of the scene, like whether it is taken indoors or
-  outdoors, what type of room it is taken in (office, bathroom, etc.),
-  whether it is a natural (e.g.\ forest) or manmade (e.g.\ city) scene,
-  etc. Since image analysis is a hard problem,  these classifiers
-  give probabilistic outputs instead of hard labels,
-  i.e. for the natural versus manmade class, they might give two
-probabilities, $P(\textsf{natural}|I)$ and $P(\textsf{manmade}|I)$.
-
-\item The output of automatic object recognition algorithms that
-  classify each pixel $p \in I$ according to whether or not it
-  contains an object of interest.  Again, since these recognition
-algorithms are imperfect, the output
-is typically provided as a probability distribution $P(I |
-  p \mbox{ on object type } o)$, the probability of the observed image
-given that object $o$ includes pixel $p$.
-
-\item Non-visual metadata like GPS coordinates and timestamps.
-
-\item Explicit feedback from a user, in a form that requires very
-  little human effort. For instance, users might click on one or more
-  points in the image that lie within sensitive objects, yielding a
-  (very small) set of image coordinates ${\cal P} \subseteq I$.
-\end{enumerate}
-
-After analyzing an image, we would want our automated analysis to
-produce two outputs. The first is an estimate of the probability
-that $I$
-contains at least one
-privacy-sensitive object or situation, $P(I \mbox{ is private} |I)$. The
-second is an estimate for each pixel $p$ of the probability that
-$p$ lies within a private object or image region (and thus should be
-blurred or obscured), $P(p \mbox{ is private} | I)$. Since privacy is
-unlikely to change dramatically from one pixel to the  next, this
-latter probability should encourage smoothness of the resulting
-``privacy map'' by incorporating some prior probability on adjacent
-pixels (e.g.\ that two neighboring pixels are both private or both
-not private with some high probability, and have different privacy
-values with some low probability).
-
-In a roughly 5-page paper, describe how you would formulate and solve
-each of the above two problems. Make sure to: (1) propose a probabilistic
-model for solving the problem, using the evidence from (a) through (d)
-above, (2) derive the model from first
-principles, or at least argue for why it is well-principled, and (3)
-propose an inference algorithm that would solve each problem (using
-the probabilistic model).  For (1), make sure to precisely define any
-variables you use.
-For (2), make sure to explicitly state and defend any assumptions that
-your model makes.
- For (3), give pseudocode and an intuitive
-explanation of how the algorithm works. The algorithm does not need to
-be fast but should be no worse than polynomial time.  You can assume
-that the computer vision features ((a) and (b) above) are already
-implemented.
-
-
-In preparing this solution, the following two papers may be helpful:
-
-\begin{itemize}
-\item  Lawrence R. Rabiner. ``A  tutorial on hidden Markov models and
-selected applications in speech recognition.'' \textit{Proceedings of
-the IEEE,} 1989, pages 257-286.
-\item Pedro F. Felzenszwalb and Daniel P. Huttenlocher. ``Efficient
-Belief Propagation for Early Vision.''
-\textit{International Journal of Computer Vision}, Vol. 70, No. 1, October 2006.
-\end{itemize}
-
-
-\end{enumerate}
-
-
-%\subsection{Dr. Donald Williamson}
 
 \end{appendices}
 
 \end{document}
+
+
+ 
