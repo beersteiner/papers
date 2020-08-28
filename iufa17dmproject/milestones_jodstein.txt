@@ -1,0 +1,39 @@
+John Stein, Samanvitha Pradhan, Ashay Sawant
+CSCI-B565, FA17
+Progress/Milestones for Final Project
+
+
+
+......COMPLETED SO FAR......
+
+1. jodstein - Obtained answers for Datamining (Section 2.0) with the exception of the last subsection (i.e. Top 10 Algorithms and new problems in DM).
+
+2. jodstein - Created github and made everyone in the group a collaborator
+
+3. jodstein - Created automated scripts to reformat the iceberg train.json and test.json files and load them into a MySQL database.
+
+4. Analysis:
+    4.a. jodstein - Created a fairly comprehensive data analysis script (analyze.r) which allows new features to be created from the data, and automatically plots histograms of the existing and new features for visual analysis.  
+    4.b. jodstein - Implemented a convolution matrix function to perform some basic image processing on images, including kernels for smoothing, sharpening, edge detection, and gradients.
+    4.c. jodstein - Automatically plots a random selection of the images, including raw b1 and b2, b1+b2, b1-b2, and several processed images using the convolution function.
+
+5. Datamining:
+    5.a. jodstein - Created a working script (ice.r) which builds a logistic regression model from chosen old/new features and performs V-Fold cross-validation on that model against the training data.
+    5.b. jodstein - Script also builds a final model using the entire training set, and applies that model to the test data, writing the predictions to a csv file for submission.
+    5.c. jodstein - Have uploaded an initial set of predictions to kaggle and received a score of 0.4040 on the test data.
+
+6. jodstein - Created a library of functions and global variables that are used by both the analyze.r and ice.r scripts.
+
+
+......STILL TO BE DONE......
+
+7. Perform additional domain research to try and discover additional useful features and incorporate additional features into model. (TBC 12/5/17)
+
+8. Possibly explore additional modeling approaches, to include K-Means Clustering, SVM, and Neural Nets. (TBC 12/8/17)
+
+9. Start capturing all the research, analysis, implementation, and results into the latex report. (TBC 12/15/17)
+
+
+
+
+

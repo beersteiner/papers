@@ -1,0 +1,96 @@
+\begin{thebibliography}{10}
+
+\bibitem{kaggle-author}
+Kaggle Inc.
+\newblock Spooky author identification.
+
+\bibitem{kaggle-ice}
+Kaggle Inc.
+\newblock Statoil/c-core iceberg classifier challenge.
+
+\bibitem{Lusted1217}
+Lee~B. Lusted.
+\newblock Signal detectability and medical decision-making.
+\newblock {\em Science}, 171(3977):1217--1219, 1971.
+
+\bibitem{Wu:2007:TAD:1327434.1327436}
+Xindong Wu, Vipin Kumar, J.~Ross~Quinlan, Joydeep Ghosh, Qiang Yang, Hiroshi
+  Motoda, Geoffrey~J. McLachlan, Angus Ng, Bing Liu, Philip~S. Yu, Zhi-Hua
+  Zhou, Michael Steinbach, David~J. Hand, and Dan Steinberg.
+\newblock Top 10 algorithms in data mining.
+\newblock {\em Knowl. Inf. Syst.}, 14(1):1--37, December 2007.
+
+\bibitem{statoil}
+Statoil ASA.
+\newblock What we do.
+
+\bibitem{polarimetric}
+Gianfranco de~Grandi Jong-Sen~Lee, Mitchell~Grunes.
+\newblock Polarimetric sar speckle filtering and its implication for
+  classification.
+\newblock In IEEE, editor, {\em IEEE Transactions on Geoscience and Remote
+  Sensing}, volume~37.
+
+\bibitem{hog}
+N.~Dalal and B.~Triggs.
+\newblock Histograms of oriented gradients for human detection.
+\newblock In {\em 2005 IEEE Computer Society Conference on Computer Vision and
+  Pattern Recognition (CVPR'05)}, volume~1, pages 886--893 vol. 1, June 2005.
+
+\bibitem{wesche}
+Wolfgang~Dierking Christine~Wesche.
+\newblock Iceberg signatures and detection in sar images in two test regions of
+  the weddell sea, antarctica.
+\newblock 58(208).
+
+\bibitem{Ship-Iceberg_CNN}
+Carlos Bentes.
+\newblock Ship-iceberg discrimination with convolutional neural networks in
+  high resolution sar images.
+
+\bibitem{howell}
+Carl Howell.
+\newblock {\em Iceberg and Ship Detection and Classification in Single, Dual
+  and Quad Polarized Synthetic Aperture Radar}.
+
+\bibitem{makynen}
+Juha~Karvonen Marko~Makynen.
+\newblock Incidence angle dependence of first-year sea ice backscattering
+  coefficient in sentinel-1 sar imagery over the kara sea.
+\newblock 55(11).
+
+\bibitem{NIPS2012_4824}
+Alex Krizhevsky, Ilya Sutskever, and Geoffrey~E Hinton.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock In F.~Pereira, C.~J.~C. Burges, L.~Bottou, and K.~Q. Weinberger,
+  editors, {\em Advances in Neural Information Processing Systems 25}, pages
+  1097--1105. Curran Associates, Inc., 2012.
+
+\bibitem{behnke}
+Hierarchical neural networks for image interpretation.
+
+\bibitem{lecun}
+Geoffrey~Hinton Yann~LeCun, Yoshua~Bengio.
+\newblock Deep learning.
+\newblock 521:436--444.
+
+\bibitem{mccullagh}
+J.A.~Nelder P.~McCullagh.
+\newblock {\em Generalized Linear Models}.
+\newblock 2nd edition.
+
+\bibitem{lim}
+A comparison of prediction accuracy, complexity, and training time of
+  thirty-three old and new classification algorithms.
+
+\bibitem{cawley}
+Nicola~Talbot Gavin~Cawley.
+\newblock On over-fitting in model selection and subsequent selection bias in
+  performance evaluation.
+\newblock 11:2079--2107.
+
+\bibitem{nigam}
+Using Maximum Entropy for Text Classification
+
+
+\end{thebibliography}
