@@ -1,0 +1,143 @@
+
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\title{TBD Title}
+\author{John Stein (jodstein@iu.edu)}
+\date{TBD}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{setspace}\singlespacing
+\usepackage[left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{appendix}
+\usepackage{amsmath}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes, arrows}
+\usepackage[ruled]{algorithm2e}
+\usepackage{amssymb}
+
+\begin{document}
+
+\begin{titlepage}
+    % https://stackoverflow.com/questions/3141702/vertically-centering-a-title-page
+    \null
+    \nointerlineskip
+    \vfill
+    \let\snewpage \newpage
+    \let\newpage \relax
+    \maketitle
+    \let \newpage \snewpage
+    \vfill
+    \thispagestyle{empty}
+\end{titlepage}
+
+
+\tableofcontents
+\thispagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%% Paper %%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\setcounter{page}{1}
+
+\begin{abstract}
+    As system complexity increases to meet growing expectations of almost every market in our networked world, traditional methodologies of System Security Engineering (SSE, inclusive of Cybersecurity, Information Assurance, and Anti-Tamper) are becoming untenable.  SSE, as a discipline, is not unique in this regard.  Indeed, Model Based System Engineering represents a rapidly growing capability within the field of engineering to address precisely this need.  However, SSE can be regarded as an extreme exemplar of this phenomena.  This is because with increasing complexity comes a larger attack surface (i.e. a greater number of potentially vulnerable element instantiations within the system which an attacker may use as entry or pivot points to achieve his/her objective(s)).  Since the attacker need only find one or few such vulnerable elements, growing system complexity very much favors the attacker over the developer.  As such, there is a need for capabilities which leverage computational analysis techniques to address complexity (something humans do not perform well) in order to generate a comprehensive-but-minimal data representation that is informative, relevant, and actionable to a human SSE practitioner to enable a holistic risk management approach (something that machines do not perform well).
+\end{abstract}
+
+\section{TBD}
+
+\section{Problem Formulation}
+
+\subsection{Knowledge Representation}
+
+Ontologies:
+
+\begin{itemize}
+
+    \item Triplets (subject, predicate, object) \cite{jenkins2010ontologies}. Extensibility, Top-down and bottom-up.
+    
+    \item Basic Formal Ontology \cite{iso/iec_dis_21838-2}
+    
+    \item Reference Ontologies - Reference Ontology for SE (Top-Level Ontology (TLO) $\rightarrow$ Reference Ontology $\rightarrow$ Application Ontology).  Building out an ontology for Systems Engineering based on ISO/IEC/IEEE 15288. \cite{orellana2019ontology}
+    
+    \item Application Ontologies
+    
+\end{itemize}
+ 
+Explainability. I think the thought here is to discover relationships between attacks, targets, goals, and context.  \textcolor{red}{I need to ping Apu and make sure I understand his thoughts about how explainability applies to this area.}:
+
+\begin{itemize}
+    
+    \item Leino\/Sen\/Datta propose approach to explain CNNs based on a particular layer's $s$ influence over a particular measure $f$ with respect to a given distribution of interest $P$, which can be an instance, a class, the difference between two classes, or an entire dataset.  This approach is interesting because it appears to be very powerful and highly tunable to answer granular and specific questions. \cite{leino2018influence}  
+        
+\end{itemize}
+
+\subsection{Mapping Data to Ontologies}
+
+\subsection{Reasoning over Models}
+
+\begin{itemize}
+    
+    \item Berger - introduces Extended DFDs, maps these onto graphs, performs rule checking against ‘knowledge base’ built manually from CWE and CAPEC; uses Microsoft Threat Modeling Tool \cite{berger2016automatically}
+    
+    \item Audinot - Defines regular grammar for attack trees, operations on that grammar, and automata for those operations.  Trace semantics are implemented to determine (atk) goal reachability and, if quantitative info is available, optimal reachability (priced, timed, weighted, etc.).  With the optimal paths, certain positions (atks) are considered ‘useful’ and require further refinement. \cite{audinot2018guided}
+    
+\end{itemize}
+
+\subsection{Security Analysis Augmentation}
+
+Natural Language Processing:
+
+\begin{itemize}
+        
+    \item learning to recognize program dependency graphs (PDG) for secure and insecure use case patterns, and then implements nudge factors to help the (Stack Overflow) user choose secure examples \cite{fischer2019stack}
+        
+    \item edge2vec can learn heterogeneous node embeddings (nodes/edges can be typed, and graphs very similar to text) \cite{gao2018edge2vec}.  This could be very useful in prediction tasks (augmentation, text completion, pattern matching).
+        
+\end{itemize}
+
+\section{Related Work}
+
+\begin{itemize}
+
+    \item Jurjens - Security preservation semantics for Class/structure diagrams, statechart diagrams, and interaction/swimlane diagrams using UML.  Security is co-mingled with design. \cite{jurjens2001towards}
+    
+    \item Apvrille - further formalizes the application of SysML-sec to embedded hardware, uses EVITA vehicle architectural example, and demonstrates formal verification ability for a key distribution protocol \cite{apvrille2013sysml}
+    
+    \item Apvrille - focus on integration of reqts and attack analysis against a system design effort using the Y-chart methodology (mapping of app models onto arch models) to achieve formal V\&V using SysML (TTool).  Security is on separate diagrams from design/structure. \cite{roudier2015sysml}
+    
+\end{itemize}
+
+
+
+
+
+%%%%%%%%%%%%%%%%% BIB %%%%%%%%%%%%%%%%%%%%
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{plain}
+\bibliography{references}
+
+
+
+%%%%%%%%%%%%%%%%% Appendices %%%%%%%%%%%%%%%%%%%%
+
+\appendixtitleon
+\begin{appendices}
+
+%%%%%%%%%% Appendix A %%%%%%%%%%
+
+\clearpage
+\begin{center}
+    \section{Title}
+\end{center}
+
+
+\end{appendices}
+
+\end{document}
+
+
+ 
