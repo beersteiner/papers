@@ -1,0 +1,252 @@
+\documentclass{tufte-book}
+
+\hypersetup{colorlinks}% uncomment this line if you prefer colored hyperlinks (e.g., for onscreen viewing)
+
+%%
+% Book metadata
+\title{B547 Assignment 1}
+%\author[The Tufte-LaTeX Developers]{The Tufte-LaTeX\ Developers}
+\author[Pat Shaffer Akshada More DongInn Kim John Stein]{Pat Shaffer Akshada More DongInn Kim John Stein}
+\publisher{Indiana University\smallcaps{   submitted: Feb 10, 2017}}
+
+%%
+% If they're installed, use Bergamo and Chantilly from www.fontsite.com.
+% They're clones of Bembo and Gill Sans, respectively.
+%\IfFileExists{bergamo.sty}{\usepackage[osf]{bergamo}}{}% Bembo
+%\IfFileExists{chantill.sty}{\usepackage{chantill}}{}% Gill Sans
+
+%\usepackage{microtype}
+
+
+%%
+% For nicely typeset tabular material
+\usepackage{booktabs}
+
+\usepackage{lscape}
+% \usepackage{rotating}
+\usepackage[figuresright]{rotating}
+%%
+% For graphics / images
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{graphics/}}
+
+% The fancyvrb package lets us customize the formatting of verbatim
+% environments.  We use a slightly smaller font.
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+
+%%
+% Prints argument within hanging parentheses (i.e., parentheses that take
+% up no horizontal space).  Useful in tabular environments.
+\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}}
+
+%%
+% Prints an asterisk that takes up no horizontal space.
+% Useful in tabular environments.
+\newcommand{\hangstar}{\makebox[0pt][l]{*}}
+
+%%
+% Prints a trailing space in a smart way.
+\usepackage{xspace}
+
+
+% Prints the month name (e.g., January) and the year (e.g., 2008)
+\newcommand{\monthyear}{%
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or
+  December\fi\space\number\year
+}
+
+%adds a page number to each page
+\fancypagestyle{plain}{}
+
+% allows landscape environment
+\usepackage{lscape}
+
+% Prints an epigraph and speaker in sans serif, all-caps type.
+\newcommand{\openepigraph}[2]{%
+  %\sffamily\fontsize{14}{16}\selectfont
+  \begin{fullwidth}
+  \sffamily\large
+  \begin{doublespace}
+  \noindent\allcaps{#1}\\% epigraph
+  \noindent\allcaps{#2}% author
+  \end{doublespace}
+  \end{fullwidth}
+}
+
+% Inserts a blank page
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage}
+
+% Add trademark symbol
+\usepackage{textcomp}
+
+% Fixme Package
+\usepackage[draft,footnote,nomargin]{fixme}
+
+% allow drafting and editing functions
+\usepackage[draft]{changes}
+\newcommand{\mustfix}[1]{\fixme{\hl{#1}}}
+\newcommand{\pleasenote}[1]{\fxnote{\hl{#1}}}
+\newcommand{\john}[1]{{\textcolor{blue}{John: #1}}}
+\newcommand{\akshada}[1]{{\textcolor{green}{Akshada: #1}}}
+\newcommand{\donginn}[1]{{\textcolor{purple}{DongInn: #1}}}
+\newcommand{\pat}[1]{{\textcolor{red}{Pat: #1}}}
+\newcommand{\del}[1]{{\textcolor{gray}{#1}}}
+
+\usepackage{units}
+
+% Typesets the font size, leading, and measure in the form of 10/12x26 pc.
+\newcommand{\measure}[3]{#1/#2$\times$\unit[#3]{pc}}
+
+% Macros for typesetting the documentation
+\newcommand{\hlred}[1]{\textcolor{Maroon}{#1}}% prints in red
+\newcommand{\hangleft}[1]{\makebox[0pt][r]{#1}}
+\newcommand{\hairsp}{\hspace{1pt}}% hair space
+\newcommand{\hquad}{\hskip0.5em\relax}% half quad space
+\newcommand{\TODO}{\textcolor{red}{\bf TODO!}\xspace}
+\newcommand{\ie}{\textit{i.\hairsp{}e.}\xspace}
+\newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace}
+\newcommand{\na}{\quad--}% used in tables for N/A cells
+\providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
+\newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}}
+% \index{\texttt{\textbackslash xyz}@\hangleft{\texttt{\textbackslash}}\texttt{xyz}}
+\newcommand{\tuftebs}{\symbol{'134}}% a backslash in tt type in OT1/T1
+\newcommand{\doccmdnoindex}[2][]{\texttt{\tuftebs#2}}% command name -- adds backslash automatically (and doesn't add cmd to the index)
+\newcommand{\doccmddef}[2][]{%
+  \hlred{\texttt{\tuftebs#2}}\label{cmd:#2}%
+  \ifthenelse{\isempty{#1}}%
+    {% add the command to the index
+      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% command name
+    }%
+    {% add the command and package to the index
+      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% command name
+      \index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% package name
+    }%
+}% command name -- adds backslash automatically
+\newcommand{\doccmd}[2][]{%
+  \texttt{\tuftebs#2}%
+  \ifthenelse{\isempty{#1}}%
+    {% add the command to the index
+      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% command name
+    }%
+    {% add the command and package to the index
+      \index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% command name
+      \index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% package name
+    }%
+}% command name -- adds backslash automatically
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}% optional command argument
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}% (required) command argument
+\newenvironment{docspec}{\begin{quotation}\ttfamily\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}% command specification environment
+\newcommand{\docenv}[1]{\texttt{#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}% environment name
+\newcommand{\docenvdef}[1]{\hlred{\texttt{#1}}\label{env:#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}% environment name
+\newcommand{\docpkg}[1]{\texttt{#1}\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}}% package name
+\newcommand{\doccls}[1]{\texttt{#1}}% document class name
+\newcommand{\docclsopt}[1]{\texttt{#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}% document class option name
+\newcommand{\docclsoptdef}[1]{\hlred{\texttt{#1}}\label{clsopt:#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}% document class option name defined
+\newcommand{\docmsg}[2]{\bigskip\begin{fullwidth}\noindent\ttfamily#1\end{fullwidth}\medskip\par\noindent#2}
+\newcommand{\docfilehook}[2]{\texttt{#1}\index{file hooks!#2}\index{#1@\texttt{#1}}}
+\newcommand{\doccounter}[1]{\texttt{#1}\index{#1 counter@\texttt{#1} counter}}
+
+\usepackage{enumitem}
+\setlistdepth{9}
+
+% Generates the index
+\usepackage{makeidx}
+\makeindex
+
+\begin{document}
+% r.3 full title page
+\maketitle
+
+% v.2 epigraphs
+\newpage\thispagestyle{empty}
+\openepigraph{%
+I think computer viruses should count as life.  I think it says something about
+human nature that the only form of life we have created so far is purely
+destructive.  We've created life in our own image.
+}{Stephen Hawking%, {\itshape Design, Form, and Chaos}
+}
+\vfill
+\openepigraph{%
+Companies spend millions of dollars on firewalls, encryption and secure access
+devices, and it's money wasted, because none of these measures address the
+weakest link in the security chain.
+}{Kevin Mitnick}
+\vfill
+\openepigraph{%
+Passwords are like underwear: you don't let people see it, you should change it
+very often, and you shouldn't share it with strangers.
+}{Chris Pirillo}
+\vfill
+\openepigraph{%
+Building secure systems is hard.
+}{Steve Myers}
+
+
+
+
+
+
+
+% r.5 contents
+\cleardoublepage
+\tableofcontents
+
+%\cleardoublepage
+%\listoffigures
+
+%\cleardoublepage
+%\listoftables
+
+
+% r.9 introduction
+\cleardoublepage
+\input{text/introduction.tex}
+
+\cleardoublepage
+\input{text/system_overview.tex}
+
+\cleardoublepage
+\input{text/threat_model.tex}
+
+\cleardoublepage
+\input{text/mitigation.tex}
+
+\cleardoublepage
+\input{text/conclusion.tex}
+
+
+\cleardoublepage
+\chapter{Appendix 1: Security Exceptions and Assumptions}
+\label{ch:a1}
+\input{text/SecExcepts.tex}
+
+
+
+\cleardoublepage
+\input{text/threat_list.tex}
+
+
+%\cleardoublepage
+%\chapter{Appendix 3: Mitigation List}
+%\label{ch:a3}
+%\input{text/Secmitigation.tex}
+
+\cleardoublepage
+\chapter{Appendix 3: Risk Management Definitions and Methodology}
+\label{ch:a3}
+\input{text/risk.tex}
+
+\cleardoublepage
+\chapter{Appendix 4: Attack Tree for Webserver Hosting Software/Firmware Updates}
+\label{ch:a4}
+\input{text/attack_tree.tex}
+
+
+
+\bibliography{bib/bibliography}
+\bibliographystyle{plainnat}
+
+\end{document}

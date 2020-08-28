@@ -1,0 +1,98 @@
+\section{Attack Tree}
+\newlist{myEnumerate}{enumerate}{9}
+\setlist[myEnumerate,1]{label*=\arabic*.}
+\setlist[myEnumerate,2]{label*=\arabic*.}
+\setlist[myEnumerate,3]{label*=\arabic*.}
+\setlist[myEnumerate,4]{label*=\arabic*.}
+\setlist[myEnumerate,5]{label*=\arabic*.}
+\setlist[myEnumerate,6]{label*=\arabic*.}
+\setlist[myEnumerate,7]{label*=\arabic*.}
+\setlist[myEnumerate,8]{label*=\arabic*.}
+\setlist[myEnumerate,9]{label*=\arabic*.}
+
+\begin{myEnumerate}
+
+\item Compromise the software/firmware update
+  \begin{myEnumerate}[label*=\arabic*.]
+  \item Gather knowledge (and)
+    \begin{myEnumerate}[label*=\arabic*.]
+    \item Find the IP address or URL of the webserver (or)
+      \begin{myEnumerate}[label*=\arabic*.]
+      \item Google the website of the target USB
+      \item Collect the static contents of the web site (e.g. CSS, javascript,
+        images, \dots).
+      \end{myEnumerate}
+    \item Get the same model as the target USB
+      \begin{myEnumerate}[label*=\arabic*.]
+      \item Try to see if it is easy to feed in any malware/keylogger
+      \end{myEnumerate}
+    \item Find the place (IP range) where he/she uses the target USB
+      \begin{myEnumerate}[label*=\arabic*.]
+      \item Use port scanner in the same subnet
+      \item Tap his/her network cable
+      \item Find the public key of the target USB
+      \end{myEnumerate}
+    \end{myEnumerate}
+  \item Build a fake web site which looks like the real one (and)
+    \begin{myEnumerate}[label*=\arabic*.]
+    \item Prepare the MITM attack
+      \begin{myEnumerate}[label*=\arabic*.]
+      \item Do the reverse engineering to build a malicious app to feed into the
+        target USB
+      \end{myEnumerate}
+    \end{myEnumerate}
+  \item Gain an access (and)
+    \begin{myEnumerate}[label*=\arabic*.]
+    \item Use the DNS Spoofing trick to redirect the victims access of app
+      update to the fake website
+      \begin{myEnumerate}[label*=\arabic*.]
+      \item Wait until the target USB tries to access the website to get it updated (or)
+        \begin{myEnumerate}[label*=\arabic*.]
+        \item Intercept the connection to the real website (or)
+          \begin{myEnumerate}[label*=\arabic*.]
+          \item Push the malicious app/firmware (and)
+            \begin{myEnumerate}[label*=\arabic*.]
+            \item Collect all the passwords of the target USB
+            \end{myEnumerate}
+          \end{myEnumerate}
+        \end{myEnumerate}
+      \item Mail a fake notification of the new release of the app with the URL of
+        the fake website
+        \begin{myEnumerate}[label*=\arabic*.]
+        \item Intercept the connection to the real website (or)
+          \begin{myEnumerate}[label*=\arabic*.]
+          \item Push the malicious app/firmware (and)
+            \begin{myEnumerate}[label*=\arabic*.]
+            \item Collect all the passwords of the target USB
+            \end{myEnumerate}
+          \end{myEnumerate}
+        \end{myEnumerate}
+      \end{myEnumerate}
+    \item Use the IP Spoofing trick to intercept the victims access of app
+      update to the fake website
+      \begin{myEnumerate}[label*=\arabic*.]
+      \item Wait until the target USB tries to access the website to get it updated (or)
+        \begin{myEnumerate}[label*=\arabic*.]
+        \item Intercept the connection to the real website (or)
+          \begin{myEnumerate}[label*=\arabic*.]
+          \item Push the malicious app/firmware (and)
+            \begin{myEnumerate}[label*=\arabic*.]
+            \item Collect all the passwords of the target USB
+            \end{myEnumerate}
+          \end{myEnumerate}
+        \end{myEnumerate}
+      \item Mail a fake notification of the new release of the app with the URL of
+        the fake website
+        \begin{myEnumerate}[label*=\arabic*.]
+        \item Intercept the connection to the real website (or)
+          \begin{myEnumerate}[label*=\arabic*.]
+          \item Push the malicious app/firmware (and)
+            \begin{myEnumerate}[label*=\arabic*.]
+            \item Collect all the passwords of the target USB
+            \end{myEnumerate}
+          \end{myEnumerate}
+        \end{myEnumerate}
+      \end{myEnumerate}
+    \end{myEnumerate}
+  \end{myEnumerate}
+\end{myEnumerate}

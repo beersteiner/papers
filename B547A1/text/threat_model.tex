@@ -1,0 +1,272 @@
+\chapter{Threat Model}
+\label{ch:threatmodel}
+In this chapter we detail our threat modelling approach, document our iterative
+process which iterates the threats, identifies mitigations and manages risk.
+Our threat model is an iterative model.  Our approach is as follows:
+\begin{enumerate}
+    \item{Individually review system architecture and dataflows and identify any
+potential threats using the STRIDE methodoly augmented by the elevation of
+privilege game cards shown in figure~\ref{fig:spoofcard} through
+figure~\ref{fig:eopcard}.}
+    \item{As a group, discuss any identified threats and gain concurrence and
+understanding of the threat.}
+    \item{Assign a bug number to the threat.}
+    \item{Decide whether or not to accept this threat as a system risk.  Note
+this step is intended to \emph{group} like threats and to allow for a more
+detailed assessment of the risk presented by the threat to allow for better
+triage of threats given limited time and budgets.}
+    \item{Perform a threat risk likelihood vs impact for all accepted risks
+using a \emph{modified} OWASP risk methodology.}
+    \item{Review mitigations and if necessary iterate on high risk threats.}
+\end{enumerate}
+
+
+\section{Adversary}
+\label{sec:adversary}
+In order to make secure systems, we must always consider the system design and
+threat given a specified adversary.  For our system, our adversary is a moderate
+capability Blackhat hacker who seeks to compromise our password system for
+financial gain.
+
+\section{Assumptions}
+\label{sec:assumptions}
+As part of our threat model, we identified several security assumptions which
+are documented in \nameref{ch:a1}.  Several assumptions demand deeper discussion.
+\begin{enumerate}
+    \item{\emph{The OS is secure.} While this may seems trivial to note this
+assumption, a fundamental premise of the password manager design is that the OS
+functions leveraged by the device such as USB load and clipboard have not been
+compromised.  If these key OS functions are compromised then any data in transit
+will be vulnerable to disclosure.  We minimize our attack surface by using
+volatile memory only and using the USB as our sole source of cryptographic
+functionality to the maximum extent possible.}
+    \item{\emph{The user will physically protect the device.} In our scenario
+analysis, permanent denial of service will result from loss of the device.
+Since we do not provide any backup (in order to minimize the attack surface), it
+is the user's responsibility to have a disaster plan in case of physical loss.
+We are quite confident that passwords will not be compromised in the event of a
+loss, but a loss also means that a user will no longer have access to the
+password store.}
+    \item{\emph{Our adversary is looking for financial gain.} Additionally, our
+adversary has the resources to employ moderate BlackHat capabilities but will
+not engage in any attacks where the attack cost will exceed the expected
+financial gain.}\sidenote[][]{This means that given our measly financial assets,
+most attackers will not employ national level attack against our password
+manager just to confirm how poor we really are!}  These assumptions are pretty
+straight forward.
+\end{enumerate}
+
+
+\section{Threats}
+\label{sec:threats}
+
+\subsection{Spoofing Threats}
+
+\begin{marginfigure}%
+\centering
+  \includegraphics[width=0.4\linewidth]{spoofcard}
+  \caption{Spoofing Card from the Elevation of Privilege Game}
+  \label{fig:spoofcard}
+\end{marginfigure}
+
+In this section we identify the threat to each major element of our system,
+usually by using a dataflow diagram.  We conduct a STRIDE analysis on each major
+data flow or component using the Microsoft Elevation of Privilege game and
+personal inspection.\sidenote{The elevation of privilege game can be found at
+\url{https://www.microsoft.com/en-us/SDL/adopt/eop.aspx}} For each threat we
+decide whether or not to add it to our risk chart; for similar threats or
+threats that depend on a similar attack tree we enter only one threat into the
+risk table but track the remaining threats in the bug table to ensure they are
+properly managed and mitigated. As we iterated threats, we noted several
+limitations of the OWASP Risk Management Methodology:
+\begin{enumerate}
+    \item{The OWASP model places considerable emphasis on non-repudiation.  For
+our analysis, many of the threats can be realized by simple possession of the
+USB device which does not require logging of any sort.  Following the risk
+methodology model without any modification will yield the highest assessment
+(likelihood) for detectability. In the future we would consider amending the
+rubric for this particular likelihood factor.}
+    \begin{marginfigure}%
+    \centering
+    \includegraphics[width=0.4\linewidth]{tampercard}
+    \caption{Tamper Card from the Elevation of Privilege Game}
+    \label{fig:tampercardcard}
+    \end{marginfigure}
+
+
+    \item{The technical impact categories and rubrics were very helpful, however
+since many of these attacks were aimed at obtaining the USB password, they rated
+artificially high because the cascade of compromise that resulted in obtaining a
+password. The rubric for either technical impact or likelihood did not allow for
+consideration of existing countermeasures or design features in the device.
+Again, this resulted in artificially high risk assessments.  For a second
+iteration, we would recommend including an assessment of design features and
+countermeasures intended to address the threat or related threat as a better way
+to better estimate the likelihood of a risk.}
+
+    \begin{marginfigure}%
+    \centering
+    \includegraphics[width=0.4\linewidth]{repudcard}
+    \caption{Repudiation Card from the Elevation of Privilege Game}
+    \label{fig:repudcard}
+    \end{marginfigure}
+
+    \item{The business impact categories while useful in a real world exercise
+were not applicable to this threat model.  In the future we would look at
+substituting more applicable rubrics in place of the existing business impact
+factors of the OWASP model.}
+\end{enumerate}
+
+In spite of the limitations we discuss, the OWASP model was very useful in
+drawing our attention to the highest risk threats.  We benefited from using the
+5x5 risk matrix as opposed to the 3x3 OWASP risk matrix because we were able to
+break out threats and risk to a finer degree. Spoofing threats deal with an
+attacker's ability to masquerade as an individual, process or some other entity
+in order to gain access to data and systems.  During our first iteration we
+identified several spoofing threats.
+
+\begin{table*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{spoof_sum}
+    \caption{Summary of Spoofing Threats Found in First Threat Iteration}
+    \label{tab:spoofsum}
+\end{table*}
+We identified 5 threats and adjudicated them. Each threat received a bug id
+whether or not they were entered into the risk tables.  Threats that were
+similar to other evaluated threats were not accepted into the risk table as
+noted. Several spoofing threats were elements in a multi-type threat such as
+spoofing resulting in information disclosure. When possible, we identified
+potential mitigations for each threat which informs the bug list which is where
+the majority of system development is drawn.
+
+\subsection{Tampering Threats}
+
+We identified 10 tampering threats and accepted 5 into the risk tables. Threat ID 004,
+``Malware Infested Update'' is a significant threat and represents a category of
+several different threats which are intended to compromise the USB device by
+delivering malware which can alter the reset counter, keys, and data within the
+USB device. To explore the details of this attack vector, we provide
+an attack tree as appendix~\nameref{ch:a4}.  Our tampering threats and
+potential mitigations are depicted in
+table~\ref{tab:tampersum}.
+
+\begin{table*}[]
+    \centering
+    \includegraphics[width=\linewidth]{tamper_sum}
+    \caption{Summary of Tampering Threats Found in First Threat Iteration}
+    \label{tab:tampersum}
+\end{table*}
+
+\begin{marginfigure}[0.25in]%
+\centering
+  \includegraphics[width=0.4\linewidth]{infodisclcard}
+  \caption{Information Disclosure Card from the Elevation of Privilege Game}
+  \label{fig:spoofcard}
+\end{marginfigure}
+
+\subsection{Repudiation Threats}
+
+
+We identified 12 potential repudiation threats.  The webserver used to store and present software and firmware updates
+represents the most significant repudiation attack surface.  Compromise of this
+element of the password manager can allow an attacker to post tampered software
+and firmware files which can result in a full compromise of the password manager
+and its contents.
+\begin{table*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{repud_sum}
+    \caption{Summary of Repudiation Threats Found in First Threat Iteration}
+    \label{tab:repudsum}
+\end{table*}
+
+
+
+\subsection{Information Disclosure Threats}
+We discovered several information disclosure threats during our analysis.  Many
+of these threats where aimed at discovering passwords and keys while one
+particular threat was aimed at fuzzing the USB to discover any potential leaks
+caused by incorrect input.  A particularly nefarious information disclosure threat
+was focused on recovering keys from a wiped device that had been transferred to
+another user.
+
+\begin{table*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{info_sum}
+    \caption{Summary of Information Disclosure Threats Found in First Threat Iteration}
+    \label{tab:infosum}
+\end{table*}
+
+
+\subsection{Denial Of Service Threats}
+Denial of service for our password manager occurs when either the device is
+cleared or no longer in the possession of its owner.  Loss of the USB device
+represents a considerable denial of service threat because no backup features
+are provisioned.
+\begin{table*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{dos_sum}
+    \caption{Summary of Denial of Service Threats Found in First Threat Iteration}
+    \label{tab:dossum}
+\end{table*}
+
+Loss of control of the USB which results in an attacker possessing the device
+may allow for the opportunity for other more sophisticated attacks, or quite
+simply an attack that wipes the device because an attacker entered the wrong
+password too many times.
+
+
+
+
+
+\subsection{Elevation of Privilege Threats}
+We identified three elevation of privilege threats, one associated with fuzzing
+the USB to discovery entry points, another attack that interrupts the device
+reset procedure which retains the old password during a device reset and finally a malformed request to the webserver database.  Elevation
+of privilege threat are summarized in table~\ref{tab:eopsum}.
+
+
+\begin{table*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{eop_sum}
+    \caption{Summary of Elevation of Privilege Threats Found in First Threat Iteration}
+    \label{tab:eopsum}
+\end{table*}
+
+
+
+\section{Threat Summary by Highest Risk}
+Following the OWASP risk mitigation methodology, we accepted 19 risks associated with the threats that we identified.  The full risks, risk tables and methodologies are
+summarized in \nameref{ch:a3}. We identified 8 category 2 (\emph{\textbf{high risk}})
+threats which represents a significant majority of our risks.  A significant
+portion of these threats were associated with compromise of of the password
+(impact: 9) despite relatively low likelihood scores.  A summary of our threats
+and their risk categories can be found in \nameref{ch:a3}, table~\ref{tab:risksum}.
+
+\begin{marginfigure}%
+\centering
+  \includegraphics[width=0.4\linewidth]{doscard}
+  \caption{Denial of Service Card from the Elevation of Privilege Game}
+  \label{fig:doscard}
+\end{marginfigure}
+
+
+\section{Attack Trees}
+Several threats were enabled by a similar attack vector.  For example, we
+identified multiple threats associated with compromised software and firmware
+updates.  Given the strong identification of multiple threats using this vector,
+we examined this attack vector using an attack tree.
+
+The attack tree that we have come up with as a good example is compromise the
+update of application in the target USB device. The USB device needs to update
+its application/software as new features are added and security patches are
+required from time to time. Attackers can apply the Man In The Middle (MITM)
+attack to the access between the USB device and the web server. The web server
+is hosted to provide the new release of the applications. The detailed processes
+of this threat is described in the \nameref{ch:a4}.
+
+\begin{marginfigure}%
+\centering
+  \includegraphics[width=0.4\linewidth]{eopcard}
+  \caption{Elevation of Privilege Card from the Elevation of Privilege Game}
+  \label{fig:eopcard}
+\end{marginfigure}

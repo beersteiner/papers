@@ -1,0 +1,308 @@
+\documentclass[letterpaper]{article}
+% \textit{Required Packages}
+\usepackage{aaai17}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\usepackage{hyperref}
+
+\usepackage{footnote}
+\usepackage{dblfloatfix}
+
+\usepackage[flushleft]{threeparttable}
+
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+\usepackage{float}
+\usepackage[draft,inline,nomargin]{fixme}
+
+\usepackage{multirow}
+
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage[draft]{changes} 
+\newcommand{\mustfix}[1]{\fixme{\hl{#1}}}
+\newcommand{\pleasenote}[1]{\fxnote{\hl{#1}}}
+\newcommand{\hlfixme}[1]{\fixme{\hl{#1}}}
+\newcommand{\fabio}[1]{{\textcolor{blue}{fabio: #1}}}
+\newcommand{\yy}[1]{{\textcolor{green}{yy: #1}}}
+\newcommand{\apu}[1]{{\textcolor{purple}{apu: #1}}}
+\newcommand{\pat}[1]{{\textcolor{red}{Pat: #1}}}
+\newcommand{\del}[1]{{\textcolor{gray}{#1}}}
+
+
+
+%\%\%\%\%\%\%\%\%\%
+% \textit{PDFINFO for PDF\LaTeX{}}
+% Uncomment and complete the following for metadata (your paper must compile with PDF\LaTeX{})
+\pdfinfo{
+/Title (When do people talk to the opposing group? Analyzing factors associated with cross-talk between Feminism and Men's Right Subreddits)
+/Author (Patrick Shaffer,Sarvothaman Madhavan,Tyler Dell,Chao Ji,Meng Li,Apu Kapadia,Fabio Rojas)
+/Keywords (Reddit, Polarization, Boundary Crossing)
+}
+%\%\%\%\%\%\%\%\%\%
+% \textit{Section Numbers}
+% Uncomment if you want to use section numbers
+% and change the 0 to a 1 or 2
+%\setcounter{secnumdepth}{2}
+\setlength\titlebox{2.5in}
+%\%\%\%\%\%\%\%\%\%
+% \textit{Title, Author, and Address Information}
+\begin{document}
+
+\title{When do people talk to the opposing group? Analyzing factors associated with cross-talk between Feminism and Men's Rights Subreddits}
+
+%\author{Patrick Shaffer, Sarvothaman Madhavan, Tyler Dell, Chao Ji, Meng Li, Yong-Yeol Ahn, Apu Kapadia\\
+%School of Informatics and Computing\\
+%Indiana University Bloomington, IN, USA\\
+%patshaff@indiana.edu, madhavas@iu.edu, tdell,jic,li545, yyahn, kapadia@indiana.edu\\
+%\AND
+%Fabio Rojas\\Department of Sociology \\
+%Indiana University Bloomington, IN, USA\\
+%frojas@indiana.edu\\}
+
+\author{anonymized}
+
+
+%\%\%\%\%\%\%\%\%\%
+% \textit{Body of Paper Begins}
+
+\maketitle
+%\pat{fix overfull box in author names- use first initials?}
+
+
+
+\pat{THE NEW TABLE FORMAT HAS BEEN PLACED INTO THE paper.tex FILE.  DO NOT UPDATE THIS TABLE}
+
+
+
+\begin{table*}[]
+    \centering
+    \caption{Regression Table}
+    \begin{threeparttable}
+    \resizebox{7in}{!}{
+    \begin{tabular}{|l|l|l|l l|l|l|}
+    \hline
+    \textbf{Openness}& & & & & & \\ 
+    \hline
+    \hline
+    N & 4,302,176 & & & & & \\ 
+    events & 8021 & & & & & \\ 
+    Missing Values & 303779 & & & & & \\ 
+    \hline
+    \textbf{} & \textbf{coef} & \textbf{z} &\textbf{Pr($>|\text{z}|$)} & \textbf{} & \textbf{Lower 0.95} & \textbf{Upper 0.95} \\ 
+    \hline
+    username.length & -0.0050 & -1.627 & 0.104 & & 0.989 & 1.001 \\ 
+    age\_in\_days & 0.0000 & 1.204 & 0.229 & & 1 & 1  \\ 
+    wordiness & 0.0062 & 141.016 & 0\tnote{***} &  & 1.006 & 1.006 \\ 
+    & & & & & & \\ 
+    Rsquare & 0.001 & (max possible= 0.054 ) & & & & \\ 
+    & & & & & & \\
+    \hline
+    \hline
+    \textbf{Network Variables}& & & & & & \\
+    \hline
+    \hline
+    N & 4,605,955 & & & & & \\ 
+    events & 8816 & & & & & \\ 
+    \hline
+    & \textbf{coef} & \textbf{z} & \textbf{Pr($>|\text{z}|$)} & \textbf{} & \textbf{Lower 0.95} & \textbf{Upper 0.95} \\
+    \hline
+    in\_mean & 0.2751 & 38.144 & 0\tnote{***} &  & 1.2982 & 1.3355\\ 
+    out\_mean & 3.6843 & 163.155 & 0\tnote{***} &  & 38.0952 & 41.6211 \\ 
+    score\_mean & -0.0032 & -3.951 & 0.0001\tnote{***} &  & 0.9952 & 0.9984 \\ 
+    & & & & & & \\ 
+    Rsquare & 0.005 & (max possible= 0.055 ) & & & &\\
+    & & & & & & \\ 
+    \hline
+    \hline
+    \textbf{Contact Variables} & & & & & & \\ 
+    \hline
+    \hline
+    N & 4605955 & & & & &\\ 
+    events & 8816 & & & & & \\ 
+    \hline
+    & \textbf{coef} & \textbf{z} & \textbf{Pr($>|\text{z}|$)} & \textbf{} & \textbf{Lower 0.95} & \textbf{Upper 0.95} \\ 
+    \hline
+    crossposter\_talk\_to\_me=TRUE & 0.3409 & 7.928 & 0\tnote{***} &  & 1.293 & 1.53\\ 
+    other\_sr\_talk\_to\_me=TRUE & 1.5285 & 35.283 & 0\tnote{***} &  & 4.236 & 5.02\\ 
+    talk\_to\_crossposter=TRUE & 0.1224 & 2.87 & 0.0041\tnote{**} &  & 1.04 & 1.229\\ 
+    talk\_to\_other\_sr=TRUE & 4.4729 & 102.251 & 0\tnote{***} &  & 80.409 & 95.45 \\ 
+    & & & & & & \\ 
+    Rsquare & 0.01 & (max possible= 0.055 ) & & & &\\ 
+    & & & & & & \\
+    \hline
+    \hline
+    \textbf{Saturated Model} & & & & & & \\ 
+    \hline
+    \hline
+    N & 4302176 & & & & & \\ 
+    events & 8021 & & & & & \\ 
+    Missing Values & 303779 & & & & &\\ 
+    \hline
+    & \textbf{coef} & \textbf{z} & \textbf{Pr($>|\text{z}|$)} & \textbf{} & \textbf{Lower 0.95} & \textbf{Upper 0.95} \\ 
+    \hline
+    username.length & 0.0041 & 1.347 & 0.1781 & & 0.9981 & 1.01 \\ 
+    age\_in\_days & 0.0005 & 26.683 & 0\tnote{***} &  & 1.0004 & 1\\ 
+    wordiness & 0.0043 & 41.495 & 0 \tnote{***} & & 1.0041 & 1.005 \\ 
+    in\_mean & 0.0948 & 4.221 & 0 \tnote{***} &  & 1.0521 & 1.149 \\ 
+    out\_mean & 1.5340 & 32.997 & 0\tnote{***} &  & 4.2325 & 5.078 \\ 
+    score\_mean & 0.0030 & 3.958 & 0.0001\tnote{***} &  & 1.0015 & 1.004 \\ 
+    crossposter\_talk\_to\_me=TRUE & 0.4453 & 9.647 \tnote{***} & 0 & & 1.426 & 1.709 \\ 
+    other\_sr\_talk\_to\_me=TRUE & 1.4260 & 32.869 & 0\tnote{***} & & 3.8227 & 4.531 \\ 
+    talk\_to\_crossposter=TRUE & 0.1237 & 2.706 & 0.0068\tnote{**} & & 1.0347 & 1.238 \\ 
+    talk\_to\_other\_sr=TRUE & 3.2780 & 63.766 & 0\tnote{***} & & 23.9909 & 29.348 \\ 
+    & & & & & & \\ 
+    Rsquare & 0.01 & (max possible= 0.054 ) & & & &\\
+    \hline
+    \end{tabular}
+    }
+    \begin{tablenotes}
+        \item[***] $p < 0.001$
+        \item[**] $p < 0.01$
+    \end{tablenotes}
+    \label{tab:regrtab}
+    \end{threeparttable}
+\end{table*}
+
+
+\begin{table*}
+\caption{Regression Table for 4 Models}
+\centering
+\begin{threeparttable}
+ \begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|*{18}{c|}}
+\hline
+\multicolumn{2}{|c|}{ Variables}& \multicolumn{4}{|c|}{M1: Openness}&\multicolumn{4}{|c|}{M2:Network Variables}&\multicolumn{4}{|c|}{M3:Contact Variables}&\multicolumn{4}{c|}{M4: Saturated Model} \\ \hline
+
+
+variable name&value&\textbf{coef}&\textbf{z}&\textbf{p}&\textbf{sig}&\textbf{coef}&\textbf{z}&\textbf{p}&\textbf{sig}&\textbf{coef}&\textbf{z}&\textbf{p}&\textbf{sig}&\textbf{coef}&\textbf{z}&\textbf{p}&\textbf{sig} \\ \hline \hline
+username.length&&-0.0050&-1.627&0.104&\pat{sig?}&&&&&&&&&0.0041&1.347&0.1781&\pat{sig?}\\
+account\_age\_in\_days&&0.000&1.204&0.229&\pat{sig?}&&&&&&&&&0.005&26.683&0&***\\
+wordiness&&0.062&141.016&0&***&&&&&&&&&0.0043&41.495&0&***\\
+\#\_replies\_to\_own\_comments&mean&&&&&0.2751&38.144&0&***&&&&&0.0948&4.221&0&***\\
+\#\_replies\_to\_others\_comments&mean&&&&&3.6843&163.155&0&***&&&&&1.5340&32.997&0&***\\
+comment\_score&mean&&&&&-0.0032&-3.951&1E-4&***&&&&&0.0030&3.958&1E-4&***\\
+cross\_poster\_talk\_to\_user&true&&&&&&&&&0.3409&7.928&0&***&0.4453&9.647&0&***\\
+other\_sr\_talk\_to\_user&true&&&&&&&&&1.5285&35.283&0&***&1.4260&32.869&0&***\\
+user\_talk\_to\_crossposter&true&&&&&&&&&0.1224&2.87&4.1E-4&**&0.1237&2.706&6.8E-4&**\\
+user\_talk\_to\_other\_sr&true&&&&&&&&&4.4729&102.251&0&***&3.2780&63.766&0&***\\
+\hline
+\hline
+
+\multicolumn{2}{|c}{Number of Comments}&\multicolumn{4}{|c|}{4,302,176}&\multicolumn{4}{|c|}{4,605,955}&\multicolumn{4}{|c|}{4,605,955}&\multicolumn{4}{|c|}{4,302,176}\\
+\hline
+\multicolumn{2}{|c|}{Authors Who Interact With Outgroup}&\multicolumn{4}{|c|}{8021}&\multicolumn{4}{|c|}{8816}&\multicolumn{4}{|c|}{8816}&\multicolumn{4}{|c|}{8021}\\
+\hline
+\multicolumn{2}{|c|}{Missing Comments}&\multicolumn{4}{|c|}{303,779}&\multicolumn{4}{|c|}{0}&\multicolumn{4}{|c|}{0}&\multicolumn{4}{|c|}{0}\\
+\hline
+\multicolumn{2}{|c|}{$R^2$}&\multicolumn{4}{|c|}{0.001}&\multicolumn{4}{|c|}{0.005}&\multicolumn{4}{|c|}{0.01}&\multicolumn{4}{|c|}{0.01}\\
+\hline
+\multicolumn{18}{l}{notes:}{}\\
+\multicolumn{18}{l}{* $p \leq 0.05$}\\
+\multicolumn{18}{l}{** $p \leq 0.01$}\\
+\multicolumn{18}{l}{*** $p \leq 0.001$}\\
+
+\end{tabular}
+\end{adjustbox}
+\end{threeparttable}
+\label{tab:regrtab}
+\end{table*}
+
+\begin{table*}
+\caption{Regression Table for 4 Models}
+\centering
+\begin{threeparttable}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{|p{3.5cm}|c|cccc|cccc|cccc|cccc|cccc|cccc|}
+\toprule\hline
+\multicolumn{1}{|r|}{} &       & \multicolumn{4}{c|}{\textbf{wordiness model}} & \multicolumn{4}{c|}{\textbf{controlled wordiness model}} & \multicolumn{4}{c|}{\textbf{in\_mean model}} & \multicolumn{4}{c|}{\textbf{controlled in\_mean model}} & \multicolumn{4}{c|}{\textbf{out\_mean model}} & \multicolumn{4}{c|}{\textbf{controlled out\_mean  model}} \\\hline
+\midrule
+\multicolumn{1}{|c|}{\textbf{Variable}} & \textbf{Value} & \multicolumn{1}{c|}{\textbf{coef}} & \multicolumn{1}{c|}{\textbf{z}} & \multicolumn{1}{c|}{\textbf{p-value}} & \textbf{sig} & \multicolumn{1}{c|}{\textbf{coef}} & \multicolumn{1}{c|}{\textbf{z}} & \multicolumn{1}{c|}{\textbf{p-value}} & \textbf{sig} & \multicolumn{1}{c|}{\textbf{coef}} & \multicolumn{1}{c|}{\textbf{z}} & \multicolumn{1}{c|}{\textbf{p-value}} & \textbf{sig} & \multicolumn{1}{c|}{\textbf{coef}} & \multicolumn{1}{c|}{\textbf{z}} & \multicolumn{1}{c|}{\textbf{p-value}} & \textbf{sig} & \multicolumn{1}{c|}{\textbf{coef}} & \multicolumn{1}{c|}{\textbf{z}} & \multicolumn{1}{c|}{\textbf{p-value}} & \textbf{sig} & \multicolumn{1}{c|}{\textbf{coef}} & \multicolumn{1}{c|}{\textbf{z}} & \multicolumn{1}{c|}{\textbf{p-value}} & \textbf{sig} \\\hline
+\midrule
+wordiness &       & \multicolumn{1}{r|}{0.0060} & \multicolumn{1}{r|}{148.8} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{0.0053} & \multicolumn{1}{r|}{110.506} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &  \\
+in\_mean &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.3307} & \multicolumn{1}{r|}{121.1} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{l|}{***} & \multicolumn{1}{r|}{0.3532} & \multicolumn{1}{r|}{90.617} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{l|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &  \\
+out\_mean &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{3.8596} & \multicolumn{1}{r|}{177.7} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{l|}{***} & \multicolumn{1}{r|}{3.559} & \multicolumn{1}{r|}{143.92} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{l|}{***} \\\hline
+\midrule
+\textbf{Controls} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &  \\\hline
+\midrule
+Account age &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0009} & \multicolumn{1}{r|}{-34.102} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0010} & \multicolumn{1}{r|}{-36.247} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0004} & \multicolumn{1}{r|}{-17.445} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} \\
+Name Length &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0157} & \multicolumn{1}{r|}{-5.115} & \multicolumn{1}{r|}{3.13E-07} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0172} & \multicolumn{1}{r|}{-5.606} & \multicolumn{1}{r|}{2.07E-08} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0106} & \multicolumn{1}{r|}{-3.456} & \multicolumn{1}{r|}{0.0005} & \multicolumn{1}{r|}{***} \\
+isFeminism &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{1.003} & \multicolumn{1}{r|}{41.491} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{1.068} & \multicolumn{1}{r|}{44.17} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{1.194} & \multicolumn{1}{r|}{49.991} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} \\
+Score mean &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.0062} & \multicolumn{1}{r|}{25.161} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.0009} & \multicolumn{1}{r|}{2.481} & \multicolumn{1}{r|}{0.0131} & \multicolumn{1}{r|}{*} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.0048} & \multicolumn{1}{r|}{9.34} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} \\
+Year 2010 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{12.73} & \multicolumn{1}{r|}{0.631} & \multicolumn{1}{r|}{0.5281} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{99.12} & \multicolumn{1}{r|}{Inf} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{31.8} & \multicolumn{1}{r|}{Inf} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} \\
+Year 2011 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{12.51} & \multicolumn{1}{r|}{1.701} & \multicolumn{1}{r|}{0.0890} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{17.98} & \multicolumn{1}{r|}{0.158} & \multicolumn{1}{r|}{0.8746} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{23.8} & \multicolumn{1}{r|}{0.011} & \multicolumn{1}{r|}{0.9909} &  \\
+Year 2012 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{12.42} & \multicolumn{1}{r|}{2.816} & \multicolumn{1}{r|}{0.0049} & \multicolumn{1}{r|}{**} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{15.43} & \multicolumn{1}{r|}{0.774} & \multicolumn{1}{r|}{0.4391} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{16.09} & \multicolumn{1}{r|}{0.507} & \multicolumn{1}{r|}{0.6125} &  \\
+Year 2013 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{11.18} & \multicolumn{1}{r|}{3.65} & \multicolumn{1}{r|}{0.0003} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{16.76} & \multicolumn{1}{r|}{0.342} & \multicolumn{1}{r|}{0.7326} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{15.29} & \multicolumn{1}{r|}{0.6} & \multicolumn{1}{r|}{0.5484} &  \\
+Year 2014 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{10.56} & \multicolumn{1}{r|}{3.74} & \multicolumn{1}{r|}{0.0002} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{15.24} & \multicolumn{1}{r|}{0.564} & \multicolumn{1}{r|}{0.5725} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{14.88} & \multicolumn{1}{r|}{0.604} & \multicolumn{1}{r|}{0.5462} &  \\
+Year 2015 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{10.08} & \multicolumn{1}{r|}{2.965} & \multicolumn{1}{r|}{0.0030} & \multicolumn{1}{r|}{**} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{16.22} & \multicolumn{1}{r|}{0.22} & \multicolumn{1}{r|}{0.8257} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{19.8} & \multicolumn{1}{r|}{0.043} & \multicolumn{1}{r|}{0.9655} &  \\\hline
+\midrule
+Number of Comments &       & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} \\\hline
+Authors who interact with outgroup &       & \multicolumn{4}{c|}{\textbf{8,816}} & \multicolumn{4}{c|}{\textbf{8,021}} & \multicolumn{4}{c|}{\textbf{8,816}} & \multicolumn{4}{c|}{\textbf{8,021}} & \multicolumn{4}{c|}{\textbf{8,816}} & \multicolumn{4}{c|}{\textbf{8,021}} \\\hline
+Missing Observations &       & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{303,779}} & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{303,779}} & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{303,779}} \\\hline
+$R^2$ &       & \multicolumn{4}{c|}{\textbf{0.001}} & \multicolumn{4}{c|}{\textbf{0.01}} & \multicolumn{4}{c|}{\textbf{0.001}} & \multicolumn{4}{c|}{\textbf{0.001}} & \multicolumn{4}{c|}{\textbf{0.005}} & \multicolumn{4}{c|}{\textbf{0.013}} \\\hline
+Chis-squared Value &       & \multicolumn{4}{c|}{\textbf{4890}} & \multicolumn{4}{c|}{\textbf{42570}} & \multicolumn{4}{c|}{\textbf{2613}} & \multicolumn{4}{c|}{\textbf{41183}} & \multicolumn{4}{c|}{\textbf{22339}} & \multicolumn{4}{c|}{\textbf{55725}} \\\hline
+\bottomrule
+\multicolumn{18}{l}{notes:}{}\\
+\multicolumn{18}{l}{* $p \leq 0.05$}\\
+\multicolumn{18}{l}{** $p \leq 0.01$}\\
+\multicolumn{18}{l}{*** $p \leq 0.001$}\\
+\end{tabular}
+\end{adjustbox}
+\end{threeparttable}
+\label{tab:regrtab}
+\end{table*}
+
+\begin{table*}
+\caption{Regression Table for 4 Models pt 2}
+\centering
+\begin{threeparttable}
+ \begin{adjustbox}{max width=\textwidth}
+                \begin{tabular}{|p{3.5cm}|c|cccc|cccc|cccc|cccc|cccc|cccc|}\hline
+    \toprule
+    \multicolumn{1}{|r|}{} &       & \multicolumn{4}{c|}{\textbf{out\_minus\_in model}} & \multicolumn{4}{c|}{\textbf{controlled out\_minus\_in model}} & \multicolumn{4}{c|}{\textbf{x\_to\_me model}} & \multicolumn{4}{c|}{\textbf{controlled x\_to\_me model}} & \multicolumn{4}{c|}{\textbf{me\_to\_x model}} & \multicolumn{4}{c|}{\textbf{controlled me\_to\_x model}} \\\hline
+    \midrule
+    \textbf{Variable} & \multicolumn{1}{l|}{\textbf{Value}} & \multicolumn{1}{l|}{\textbf{coef}} & \multicolumn{1}{l|}{\textbf{z}} & \multicolumn{1}{l|}{\textbf{p-value}} & \multicolumn{1}{l|}{\textbf{sig}} & \multicolumn{1}{l|}{\textbf{coef}} & \multicolumn{1}{l|}{\textbf{z}} & \multicolumn{1}{l|}{\textbf{p-value}} & \multicolumn{1}{l|}{\textbf{sig}} & \multicolumn{1}{l|}{\textbf{coef}} & \multicolumn{1}{l|}{\textbf{z}} & \multicolumn{1}{l|}{\textbf{p-value}} & \multicolumn{1}{l|}{\textbf{sig}} & \multicolumn{1}{l|}{\textbf{coef}} & \multicolumn{1}{l|}{\textbf{z}} & \multicolumn{1}{l|}{\textbf{p-value}} & \multicolumn{1}{l|}{\textbf{sig}} & \multicolumn{1}{l|}{\textbf{coef}} & \multicolumn{1}{l|}{\textbf{z}} & \multicolumn{1}{l|}{\textbf{p-value}} & \multicolumn{1}{l|}{\textbf{sig}} & \multicolumn{1}{l|}{\textbf{coef}} & \multicolumn{1}{l|}{\textbf{z}} & \multicolumn{1}{l|}{\textbf{p-value}} & \multicolumn{1}{l|}{\textbf{sig}} \\\hline
+    \midrule
+    out\_minus\_in &       & \multicolumn{1}{r|}{-0.1624} & \multicolumn{1}{r|}{-5.53} & \multicolumn{1}{r|}{3.3E-08} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{0.1826} & \multicolumn{1}{r|}{4.461} & \multicolumn{1}{r|}{8.2E-06} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &  \\
+    x\_to\_me & \multicolumn{1}{l|}{TRUE} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{4.6017} & \multicolumn{1}{r|}{172.7} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{l|}{***} & \multicolumn{1}{r|}{3.321} & \multicolumn{1}{r|}{109.73} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{l|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &  \\
+    me\_to\_x & \multicolumn{1}{l|}{TRUE} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{4.6121} & \multicolumn{1}{r|}{172.2} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{l|}{***} & \multicolumn{1}{r|}{3.366} & \multicolumn{1}{r|}{111.77} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{l|}{***} \\\hline
+    \midrule
+    \textbf{Controls} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &  \\\hline
+    \midrule
+    Account age &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0011} & \multicolumn{1}{r|}{-39.209} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0008} & \multicolumn{1}{r|}{-30.697} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0008} & \multicolumn{1}{r|}{-31.128} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} \\
+    Name Length &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0197} & \multicolumn{1}{r|}{-6.459} & \multicolumn{1}{r|}{1.06E-10} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0160} & \multicolumn{1}{r|}{-5.226} & \multicolumn{1}{r|}{1.74E-07} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{-0.0172} & \multicolumn{1}{r|}{-5.623} & \multicolumn{1}{r|}{0.0000} & \multicolumn{1}{r|}{***} \\
+    isFeminism &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{1.031} & \multicolumn{1}{r|}{42.84} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.9174} & \multicolumn{1}{r|}{38.095} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.9217} & \multicolumn{1}{r|}{38.289} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} \\
+    Score mean &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.0084} & \multicolumn{1}{r|}{31.146} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.0051} & \multicolumn{1}{r|}{21.762} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{0.0073} & \multicolumn{1}{r|}{32.957} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} \\
+    Year 2010 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{88.4} & \multicolumn{1}{r|}{Inf} & \multicolumn{1}{r|}{\textless2e-16} & \multicolumn{1}{r|}{***} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{17.47} & \multicolumn{1}{r|}{0.086} & \multicolumn{1}{r|}{0.932} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{17.39} & \multicolumn{1}{r|}{0.088} & \multicolumn{1}{r|}{0.93} &  \\
+    Year 2011 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{19.62} & \multicolumn{1}{r|}{0.076} & \multicolumn{1}{r|}{0.9390} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{18.26} & \multicolumn{1}{r|}{0.143} & \multicolumn{1}{r|}{0.886} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{18.33} & \multicolumn{1}{r|}{0.14} & \multicolumn{1}{r|}{0.8880} &  \\
+    Year 2012 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{19.5} & \multicolumn{1}{r|}{0.128} & \multicolumn{1}{r|}{0.8980} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{17.49} & \multicolumn{1}{r|}{0.275} & \multicolumn{1}{r|}{0.784} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{17.42} & \multicolumn{1}{r|}{0.287} & \multicolumn{1}{r|}{0.7740} &  \\
+    Year 2013 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{15.37} & \multicolumn{1}{r|}{0.63} & \multicolumn{1}{r|}{0.5280} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{16.25} & \multicolumn{1}{r|}{0.413} & \multicolumn{1}{r|}{0.68} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{16.18} & \multicolumn{1}{r|}{0.423} & \multicolumn{1}{r|}{0.6720} &  \\
+    Year 2014 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{14.59} & \multicolumn{1}{r|}{0.7} & \multicolumn{1}{r|}{0.4840} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{15.68} & \multicolumn{1}{r|}{0.422} & \multicolumn{1}{r|}{0.673} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{15.56} & \multicolumn{1}{r|}{0.448} & \multicolumn{1}{r|}{0.6540} &  \\
+    Year 2015 & \multicolumn{1}{l|}{\textbf{TRUE}} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{13.98} & \multicolumn{1}{r|}{0.591} & \multicolumn{1}{r|}{0.5540} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{15.15} & \multicolumn{1}{r|}{0.354} & \multicolumn{1}{r|}{0.724} &       & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} & \multicolumn{1}{r|}{} &       & \multicolumn{1}{r|}{15.08} & \multicolumn{1}{r|}{0.365} & \multicolumn{1}{r|}{0.7150} &  \\\hline
+    \midrule
+    Number of Comments &       & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} & \multicolumn{4}{c|}{\textbf{4,605,955}} \\\hline
+    Authors who interact with outgroup &       & \multicolumn{4}{c|}{\textbf{8,816}} & \multicolumn{4}{c|}{\textbf{8,021}} & \multicolumn{4}{c|}{\textbf{8,816}} & \multicolumn{4}{c|}{\textbf{8,021}} & \multicolumn{4}{c|}{\textbf{8,816}} & \multicolumn{4}{c|}{\textbf{8,021}} \\\hline
+    Missing Observations &       & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{303,779}} & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{303,779}} & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{303,779}} \\\hline
+    $R^2$ &       & \multicolumn{4}{c|}{\textbf{0}} & \multicolumn{4}{c|}{\textbf{0.009}} & \multicolumn{4}{c|}{\textbf{0.003}} & \multicolumn{4}{c|}{\textbf{0.011}} & \multicolumn{4}{c|}{\textbf{0.003}} & \multicolumn{4}{c|}{\textbf{0.011}} \\\hline
+    Chis-squared Value &       & \multicolumn{4}{c|}{\textbf{16.76}} & \multicolumn{4}{c|}{\textbf{39136}} & \multicolumn{4}{c|}{\textbf{12641}} & \multicolumn{4}{c|}{\textbf{46110}} & \multicolumn{4}{c|}{\textbf{12498}} & \multicolumn{4}{c|}{\textbf{46227}} \\\hline
+    \bottomrule
+    \multicolumn{18}{l}{notes:}{}\\
+    \multicolumn{18}{l}{* $p \leq 0.05$}\\
+    \multicolumn{18}{l}{** $p \leq 0.01$}\\
+    \multicolumn{18}{l}{*** $p \leq 0.001$}\\
+    \end{tabular}%
+
+\end{adjustbox}
+\end{threeparttable}
+\label{tab:regrtab2}
+\end{table*}
+
+\end{document}

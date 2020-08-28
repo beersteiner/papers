@@ -1,0 +1,56 @@
+\chapter{Conclusion}
+\label{ch:conclusion}
+%The proposed system is a standalone password manager equipped with the
+%USB device. The device is hard to be tampered and is securely to store
+%the pair (e.g., key:password) of user's credentials, where the key is
+%a unique identity requiring to match the corresponding password
+%(e.g. website, hostname, username, \dots). The application of the USB
+%device provides an interface for a user to access the encrypted
+%partition in the USB device.  The credentials that a user wants to
+%store are located in the encrypted partition of the USB device which
+%can be decrypted only with the primary password that a user setup.
+%The default password is provided for the user to decrypt the encrypted
+%partition for the first usage. The application forces a user to update
+%the default password with a different password.  The USB device is
+%updated with the new release of the application which can be
+%downloaded from the designated webserver. The webserver uses the two
+%factor authentication to ensure the authentictiy and integrity of the
+%applications and the USB device. The user is required to register to
+%the website with the public key of the USB device.  The new
+%application is digitally signed with the factory's public key. Once
+%the new application is verified to be authentic, it replaces the
+%existing version in the USB device and restarts the application to
+%load up with the new version.
+
+%We have setup a threat model for the proposed system by using the
+%standard STRIDE threat.  Our threat model is based on the iterative
+%design. We review our proposed system architecture, dataflows, and
+%external entities. Any potential threats are identified by using the
+%STRIDE methodology and augmented by experimenting with the elevation
+%of privilege game cards.  We discuss any identified trheats and assign
+%a bug number to each one. Finally we decide whether we accept it as a
+%system risk or not and perfom a risk likelihood vs impact for all
+%accepted risks using a modified OWASP risk methodology.
+
+Our threat model identified 43 threats and 19 risks (see
+Figure~\ref{fig:riskmatrix}) associated with the system threats. Of
+the 19 identified risks, 10 were classified as high risks largely
+because any compromise of the system password led to complete loss of
+confidentiality.  On the other hand, the likelihood of the threats is
+4.05 in average within 1 to 10 range and the 10 high risks has 4.56. A
+prinicpal attack vector was through the webserver using a malware
+infected software/firmware image that is passed to an unaware
+device. This attack tree is described in \nameref{ch:a4}. The risk of
+this threat is also high category 2.
+
+While the system appears to have significant vulnerabilities, we
+believe that the likelihood element of the risk severity is overstated
+in part because the OWASP risk methodology used does not actually
+consider likelihood in the in light of design and mitigations. A
+lesson learned that would apply to an even more comprehensive threat
+model would be to iterate against mitigations which would reduce many
+of the high risk threats to lower severity. If a compromise were to
+occur, the impact is quite severe for most risks.  Finally, we do
+transfer one risk to the user, that of properly protecting the USB
+device and using it only on machines determined to be safe and free
+from compromise.

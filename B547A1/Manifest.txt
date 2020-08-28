@@ -1,0 +1,64 @@
+History.txt
+Makefile
+Manifest.txt
+README.txt
+assignment1.tex
+bib
+bib/bibliography.bib
+excel table
+excel table/risk_matrix.xlsx
+excel table/tables.xlsx
+excel table/threat_risk_tables_main.xlsx
+excel table/threat_risk_tables_main1.xlsx
+graphics
+graphics/DFD.xml
+graphics/DFD1 (1).xml
+graphics/DFD1.xml
+graphics/DFD2 (1).xml
+graphics/DFD2 (3).xml
+graphics/DFD_App.png
+graphics/DFD_Main.png
+graphics/DFD_SecureApp.png
+graphics/DFD_SecureUser.png
+graphics/DFD_USB.png
+graphics/DFD_Unsecure.png
+graphics/DFD_Webserver.dia
+graphics/DFD_Webserver.png
+graphics/State_Diagram.png
+graphics/assumption_table.png
+graphics/dos_sum.png
+graphics/doscard.png
+graphics/eop_sum.png
+graphics/eopcard.png
+graphics/info_sum.png
+graphics/infodisclcard.png
+graphics/owasp_impact.png
+graphics/owasp_likelihood.png
+graphics/repud_sum.png
+graphics/repudcard.png
+graphics/risk_matrix.png
+graphics/risk_sum.png
+graphics/riskcats.png
+graphics/s1000-vertical.png
+graphics/spoof_sum.png
+graphics/spoofcard.png
+graphics/tamper_sum.png
+graphics/tampercard.png
+graphics/threat_list_final.png
+graphics/webservdfd1.png
+graphics/webservdfd2.png
+graphics/webservdfd3.png
+text
+text/SecExcepts.tex
+text/Secmitigation.tex
+text/attack_tree.tex
+text/conclusion.tex
+text/introduction.tex
+text/mitigation.tex
+text/risk.tex
+text/system_overview.tex
+text/threat_list.tex
+text/threat_model.tex
+tufte-book.cls
+tufte-common.def
+tufte-handout.cls

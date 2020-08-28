@@ -1,0 +1,32 @@
+\chapter{Introduction}
+\label{ch:introduction}
+
+This report satisfies the requirements of assignment
+1~\cite{2017myersa1handout}, which requires us to perform a
+\textit{comprehensive} threat model of a password manager.  We describe the
+password manager, its functionality and provide state, swimlane and dataflow diagrams
+which we use in our threat model. We also perform risk analysis, describe
+mitigations in the threat model and provide attack trees for several of our
+highest rated threats.  \sidenote[][-0.5in]{Our password manager is hosted on a
+specialized USB device which emphasizes hardware functionality as a means of
+providing acceptable protection to stored passwords.}
+
+\par We threat modelled using the STRIDE approach, focusing on data
+flows and security-relevant elements.
+%\sidenote[][]{STRIDE: \emph{Spoofing},\emph{Tampering},\emph{Information Disclosure},\emph{Denial of Service}, and \emph{Elevation of Privilege}}
+Similarly, we manage our threats and risks using
+Shostack~\cite{shostackbook} and modified OWASP
+methodologies~\cite{owasprisk}.
+
+
+
+%We are allowed discretion in the choice of architectures but the architecture
+%should provide for the remembering of many passwords for websites,
+%products, appliances and other uses which require passwords.
+
+%\par The report is limited to no more than 7 pages of diagrams and 40
+%pages total length.  The final product is a threat model of the system
+%and any other documentation that would be necessary to understand how
+%the proposed system would run.  If any sections of the threat model
+%are empty, they should still be included in the report and the report
+%should indicate that they were intentionally left empty.
