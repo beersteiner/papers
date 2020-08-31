@@ -46,7 +46,7 @@
 
 
 \begin{document}
-\title{A Covert Channel Detector for Machine Learning Models}
+\title{Learning to extend a Cybersecurity Knowledge Graph}
 %\titlenote{Produces the permission block, and
   %copyright information}
 %\subtitle{Extended Abstract}
@@ -82,7 +82,14 @@
 
 
 \begin{abstract}
-It has been shown that malicious model training code can augment sensitive training data with specially-crafted samples to enable later exfiltration of the sensitive data by an attacker who has black-box access to the completed model, but no direct access to the sensitive training data. \cite{DBLP:journals/corr/abs-1709-07886}  This is known as a Covert Channel for machine learning models.  It has also been shown an attacker can infer whether a specific sample was included in the training set for a black-box model if the attacker has knowledge of the model's structure or can generate models with similar structure. \cite{DBLP:journals/corr/ShokriSS16}  This is known as Membership Inference on machine learning models.  We demonstrate that a variation of the Membership Inference `attack' can be used to detect whether a given machine learning model may have a covert channel.  We review some performance factors of the detector, and discuss how performance is directly related to model capacity and sparsity of the sensitive and maliciously-crafted data.
+The landscape of cybersecurity research and intelligence is vast and complex.  Engineers, developers, and administrators of information technology (IT) systems are faced with the monumental task of knowing about, accessing, making sense of, and making decisions from, cybersecurity knowledge.  \textcolor{red}{For example, …}
+
+Toward that goal, various repositories of cybersecurity knowledge, including some that are machine-readable \textcolor{red}{(refs)}, have been developed and curated by the community.  These efforts have improved the coherence and alignment of interrelated lines of cybersecurity research, and created many opportunities for more powerful machine-aided security analysis.  
+
+Many projects have endeavored to perform meaningful learning tasks aimed at discovery of new cybersecurity knowledge \textcolor{red}{(refs)} or using existing knowledge to automate or augment design and analysis of systems and software \textcolor{red}{(refs)}.  With a few exceptions (SemFuzz, others), semantic aspects of most of these learning tasks are limited, or at least not accessible, from the perspective of external semantic reasoning.  More recently, some of this cybersecurity knowledge has been assembled in the form of knowledge graphs (SEPSES ref) and linked data.  We believe that representation of cybersecurity knowledge as linked entities and relations is a critical step toward enabling higher semantic learning tasks in the cybersecurity domain.
+
+This project seeks to develop a model to expand a cybersecurity knowledge graph generated from structured, manually entered information to include new knowledge from unstructured documents.  When encountering a new, unstructured document, the model (1) identifies cybersecurity-related entities contained in the document, (2) classifies each entity type, and (3) identifies and classifies relations between entities.  The resulting model, therefore, has the capability to propose additions to structured cybersecurity repositories (when it encounters entities or relations that are not currently in the repository) as well as provide graph-based reasoning and context capabilities to new, unstructured information.
+
 \end{abstract}
 
 \keywords{machine learning, models, covert channels, detector}
